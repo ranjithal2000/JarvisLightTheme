@@ -12,7 +12,8 @@
 
   <div *ngIf="isDashboard && !isLogin" class="logo-full middle"
        [class.make-room-for-slogan]="environment.whiteLabelSlogan">
-    <img alt="logo" [src]="environment?.branding?.logo" width="122" height="42">
+       <img alt="logo" src="assets/JARVIS_Logo(J).png" width="35" height="40" class="J_logo">
+       <img alt="logo" src="assets/JARVIS_LOGO_cleanup (1).png"  class="logo_full">
     <div *ngIf="environment.whiteLabelSlogan" class="slogan">{{environment.whiteLabelSlogan}}</div>
   </div>
   <div *ngIf="isLogin && environment.whiteLabelLogo" class="logo-full">

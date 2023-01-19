@@ -11,9 +11,14 @@ $icon-size: 24px;
   background-color: $blue-600;
 
   .logo {
-    width: 64px;
-    height: 64px;
-    background: $blue-700;
+    width: 60px;
+    height: 54px;
+    background: $blue-650;
+    margin-left: 2px;
+  }
+  img{
+    margin-left: 8px;
+    margin-top: 2px;
   }
 
   .items-container {

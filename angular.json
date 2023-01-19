@@ -312,5 +312,8 @@
       "prefix": "sm",
       "style": "scss"
     }
+  },
+  "cli": {
+    "analytics": "213566cc-b077-4115-a69c-d98f0511ec5d"
   }
 }
