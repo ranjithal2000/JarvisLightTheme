@@ -10,8 +10,7 @@
     *ngIf="commercialContext"
     class="commercial-text"
     [style.background-image]="commercialContext.background ? 'url(' + commercialContext.background + ')' : null"
-    [style.background-position]="commercialContext.backgroundPosition"
-  >
+    [style.background-position]="commercialContext.backgroundPosition">
     <img class="white-label" *ngIf="environment.whiteLabelLogo" [src]="environment.whiteLabelLogo">
     <div *ngIf="commercialContext.title" class="main-title" [innerHTML]="commercialContext.title | safe:'html'"></div>
     <div class="list" *ngIf="commercialContext.list">

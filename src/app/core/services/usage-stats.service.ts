@@ -24,8 +24,8 @@ export class UsageStatsService {
           const dialogRef = this.dialog.open(ConfirmDialogComponent,
             {
               data: {
-                title: 'Help us improve ClearML',
-                body: `Please allow the ClearML server to send anonymous usage metrics so we can better understand how ClearML is being used and make it even better.<BR>
+                title: 'Help us improve JARVIS',
+                body: `Please allow the JARVIS server to send anonymous usage metrics so we can better understand how JARVIS is being used and make it even better.<BR>
   This setting can be changed through the Profile page.`,
                 yes: 'Approve',
                 no: 'Deny',

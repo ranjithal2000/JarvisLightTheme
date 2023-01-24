@@ -245,7 +245,7 @@ export class AppComponent implements OnInit, OnDestroy {
         return acc.concat(crumb.name);
       }, [''])
       .filter(name => !!name && name !== ':project');
-    this.titleService.setTitle(`ClearML - ${crumbs.join(' / ')}`);
+    this.titleService.setTitle(`JARVIS - ${crumbs.join(' / ')}`);
   }
 
   versionDismissed(version: string) {

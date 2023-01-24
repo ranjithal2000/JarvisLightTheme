@@ -12,8 +12,9 @@
 
   <div *ngIf="isDashboard && !isLogin" class="logo-full middle"
        [class.make-room-for-slogan]="environment.whiteLabelSlogan">
-       <img alt="logo" src="assets/JARVIS_Logo(J).png" width="35" height="40" class="J_logo">
-       <img alt="logo" src="assets/JARVIS_LOGO_cleanup (1).png"  class="logo_full">
+       <img alt="logo" src="assets/JARVIS(new).png" width="125" height="80" >
+       <!-- <img alt="logo" src="assets/JARVIS_Logo(J).png" width="35" height="40" class="J_logo">
+       <img alt="logo" src="assets/JARVIS_LOGO_cleanup (1).png"  class="logo_full"> -->
     <div *ngIf="environment.whiteLabelSlogan" class="slogan">{{environment.whiteLabelSlogan}}</div>
   </div>
   <div *ngIf="isLogin && environment.whiteLabelLogo" class="logo-full">
@@ -53,28 +54,28 @@
 
     <mat-menu #resourcesMenu="matMenu" class="user-menu">
       <button mat-menu-item (click)="openWelcome($event)">
-        <i class="al-icon sm-md al-ico-code-file"></i>ClearML Python Package setup
+        <i class="al-icon sm-md al-ico-code-file"></i>JARVIS Python Package setup
       </button>
-      <button mat-menu-item (click)="navigate('https://www.youtube.com/c/ClearML/featured')">
-        <i class="al-icon al-ico-youtube sm-md"></i>ClearML on Youtube
-      </button>
-      <button mat-menu-item (click)="navigate(environment.docsLink)">
+      <!-- <button mat-menu-item (click)="navigate('https://www.youtube.com/c/ClearML/featured')">
+        <i class="al-icon al-ico-youtube sm-md"></i>JARVIS on Youtube
+      </button> -->
+      <!-- <button mat-menu-item (click)="navigate(environment.docsLink)">
         <i class="al-icon sm-md al-ico-documentation"></i>Online Documentation
-      </button>
-      <button mat-menu-item (click)="openTip()">
+      </button> -->
+      <!-- <button mat-menu-item (click)="openTip()">
         <i class="al-icon sm-md al-ico-tips"></i>Pro Tips
-      </button>
-      <ng-container *smCheckPermission="'applications'">
+      </button> -->
+      <!-- <ng-container *smCheckPermission="'applications'">
         <button mat-menu-item
                 *ngIf="$any(environment)?.appsYouTubeIntroVideoId && $any(environment).appAwarenessMenu !== false"
                 (click)="openAppsAwareness($event, $any(environment)?.appsYouTubeIntroVideoId)"
         >
-          <i class="al-icon sm-md al-ico-applications"></i>ClearML Apps Introduction
+          <i class="al-icon sm-md al-ico-applications"></i>JARVIS Apps Introduction
         </button>
-      </ng-container>
-      <button mat-menu-item (click)="navigate('mailto:support@clear.ml')">
+      </ng-container> -->
+      <!-- <button mat-menu-item (click)="navigate('mailto:support@clear.ml')">
         <i class="al-icon sm-md al-ico-email"></i>Contact Us
-      </button>
+      </button> -->
     </mat-menu>
   </div>
 </div>

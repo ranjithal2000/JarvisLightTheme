@@ -1,6 +1,6 @@
 <sm-dialog-template [displayX]="true"
-                    [header]="queue? 'NO WORKERS ASSIGNED TO QUEUE': (step === 1 ? 'Welcome to ClearML' : (showTabs? 'CREATE NEW EXPERIMENT' : 'GETTING STARTED'))"
-                    [subHeader]="showTabs ? 'To create a new experiment you can either run your ML code instrumented with the ClearML SDK, or Relaunch a previously run experiment by cloning it.' : ''"
+                    [header]="queue? 'NO WORKERS ASSIGNED TO QUEUE': (step === 1 ? 'Welcome to JARVIS' : (showTabs? 'CREATE NEW EXPERIMENT' : 'GETTING STARTED'))"
+                    [subHeader]="showTabs ? 'To create a new experiment you can either run your ML code instrumented with the JARVIS SDK, or Relaunch a previously run experiment by cloning it.' : ''"
                     (xClicked)="closeDialog()" [closeOnX]="false"
                     [iconClass]="queue?'al-ico-queues': 'i-welcome-researcher'" xmlns="http://www.w3.org/1999/html">
 
@@ -22,7 +22,7 @@
           <i class="al-ico-card-example foreground"></i>
           <span class="background"></span>
         </span>
-        <div class="mt-2">See the pre-loaded examples to quickly get familiar with ClearML’s various capabilities.</div>
+        <div class="mt-2">See the pre-loaded examples to quickly get familiar with JARVIS various capabilities.</div>
       </div>
       <div class="info">
         <i class="al-ico-help-outlined"></i>
@@ -30,7 +30,7 @@
       </div>
       <div class="info">
         <i class="al-ico-documentation"></i>
-        <div class="mt-2">Check out the <a target="_blank" [href]="docsLink">ClearML docs</a> for advanced information and in depth how-to’s.
+        <div class="mt-2">Check out the <a target="_blank" [href]="docsLink">JARVIS docs</a> for advanced information and in depth how-to’s.
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
   <ng-template #configStep>
     <div class="steps-content">
       <div class="text" *ngIf="queue">
-        Tasks have been enqueued on the <b>{{queue?.name}}</b> queue, which is currently not serviced by any worker. They will remain in the 'pending' state until a ClearML worker services this queue.
+        Tasks have been enqueued on the <b>{{queue?.name}}</b> queue, which is currently not serviced by any worker. They will remain in the 'pending' state until a JARVIS worker services this queue.
       </div>
       <ng-container *ngIf="!currentLink || currentLink === links[0]">
         <div *ngFor="let step of steps; let i = index" class="step-container">
@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="step-container cred-step" [class.jupyter]="isJupyter" [class.first-step]="!credentialsCreated" [class.has-ws]="community && workspace.name" [class.has-label]="credentialsLabel">
-          <div class="step sub-note" *ngIf="!isJupyter" >Complete the clearml configuration information as prompted.</div>
+          <div class="step sub-note" *ngIf="!isJupyter" >Complete the JARVIS configuration information as prompted.</div>
           <div *ngIf="!credentialsCreated" class="d-flex align-items-end">
             <button class="mb-2 btn btn-neon create-cred-button" data-id="New Credentials" (click)="createCredentials()">CREATE NEW
               CREDENTIALS
@@ -110,18 +110,18 @@
       <ng-container *ngIf="!currentLink || currentLink === links[1]">
         <div class="step-container" *ngIf="!queue">
           <div *ngIf="!showTabs" class="step">3. Integrate</div>
-          <div class="step sub-note">Add ClearML to your code. For example:</div>
-          <div class="code" #content><div *ngIf="!showTabs; else: withTabs" class="content"><span class="variable">from</span> {{gettingStartedContext?.packageName || 'clearml'}} <span class="variable">import</span> Task
+          <div class="step sub-note">Add JARVIS to your code. For example:</div>
+          <div class="code" #content><div *ngIf="!showTabs; else: withTabs" class="content"><span class="variable">from</span> {{gettingStartedContext?.packageName || 'jarvis'}} <span class="variable">import</span> Task
 task <span class="operation">=</span> Task.<span class="variable">init</span>(project_name<span class="operation">=</span><span class="string">"my project"</span>, task_name<span class="operation">=</span><span class="string">"my task"</span>)</div><ng-template #withTabs><div class="content"><span class="variable">import</span> numpy <span class="variable">as</span> np
 <span class="variable">import</span> matplotlib.pyplot <span class="variable">as</span> plt
 
-# Add the following two lines to your code, to have ClearML automatically log your experiment
-<span class="variable">from</span> clearml <span class="variable">import</span> Task
+# Add the following two lines to your code, to have JARVIS automatically log your experiment
+<span class="variable">from</span> jarvis <span class="variable">import</span> Task
 task = Task.init(project_name=<span class="string">'My Project'</span>, task_name=<span class="string">'My Experiment'</span>)
 
 # Create a plot using matplotlib, or you can also use plotly
 <code>plt.scatter(np.random.rand(50), np.random.rand(50), c=np.random.rand(50), alpha=0.5)</code>
-# Plot will be reported automatically to clearml
+# Plot will be reported automatically to jarvis
 plt.show()
 
 # Report some scalars
@@ -147,7 +147,7 @@ task.get_logger().report_scalar(title=<span class="string">"graph title"</span>,
           <div class="step sub-note mt-2">Use the <span class="bolder">“Enqueue”</span> action to enqueue the new experiment on an available queue.</div>
           <div class="step sub-note mb-1">To have an agent service a queue, on your target machine run:</div>
           <div class="code">
-            <div #content class="content">clearml-agent daemon —queue &lt;queue name&gt;</div>
+            <div #content class="content">jarvis-agent daemon —queue &lt;queue name&gt;</div>
             <sm-copy-clipboard
               [hideBackground]="true"
               [label]="''"

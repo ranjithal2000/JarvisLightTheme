@@ -13,6 +13,7 @@ import {filter, take, throttleTime} from 'rxjs/operators';
 import {isExample} from '@common/shared/utils/shared-utils';
 import { CARDS_IN_ROW } from '../../common-dashboard.const';
 import {trackById} from '@common/shared/utils/forms-track-by';
+import { logout } from '@common/core/actions/users.actions';
 
 @Component({
   selector   : 'sm-dashboard-projects',
@@ -34,7 +35,10 @@ export class DashboardProjectsComponent implements OnInit, AfterViewInit, OnDest
     public router: Router,
     private matDialog: MatDialog
   ) {
+    
     this.recentProjectsList$ = this.store.select(selectRecentProjects);
+    console.log(this.recentProjectsList$)
+    
   }
 
   @ViewChild('header') header: ElementRef<HTMLDivElement>;
@@ -53,6 +57,7 @@ export class DashboardProjectsComponent implements OnInit, AfterViewInit, OnDest
       .subscribe(() => this.width.emit(this.header.nativeElement.getBoundingClientRect().width));
   }
   public projectCardClicked(project: Project) {
+    debugger
     (project.own_tasks===0 && project.sub_projects.length>0) ? this.router.navigateByUrl(`projects/${project.id}/projects`): this.router.navigateByUrl(`projects/${project.id}`);
     this.store.dispatch(setSelectedProjectId({projectId: project.id, example: isExample(project)}));
   }

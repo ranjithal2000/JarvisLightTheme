@@ -9,7 +9,7 @@
   <mat-slide-toggle
     (change)="toggleExamples($event)"
     [checked]="hideExamples$ | async"
-  >Don’t show ClearML examples
+  >Don’t show JARVIS examples
   </mat-slide-toggle>
   <mat-slide-toggle
     *ngIf="supportReScaling"
@@ -17,7 +17,7 @@
     [checked]="disableHidpi">
     Disable HiDPI browser scale override
     <i class="al-icon al-ico-info-circle sm info align-middle ml-3 mr-3"
-       smTooltip="ClearML dynamically sets the browser scaling factor for an optimal page layout. Disable for default desktop scale."
+       smTooltip="JARVIS dynamically sets the browser scaling factor for an optimal page layout. Disable for default desktop scale."
     ></i>
     <span class="reload" [class.highlight]="disableHidpiChanged" (click)="reload($event)">Reload to apply</span>
   </mat-slide-toggle>

@@ -47,25 +47,25 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
   GETTING_STARTED_STEPS: StepObject[] = [{
     header: 'Get started in a jiffy:',
     title: '1. Install',
-    code: 'pip install clearml',
+    code: 'pip install jarvis',
   }, {
     title: '2. Configure',
-    code: 'clearml-init'
+    code: 'jarvis-init'
   }];
   ORPHANED_QUEUE_STEPS: StepObject[] =
     [{
       header: null, code: null,
-      subNote: 'See ClearML Documentation for different ways of deploying workers'
+      subNote: 'See JARVIS Documentation for different ways of deploying workers'
     }, {
       header: 'To setup a worker',
       title: '1. Install',
-      code: 'pip install clearml-agent',
+      code: 'pip install jarvis-agent',
     }, {
       title: '2. Configure',
-      code: 'clearml-agent init'
+      code: 'jarvis-agent init'
     }
     ];
-  links = ['Setup ClearML', 'Run your ML code', 'Relaunch previous experiments'];
+  links = ['Setup JARVIS', 'Run your ML code', 'Relaunch previous experiments'];
   host: string;
   community = false;
   public queue: Queue;
