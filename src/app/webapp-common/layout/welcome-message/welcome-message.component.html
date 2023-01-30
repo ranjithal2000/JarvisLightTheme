@@ -52,7 +52,7 @@
             <sm-navbar-item header="LOCAL PYTHON" [active]="!isJupyter" class="small-nav" (click)="setIsJupyter(false)"></sm-navbar-item>
             <sm-navbar-item header="JUPYTER NOTEBOOK" [active]="isJupyter" class="small-nav" (click)="setIsJupyter(true)"></sm-navbar-item>
           </nav>
-          <div class="step sub-note mt-2 mb-2">{{isJupyter? 'Set the ClearML environment for your notebook':'Run the ClearML setup script'}}</div>
+          <div class="step sub-note mt-2 mb-2">{{isJupyter? 'Set the JARVIS environment for your notebook':'Run the JARVIS setup script'}}</div>
           <div class="code">
             <div class="content" #stepCode>{{step.code}}</div>
             <sm-copy-clipboard
