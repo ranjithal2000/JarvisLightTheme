@@ -47,10 +47,10 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
   GETTING_STARTED_STEPS: StepObject[] = [{
     header: 'Get started in a jiffy:',
     title: '1. Install',
-    code: 'pip install jarvis',
+    code: 'pip install Jarvis',
   }, {
     title: '2. Configure',
-    code: 'jarvis-init'
+    code: 'Jarvis-init'
   }];
   ORPHANED_QUEUE_STEPS: StepObject[] =
     [{
@@ -59,10 +59,10 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
     }, {
       header: 'To setup a worker',
       title: '1. Install',
-      code: 'pip install jarvis-agent',
+      code: 'pip install Jarvis-agent',
     }, {
       title: '2. Configure',
-      code: 'jarvis-agent init'
+      code: 'Jarvis-agent init'
     }
     ];
   links = ['Setup JARVIS', 'Run your ML code', 'Relaunch previous experiments'];
@@ -124,8 +124,8 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
       } else {
         this.steps[0].code = `clearml-agent daemon --queue ${this.queue.name}`;
         this.steps[0].header = `To assign a worker to the ${this.queue.name} queue, run:`;
-        this.steps[1].code = `pip install clearml-agent`;
-        this.steps[2].code = `clearml-agent init`;
+        this.steps[1].code = `pip install jarvis-agent`;
+        this.steps[2].code = `jarvis-agent init`;
       }
     });
   }
@@ -195,7 +195,7 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
 
     } else {
       if (this.queue) {
-        this.steps[2].code = `clearml-agent init`;
+        this.steps[2].code = `jarvis-agent init`;
       } else {
         this.steps[1].code = this.gettingStartedContext.configure;
       }
