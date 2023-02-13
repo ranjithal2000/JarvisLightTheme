@@ -4,6 +4,7 @@
   "license": "",
   "scripts": {
     "ng": "ng",
+    "publish": "ng build --prod",
     "start": "npx ng serve --proxy-config proxy.config.js --live-reload false --port 4300",
     "start-widgets": "npx ng serve --port 4201 --project report-widgets --proxy-config proxy.config.js --live-reload false",
     "hmr": "npx ng serve --proxy-config proxy.config.js --hmr --port 4300",

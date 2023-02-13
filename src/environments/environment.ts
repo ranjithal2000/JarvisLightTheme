@@ -2,7 +2,7 @@ import {BASE_ENV} from './base';
 
 export let environment = {
   ...BASE_ENV,
-  production             : false,
+  production             : true,
   autoLogin              : true,
   apiBaseUrl             : 'service/1/api',
   spaLogin               : true,

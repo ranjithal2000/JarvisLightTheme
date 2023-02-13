@@ -34,7 +34,7 @@
 
     <hr>
 
-    <button mat-menu-item (click)="shareExperimentPopup()" *ngIf="isCommunity"
+    <button mat-menu-item (click)="shareExperimentPopup()" 
             [disabled]="isExample || numSelected > 1  || isArchive">
       <i [class]="'al-icon '  + icons.SHARE + ' sm-md'"></i>Share
     </button>

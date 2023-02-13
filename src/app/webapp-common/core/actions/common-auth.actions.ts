@@ -29,6 +29,7 @@ export const setCredentialLabel = createAction(
   props<{credential: CredentialKeyExt; label?: string}>()
 );
 export const addCredential = createAction(
+  
   AUTH_PREFIX + 'ADD_CREDENTIAL',
   props<{ newCredential: CredentialKeyExt; workspaceId: string }>()
 );

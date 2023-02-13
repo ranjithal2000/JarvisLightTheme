@@ -55,6 +55,7 @@ export class ProjectDialogComponent implements OnInit, OnDestroy {
   }
 
   public createProject(projectForm) {
+    debugger
     const project = this.convertFormToProject(projectForm);
     this.store.dispatch(new createNewProjectActions.CreateNewProject(project));
   }

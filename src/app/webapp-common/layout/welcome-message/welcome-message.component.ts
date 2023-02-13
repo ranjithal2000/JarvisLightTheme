@@ -89,6 +89,7 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
     private adminService: AdminService,
     private configService: ConfigurationService,
   ) {
+    debugger
     this.loadYoutubeApi(data?.newExperimentYouTubeVideoId);
     this.dialogRef.beforeClosed().subscribe(() => this.dialogRef.close(this.doNotShowAgain));
     this.step = data?.step || this.step;
@@ -131,6 +132,7 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    debugger
     this.community = this.configService.getStaticEnvironment().communityServer;
     this.displayedServerUrls = this.configService.getStaticEnvironment().displayedServerUrls;
 
@@ -138,6 +140,7 @@ export class WelcomeMessageComponent implements OnInit, OnDestroy {
       .pipe(
         filter(credential => credential && Object.keys(credential).length > 0)
       ).subscribe(credential => {
+        debugger
         this.accessKey = credential.access_key;
         this.secretKey = credential.secret_key;
         this.store.dispatch(resetCredential());

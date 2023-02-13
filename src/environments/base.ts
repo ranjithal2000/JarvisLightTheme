@@ -91,9 +91,9 @@ export const BASE_ENV = {
   slackLink: 'https://join.slack.com/t/clearml/shared_invite/zt-1kvcxu5hf-SRH_rmmHdLL7l2WadRJTQg',
   docsLink: 'https://clear.ml/docs',
   branding: {logo: 'assets/logo-white.svg?v=7', logoSmall: 'assets/c-logo.svg?=2'},
-  serverDownMessage: 'The ClearML server is currently unavailable.<BR>' +
+  serverDownMessage: 'The JARVIS server is currently unavailable.<BR>' +
     'Please try to reload this page in a little while.<BR>' +
-    'If the problem persists, verify your network connection is working and check the ClearML server logs for possible errors',
+    'If the problem persists, verify your network connection is working and check the JARVIS server logs for possible errors',
   newExperimentYouTubeVideoId: 's3k9ntmQmD4'
 } as Environment;
 

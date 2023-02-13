@@ -122,11 +122,15 @@ export const updateHttpUrlBaseConstant = (_environment: Environment) => {
   } else {
     apiBaseUrl = guessAPIServerURL();
   }
+
   const apiBaseUrlNoVersion = apiBaseUrl;
+
   apiBaseUrl += ENVIRONMENT.API_VERSION;
 
   const url = window.location.origin;
+
   let fileBaseUrl;
+  
   if (_environment.fileBaseUrl) {
     fileBaseUrl = _environment.fileBaseUrl;
   } else if (/https?:\/\/(demo|)app\./.test(url)) {

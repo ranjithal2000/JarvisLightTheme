@@ -47,6 +47,7 @@ export class ModelGeneralInfoComponent {
         },
         {label: 'ARCHIVED', value: model && model.system_tags && model.system_tags.includes(TAGS.HIDDEN) ? 'Yes' : 'No'},
         {label: 'PROJECT', value: getOr(NA, 'project.name', model)},
+        {label:'Test',value:model.uri}
       ];
     }
   }

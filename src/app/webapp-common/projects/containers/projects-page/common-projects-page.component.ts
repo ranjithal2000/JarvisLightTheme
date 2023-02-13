@@ -149,6 +149,7 @@ export class CommonProjectsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    debugger
     // this.store.dispatch(new ResetSelectedProject());
     this.store.dispatch(setDeep({deep: false}));
 

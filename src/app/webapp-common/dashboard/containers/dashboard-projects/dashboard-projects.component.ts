@@ -35,8 +35,9 @@ export class DashboardProjectsComponent implements OnInit, AfterViewInit, OnDest
     public router: Router,
     private matDialog: MatDialog
   ) {
-    
+    debugger
     this.recentProjectsList$ = this.store.select(selectRecentProjects);
+    debugger
     console.log(this.recentProjectsList$)
     
   }
@@ -63,6 +64,7 @@ export class DashboardProjectsComponent implements OnInit, AfterViewInit, OnDest
   }
 
   public openCreateProjectDialog() {
+    debugger
     this.dialog = this.matDialog.open(ProjectDialogComponent, {
       data: {
         mode: 'create',
