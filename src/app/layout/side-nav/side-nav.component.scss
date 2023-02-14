@@ -10,9 +10,12 @@ $icon-size: 24px;
   width: $side-bar-close-width;
   background-color: $blue-600;
 
+  .logo-a{
+    margin-top: 15% !important;
+  }
   .logo {
     width: 60px;
-    height: 54px;
+    height: 64px;
     background: $blue-650;
     margin-left: 2px;
   }
