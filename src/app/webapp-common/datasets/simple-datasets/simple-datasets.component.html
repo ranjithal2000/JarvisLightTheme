@@ -63,17 +63,31 @@
           (click)="emptyStateTabClicked('cli')"></sm-navbar-item>
         <sm-navbar-item
           direction="bottom"
-          header="SDK"
+          header="SDK(local)"
           [active]="emptyStateTab==='sdk'"
           (click)="emptyStateTabClicked('sdk')"
         ></sm-navbar-item>
+        <!-- -----------new----------- -->
+        <sm-navbar-item
+          direction="bottom"
+          header="SDK(Remote)"
+          [active]="emptyStateTab==='sdk1'"
+          (click)="emptyStateTabClicked('sdk1')"
+        ></sm-navbar-item>
+        <!-- ---------------end---------------- -->
       </div>
       <sm-code-editor
-        [code]="emptyStateTab === 'cli'? initDatasetCLICode: initDatasetSDKCode"
+        [code]="(emptyStateTab === 'cli')?initDatasetCLICode:(emptyStateTab === 'sdk')  ? initDatasetSDKCode:initDatasetSDKCodeId"
         [readonly]="true"
         [mode]="emptyStateTab === 'cli'? 'ace/mode/sh': 'ace/mode/python'"
         [showCopyButton]="true"
       ></sm-code-editor>
+      <!-- <sm-code-editor
+        [code]="emptyStateTab === 'sdk1'? initDatasetSDKCodeId: initDatasetSDKCode"
+        [readonly]="true"
+        [mode]="emptyStateTab === 'cli'? 'ace/mode/sh': 'ace/mode/python'"
+        [showCopyButton]="true"
+      ></sm-code-editor> -->
     </div>
     <div class="diagram"><i class="i-datasets-empty-state"></i></div>
   </div>

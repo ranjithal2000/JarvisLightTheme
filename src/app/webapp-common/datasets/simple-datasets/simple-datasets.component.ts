@@ -44,7 +44,31 @@ dataset.upload()
 
 # commit dataset changes
 dataset.finalize()`;
-  public emptyStateTab: string = 'cli';
+
+// --------------new--------------------
+initDatasetSDKCodeId = `
+from clearml import Dataset
+
+#Replace the below url with your own url
+
+remote_url="s3://jarvis-storage/"
+
+#Create a dataset with ClearML\`s Dataset class and provide values of your choice
+
+dataset = Dataset.create(dataset_project='default_project_name', 
+                         dataset_name='defaul_dataset_name')
+
+#add the url to the dataset   
+                    
+dataset.add_external_files(remote_url)
+
+# Upload dataset to ClearML server (customizable)
+dataset.upload()
+
+# commit dataset changes
+dataset.finalize()`;
+// --------------end--------------------
+  public emptyStateTab: string = '';
 
   public projectCardClicked(project: ProjectsGetAllResponseSingle) {
     this.router.navigate(['simple', project.id, 'experiments'], {relativeTo: this.route});
