@@ -1,14 +1,16 @@
-<div class="d-flex justify-content-between header-container align-items-center"
+  <div class="d-flex justify-content-between header-container align-items-center"
      [ngClass]="{'archive-mode': isArchived}">
   <div class="d-flex-center">
     <ng-container *ngTemplateOutlet="addButtonTemplate; context: {smallScreen: (isSmallScreen$ | async).matches}">
     </ng-container>
+
     <sm-toggle-archive
       [class.hide-item]="sharedView"
       [showArchived]="isArchived"
       [minimize]="(isSmallScreen$ | async).matches"
       (toggleArchived)="onIsArchivedChanged($event)"
     ></sm-toggle-archive>
+
     <sm-button-toggle
       [disabled]="!tableMode"
       class="ml-3"
@@ -16,7 +18,11 @@
       [value]="tableMode"
       [rippleEffect]="rippleEffect"
       (valueChanged)="tableModeChanged.emit($event)"></sm-button-toggle>
+
+
+      
   </div>
+  
   <sm-project-context-navbar
     *ngIf="showNavbarLinks"
     [class.hide-item]="sharedView"
@@ -26,11 +32,14 @@
 
 
   <div class="d-flex justify-content-end align-items-center right-buttons">
+   
+   
     <sm-clear-filters-button
       *ngIf="!minimizedView"
       [tableFilters]="tableFilters"
       (clearTableFilters)="clearTableFilters.emit(tableFilters)"
     ></sm-clear-filters-button>
+
     <sm-experiment-custom-cols-menu
       *ngIf="!minimizedView"
       [metricVariants]="metricVariants"
@@ -44,10 +53,13 @@
       (removeColFromList)="removeColFromList.emit($event)"
       (clearSelection)="clearSelection.emit()"
     ></sm-experiment-custom-cols-menu>
+
+    <button class="Grdio_button"><a href="https://f66d05ac-38a1-4ff7.gradio.live/">Sarcasm_Detector-App</a></button>
     <sm-refresh-button
       [allowAutoRefresh]="true"
       (setAutoRefresh)="setAutoRefresh.emit($event)"
     >
     </sm-refresh-button>
+    
   </div>
 </div>

@@ -9,6 +9,7 @@ import {BaseEntityHeaderComponent} from '@common/shared/entity-page/base-entity-
   selector   : 'sm-experiment-header',
   templateUrl: './experiment-header.component.html',
   styleUrls  : ['./experiment-header.component.scss']
+  
 })
 export class ExperimentHeaderComponent extends BaseEntityHeaderComponent {
   private _tableCols: any;

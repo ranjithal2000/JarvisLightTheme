@@ -55,6 +55,44 @@
   }
 
 }
+
+//-------------Jarvis added---------------
+#div1,#div2{
+  display: inline !important;
+}
+.float-container {
+  // border: 3px solid #fff;
+  padding: 20px;
+}
+
+.float-child {
+  width: 50%;
+  float: left;
+  padding: 20px;
+  // border: 2px solid red;
+}  
+form{
+  background-color: rgba(7, 1, 18, 0.964);
+ 
+  padding: 10px;
+  border-radius: 4px;
+  label{
+    color: white;
+  }
+  input,label{
+    margin: 8px;
+  }
+  input{
+    width: 450px;
+  }
+  .btn{
+    margin-left: 70%;
+    color: black;
+    
+  }
+}
+//-------------Jarvis added end---------------
+
 .content {
   width: 100%;
   display: flex;

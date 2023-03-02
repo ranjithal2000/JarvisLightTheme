@@ -55,6 +55,7 @@
           For more details see the <a [class.dark]="showButton" href="https://clear.ml/docs/latest/docs/clearml_data/clearml_data" target="_blank">documentation</a>
         </div>
       </div>
+
       <div class="navbar">
         <sm-navbar-item
           direction="bottom"
@@ -76,19 +77,91 @@
         ></sm-navbar-item>
         <!-- ---------------end---------------- -->
       </div>
-      <sm-code-editor
-        [code]="(emptyStateTab === 'cli')?initDatasetCLICode:(emptyStateTab === 'sdk')  ? initDatasetSDKCode:initDatasetSDKCodeId"
-        [readonly]="true"
-        [mode]="emptyStateTab === 'cli'? 'ace/mode/sh': 'ace/mode/python'"
-        [showCopyButton]="true"
-      ></sm-code-editor>
-      <!-- <sm-code-editor
-        [code]="emptyStateTab === 'sdk1'? initDatasetSDKCodeId: initDatasetSDKCode"
-        [readonly]="true"
-        [mode]="emptyStateTab === 'cli'? 'ace/mode/sh': 'ace/mode/python'"
-        [showCopyButton]="true"
-      ></sm-code-editor> -->
+     
+      <div class="float-container">
+        <div class="float-child">
+          <div class="green">
+            <!---------------- form cli ----------------->
+            <form *ngIf="clitab">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Project Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="projectName2" placeholder="Enter Dataset Project Name">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="datasetName2" placeholder="Enter Dataset Name">
+              </div><br>
+
+              <button type="submit" class="btn btn-primary">Generate Code</button>
+            </form>
+
+            <!---------------- form sdk local----------------->
+            <form  *ngIf="sdktab">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Local Url</label>
+                <input type="text" class="form-control"  aria-describedby="emailHelp" [(ngModel)]="Localurl" placeholder="Enter Local Url">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Project Name</label>
+                <input type="text" class="form-control"  aria-describedby="emailHelp" [(ngModel)]="projectName" placeholder="Enter Dataset Project Name">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Name</label>
+                <input type="text" class="form-control"  aria-describedby="emailHelp" [(ngModel)]="datasetName" placeholder="Enter Dataset Name">
+              </div><br>
+
+              <button type="submit" class="btn btn-primary" (click)="Generatecode()">Generate Code</button>
+            </form>
+
+            <!---------------- form sdk1 Remote ----------------->
+            <form *ngIf="sdk1tab">
+              <div class="form-group" >
+                <label for="exampleInputEmail1">Remote Url</label>
+                <input type="text" class="form-control"  [(ngModel)]="Remoteurl" placeholder="Enter Remote Url">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Project Name</label>
+                <input type="text" class="form-control"  [(ngModel)]="projectName1" placeholder="Enter Dataset Project Name">
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputEmail1">Dataset Name</label>
+                <input type="text" class="form-control"  [(ngModel)]="datasetName1" placeholder="Enter Dataset Name">
+              </div> <br>
+
+              <button type="submit" class="btn btn-primary" (click)="Generatecode1()">Generate Code</button>
+            </form>
+
+          </div>
+        </div>
+        
+        <div class="float-child">
+          <div class="blue">
+            <sm-code-editor
+            [code]="(emptyStateTab === 'cli')?initDatasetCLICode:(emptyStateTab === 'sdk')  ? initDatasetSDKCode:initDatasetSDKCodeId"
+            [readonly]="true"
+            [mode]="emptyStateTab === 'cli'? 'ace/mode/sh': 'ace/mode/python'"
+            [showCopyButton]="true"
+          ></sm-code-editor>
+          </div>
+        </div>
+        
+      </div>
+
+
+
+
+
+
+
+
+
+
     </div>
-    <div class="diagram"><i class="i-datasets-empty-state"></i></div>
+    <!-- <div class="diagram"><i class="i-datasets-empty-state"></i></div> -->
   </div>
 </ng-template>
