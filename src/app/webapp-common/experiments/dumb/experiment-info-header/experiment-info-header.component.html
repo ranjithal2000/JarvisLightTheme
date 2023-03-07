@@ -21,7 +21,10 @@
     <div class="shared line-item"
          *ngIf="(!minimized) && shared"
     ><i class="fas fa-link p-1"></i></div>
+
     <sm-id-badge class="mr-3" [id]="experiment?.id" (copied)="copyToClipboard()" *ngIf="!viewId"></sm-id-badge>
+    <!-- <sm-id-badge class="mr-3" [id]="projects?.id" (copied)="copyToClipboard()"></sm-id-badge> -->
+
     <span class="comment line-item"
           [delay]="1000" [action]="'leave'"
           (smHesitate)="menuHesitate.hesitateStatus && menu.closed.emit()"
@@ -46,6 +49,7 @@
         (onDescription)="onDescriptionHandler()"
       ></sm-experiment-info-edit-description>
     </mat-menu>
+
     <div *ngIf="minimized" (click)="maximizedClicked.emit()"
          smTooltip="View Full Screen" class="d-flex fullscreen line-item">
       <i class="al-icon al-ico-info-max pointer"></i>

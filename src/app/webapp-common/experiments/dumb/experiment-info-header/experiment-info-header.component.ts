@@ -68,9 +68,13 @@ export class ExperimentInfoHeaderComponent implements OnDestroy {
   }
 
   private _experiment: any;
+  // private _projects:any;
   get experiment() {
     return this._experiment;
   }
+  // get projects(){
+  //   return this._projects;
+  // }
 
   @Input() set experiment(experiment) {
     if (experiment?.id !== this._experiment?.id) {
