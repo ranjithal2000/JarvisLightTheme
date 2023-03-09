@@ -22,9 +22,10 @@ import {ConfigurationService} from '@common/shared/services/configuration.servic
 import {ProjectsSharedModule} from './features/projects/shared/projects-shared.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {LoginService} from '~/shared/services/login.service';
+import { PortalComponent } from './features/portal/portal.component';
 
 @NgModule({
-  declarations   : [AppComponent],
+  declarations   : [AppComponent, PortalComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

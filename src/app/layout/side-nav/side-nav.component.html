@@ -4,7 +4,14 @@
 
 <ng-container *ngIf="currentUser">
   <div #container class="items-container" [class.on-scrolling]="scrolling">
-    <a class="item al-ico-home"
+   <a class="item  al-ico-home"
+       routerLink="/portal"
+       routerLinkActive="active"
+       smTooltip="PORTAL"
+       [matTooltipShowDelay]="0"
+       matTooltipPosition="right">
+    </a>
+    <a class="item al-ico-projects"
        routerLink="/dashboard"
        routerLinkActive="active"
        (click)="resetSearch()"
@@ -12,7 +19,7 @@
        [matTooltipShowDelay]="0"
        matTooltipPosition="right">
     </a>
-    <a class="item al-ico-projects"
+    <a class="item project-icon i-move-to-project"
        smTooltip="PROJECTS"
        [matTooltipShowDelay]="0"
        matTooltipPosition="right"
@@ -47,6 +54,7 @@
        [matTooltipShowDelay]="0"
        matTooltipPosition="right">
     </a>
+    
   </div>
 </ng-container>
 

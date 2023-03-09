@@ -75,7 +75,12 @@ $icon-size: 24px;
       color: $neon-yellow
     }
   }
-
+.project-icon{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 30px;
+}
   .i-slack-mark-color {
     width: $icon-size;
     height: $icon-size;

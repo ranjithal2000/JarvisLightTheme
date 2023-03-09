@@ -13,7 +13,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
-
+// -----new jarvis---
+import { MatCardModule } from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+// -----end new jarvis---
 
 @NgModule({
   imports: [
@@ -28,7 +32,12 @@ import {MatListModule} from "@angular/material/list";
     MatCheckboxModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
-    MatChipsModule
+    MatChipsModule,
+    // -----new jarvis---
+    MatCardModule,
+    MatIconModule,
+    MatTabsModule
+    // -----end new jarvis---
   ],
   exports: [
     MatExpansionModule,
@@ -45,6 +54,11 @@ import {MatListModule} from "@angular/material/list";
     MatChipsModule,
     MatSidenavModule,
     MatListModule,
+    // -----new jarvis---
+    MatCardModule,
+    MatIconModule,
+    MatTabsModule
+    // -----end new jarvis---
   ],
   declarations: []
 })

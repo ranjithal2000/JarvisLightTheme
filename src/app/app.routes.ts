@@ -4,6 +4,7 @@ import {AdminComponent} from '@common/settings/admin/admin.component';
 */
 import {ProjectRedirectGuardGuard} from '@common/shared/guards/project-redirect.guard';
 import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
+import { PortalComponent } from './features/portal/portal.component';
 
 
 export const routes: Routes = [
@@ -12,6 +13,11 @@ export const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {search: true, userFocus: true},
+  },
+  {
+    path: 'portal',component:PortalComponent
+    // loadChildren: () => import('./features/portal/portal.component').then(),
+    // data: {search: true, userFocus: true},
   },
   {
     path: 'projects',

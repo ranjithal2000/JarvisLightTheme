@@ -39,12 +39,15 @@
               "node_modules/primeng/resources/components/table/table.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/ngx-markdown-editor/assets/highlight.js/agate.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
               "src/fonts.scss"
             ],
             "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/ngx-markdown-editor/assets/highlight.js/highlight.min.js",
-              "node_modules/ngx-markdown-editor/assets/marked.min.js"
+              "node_modules/ngx-markdown-editor/assets/marked.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash/fp",
