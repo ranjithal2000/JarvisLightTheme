@@ -8,19 +8,6 @@
     background-color: #2f334a !important;
     border: none !important;
   }
-// .row{
-//     display: flex;
-// }
-// .fst_crd{
-//     border-radius: 10px 5px 5px 10px !important;
-// }
-// .lst_crd{
-//   border-radius: 5px 10px 10px 5px !important;
-//   position: sticky;
-//   top: 0;
-//   left: 0;
-//   z-index: 1; 
-// }
 
 hr{
     color: black;
@@ -38,10 +25,7 @@ hr{
 #div1,#div2{
     display: inline;
 }
-// #data1,#data2{
-//     display: flex;
-//     align-items: center;
-// }
+
 .container{
     margin-top: 30px;
 }
@@ -56,21 +40,10 @@ hr{
     display: inline-block;
     margin-right: 2px; /* optional - to add space between icons */  
   }
-.addButton{
-    color: white;
-}
-// .col{
-    // flex: 1;
-    // padding: 1em;
-    // margin: 4px;
-    // border: solid 1px;    
-    /* background-color:#0a072b; */
-    // background-color:#0f0e21f2;
-    // box-shadow: 0px 0px 10px 0px #c3bcbc,
-    // 0 1px 1px 0 #9f9999,
-    // 0 1px 3px 0 #a8a0a0;
-    // height: 500px;
+// .addButton{
+//     color: white;
 // }
+
 mat-expansion-panel{
     border: solid 1px;
 }
@@ -80,8 +53,7 @@ mat-expansion-panel{
     padding: 1em;
     margin: 4px;
     border: solid 1px; 
-    
-    height: 650px;
+    height: 700px;
 }
 .head{    
     text-align: center;
@@ -161,7 +133,7 @@ mat-tab{
     background-color: white;
 }
   .example-full-width {
-    width: 98%;
+    width: 80%;
     
   }
   input,textarea{
@@ -211,17 +183,7 @@ h6{
 label{
     color: rgb(162, 172, 172);
 }
-.btn-grp button{
-    background-color: #1a098d; /* Green background */
-    border: 1px solid black; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    margin-bottom: 5px;
-    width: 80px;
-    height: 30px;   
-    
-}
+
 .btn-group button {
     background-color: #1a098d; /* Green background */
     border: 1px solid black; /* Green border */
@@ -241,8 +203,94 @@ label{
   .btn-group button:hover {
     background-color: #3e8e41;
   }
-  .btn-grp button:hover {
-    background-color: #3e8e41;
+  
+
+
+.mat-chip{
+    background-color: #3f4563;
+}
+.example-box.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  .example-chip .cdk-drop-list-dragging {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
 
-  
+
+
+#frontendJar{
+    width: 20% !important;
+    background-color: #131D4B;
+    height: 800px !important;
+    margin: 1em !important;
+}
+#pipelineJar{
+    width: 20% !important;
+    background-color: #131D4B;
+    height: 800px !important;
+    margin: 1em !important;
+}
+#modalJar{
+    width: 20% !important;
+    background-color: #131D4B;
+    height: 800px !important;
+    margin: 1em !important;
+}
+#dataJar{
+    width: 20% !important;
+    background-color: #131D4B;
+    min-height: 800px !important;
+    margin: 1em !important;
+}
+#img{
+     padding: 1em;
+}
+.addButton{
+    transform: scale(1.6);
+    color: rgb(162, 172, 172);
+}
+// #text{
+//     color:#37B3FB;
+// }
+#solutionJar{
+    width: 20% !important;
+    background-color: #131D4B;
+    height: 800px !important;
+    margin: 1em !important;
+}
+#title{
+    font-size: 44px;
+    color:black;
+}
+#subTitle{
+    font-size: 24px;
+    color:black;
+    margin-bottom: 10px;
+}
+#inputStyle{
+    max-width: 50em !important;
+    height: 50px !important;
+    margin-top: 10px;
+}
+.mat-expansion-indicator::after {
+    height: 50px !important; 
+    width: 50px !important; 
+}
+.btn-grp button{
+    background-color: #3A4475; /* Green background */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 100px;
+    height: 35px;   
+}
+.limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}
+#icon{
+    font-size: 28px;
+}
