@@ -240,7 +240,7 @@ debugger
         console.log(response)
         this.storeResponse = response;
         alert(this.storeResponse.message);
-        this.getdataset();
+        this.getPipeline();
       }
       );
   }
