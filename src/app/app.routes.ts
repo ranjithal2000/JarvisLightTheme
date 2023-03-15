@@ -8,7 +8,7 @@ import { PortalComponent } from './features/portal/portal.component';
 
 
 export const routes: Routes = [
-  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: 'portal', pathMatch: 'full'},
   {
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
