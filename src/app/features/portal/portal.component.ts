@@ -84,17 +84,19 @@ export class PortalComponent implements OnInit {
     version: [],
     desc: [],
     id: [],
-    url:[]
+    url:[],
+    main_id:[]
   })
-  formdata5 = this.formBuilder.group({
-    id: []
-  })
+  // formdata5 = this.formBuilder.group({
+  //   id: []
+  // })
   formdata6 = this.formBuilder.group({
     project_name: [],
     id: [],
     desc:[],
     view_url:[],
-    run_url:[]
+    run_url:[],
+    modelTags:[]
   })
   formdata7 = this.formBuilder.group({
     solution_name: [],
@@ -109,7 +111,8 @@ export class PortalComponent implements OnInit {
     pipeline_name:[],
     pipelineView_url:[],
     pipeline_description:[],
-    pipeline_tags:[]
+    pipeline_tags:[],
+    id:[]
   })
   storeResponse: any;
   pipeline:any=[];
@@ -134,7 +137,7 @@ export class PortalComponent implements OnInit {
     debugger
     let modelName = this.formdata6.controls['project_name'].value;
     let modelId = this.formdata6.controls['id'].value.toString();
-    let modelTags = 'Model';
+    let modelTags = this.formdata6.controls['modelTags'].value;
     let modelDescription = this.formdata6.controls['desc'].value;
     let modelRunUrl = this.formdata6.controls['run_url'].value;
     let modelViewUrl = this.formdata6.controls['view_url'].value;
@@ -147,11 +150,11 @@ export class PortalComponent implements OnInit {
       }
       )
   }
-  deleteModel(data: any) {
+  modelId:any;
+  deleteModel() {
     debugger
-    console.log("modelData", data)
-    this.formdata6.controls['id'].setValue(data.modelId);
-    let modelId = this.formdata6.controls['id'].value.toString();
+    let modelId=this.modelId;
+
     this.http.post('http://3.108.153.122:3000/model/deleteModel', { modelId })
       .subscribe(response => {
         console.log(response);
@@ -195,7 +198,10 @@ export class PortalComponent implements OnInit {
     let datasetVersion = this.formdata4.controls['version'].value;
     let datasetDescription = this.formdata4.controls['desc'].value;
     let datasetUrl = this.formdata4.controls['url'].value;
-    let datasetId = this.formdata4.controls['id'].value.toString();
+    let datasetId =this.formdata4.controls['main_id'].value.toString();
+    let id = this.formdata4.controls['id'].value.toString();
+   
+
     console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
     this.http.post('http://3.108.153.122:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription, datasetUrl })
       .subscribe(response => {
@@ -206,10 +212,11 @@ export class PortalComponent implements OnInit {
       }
       );
   }
-  deleteDataset(data: any) {
-    this.formdata5.controls['id'].setValue(data.datasetId);
-    let datasetId = this.formdata5.controls['id'].value.toString();
-    console.log("dataDelete", data.datasetId)
+  datasetId:any;
+  deleteDataset() {
+   debugger
+    let datasetId=this.datasetId;
+
     this.http.post('http://3.108.153.122:3000/data/deleteDataset', { datasetId })
       .subscribe(response => {
         console.log(response)
@@ -228,13 +235,14 @@ export class PortalComponent implements OnInit {
       }
       )
   }
-// ------------------------------Pipeline Section-------------------------------
+// --------------------------------Pipeline Section---------------------------------
   addPipeline(){
-debugger
+    debugger
     let pipelineName=this.formdata8.controls['pipeline_name'].value;
     let pipelineViewUrl=this.formdata8.controls['pipelineView_url'].value;
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
+    
     this.http.post('http://3.108.153.122:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
       .subscribe(response => {
         console.log(response)
@@ -255,13 +263,15 @@ debugger
       )
   }
 
-  editPipeline(data:any) {
-    let pipelineName=this.formdata8.controls['pipeline_name']
+  editPipeline() {
+    debugger
+    let pipelineId=this.formdata8.controls['id'].value;
+    let pipelineName=this.formdata8.controls['pipeline_name'].value;
     let pipelineViewUrl=this.formdata8.controls['pipelineView_url'].value;
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
     
-    this.http.post('http://3.108.153.122:3000/solution/editSolution', { pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
+    this.http.post('http://3.108.153.122:3000/pipeline/editPipeline', { pipelineId,pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -270,11 +280,14 @@ debugger
       });
   }
 
-  deletePipeline(data:any){
+  pipelineId:any;
+
+  deletePipeline(){
+    debugger
     // console.log("solutionData", data)
     // this.formdata7.controls['solution_id'].setValue(data.solutionId);
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
-    let pipelineId=data.pipelineId
+    let pipelineId=this.pipelineId
     this.http.post('http://3.108.153.122:3000/pipeline/deletePipeline', { pipelineId })
       .subscribe(response => {
         console.log(response);
@@ -290,11 +303,13 @@ debugger
     console.log("clicked", data)
     this.abc = data
     console.log("abcName", this.abc.id)
-    this.formdata4.controls['id'].setValue(data.datasetId);
+    this.formdata4.controls['id'].setValue(data.id);
     this.formdata4.controls['name'].setValue(data.datasetName);
     this.formdata4.controls['version'].setValue(data.datasetVersion);
     this.formdata4.controls['desc'].setValue(data.datasetDescription);
     this.formdata4.controls['url'].setValue(data.datasetUrl);
+    this.formdata4.controls['main_id'].setValue(data.datasetId)
+    this.formdata4.controls['id'].disable();
   }
   getDataModel(data: any) {
     console.log("clicked", data)
@@ -303,16 +318,25 @@ debugger
     this.formdata6.controls['desc'].setValue(data.modelDescription);
     this.formdata6.controls['run_url'].setValue(data.modelRunUrl);
     this.formdata6.controls['view_url'].setValue(data.modelViewUrl);
+    this.formdata6.controls['modelTags'].setValue(data.modelTags);
   }
   getDataSolution(data:any){
+    debugger
     console.log("clickedsolution", data)
     this.formdata7.controls['solution_name'].setValue(data.solutionName)
-    this.formdata7.controls['solution_version'].setValue(data.solutionVersion)
+    // this.formdata7.controls['solution_version'].setValue(data.solutionVersion)
     this.formdata7.controls['solution_id'].setValue(data.solutionId)
     this.formdata7.controls['solution_tags'].setValue(data.solutionTags)
     this.formdata7.controls['solution_description'].setValue(data.solutionDescription)
     this.formdata7.controls['view_url'].setValue(data.solutionViewUrl)
     this.formdata7.controls['run_url'].setValue(data.solutionRunUrl)
+  }
+  getDataPipeline(data:any){
+    this.formdata8.controls['pipeline_name'].setValue(data.pipelineName)
+    this.formdata8.controls['pipelineView_url'].setValue(data.pipelineViewUrl)
+    this.formdata8.controls['pipeline_tags'].setValue(data.pipelineTags)
+    this.formdata8.controls['pipeline_description'].setValue(data.pipelineDescription) 
+    this.formdata8.controls['id'].setValue(data.pipelineId) 
   }
 // ------------------------------solution jar section-------------------------------
   addSolution() {
@@ -347,10 +371,15 @@ debugger
         this.getSolution();
       });
   }
-  deleteSolution(data:any){
-    console.log("solutionData", data)
-    this.formdata7.controls['solution_id'].setValue(data.solutionId);
-    let solutionId = this.formdata7.controls['solution_id'].value.toString();
+
+  solutionId:any;
+  deleteSolution(){
+    debugger
+    // console.log("solutionData", data)
+    // this.formdata7.controls['solution_id'].setValue(data.solutionId);
+    // let solutionId = this.formdata7.controls['solution_id'].value.toString();
+    let solutionId=this.solutionId;
+
     this.http.post('http://3.108.153.122:3000/solution/deleteSolution', { solutionId })
       .subscribe(response => {
         console.log(response);
@@ -369,57 +398,37 @@ debugger
       }
       )
   }
-  upload() {
-    if (this.ds == true) {
-      debugger
-      this.name = this.formdata.controls['type'].value;
-      this.data_name = this.formdata.controls['name'].value;
-      this.id = this.formdata.controls['id'].value;
-      this.version = this.formdata.controls['version'].value;
-      this.desc = this.formdata.controls['desc'].value;
-      this.Array.push({ Type: this.name, Name: this.data_name, Id: this.id, Version: this.version, Desc: this.desc });
-      this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json', this.Array)
-        .subscribe(response => { console.log(response) }
-        );
-    } else if (this.mdl == true) {
-      this.name = this.formdata2.controls['project_name'].value;
-      this.id = this.formdata2.controls['view_url'].value;
-      this.desc = this.formdata2.controls['run_url'].value;
-      this.Array.push({ Type: 'Model', Name: this.name, Id: this.id, Url: this.desc });
-      //Id will be view_url and Url will be run_url
-      this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json', this.Array)
-        .subscribe(response => { console.log(response) }
-        );
-    } else if (this.sln == true) {
-      this.name = this.formdata3.controls['project_name'].value;
-      this.desc = this.formdata3.controls['url'].value;
-      this.Array.push({ Type: 'Solution', Name: this.name, Id: this.id, Url: this.desc });
-      this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json', this.Array)
-        .subscribe(response => { console.log(response) }
-        );
-    }else if (this.ppln == true) {
-      this.name = this.formdata3.controls['project_name'].value;
-      this.desc = this.formdata3.controls['url'].value;
-      this.Array.push({ Type: 'Solution', Name: this.name, Id: this.id, Url: this.desc });
-      this.http.post('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json', this.Array)
-        .subscribe(response => { console.log(response) }
-        );
-    }
-  }
+  
   editData(data: any, jar: any) {
     this.SelectJar(jar);
-    this.formdata.controls['name'].setValue(data.datasetName);
-    this.formdata.controls['version'].setValue(data.datasetVersion);
-    this.formdata.controls['id'].disable();
-    this.formdata.controls['desc'].setValue(data.datasetDescription);
+    this.getDataPipeline(data)
+    // this.formdata.controls['name'].setValue(data.datasetName);
+    // this.formdata.controls['version'].setValue(data.datasetVersion);
+    // this.formdata.controls['id'].disable();
+    // this.formdata4.controls['id'].disable();
+    // this.formdata.controls['desc'].setValue(data.datasetDescription);
   }
   reload() {
     window.location.reload();
   }
-  isReadMore = true
+
+  isReadMore = true;
+  isReadMore1 = true;
+  isReadMore2 = true;
+  isReadMore3 = true;
   showText() {
-     this.isReadMore = !this.isReadMore
+     this.isReadMore = !this.isReadMore;
   }
+  showText1(){
+    this.isReadMore1 = !this.isReadMore1 
+  }
+  showText2(){
+    this.isReadMore2 = !this.isReadMore2
+  }
+  showText3(){
+    this.isReadMore3 = !this.isReadMore3
+  }
+
   Jars: any = [{ id: 1, name: 'Model' }, { id: 2, name: 'Dataset' }, { id: 3, name: 'Pipeline' }]
   Model: any = [{ id: 1, name: 'Local Copy' }, { id: 2, name: 'Remote Copy' }, { id: 3, name: 'Using Id' }]
   data: any = [];
@@ -470,14 +479,14 @@ debugger
   jar: any;
   SelectJar(jar: any) {
     debugger
-    this.formdata = this.formBuilder.group({
-      type: [],
-      name: [],
-      id: [],
-      version: [],
-      desc: [],
-      url:[]
-    })
+    // this.formdata = this.formBuilder.group({
+    //   type: [],
+    //   name: [],
+    //   id: [],
+    //   version: [],
+    //   desc: [],
+    //   url:[]
+    // })
     if (jar == 'Dataset') {
       this.ds = true;
       this.mdl = false;
@@ -500,6 +509,24 @@ debugger
       this.ppln= true;
     }
   }
+  deleteId(data:any,jar:any){
+    debugger
+    this.SelectJar(jar);
+
+    if(jar == 'Dataset'){
+      this.datasetId=data.datasetId;
+
+    }else if(jar == 'Model'){
+      this.modelId=data.modelId;
+
+    } else if(jar == 'Solution'){
+      this.solutionId=data.solutionId;
+
+    } else if(jar == 'Pipeline'){
+      this.pipelineId=data.pipelineId;
+    }
+  }
+  
   value1: any = 'Enter all API_Data to generate the Script';
   new_dataset_name: any = '';
   dataset_id: any = '';

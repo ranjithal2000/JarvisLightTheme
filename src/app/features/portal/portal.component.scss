@@ -133,7 +133,7 @@ mat-tab{
     background-color: white;
 }
   .example-full-width {
-    width: 80%;
+    width: 70%;
     
   }
   input,textarea{
@@ -183,6 +183,10 @@ h6{
 label{
     color: rgb(162, 172, 172);
 }
+
+
+
+
 
 .btn-group button {
     background-color: #1a098d; /* Green background */
@@ -250,9 +254,9 @@ label{
     transform: scale(1.6);
     color: rgb(162, 172, 172);
 }
-// #text{
-//     color:#37B3FB;
-// }
+#margin {
+    margin-left: 25px !important;
+}
 #solutionJar{
     width: 20% !important;
     background-color: #131D4B;
@@ -260,18 +264,19 @@ label{
     margin: 1em !important;
 }
 #title{
-    font-size: 44px;
+    font-size: 34px;
     color:black;
 }
 #subTitle{
-    font-size: 24px;
+    font-size: 14px;
     color:black;
-    margin-bottom: 10px;
+    margin-bottom: 30px !important;
 }
 #inputStyle{
     max-width: 50em !important;
-    height: 50px !important;
-    margin-top: 10px;
+    height: 25px !important;
+    margin-top: 4px;
+    border-radius: 1px;
 }
 .mat-expansion-indicator::after {
     height: 50px !important; 
