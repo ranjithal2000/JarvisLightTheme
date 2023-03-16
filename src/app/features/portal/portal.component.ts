@@ -8,6 +8,9 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export interface tags {
   name: string;
 }
+
+declare var LeaderLine: any;
+
 @Component({
   selector: 'sm-portal',
   templateUrl: './portal.component.html',
@@ -618,4 +621,33 @@ for i,img in enumerate(sample):
   // dataset.upload()
   // # commit dataset changes
   // dataset.finalize()`;
+
+
+
+
+
+
+  items: Array<any> = [
+    {title: "First item", content: "First item content", expanded: true },
+    {title: "Second item", children: [
+            {title: "Child item" }
+       ]
+   }
+];
+
+leader(id, id2) {
+
+  var line = new LeaderLine(
+    LeaderLine.pointAnchor(id, {x: 10, y: 18}),
+    id2, {
+      endPlugOutline: false,
+      animOptions: { duration: 3000, timing: 'linear' }
+    }
+  );
+
+  line.path = 'grid';
+  line.setOptions({startSocket: 'bottom', endSocket: 'left'});
+  line.startSocketGravity = 0;
+
+}
 }
