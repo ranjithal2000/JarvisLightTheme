@@ -348,8 +348,11 @@ export class PortalComponent implements OnInit {
     let solutionRunUrl= this.formdata3.controls['run_url'].value;
     let solutionTags = this.formdata3.controls['solution_tags'].value;
     let solutionDescription = this.formdata3.controls['solution_description'].value;
-
-    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl })
+    let modelId=this.dropdownmodel;
+    let datasetId=this.dropdowndata;
+    let pipelineId=this.dropdownpipeline;
+ 
+    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -622,8 +625,37 @@ for i,img in enumerate(sample):
   // # commit dataset changes
   // dataset.finalize()`;
 
+dropdowndata:any;
+dropdownmodel:any;
+dropdownpipeline:any;
 
+  onSelectdataset(data:any,jars:any){
+    if(jars=='dataset'){
+      this.dropdowndata=data;
+    }else if(jars=='model'){
+      this.dropdownmodel=data;
+    }else if(jars=='pipeline'){
+      this.dropdownpipeline=data;
+    }
+    
+  }
+  linkagedata:any=[];
 
+  linkage(data:any){
+  debugger
+  let solutionId=data.solutionId;
+    let modelId =data.modelId;
+    let datasetId=data.datasetId;
+    let pipelineId=data.pipelineId;
+
+    this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId,modelId,datasetId,pipelineId})
+    .subscribe(response => {
+      this.linkagedata=response;
+      console.log(this.linkagedata);
+    }
+    )
+
+  }
 
 
 
@@ -638,7 +670,8 @@ for i,img in enumerate(sample):
 leader(id, id2) {
 
   var line = new LeaderLine(
-    LeaderLine.pointAnchor(id, {x: 10, y: 18}),
+    
+    LeaderLine.pointAnchor(id, {x: 20, y: 28}),
     id2, {
       endPlugOutline: false,
       animOptions: { duration: 3000, timing: 'linear' }
