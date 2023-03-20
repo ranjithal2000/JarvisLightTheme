@@ -47,7 +47,7 @@ export class PortalComponent implements OnInit {
   }
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
   ngOnInit(): void {
-    this.fetchData();
+    // this.fetchData();
     this.getModel();
     this.getSolution();
     this.getdataset();
@@ -119,7 +119,7 @@ export class PortalComponent implements OnInit {
   })
   storeResponse: any;
   pipeline:any=[];
-  // ------------------------------Modeljar section-------------------------------
+  // ------------------------------Model  jar section-------------------------------
   addModel() {
     debugger
     let modelName = this.formdata2.controls['project_name'].value;
@@ -170,6 +170,7 @@ export class PortalComponent implements OnInit {
   dumbb: any;
   dumbb1: any;
   dumbb2: any;
+
   getModel() {
     this.http.post('http://3.108.153.122:3000/model/retrieveModels', {})
       .subscribe(response => {
@@ -439,39 +440,39 @@ export class PortalComponent implements OnInit {
   Model: any = [{ id: 1, name: 'Local Copy' }, { id: 2, name: 'Remote Copy' }, { id: 3, name: 'Using Id' }]
   data: any = [];
   store: any = [];
-  fetchData() {
-    debugger
-    this.http.get('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json')
-      .pipe(map((data: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }) => {
-        const sample = [];
-        for (const key in data) {
-          if (data.hasOwnProperty(key)) {
-            sample.push(...data[key])
-          }
-        }
-        return sample;
-      }))
-      .subscribe(
-        (response) => {
-          this.data = response
-          console.log(this.data);
-          this.LoadData(this.data);
-        })
-  }
-  LoadData(data: any) {
-    for (let i = 0; i < data.length; i++) {
-      this.store = data;
-      if (this.store[i].Type == 'Pipeline') {
-        this.Engin.push(data[i]);
-      } else if (this.store[i].Type == 'Model') {
-        // this.Modules.push(data[i]);
-      } else if (this.store[i].Type == 'Dataset') {
-        // this.Dataset.push(data[i]);
-      } else if (this.store[i].Type == 'Solution') {
-        // this.Solution.push(data[i])
-      }
-    }
-  }
+  // fetchData() {
+  //   debugger
+  //   this.http.get('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json')
+  //     .pipe(map((data: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }) => {
+  //       const sample = [];
+  //       for (const key in data) {
+  //         if (data.hasOwnProperty(key)) {
+  //           sample.push(...data[key])
+  //         }
+  //       }
+  //       return sample;
+  //     }))
+  //     .subscribe(
+  //       (response) => {
+  //         this.data = response
+  //         console.log(this.data);
+  //         this.LoadData(this.data);
+  //       })
+  // }
+  // LoadData(data: any) {
+  //   for (let i = 0; i < data.length; i++) {
+  //     this.store = data;
+  //     if (this.store[i].Type == 'Pipeline') {
+  //       this.Engin.push(data[i]);
+  //     } else if (this.store[i].Type == 'Model') {
+  //       // this.Modules.push(data[i]);
+  //     } else if (this.store[i].Type == 'Dataset') {
+  //       // this.Dataset.push(data[i]);
+  //     } else if (this.store[i].Type == 'Solution') {
+  //       // this.Solution.push(data[i])
+  //     }
+  //   }
+  // }
   copytext() {
     navigator.clipboard.writeText(this.value1);
   }
@@ -639,10 +640,17 @@ dropdownpipeline:any;
     }
     
   }
+  empty(){
+    this.pipeline='';
+    this.Dataset='';
+    this.Solution='';
+    this.Modules='';
+  }
   linkagedata:any=[];
-
+  dummy6:any=[];
+  dummy5:any;
   linkage(data:any){
-  debugger
+  
   let solutionId=data.solutionId;
     let modelId =data.modelId;
     let datasetId=data.datasetId;
@@ -650,8 +658,27 @@ dropdownpipeline:any;
 
     this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId,modelId,datasetId,pipelineId})
     .subscribe(response => {
+      console.log(response);
+      
       this.linkagedata=response;
-      console.log(this.linkagedata);
+      this.empty();
+      debugger
+      this.dummy5=this.linkagedata.data;
+
+     
+      for(let i=0;i<=3;i++){
+        if(this.dummy5[i].solution){
+          this.Solution=this.dummy5[i].solution;
+        }else if(this.dummy5[i].model){
+          this.Modules=this.dummy5[i].model;
+        }else if(this.dummy5[i].pipeline){
+          this.pipeline=this.dummy5[i].pipeline;
+        }else if(this.dummy5[i].dataset){
+          this.Dataset=this.dummy5[i].dataset;
+        }
+        
+      }
+
     }
     )
 
