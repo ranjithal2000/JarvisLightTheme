@@ -17,6 +17,7 @@
     "e2e": "ng e2e --port 4300",
     "bundle-report": "node --max_old_space_size=3248 ./node_modules/.bin/ng build --configuration production --vendor-chunk --aot --stats-json; webpack-bundle-analyzer build/stats.json",
     "submodule": "git submodule update --recursive --remote --init"
+    
   },
   "private": true,
   "dependencies": {
@@ -59,9 +60,11 @@
     "leader-line": "^1.0.7",
     "lodash": "^4.17.21",
     "lucene": "^2.1.1",
+    "ng-multiselect-dropdown": "^0.3.9",
     "ngx-clipboard": "^15.1.0",
     "ngx-color-picker": "^13.0.0",
     "ngx-device-detector": "^4.0.1",
+    "ngx-dropdown-multiselect": "^1.7.1",
     "ngx-markdown-editor": "^4.3.0",
     "ngx-print": "^1.2.1",
     "ngx-window-token": "^6.0.0",

@@ -7,7 +7,13 @@ sm-tasks-table .card, sm-models-view .card, sm-task-info .card, sm-models .card 
 .text-center .generic-container .buttons {
   display: block !important;
 }
-.cdk-global-overlay-wrapper, .cdk-overlay-container { z-index: 9999!important; } 
+.cdk-global-overlay-wrapper, .cdk-overlay-container { 
+  z-index: 9999!important; 
+  margin-top:152px;
+  margin-left:8%;
+} 
+
+
 
 .i-welcome-researcher {
   background-image: url('assets/welcome-researcher.svg');

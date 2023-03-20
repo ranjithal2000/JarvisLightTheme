@@ -5,6 +5,8 @@ import { map } from 'rxjs';
 import { SMMaterialModule } from '../../webapp-common/shared/material/material.module'
 import {ICONS} from '@common/constants';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+
+
 export interface tags {
   name: string;
 }
@@ -16,7 +18,8 @@ declare var LeaderLine: any;
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.scss']
 })
-export class PortalComponent implements OnInit {
+export class PortalComponent implements OnInit {  
+ 
   readonly ICONS = ICONS;
   dataSetId: any;
   abc: any;
@@ -34,7 +37,7 @@ export class PortalComponent implements OnInit {
   Modules: any = [];
   Dataset: any = [];
   Engin: any = [];
-  frontend: any = [];
+  Frontend: any = [];
   Solution: any = [];
   Searchvalue: string = '';
   Searchdata: string = 'datasetName';
@@ -52,7 +55,14 @@ export class PortalComponent implements OnInit {
     this.getSolution();
     this.getdataset();
     this.getPipeline();
+    this.getFrontend();
+
   }
+
+ 
+ 
+// -----------------------------------------------
+
   formdata = this.formBuilder.group({
     type: [],
     name: [],
@@ -115,6 +125,13 @@ export class PortalComponent implements OnInit {
     pipelineView_url:[],
     pipeline_description:[],
     pipeline_tags:[],
+    id:[]
+  })
+  formdata9=this.formBuilder.group({
+    frontend_name:[''],
+    frontendStyle_url:[''],
+    frontendRun_url:[''],
+    frontend_description:[''],
     id:[]
   })
   storeResponse: any;
@@ -285,6 +302,7 @@ export class PortalComponent implements OnInit {
   }
 
   pipelineId:any;
+  frontendId:any;
 
   deletePipeline(){
     debugger
@@ -301,7 +319,68 @@ export class PortalComponent implements OnInit {
       }
       )
   }
+// ------------------------------Frontend Jar-------------------------------
+  addFrontend(){
+   
+    let frontendName=this.formdata9.controls['frontend_name'].value;
+    let frontendStylesUrl=this.formdata9.controls['frontendStyle_url'].value;
+    let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
+    let frontendDescription=this.formdata9.controls['frontend_description'].value;
 
+    this.http.post('http://3.108.153.122:3000/frontend/insertFrontend', {frontendName,
+    frontendStylesUrl,
+    frontendRunUrl,
+    frontendDescription })
+      .subscribe(response => {
+        console.log(response)
+        this.storeResponse = response;
+        alert(this.storeResponse.message);
+        this.Frontend();
+      }
+      );
+  }
+
+  getFrontend(){
+    this.http.post('http://3.108.153.122:3000/frontend/retrieveFrontends', {})
+      .subscribe(response => {
+        this.dumbb1 = response;
+        this.Frontend = this.dumbb1.data;
+        console.log("Frontend", this.Frontend);
+      }
+      )
+  }
+  editFrontend(){
+    debugger
+    let frontendName=this.formdata9.controls['frontend_name'].value;
+    let frontendStylesUrl=this.formdata9.controls['frontendStyle_url'].value;
+    let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
+    let frontendDescription=this.formdata9.controls['frontend_description'].value;
+    let id=this.formdata9.controls['id'].value;
+    
+    this.http.post('http://3.108.153.122:3000/frontend/editFrontend', {id,frontendName,
+    frontendStylesUrl,
+    frontendRunUrl,
+    frontendDescription})
+      .subscribe(response => {
+        console.log(response);
+        this.storeResponse = response;
+        alert(this.storeResponse.message)
+        this.getFrontend();
+      });
+
+  }
+deleteFrontend(){
+  debugger
+  let id=this.frontendId;
+    this.http.post('http://3.108.153.122:3000/frontend/deleteFrontend', { id })
+      .subscribe(response => {
+        console.log(response);
+        this.storeResponse = response;
+        alert(this.storeResponse.message)
+        this.getFrontend();
+      }
+      )
+}
   // ------------------------------unknow-------------------------------
   getData(data: any) {
     console.log("clicked", data)
@@ -341,6 +420,13 @@ export class PortalComponent implements OnInit {
     this.formdata8.controls['pipeline_tags'].setValue(data.pipelineTags)
     this.formdata8.controls['pipeline_description'].setValue(data.pipelineDescription) 
     this.formdata8.controls['id'].setValue(data.pipelineId) 
+  }
+  getDataFrontend(data:any){
+    this.formdata9.controls['frontend_name'].setValue(data.frontendName)
+    this.formdata9.controls['frontendStyle_url'].setValue(data.frontendStylesUrl)
+    this.formdata9.controls['frontendRun_url'].setValue(data.frontendRunUrl)
+    this.formdata9.controls['frontend_description'].setValue(data.frontendDescription)
+    this.formdata9.controls['id'].setValue(data.id);
   }
 // ------------------------------solution jar section-------------------------------
   addSolution() {
@@ -436,43 +522,13 @@ export class PortalComponent implements OnInit {
     this.isReadMore3 = !this.isReadMore3
   }
 
-  Jars: any = [{ id: 1, name: 'Model' }, { id: 2, name: 'Dataset' }, { id: 3, name: 'Pipeline' }]
-  Model: any = [{ id: 1, name: 'Local Copy' }, { id: 2, name: 'Remote Copy' }, { id: 3, name: 'Using Id' }]
+  // Jars: any = [{ id: 1, name: 'Model' }, { id: 2, name: 'Dataset' }, { id: 3, name: 'Pipeline' }]
+  // Model: any = [{ id: 1, name: 'Local Copy' }, { id: 2, name: 'Remote Copy' }, { id: 3, name: 'Using Id' }]
   data: any = [];
   store: any = [];
-  // fetchData() {
-  //   debugger
-  //   this.http.get('https://jarvis-test-336a1-default-rtdb.firebaseio.com/Jars.json')
-  //     .pipe(map((data: { [x: string]: any; hasOwnProperty: (arg0: string) => any; }) => {
-  //       const sample = [];
-  //       for (const key in data) {
-  //         if (data.hasOwnProperty(key)) {
-  //           sample.push(...data[key])
-  //         }
-  //       }
-  //       return sample;
-  //     }))
-  //     .subscribe(
-  //       (response) => {
-  //         this.data = response
-  //         console.log(this.data);
-  //         this.LoadData(this.data);
-  //       })
-  // }
-  // LoadData(data: any) {
-  //   for (let i = 0; i < data.length; i++) {
-  //     this.store = data;
-  //     if (this.store[i].Type == 'Pipeline') {
-  //       this.Engin.push(data[i]);
-  //     } else if (this.store[i].Type == 'Model') {
-  //       // this.Modules.push(data[i]);
-  //     } else if (this.store[i].Type == 'Dataset') {
-  //       // this.Dataset.push(data[i]);
-  //     } else if (this.store[i].Type == 'Solution') {
-  //       // this.Solution.push(data[i])
-  //     }
-  //   }
-  // }
+  
+  
+  
   copytext() {
     navigator.clipboard.writeText(this.value1);
   }
@@ -483,39 +539,43 @@ export class PortalComponent implements OnInit {
   mdl: boolean = false;
   sln: boolean = false;
   ppln:boolean=false;
+  fend:boolean=false;
   jar: any;
   SelectJar(jar: any) {
-    debugger
-    // this.formdata = this.formBuilder.group({
-    //   type: [],
-    //   name: [],
-    //   id: [],
-    //   version: [],
-    //   desc: [],
-    //   url:[]
-    // })
+   debugger
     if (jar == 'Dataset') {
       this.ds = true;
       this.mdl = false;
       this.sln = false;
       this.ppln=false;
+      this.fend=false;
     } else if (jar == 'Model') {
       this.ds = false;
       this.mdl = true;
       this.sln = false;
       this.ppln=false;
+      this.fend=false;
     } else if (jar == 'Solution') {
       this.ds = false;
       this.mdl = false;
       this.sln = true;
       this.ppln=false;
+      this.fend=false;
     } else if(jar == 'Pipeline'){
       this.ds = false;
       this.mdl = false;
       this.sln = false;
       this.ppln= true;
+      this.fend=false;
+    }else if(jar == 'Frontend'){
+      this.ds = false;
+      this.mdl = false;
+      this.sln = false;
+      this.ppln= false;
+      this.fend= true;
     }
   }
+
   deleteId(data:any,jar:any){
     debugger
     this.SelectJar(jar);
@@ -531,6 +591,9 @@ export class PortalComponent implements OnInit {
 
     } else if(jar == 'Pipeline'){
       this.pipelineId=data.pipelineId;
+
+    }else if(jar == 'Frontend'){
+      this.frontendId=data.id;
     }
   }
   
@@ -626,17 +689,18 @@ for i,img in enumerate(sample):
   // # commit dataset changes
   // dataset.finalize()`;
 
-dropdowndata:any;
-dropdownmodel:any;
-dropdownpipeline:any;
+dropdowndata:any=[];
+dropdownmodel:any=[];
+dropdownpipeline:any=[];
 
   onSelectdataset(data:any,jars:any){
+    debugger
     if(jars=='dataset'){
-      this.dropdowndata=data;
+      this.dropdowndata.push(data);
     }else if(jars=='model'){
-      this.dropdownmodel=data;
+      this.dropdownmodel.push(data);
     }else if(jars=='pipeline'){
-      this.dropdownpipeline=data;
+      this.dropdownpipeline.push(data);
     }
     
   }
@@ -645,6 +709,7 @@ dropdownpipeline:any;
     this.Dataset='';
     this.Solution='';
     this.Modules='';
+    this.Frontend='';
   }
   linkagedata:any=[];
   dummy6:any=[];
@@ -655,6 +720,7 @@ dropdownpipeline:any;
     let modelId =data.modelId;
     let datasetId=data.datasetId;
     let pipelineId=data.pipelineId;
+  
 
     this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId,modelId,datasetId,pipelineId})
     .subscribe(response => {
@@ -665,7 +731,6 @@ dropdownpipeline:any;
       debugger
       this.dummy5=this.linkagedata.data;
 
-     
       for(let i=0;i<=3;i++){
         if(this.dummy5[i].solution){
           this.Solution=this.dummy5[i].solution;
@@ -710,4 +775,8 @@ leader(id, id2) {
   line.startSocketGravity = 0;
 
 }
+
+
+
+
 }

@@ -24,6 +24,7 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {LoginService} from '~/shared/services/login.service';
 import { PortalComponent } from './features/portal/portal.component';
 
+
 @NgModule({
   declarations   : [AppComponent, PortalComponent],
   imports: [
@@ -36,6 +37,7 @@ import { PortalComponent } from './features/portal/portal.component';
     BusinessLogicModule,
     SMSharedModule,
     AngularSplitModule,
+    
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
       scrollPositionRestoration: 'top',
@@ -55,6 +57,7 @@ import { PortalComponent } from './features/portal/portal.component';
     CommonLayoutModule,
     LayoutModule,
     SharedModule,
+    
   ],
   providers      : [
     UserPreferences,

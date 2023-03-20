@@ -190,9 +190,17 @@ label{
 
 
 
-
-
+.not-empty-select.mat-selected {
+    color: rgb(21, 21, 69) !important;
+  }
   
+ mat-lable{
+    color: white;
+ } 
+.matdropdown{
+   border-radius: 1px solid white;
+    color:black !important;
+}  
 
 
 .mat-chip{
@@ -315,3 +323,5 @@ label{
 //           }
 
          
+
+

@@ -231,16 +231,16 @@ mat-expansion-panel {
   }
 }
 
-//mat-expansion-panel :not(.dark) {
-//  &:hover {
-//    background: transparent !important;
-//  }
-//  .mat-expansion-panel-header {
-//    &:hover {
-//      background: $blue-50 !important;
-//    }
-//  }
-//}
+mat-expansion-panel :not(.dark) {
+ &:hover {
+   background: transparent !important;
+ }
+ .mat-expansion-panel-header {
+   &:hover {
+     background: $blue-50 !important;
+   }
+ }
+}
 
 .mat-expansion-panel-header {
   font-family: $font-family-base, sans-serif;

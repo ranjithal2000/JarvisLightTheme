@@ -8,6 +8,10 @@
       "node"
     ]
   },
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "allowEmptyCodegenFiles": true
+  },
   "files": [
     "main.ts",
     "polyfills.ts"

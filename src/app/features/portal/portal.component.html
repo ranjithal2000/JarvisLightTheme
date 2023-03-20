@@ -1,9 +1,9 @@
 <div class="container">
-  
+
   <div class="row">
-    
-     <mat-card class="col-lg ex3" > 
-      <table class="mt-3" >
+
+    <mat-card class="col-lg ex3">
+      <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%;"> <mat-icon id="icon" class="mr-3">emoji_objects</mat-icon> </td>
           <td class="ml-4" style="width: 63%;">
@@ -11,10 +11,10 @@
             <p id="text">vertical Engins</p>
           </td>
           <td style="width: 15%;">
-            <div id="div2"> 
-               <i class="fa fa-plus addButton ml-4"
-                (click)="SelectJar('Solution')" data-toggle="modal" matTooltip="Add Solution"
-                data-target="#myModal"></i> </div>
+            <div id="div2">
+              <i class="fa fa-plus addButton ml-4" (click)="SelectJar('Solution')" data-toggle="modal"
+                data-target="#myModal"></i>
+            </div>
           </td>
         </tr>
       </table>
@@ -24,16 +24,16 @@
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
         </span> </div>
 
-      <div *ngFor="let data of Solution" class="mt-2 px-3"> <mat-accordion class="mb-2 py-0" > <mat-expansion-panel 
+      <div *ngFor="let data of Solution" class="mt-2 px-3"> <mat-accordion class="mb-2 py-0"> <mat-expansion-panel
             style="background-color: transparent;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
             class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white" >{{data.solutionName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white">{{data.solutionName}}</p>
               </mat-panel-title> </mat-expansion-panel-header>
-            
-            <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip 
+
+            <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
                 class="example-box" cdkDrag> {{data.solutionTags}}
               </mat-chip> </mat-chip-list>
-              <!-- <button (click)="leader(start,end)">click</button> -->
+            <!-- <button (click)="leader(start,end)">click</button> -->
             <!-- <div class="d-flex flex-row pt-2 px-1"> <label><b>Linked : Frontend, Model, Pipeline & Data jar</b></label>
             </div> -->
             <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label><b>Description:
@@ -42,35 +42,37 @@
             </label>
             <br>
             <i class="fa fa-link"></i><a (click)="linkage(data)">linkage</a>
+            <br>
 
-            <div class="d-flex flex-row px-1 pt-1" >
-              <div class="btn-grp px-1" > <a target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
+            <div class="d-flex flex-row px-1 pt-1">
+              <div class="btn-grp px-1"> <a target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
                     aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
 
-              <div class="btn-grp px-3" > <a target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
+              <div class="btn-grp px-3"> <a target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
                     style="transform: scale(2);color:white"></mat-icon></a> </div>
               <div class="btn-grp px-3"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
+                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                    (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
 
               <div class="btn-grp pl-3 pr-4" #start> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="edit" (click)="editData(data,'Solution')"
-                    (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal" ></mat-icon></a>
+                    (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
-              
 
-                    <div  class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                      style="color:white" fontIcon="shopping_cart" ></mat-icon></a> </div>
+
+              <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div>
             </div>
-          </mat-expansion-panel> </mat-accordion> 
-        </div>
+          </mat-expansion-panel> </mat-accordion>
+      </div>
     </mat-card>
-  
+
     <!-- --------------------------------------Fontend Jar------------------------------------------------------------>
-   
-    <mat-card class="col-lg ex3" >
-     
+
+    <mat-card class="col-lg ex3">
+
       <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%; "> <i id="icon" class="fa-solid fa-code mr-3"></i> </td>
@@ -80,8 +82,8 @@
           </td>
           <td style="width: 11%;">
             <div id="div2">
-              <!-- <mat-icon class="addButton mr-3" data-toggle="modal" data-target="#myModal" >add</mat-icon> --> <i
-                class="fa fa-plus addButton mr-3" data-toggle="modal" data-target="#myModal"></i>
+
+              <i class="fa fa-plus addButton ml-4" (click)="SelectJar('Frontend')" data-toggle="modal" data-target="#myModal"></i>
             </div>
           </td>
         </tr>
@@ -91,10 +93,44 @@
           id="example-search-input"> <span class="input-group-append">
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
         </span> </div>
+
+      <div *ngFor="let data of Frontend" class="mt-2 px-3"> 
+        <mat-accordion class="mb-2 py-0"> <mat-expansion-panel
+            style="background-color: transparent;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
+                <p class="mt-3" style="font-size: 15px;color:white">{{data.frontendName}}</p>
+              </mat-panel-title> </mat-expansion-panel-header> 
+
+            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label><b>Description:
+                  {{data.frontendDescription}}</b></label></div> <label style="color: white;" type="button"
+              (click)="showText()"> {{ isReadMore ? 'Read More': 'Read Less' }}
+            </label>
+            <br>
+            <div class="d-flex flex-row px-1 pt-1">
+              <div class="btn-grp px-1"> <a target="_blank" href={{data.frontendStylesUrl}}> <mat-icon
+                    style="color:white" aria-hidden="false" aria-label="Example home icon"
+                    fontIcon="visibility"></mat-icon></a> </div>
+              <div class="btn-grp px-3"> <a target="_blank" href={{data.frontendRunUrl}}> <mat-icon aria-hidden="false"
+                    aria-label="Example home icon" fontIcon="arrow_right_circle"
+                    style="transform: scale(2);color:white"></mat-icon></a> </div>
+
+              <div class="btn-grp px-3"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                    (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
+
+              <div class="btn-grp pl-3 pr-4" #start> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:white" fontIcon="edit" (click)="editData(data,'Frontend')"
+                    (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+              </div>
+
+              <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div>
+            </div>
+          </mat-expansion-panel> </mat-accordion> </div>
     </mat-card>
-  
+
     <!-- --------------------------------------Pipeline Jar------------------------------------------------------------>
-    <mat-card class="col-lg ex3" >
+    <mat-card class="col-lg ex3">
       <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%;"> <i id="icon" class="item al-ico-pipelines mr-3"></i> </td>
@@ -128,18 +164,19 @@
                 class="example-box" cdkDrag> {{data.pipelineTags}}
               </mat-chip> </mat-chip-list>
 
-           
-            <div class="mt-3" >
+
+            <div class="mt-3">
               <div [ngClass]="{'limitTextHeight': isReadMore1}">
                 <label><b>Description:{{data.pipelineDescription}}</b></label>
               </div>
-              <label style="color: white;" type="button" (click)="showText1()"> {{ isReadMore1 ? 'Read More': 'ReadLess' }}</label>
+              <label style="color: white;" type="button" (click)="showText1()"> {{ isReadMore1 ? 'Read More': 'ReadLess'
+                }}</label>
             </div>
 
             <div class="d-flex flex-row px-1 pt-1">
               <div class="btn-grp px-1"> <a target="_blank" href={{data.pipelineViewUrl}}> <mat-icon style="color:white"
                     aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
-             
+
 
 
               <div class="btn-grp pl-3 pr-2"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
@@ -148,8 +185,9 @@
               </div>
 
               <div class="btn-grp px-3"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> </div>
-              
+                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                    (click)="deleteId(data,'Pipeline')"></mat-icon></a> </div>
+
             </div>
 
           </mat-expansion-panel> </mat-accordion> </div>
@@ -164,29 +202,30 @@
             <p id="text">Intelligence Repository</p>
           </td>
           <td style="width: 11%;">
-            <div id="div2"> 
-              <i class="fa fa-plus addButton mr-3" (click)="SelectJar('Model')"
-                data-toggle="modal" data-target="#myModal"></i> </div>
+            <div id="div2">
+              <i class="fa fa-plus addButton mr-3" (click)="SelectJar('Model')" data-toggle="modal"
+                data-target="#myModal"></i>
+            </div>
           </td>
         </tr>
       </table>
-      <div class="input-group p-3"  #end> <input class="form-control py-2 border-right-0 border"
+      <div class="input-group p-3" #end> <input class="form-control py-2 border-right-0 border"
           style="width:130px; height:50px;background-color: transparent;" type="search" placeholder="search"
           id="example-search-input"> <span class="input-group-append">
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
         </span> </div>
-      <div *ngFor="let data of Modules" class="mt-2 px-3"> <mat-accordion class="mb-2 py-0" > <mat-expansion-panel
+      <div *ngFor="let data of Modules" class="mt-2 px-3"> <mat-accordion class="mb-2 py-0"> <mat-expansion-panel
             style="background-color: transparent;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-            class="py-0 my-0" > <mat-expansion-panel-header> <mat-panel-title>
+            class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
                 <p class="mt-3" style="font-size: 15px;color:white">{{data.modelName}}</p>
               </mat-panel-title> </mat-expansion-panel-header>
-           
+
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
                 class="example-box" cdkDrag> {{data.modelTags}}
               </mat-chip> </mat-chip-list>
 
 
-            <div class="mt-3" >
+            <div class="mt-3">
               <div [ngClass]="{'limitTextHeight': isReadMore2}">
                 <label><b>Description:{{data.modelDescription}}</b></label>
               </div>
@@ -200,7 +239,8 @@
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
                     style="transform: scale(2);color:white"></mat-icon></a> </div>
               <div class="btn-grp px-3"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')"></mat-icon></a> </div>
+                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                    (click)="deleteId(data,'Model')"></mat-icon></a> </div>
 
               <div class="btn-grp pl-3 pr-4"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)"
@@ -211,7 +251,7 @@
           </mat-expansion-panel> </mat-accordion> </div>
     </mat-card>
     <!-- ---------------------------------------Data Jar------------------------------------------------------------>
-    
+
     <mat-card class="col-lg ex3">
       <table class="mt-3">
         <tr>
@@ -221,35 +261,36 @@
             <p id="text">Unified Data Store</p>
           </td>
           <td style="width: 11%;">
-            <div id="div2"> 
-              <i class="fa fa-plus addButton mr-3" (click)="SelectJar('Dataset')"
-                data-toggle="modal" data-target="#myModal"></i> </div>
+            <div id="div2">
+              <i class="fa fa-plus addButton mr-3" (click)="SelectJar('Dataset')" data-toggle="modal"
+                data-target="#myModal"></i>
+            </div>
           </td>
         </tr>
       </table>
-      <div class="input-group p-3" > <input class="form-control py-2 border-right-0 border"
+      <div class="input-group p-3"> <input class="form-control py-2 border-right-0 border"
           style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue" type="search"
           placeholder="search" id="example-search-input"> <span class="input-group-append">
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
         </span> </div>
 
-      <div  *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="mt-2 px-3" >
-         <mat-accordion 
-          class="mb-2 py-0"> <mat-expansion-panel  style="background-color: transparent;"
+      <div *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="mt-2 px-3">
+        <mat-accordion class="mb-2 py-0"> <mat-expansion-panel style="background-color: transparent;"
             (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
             <mat-expansion-panel-header> <mat-panel-title>
                 <p class="mt-3" style="font-size: 15px;color:white;">{{data.datasetName}}</p>
               </mat-panel-title> </mat-expansion-panel-header>
-           
-            <div class="d-flex flex-row pt-2 px-1" >
-              <div >
+
+            <div class="d-flex flex-row pt-2 px-1">
+              <div>
 
                 <p style="color:white"><b>Version: {{data.datasetVersion}}</b></p>
 
                 <div [ngClass]="{'limitTextHeight': isReadMore3}">
                   <label><b>Description:{{data.datasetDescription}}</b></label>
                 </div>
-                <label style="color: white;" type="button" (click)="showText3()"> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</label>
+                <label style="color: white;" type="button" (click)="showText3()"> {{ isReadMore3 ? 'Read More':
+                  'ReadLess' }}</label>
               </div>
 
             </div>
@@ -258,7 +299,8 @@
                     aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
 
               <div class="btn-grp px-3"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="delete"  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> </div>
+                    style="color:white" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                    (click)="deleteId(data,'Dataset')"></mat-icon></a> </div>
 
               <div class="btn-grp pl-3 pr-4"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)"
@@ -267,10 +309,11 @@
               <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div>
             </div>
-          </mat-expansion-panel> </mat-accordion> </div>
+          </mat-expansion-panel> </mat-accordion>
+      </div>
 
     </mat-card>
-    
+
   </div>
 </div>
 
@@ -407,18 +450,18 @@
               </mat-form-field> </div>
           </div>
 
-          <div class="d-flex flex-row m-3"> 
+          <div class="d-flex flex-row m-3">
             <div>
-            <mat-form-field style="width:35em" class="example-full-width"
-              appearance="outline">
-              
-              <!-- <mat-label id="subTitle"><b>Solution Description</b></mat-label> -->
-              <input id="inputStyle" matInput placeholder="Solution Description" formControlName="solution_description">
-            </mat-form-field>
-          </div>
+              <mat-form-field style="width:71em" class="example-full-width" appearance="outline">
+
+                <!-- <mat-label id="subTitle"><b>Solution Description</b></mat-label> -->
+                <input id="inputStyle" matInput placeholder="Solution Description"
+                  formControlName="solution_description">
+              </mat-form-field>
+            </div>
 
 
-            <div class="btn-group">
+            <!-- <div class="btn-group">
 
             <div class="dropdown m-3" >
               <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -446,7 +489,40 @@
                 <option *ngFor="let x of pipeline" class="dropdown-item"  (click)="onSelectdataset(x.pipelineId,'pipeline')">{{x.pipelineName}}</option> 
               </div>
             </div>      
-          </div> 
+          </div>  -->
+
+          </div>
+          <hr class="ml-3" style="width: 198%;">
+
+          <h6 class="ml-4">Use dropdowns</h6>
+          <div class="d-flex flex-row m-3">
+            <div>
+              <mat-form-field appearance="fill" class="matdropdown">
+                <mat-label style="color: white;">Dataset</mat-label>
+                <mat-select multiple>
+                  <mat-option *ngFor="let x of Dataset" class="not-empty-select"
+                    (click)="onSelectdataset(x.datasetId,'dataset')">{{x.datasetName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="px-4">
+              <mat-form-field appearance="fill" class="matdropdown">
+                <mat-label style="color: white;">Pipeline</mat-label>
+                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
+                  <mat-option *ngFor="let x of pipeline" class="not-empty-select"
+                    (click)="onSelectdataset(x.pipelineId,'pipeline')">{{x.pipelineName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="fill" class="matdropdown">
+                <mat-label style="color: white;">Module</mat-label>
+                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
+                  <mat-option *ngFor="let x of Modules" class="not-empty-select"
+                    (click)="onSelectdataset(x.modelId,'model')">{{x.modelName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
           <div class="modal-footer ml-4" style="width: 200%;"> <button type="button" class="btn btn-success"
               (click)="addSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
@@ -484,6 +560,40 @@
               class="btn btn-danger" data-dismiss="modal">Close</button> </div>
         </form>
 
+        <!-- add frontend -->
+
+        <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
+          <div class="mt-4 p-3">
+            <h3 id="title"><b>Add Frondend</b></h3> <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close" style="width:10px;height:10px"></button>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
+                  id="inputStyle" matInput placeholder="Pipeline Name" formControlName="frontend_name">
+              </mat-form-field> </div>
+            <div class="px-3"> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
+                <input id="inputStyle" matInput placeholder="View URL" formControlName="frontendStyle_url">
+              </mat-form-field> </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
+                  id="inputStyle" matInput placeholder="Description" formControlName="frontendRun_url">
+              </mat-form-field> </div>
+            <div class="px-3"> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
+                  id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="frontend_description">
+              </mat-form-field> </div>
+          </div>
+
+          <div class="modal-footer ml-4" style="width: 200%;"> <button type="button" class="btn btn-success"
+              (click)="addFrontend()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+        </form>
+
+       
       </div>
     </div>
   </div>
@@ -499,7 +609,7 @@
       <!-- edit Dataset modal -->
       <form [formGroup]="formdata4" class="example-form" *ngIf="ds">
         <div class="m-3">
-          <h3 id="title" ><b>Add Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
+          <h3 id="title"><b>Add Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
             aria-label="Close" style="width:10px;height:10px"></button>
         </div>
         <div class="d-flex flex-row m-3">
@@ -530,8 +640,8 @@
         </div>
 
         <div class="modal-footer ml-4" style="width: 200%;"> <button type="button" class="btn btn-success"
-            (click)="editDataset()" data-dismiss="modal">Save</button> &nbsp;<button type="button" class="btn btn-danger"
-            data-dismiss="modal">Close</button> </div>
+            (click)="editDataset()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
       </form>
 
       <!-- edit Model modal -->
@@ -637,6 +747,33 @@
             class="btn btn-danger" data-dismiss="modal">Close</button> </div>
       </form>
 
+      <!-- edit frontend -->
+      <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
+        <div class="mt-4 p-3">
+          <h3 id="title"><b>Add Frontend</b></h3> <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close" style="width:10px;height:10px"></button>
+        </div>
+        <div class="d-flex flex-row m-3">
+          <div> <mat-form-field style="width:35em" class="example-full-width" appearance="outline"> <mat-label
+                id="subTitle"><b>Frontend Name</b></mat-label> <input id="inputStyle" matInput
+                placeholder="Pipeline Name" formControlName="frontend_name"> </mat-form-field> </div>
+          <div class="px-3"> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Frontend Style URL</b></mat-label> <input id="inputStyle" matInput
+                placeholder="View URL" formControlName="frontendStyle_url"> </mat-form-field> </div>
+        </div>
+        <div class="d-flex flex-row m-3">
+          <div> <mat-form-field style="width:35em" class="example-full-width" appearance="outline"> <mat-label
+                id="subTitle"><b>Frontend Run URL</b></mat-label> <input id="inputStyle" matInput
+                placeholder="Pipeline Tags" formControlName="frontendRun_url"> </mat-form-field> </div>
+          <div class="px-3"> <mat-form-field style="width:35em" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput
+                placeholder="Description" formControlName="frontend_description"> </mat-form-field> </div>
+        </div>
+        <div class="modal-footer ml-4" style="width: 200%;"> <button type="button" class="btn btn-success"
+            (click)="editFrontend()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+      </form>
+
     </div>
   </div>
 </div>
@@ -645,13 +782,14 @@
 <div class="modal" id="ModelModal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="popup container"> 
-        <mat-tab-group> 
+      <div class="popup container">
+        <mat-tab-group>
           <mat-tab label="Script">
-              <pre>{{value2}}</pre> <button type="button" class="btn btn-success model"
-                (click)="copytext1()">Copy</button>
-            </mat-tab> 
-        </mat-tab-group> </div>
+            <pre>{{value2}}</pre> <button type="button" class="btn btn-success model"
+              (click)="copytext1()">Copy</button>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
     </div>
   </div>
 </div>
@@ -659,23 +797,29 @@
 
 <!---------------------------- delete confirmation popup ------------------------------------->
 
-<div class="modal" id="confModal" tabindex="-1"  data-backdrop="false">
+<div class="modal" id="confModal" tabindex="-1" data-backdrop="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <!-- <div class="modal-header">    
       </div> -->
       <div class="modal-body ">
         <div class="text-right">
-          <button  class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
+          <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
         </div>
         <h3 class="m-4" style="text-align: center;color: black;">Are You Sure You Want to Delete!!?</h3>
       </div>
-      <div class="modal-footer">    
-          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;" *ngIf="ds" (click)="deleteDataset()">Delete</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;" *ngIf="sln" (click)="deleteSolution()">Delete</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;" *ngIf="mdl" (click)="deleteModel()">Delete</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;" *ngIf="ppln" (click)="deletePipeline()">Delete</button> 
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+          *ngIf="ds" (click)="deleteDataset()">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+          *ngIf="sln" (click)="deleteSolution()">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+          *ngIf="mdl" (click)="deleteModel()">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+          *ngIf="ppln" (click)="deletePipeline()">Delete</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+          *ngIf="fend" (click)="deleteFrontend()">Delete</button>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
       </div>
     </div>
   </div>
