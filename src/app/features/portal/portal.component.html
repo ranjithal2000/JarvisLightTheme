@@ -41,7 +41,7 @@
             <label style="color: white;" type="button" (click)="showText()"> {{ isReadMore ? 'Read More': 'Read Less' }}
             </label>
             <br>
-            <i class="fa fa-link"></i><a (click)="linkage(data)">linkage</a>
+            <a (click)="linkage(data)"><i class="fa fa-link"></i> Linkage</a>
             <br>
 
             <div class="d-flex flex-row px-1 pt-1">
@@ -494,7 +494,7 @@
           </div>
           <hr class="ml-3" style="width: 198%;">
 
-          <h6 class="ml-4">Use dropdowns</h6>
+          <h6 class="ml-4">Use dropdowns for Linkage</h6>
           <div class="d-flex flex-row m-3">
             <div>
               <mat-form-field appearance="fill" class="matdropdown">
@@ -502,6 +502,14 @@
                 <mat-select multiple>
                   <mat-option *ngFor="let x of Dataset" class="not-empty-select"
                     (click)="onSelectdataset(x.datasetId,'dataset')">{{x.datasetName}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="pl-4">
+              <mat-form-field appearance="fill" class="matdropdown">
+                <mat-label style="color: white;">Frontend</mat-label>
+                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
+                  <mat-option *ngFor="let x of Frontend" class="not-empty-select" (click)="onSelectdataset(x.id,'frontend')">{{x.frontendName}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -523,6 +531,7 @@
                 </mat-select>
               </mat-form-field>
             </div>
+           
           </div>
           <div class="modal-footer ml-4" style="width: 200%;"> <button type="button" class="btn btn-success"
               (click)="addSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"

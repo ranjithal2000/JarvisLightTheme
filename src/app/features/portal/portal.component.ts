@@ -138,7 +138,7 @@ export class PortalComponent implements OnInit {
   pipeline:any=[];
   // ------------------------------Model  jar section-------------------------------
   addModel() {
-    debugger
+    
     let modelName = this.formdata2.controls['project_name'].value;
     let modelViewUrl = this.formdata2.controls['view_url'].value;
     let modelRunUrl = this.formdata2.controls['run_url'].value;
@@ -154,7 +154,7 @@ export class PortalComponent implements OnInit {
       )
   }
   editModel() {
-    debugger
+    
     let modelName = this.formdata6.controls['project_name'].value;
     let modelId = this.formdata6.controls['id'].value.toString();
     let modelTags = this.formdata6.controls['modelTags'].value;
@@ -172,7 +172,7 @@ export class PortalComponent implements OnInit {
   }
   modelId:any;
   deleteModel() {
-    debugger
+    
     let modelId=this.modelId;
 
     this.http.post('http://3.108.153.122:3000/model/deleteModel', { modelId })
@@ -199,7 +199,7 @@ export class PortalComponent implements OnInit {
   }
 // ------------------------------dataset section-------------------------------
   addDataset() {
-    // debugger
+   
     let datasetName = this.formdata.controls['name'].value;
     let datasetId = this.formdata.controls['id'].value;
     let datasetVersion = this.formdata.controls['version'].value;
@@ -235,7 +235,7 @@ export class PortalComponent implements OnInit {
   }
   datasetId:any;
   deleteDataset() {
-   debugger
+
     let datasetId=this.datasetId;
 
     this.http.post('http://3.108.153.122:3000/data/deleteDataset', { datasetId })
@@ -258,7 +258,7 @@ export class PortalComponent implements OnInit {
   }
 // --------------------------------Pipeline Section---------------------------------
   addPipeline(){
-    debugger
+  
     let pipelineName=this.formdata8.controls['pipeline_name'].value;
     let pipelineViewUrl=this.formdata8.controls['pipelineView_url'].value;
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
@@ -285,7 +285,7 @@ export class PortalComponent implements OnInit {
   }
 
   editPipeline() {
-    debugger
+
     let pipelineId=this.formdata8.controls['id'].value;
     let pipelineName=this.formdata8.controls['pipeline_name'].value;
     let pipelineViewUrl=this.formdata8.controls['pipelineView_url'].value;
@@ -305,7 +305,7 @@ export class PortalComponent implements OnInit {
   frontendId:any;
 
   deletePipeline(){
-    debugger
+   
     // console.log("solutionData", data)
     // this.formdata7.controls['solution_id'].setValue(data.solutionId);
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
@@ -350,7 +350,7 @@ export class PortalComponent implements OnInit {
       )
   }
   editFrontend(){
-    debugger
+
     let frontendName=this.formdata9.controls['frontend_name'].value;
     let frontendStylesUrl=this.formdata9.controls['frontendStyle_url'].value;
     let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
@@ -370,7 +370,7 @@ export class PortalComponent implements OnInit {
 
   }
 deleteFrontend(){
-  debugger
+  
   let id=this.frontendId;
     this.http.post('http://3.108.153.122:3000/frontend/deleteFrontend', { id })
       .subscribe(response => {
@@ -404,7 +404,7 @@ deleteFrontend(){
     this.formdata6.controls['modelTags'].setValue(data.modelTags);
   }
   getDataSolution(data:any){
-    debugger
+  
     console.log("clickedsolution", data)
     this.formdata7.controls['solution_name'].setValue(data.solutionName)
     // this.formdata7.controls['solution_version'].setValue(data.solutionVersion)
@@ -467,7 +467,7 @@ deleteFrontend(){
 
   solutionId:any;
   deleteSolution(){
-    debugger
+
     // console.log("solutionData", data)
     // this.formdata7.controls['solution_id'].setValue(data.solutionId);
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
@@ -488,6 +488,7 @@ deleteFrontend(){
         this.dumbb1 = response;
         this.Solution = this.dumbb1.data;
         console.log(this.Solution);
+
       }
       )
   }
@@ -542,7 +543,7 @@ deleteFrontend(){
   fend:boolean=false;
   jar: any;
   SelectJar(jar: any) {
-   debugger
+  
     if (jar == 'Dataset') {
       this.ds = true;
       this.mdl = false;
@@ -577,7 +578,7 @@ deleteFrontend(){
   }
 
   deleteId(data:any,jar:any){
-    debugger
+
     this.SelectJar(jar);
 
     if(jar == 'Dataset'){
@@ -692,28 +693,40 @@ for i,img in enumerate(sample):
 dropdowndata:any=[];
 dropdownmodel:any=[];
 dropdownpipeline:any=[];
+dropdownfrontend:any=[];
+link:any=[];
 
   onSelectdataset(data:any,jars:any){
-    debugger
     if(jars=='dataset'){
-      this.dropdowndata.push(data);
+      // this.dropdowndata.push(data);
+      this.dropdowndata=data;
+      this.link.push(jars);
     }else if(jars=='model'){
-      this.dropdownmodel.push(data);
+      // this.dropdownmodel.push(data);
+      this.dropdownmodel=data;
+      this.link.push(jars);
     }else if(jars=='pipeline'){
-      this.dropdownpipeline.push(data);
+      // this.dropdownpipeline.push(data)
+      this.dropdownpipeline=data;
+      this.link.push(jars);
+    }else if(jars=='frontend'){
+      this.dropdownfrontend=data;
+      this.link.push(jars);
     }
     
   }
   empty(){
-    this.pipeline='';
-    this.Dataset='';
-    this.Solution='';
-    this.Modules='';
-    this.Frontend='';
+    this.pipeline=[];
+    this.Dataset=[];
+    this.Solution=[];
+    this.Modules=[];
+    this.Frontend=[];
+    
   }
   linkagedata:any=[];
   dummy6:any=[];
   dummy5:any;
+
   linkage(data:any){
   
   let solutionId=data.solutionId;
@@ -725,10 +738,10 @@ dropdownpipeline:any=[];
     this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId,modelId,datasetId,pipelineId})
     .subscribe(response => {
       console.log(response);
-      
+      debugger
       this.linkagedata=response;
       this.empty();
-      debugger
+     
       this.dummy5=this.linkagedata.data;
 
       for(let i=0;i<=3;i++){
