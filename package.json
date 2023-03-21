@@ -17,7 +17,6 @@
     "e2e": "ng e2e --port 4300",
     "bundle-report": "node --max_old_space_size=3248 ./node_modules/.bin/ng build --configuration production --vendor-chunk --aot --stats-json; webpack-bundle-analyzer build/stats.json",
     "submodule": "git submodule update --recursive --remote --init"
-    
   },
   "private": true,
   "dependencies": {
@@ -36,11 +35,14 @@
     "@angular/youtube-player": "^14.2.7",
     "@aws-sdk/client-s3": "^3.216.0",
     "@aws-sdk/s3-request-presigner": "^3.216.0",
+    "@fortawesome/angular-fontawesome": "^0.11.1",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@ngneat/dag": "^2.0.0",
     "@ngrx/effects": "^14.3.2",
     "@ngrx/entity": "^14.3.2",
     "@ngrx/router-store": "^14.3.2",
     "@ngrx/store": "^14.3.2",
+    "@popperjs/core": "^2.11.6",
     "ace-builds": "^1.13.1",
     "angular-google-tag-manager": "^1.6.1",
     "angular-resizable-element": "^6.0.0",
@@ -55,7 +57,7 @@
     "filesize": "^10.0.5",
     "has-ansi": "^5.0.1",
     "hocon-parser": "^1.0.1",
-    "jquery": "^3.6.3",
+    "jquery": "^3.6.4",
     "jwt-decode": "^3.1.2",
     "leader-line": "^1.0.7",
     "lodash": "^4.17.21",

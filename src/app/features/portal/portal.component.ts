@@ -57,8 +57,66 @@ export class PortalComponent implements OnInit {
     this.getPipeline();
     this.getFrontend();
 
-  }
 
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Mumbai' },
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
+    ];
+    this.selectedItems = [
+      
+    ];
+    
+  }
+  dropdownSettings = {
+    singleSelection: false,
+    idField: 'modelId',
+    textField: 'modelName',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+  dropdownSettings1 = {
+    singleSelection: false,
+    idField: 'datasetId',
+    textField: 'datasetName',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+  dropdownSettings2 = {
+    singleSelection: false,
+    idField: 'pipelineId',
+    textField: 'pipelineName',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+  dropdownSettings3 = {
+    singleSelection: false,
+    idField: 'datasetId',
+    textField: 'datasetName',
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+
+  dropdownList = [];
+  selectedItems = [];
+
+  onItemSelect(item: any) {
+    debugger
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+  }
  
  
 // -----------------------------------------------
@@ -788,6 +846,9 @@ leader(id, id2) {
   line.startSocketGravity = 0;
 
 }
+
+
+ 
 
 
 
