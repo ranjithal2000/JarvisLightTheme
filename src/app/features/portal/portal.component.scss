@@ -1,3 +1,22 @@
+
+[aria-placeholder] {
+    position: relative;
+  }
+
+  [aria-placeholder]:after {
+    content: attr(aria-placeholder);
+    position: absolute;
+    left: 50%;
+    bottom:120%; /* put it on the top */
+    background-color: transparent;
+    color: white;
+    width: max-content;
+    opacity: 0;
+    -webkit-transition: opacity 0.50s ease-in-out; /* 👈 Change the time to meet your requirements. */
+  }
+[aria-placeholder]:hover:after {
+    opacity: 1;
+  }
 .customClass{
     height: 40px;
 }
@@ -64,6 +83,7 @@ mat-expansion-panel{
     margin: 4px;
     border: solid 1px; 
     height: 700px;
+    // background-color: #131D4B;
 }
 .head{    
     text-align: center;
@@ -311,7 +331,12 @@ label{
 .dropdown-toggl{
     margin: none !important;
 }
-
+mat-icon:hover{
+      
+    text-shadow: 0px 0px 3px 0px #d9d5d5,
+    0 1px 1px 0 #d9d5d5,
+    0 1px 3px 0 #d9d5d5; 
+}
 
 
 

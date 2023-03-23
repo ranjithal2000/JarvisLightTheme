@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { SMMaterialModule } from '../../webapp-common/shared/material/material.module'
 import {ICONS} from '@common/constants';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { style } from '@angular/animations';
 
 
 export interface tags {
@@ -16,7 +17,8 @@ declare var LeaderLine: any;
 @Component({
   selector: 'sm-portal',
   templateUrl: './portal.component.html',
-  styleUrls: ['./portal.component.scss']
+  styleUrls: ['./portal.component.scss'],
+  
 })
 export class PortalComponent implements OnInit {  
  
@@ -544,8 +546,11 @@ deleteFrontend(){
     this.http.post('http://3.108.153.122:3000/solution/retrieveSolutions', {})
       .subscribe(response => {
         this.dumbb1 = response;
+        
         this.Solution = this.dumbb1.data;
-        console.log(this.Solution);
+        console.log(this.Solution[0]);
+        console.log(this.Solution[2].solutionDescription.length);
+        
 
       }
       )
@@ -570,6 +575,7 @@ deleteFrontend(){
   isReadMore3 = true;
   showText() {
      this.isReadMore = !this.isReadMore;
+    
   }
   showText1(){
     this.isReadMore1 = !this.isReadMore1 
