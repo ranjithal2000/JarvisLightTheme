@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isShareMode: boolean;
   @Input() isLogin: boolean;
   isDashboard: boolean;
+  isPortal:boolean;
   profile: boolean;
   userFocus: boolean;
   environment = ConfigurationService.globalEnvironment;
@@ -76,6 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getRouteData() {
     this.userFocus = !!this.activeRoute?.firstChild?.snapshot.data?.userFocus;
     this.isDashboard = this.activeRoute?.firstChild?.snapshot.url?.[0]?.path === 'dashboard';
+    this.isPortal=this.activeRoute?.firstChild?.snapshot.url?.[0]?.path === 'portal';
   }
 
   ngOnDestroy(): void {

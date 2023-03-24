@@ -12,7 +12,8 @@
     color: white;
     width: max-content;
     opacity: 0;
-    -webkit-transition: opacity 0.50s ease-in-out; /* 👈 Change the time to meet your requirements. */
+    // -webkit-transition: opacity 0.50s ease-in-out;
+     /* 👈 Change the time to meet your requirements. */
   }
 [aria-placeholder]:hover:after {
     opacity: 1;
@@ -29,7 +30,7 @@
 .ex3 {
     // background-color: lightblue;
     height: 40px;
-    width: 200px;  
+    width: 300px;  
     overflow-y: auto;
   }
   .solution_run_btn{
@@ -41,6 +42,7 @@ hr{
     color: black;
     background-color:black;
 }
+
 .l1{
   position: sticky;
   top: 0;
@@ -48,15 +50,14 @@ hr{
   z-index: 1;
   padding: none;
   margin: none; 
-  
 }
+
 #div1,#div2{
     display: inline;
 }
 
-.container{
-   
-    margin-top: 30px;
+.container-fluid{
+    margin-top: 12px;
 }
 .icon-container {
     margin-top: 4px;
@@ -79,11 +80,11 @@ mat-expansion-panel{
 
 .col-lg{
     flex: 1;
-    padding: 1em;
-    margin: 4px;
-    border: solid 1px; 
-    height: 700px;
-    // background-color: #131D4B;
+    padding: 2em;
+    margin: 10px;
+    // border: solid 1px; 
+    height: 740px;
+    background-color: #131D4B;
 }
 .head{    
     text-align: center;
@@ -105,17 +106,17 @@ mat-expansion-panel{
     0 1px 3px 0 #a8a0a0;
 }
 .col-lg:hover{
-    transform: scale(1.03);
-    background-color:#2c334a;
-    box-shadow: 0px 0px 7px 0px #c3bcbc,
-    0 1px 1px 0 #9f9999,
-    0 1px 3px 0 #a8a0a0; 
-.head{  
-    background-color: #2c334a;
-    box-shadow: 0px 0px 3px 0px #c3bcbc,
-    0 1px 1px 0 #9f9999,
-    0 1px 3px 0 #a8a0a0; 
-    }
+    // transform: scale(1.03);
+    // background-color:#2c334a;
+    // box-shadow: 0px 0px 7px 0px #c3bcbc,
+    // 0 1px 1px 0 #9f9999,
+    // 0 1px 3px 0 #a8a0a0; 
+// .head{  
+//     background-color: #2c334a;
+//     box-shadow: 0px 0px 3px 0px #c3bcbc,
+//     0 1px 1px 0 #9f9999,
+//     0 1px 3px 0 #a8a0a0; 
+//     }
 }
 .code_color{
     color:white;
@@ -327,6 +328,7 @@ label{
 }
 #icon{
     font-size: 28px;
+    color: #37B3FB;
 }
 .dropdown-toggl{
     margin: none !important;
@@ -337,7 +339,9 @@ mat-icon:hover{
     0 1px 1px 0 #d9d5d5,
     0 1px 3px 0 #d9d5d5; 
 }
-
+#text{
+    color: #37B3FB;
+}
 
 
 // .red {

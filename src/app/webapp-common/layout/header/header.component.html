@@ -10,7 +10,7 @@
     <sm-show-only-user-work></sm-show-only-user-work>
   </div>
 
-  <div *ngIf="isDashboard && !isLogin" class="logo-full middle"
+  <div *ngIf="isDashboard || isPortal && !isLogin"  class="logo-full middle"
        [class.make-room-for-slogan]="environment.whiteLabelSlogan">
        <img alt="logo" src="assets/JARVIS(new).png" width="125" height="80" >
        <!-- <img alt="logo" src="assets/JARVIS_Logo(J).png" width="35" height="40" class="J_logo">
@@ -58,13 +58,13 @@
       </button>
       <!-- <button mat-menu-item (click)="navigate('https://www.youtube.com/c/ClearML/featured')">
         <i class="al-icon al-ico-youtube sm-md"></i>JARVIS on Youtube
-      </button> -->
-      <!-- <button mat-menu-item (click)="navigate(environment.docsLink)">
+      </button> 
+      <button mat-menu-item (click)="navigate(environment.docsLink)">
         <i class="al-icon sm-md al-ico-documentation"></i>Online Documentation
       </button> -->
-      <!-- <button mat-menu-item (click)="openTip()">
+      <button mat-menu-item (click)="openTip()">
         <i class="al-icon sm-md al-ico-tips"></i>Pro Tips
-      </button> -->
+      </button>
       <!-- <ng-container *smCheckPermission="'applications'">
         <button mat-menu-item
                 *ngIf="$any(environment)?.appsYouTubeIntroVideoId && $any(environment).appAwarenessMenu !== false"
@@ -72,8 +72,8 @@
         >
           <i class="al-icon sm-md al-ico-applications"></i>JARVIS Apps Introduction
         </button>
-      </ng-container> -->
-      <!-- <button mat-menu-item (click)="navigate('mailto:support@clear.ml')">
+      </ng-container>
+      <button mat-menu-item (click)="navigate('mailto:support@clear.ml')">
         <i class="al-icon sm-md al-ico-email"></i>Contact Us
       </button> -->
     </mat-menu>

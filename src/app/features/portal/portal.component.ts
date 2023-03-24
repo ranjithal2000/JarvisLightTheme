@@ -51,6 +51,7 @@ export class PortalComponent implements OnInit {
     moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
   }
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  
   ngOnInit(): void {
     // this.fetchData();
     this.getModel();
@@ -74,7 +75,7 @@ export class PortalComponent implements OnInit {
   }
   dropdownSettings = {
     singleSelection: false,
-    idField: 'modelId',
+    idField: 'id',
     textField: 'modelName',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -83,7 +84,7 @@ export class PortalComponent implements OnInit {
   };
   dropdownSettings1 = {
     singleSelection: false,
-    idField: 'datasetId',
+    idField: 'id',
     textField: 'datasetName',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -92,7 +93,7 @@ export class PortalComponent implements OnInit {
   };
   dropdownSettings2 = {
     singleSelection: false,
-    idField: 'pipelineId',
+    idField: 'id',
     textField: 'pipelineName',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
@@ -101,8 +102,8 @@ export class PortalComponent implements OnInit {
   };
   dropdownSettings3 = {
     singleSelection: false,
-    idField: 'datasetId',
-    textField: 'datasetName',
+    idField: 'id',
+    textField: 'frontendName',
     selectAllText: 'Select All',
     unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
@@ -112,9 +113,26 @@ export class PortalComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
 
-  onItemSelect(item: any) {
+  onItemSelect(data: any,jars:any) {
     debugger
-    console.log(item);
+    if(jars=='dataset'){
+      this.dropdowndata.push(data.id);
+      // this.dropdowndata=data;
+     
+    }else if(jars=='model'){
+      this.dropdownmodel.push(data.id);
+      // this.dropdownmodel=data;
+     
+    }else if(jars=='pipeline'){
+      this.dropdownpipeline.push(data.id);
+      // this.dropdownpipeline=data;
+      
+    }else if(jars=='frontend'){
+      this.dropdownfrontend.push(data.id);
+      // this.dropdownfrontend=data;
+     
+    }
+
   }
   onSelectAll(items: any) {
     console.log(items);
@@ -498,8 +516,9 @@ deleteFrontend(){
     let modelId=this.dropdownmodel;
     let datasetId=this.dropdowndata;
     let pipelineId=this.dropdownpipeline;
- 
-    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId })
+    let frontendId=this.dropdownfrontend;
+    debugger
+    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -542,23 +561,81 @@ deleteFrontend(){
       }
       )
   }
+
+  linkedassets:any=[];
+  linkedassets1:any=[];
+
   getSolution() {
     this.http.post('http://3.108.153.122:3000/solution/retrieveSolutions', {})
       .subscribe(response => {
         this.dumbb1 = response;
         
-        this.Solution = this.dumbb1.data;
-        console.log(this.Solution[0]);
-        console.log(this.Solution[2].solutionDescription.length);
+        this.Solution = this.dumbb1.solutionData;
+      //  console.log("New Solution",this.Solution);
+      //  console.log("abhi pati",Object.values(this.Solution[0])[7]);
+      //  console.log("abhi pati",this.Solution[0].datasets.length);
+
+
+       for(let i=0; i<this.Solution.length; i++)
+       {
+       if(this.Solution[i].datasets.length!=0){
+        this.linkedassets.push("Datasets")
+       }
+       if(this.Solution[i].pipelines.length!=0){
+        this.linkedassets.push("Pipelines")
+       }
+       if(this.Solution[i].models.length!=0){
+        this.linkedassets.push("Models")
+       }
+       if(this.Solution[i].frontends.length!=0){
+        this.linkedassets.push("Frontends")
+       }
+       this.linkedassets1.push(this.linkedassets);
+      
+      this.Solution[i].linkedassets = this.linkedassets;
+      this.linkedassets = [];
+      }
+
+      // console.log("linkedAssets",this.Solution);
+       
         
+
+        //  for(let i=0;i<this.Solution.length;i++)
+        //  {
+        //   for (let j=0;j<Object.keys(this.Solution[i]).length;j++){
+
+        //   if(Object.keys(this.Solution[i])[j]==="pipelines" ||Object.keys(this.Solution[i])[j]==="models"||Object.keys(this.Solution[i])[j]==="datasets" || Object.keys(this.Solution[i])[j]==="frontends"){
+
+            
+        // //  console.log(Object.values(this.Solution[i])[j]);
+        
+        //   this.linkedassets.push(Object.keys(this.Solution[i])[j])
+         
+
+        //   }
+        //  }
+        //  this.linkedassets1.push(this.linkedassets);
+        //  this.linkedassets=[];
+        // }
+        console.log(this.linkedassets1);
+        
+        
+        
+
+        this.link(this.Solution);
 
       }
       )
   }
-  
+  linkeddata:any;
+  link(data:any){
+    for(let i=0;i<=data.length;i++){
+      
+    }
+  }
   editData(data: any, jar: any) {
     this.SelectJar(jar);
-    this.getDataPipeline(data)
+    this.getDataPipeline(data)  
     // this.formdata.controls['name'].setValue(data.datasetName);
     // this.formdata.controls['version'].setValue(data.datasetVersion);
     // this.formdata.controls['id'].disable();
@@ -758,27 +835,27 @@ dropdowndata:any=[];
 dropdownmodel:any=[];
 dropdownpipeline:any=[];
 dropdownfrontend:any=[];
-link:any=[];
 
-  onSelectdataset(data:any,jars:any){
-    if(jars=='dataset'){
-      // this.dropdowndata.push(data);
-      this.dropdowndata=data;
-      this.link.push(jars);
-    }else if(jars=='model'){
-      // this.dropdownmodel.push(data);
-      this.dropdownmodel=data;
-      this.link.push(jars);
-    }else if(jars=='pipeline'){
-      // this.dropdownpipeline.push(data)
-      this.dropdownpipeline=data;
-      this.link.push(jars);
-    }else if(jars=='frontend'){
-      this.dropdownfrontend=data;
-      this.link.push(jars);
-    }
+
+  // onSelectdataset(data:any,jars:any){
+  //   if(jars=='dataset'){
+      
+  //     this.dropdowndata=data;
+  //     this.link.push(jars);
+  //   }else if(jars=='model'){
+      
+  //     this.dropdownmodel=data;
+  //     this.link.push(jars);
+  //   }else if(jars=='pipeline'){
+      
+  //     this.dropdownpipeline=data;
+  //     this.link.push(jars);
+  //   }else if(jars=='frontend'){
+  //     this.dropdownfrontend=data;
+  //     this.link.push(jars);
+  //   }
     
-  }
+  // }
   empty(){
     this.pipeline=[];
     this.Dataset=[];
@@ -793,35 +870,35 @@ link:any=[];
 
   linkage(data:any){
   
-  let solutionId=data.solutionId;
-    let modelId =data.modelId;
-    let datasetId=data.datasetId;
-    let pipelineId=data.pipelineId;
-  
-
-    this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId,modelId,datasetId,pipelineId})
+    let solutionId=data.id;
+    
+    this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId})
     .subscribe(response => {
-      console.log(response);
+     
       debugger
       this.linkagedata=response;
       this.empty();
-     
-      this.dummy5=this.linkagedata.data;
+      console.log(this.linkagedata);
+      
+        
+      // this.dummy5=this.linkagedata.data[0].solution;
 
-      for(let i=0;i<=3;i++){
-        if(this.dummy5[i].solution){
-          this.Solution=this.dummy5[i].solution;
-        }else if(this.dummy5[i].model){
-          this.Modules=this.dummy5[i].model;
-        }else if(this.dummy5[i].pipeline){
-          this.pipeline=this.dummy5[i].pipeline;
-        }else if(this.dummy5[i].dataset){
-          this.Dataset=this.dummy5[i].dataset;
+      // for(let i=0;i<=3;i++){
+      //   if(this.linkagedata.solutions){
+          this.Solution=this.linkagedata.solutions;
+        // }else if(this.linkagedata.models){
+          this.Modules=this.linkagedata.models;
+        // }else if(this.linkagedata.pipelines){
+          this.pipeline=this.linkagedata.pipelines;
+        // }else if(this.linkagedata.datasets){
+          this.Dataset=this.linkagedata.datasets;
+
+          this.Frontend=this.linkagedata.frontends;
         }
         
-      }
+      // }
 
-    }
+    // }
     )
 
   }
