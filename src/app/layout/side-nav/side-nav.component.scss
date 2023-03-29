@@ -8,15 +8,17 @@ $icon-size: 24px;
   flex-direction: column;
   height: 100%;
   width: $side-bar-close-width;
-  background-color: $blue-600;
-
+  // background-color: $blue-600;
+// background-color: #131D4B;
+background-color: #FFFFFF;
   .logo-a{
     margin-top: 15% !important;
   }
   .logo {
     width: 60px;
     height: 64px;
-    background: $blue-650;
+    // background: #131D4B;
+    background: #FFFFFF;
     margin-left: 2px;
   }
   img{

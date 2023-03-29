@@ -14,6 +14,7 @@ $blue-400: #5a658e; //90,101,142
 $blue-450: #657099;
 $blue-480: #707ba3;
 $blue-500: #384161; //56,65,97
+$blue-120: #FFFFFF;
 $blue-550: #47527A;
 $blue-600: #2c3246; //44,50,70
 $blue-650: #24293c;
@@ -225,8 +226,8 @@ $zindex-tooltip: 1070;
 $card-spacer-y: math.div($grid-gutter, 2);
 $card-spacer-x: math.div($grid-gutter, 2);
 $card-border-radius: 6px;
-$card-bg: $blue-500;
-$card-footer-bg: $blue-600;
+$card-bg: $blue-120;
+$card-footer-bg: #F6EEFF;
 $card-footer-font-color: $blue-300;
 $card-header-color: $blue-300;
 

@@ -1,4 +1,4 @@
-<sm-table [tableData]="tasks"
+<sm-table  [tableData]="tasks"
           [columns]="cols"
           [rowHeight]="52"
           selectionMode="single"
@@ -10,7 +10,9 @@
                pTemplate="body">
     <ng-container [ngSwitch]="col.id">
       <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.TYPE">
+        <div  class="experiment-name">
         <sm-experiment-type-icon-label [type]="experiment?.type"></sm-experiment-type-icon-label>
+        </div>
       </ng-container>
       <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.NAME">
         <div
@@ -28,14 +30,20 @@
           {{experiment.project?.name}}
         </div>
       </ng-container>
-      <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.STARTED">
+      <ng-container  *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.STARTED">
+        <div  class="experiment-name">
         {{experiment.started | date : TIME_FORMAT_STRING}}
+      </div>
       </ng-container>
       <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.LAST_UPDATE">
+        <div  class="experiment-name">
         {{experiment.last_update | date : TIME_FORMAT_STRING}}
+        </div>
       </ng-container>
       <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.USER">
+        <div  class="experiment-name">
         {{experiment.user?.name}}
+        </div>
       </ng-container>
       <ng-container *ngSwitchCase="RECENT_TASKS_TABLE_COL_FIELDS.STATUS">
         <sm-experiment-status-icon-label [status]="experiment?.status"></sm-experiment-status-icon-label>

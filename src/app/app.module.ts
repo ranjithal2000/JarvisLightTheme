@@ -24,7 +24,6 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {LoginService} from '~/shared/services/login.service';
 import { PortalComponent } from './features/portal/portal.component';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BusinessLogicModule,
     SMSharedModule,
     AngularSplitModule,
-    FontAwesomeModule,
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,

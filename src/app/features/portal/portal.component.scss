@@ -9,7 +9,7 @@
     left: 50%;
     bottom:120%; /* put it on the top */
     background-color: transparent;
-    color: white;
+    color: black;
     width: max-content;
     opacity: 0;
     // -webkit-transition: opacity 0.50s ease-in-out;
@@ -84,7 +84,8 @@ mat-expansion-panel{
     margin: 10px;
     // border: solid 1px; 
     height: 740px;
-    background-color: #131D4B;
+    // background-color: #131D4B;
+    background-color: #FFFFFF;
 }
 .head{    
     text-align: center;
@@ -328,7 +329,8 @@ label{
 }
 #icon{
     font-size: 28px;
-    color: #37B3FB;
+    // color: #37B3FB;
+     color:#525C8B
 }
 .dropdown-toggl{
     margin: none !important;
@@ -340,7 +342,8 @@ mat-icon:hover{
     0 1px 3px 0 #d9d5d5; 
 }
 #text{
-    color: #37B3FB;
+    // color: #37B3FB;
+    color:#525C8B;
 }
 
 

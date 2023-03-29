@@ -1,7 +1,7 @@
 @import "variables";
 
 $dark-theme: (
-  bg-color: $blue-650,
+  bg-color: #020B39,
   color: $blue-250,
   al-header: $blue-100,
   card: (
@@ -16,7 +16,8 @@ $dark-theme: (
     tumb-background-hover: lighten($blue-600, 20%)
   ),
   bootstrap: (
-    primary: $blue-600,
+    // primary: $blue-600,
+    primary: #F6EEFF,
     primary-font-color: $blue-400
   ),
   primeng: (
@@ -126,15 +127,15 @@ $dark-theme: (
     box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.1),
   ),
   button-toggle-group: (
-    background-color-active: $blue-500,
-    background-color: $blue-600,
-    color-active: $blue-100,
-    color: $blue-300
+    background-color-active: #F6EEFF,
+    background-color: #F6EEFF,
+    color-active:#F6EEFF,
+    color: #525C8B
   ),
   button: (
     // default
-    color: $blue-300,
-    background-color: $blue-600,
+    color: #525C8B,
+    background-color: #F6EEFF,
     border-color: $blue-600,
 
     // hover

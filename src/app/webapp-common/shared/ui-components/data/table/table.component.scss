@@ -93,6 +93,7 @@
     padding: 15px 0 10px 0;
     font-size: 14px;
     width: 120px;
+    color:#7480aa;
   }
 
   tr:not(.cards-table) {
@@ -138,7 +139,8 @@
 
     &.header {
       height: 48px;
-      background-color: $blue-700;
+      // background-color: $blue-700;
+      background-color: #F6EEFF;
     }
 
     th {
@@ -168,7 +170,8 @@
       display: flex;
       align-items: center;
       flex: 1 1 0;
-      color: $blue-100;
+      // color: $blue-100;
+      color:#7480aa;
       font-size: 1rem;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -209,12 +212,12 @@
       height: calc(var(--rowHeight) * 0.666);
       padding: 3px;
       color: $blue-400;
-      background-color: rgba($blue-600, 95%);
+      background-color: #E0CEF6;
       border-radius: 4px;
       border: solid 1px $blue-400;
       &:hover {
         color: $blue-300;
-        background-color: lighten($blue-600, 5%);
+        background-color:#E0CEF6;
       }
     }
 

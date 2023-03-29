@@ -43,6 +43,14 @@ export class PortalComponent implements OnInit {
   Solution: any = [];
   Searchvalue: string = '';
   Searchdata: string = 'datasetName';
+  Searchvalue1: string = '';
+  Searchdata1: string = 'modelName';
+  Searchvalue2: string = '';
+  Searchdata2: string = 'pipelineName';
+  Searchvalue3: string = '';
+  Searchdata3: string = 'frontendName';
+  Searchvalue4: string = '';
+  Searchdata4: string = 'solutionName';
   ishidden: boolean = false;
   selectedIndex: number = 0;
   filled: boolean = false;
@@ -60,26 +68,16 @@ export class PortalComponent implements OnInit {
     this.getPipeline();
     this.getFrontend();
 
-
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      
-    ];
     
   }
+  
   dropdownSettings = {
     singleSelection: false,
     idField: 'id',
     textField: 'modelName',
     selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
-    itemsShowLimit: 3,
+      unSelectAllText: 'UnSelect All',
+    itemsShowLimit: 4,
     allowSearchFilter: true
   };
   dropdownSettings1 = {
@@ -105,16 +103,16 @@ export class PortalComponent implements OnInit {
     idField: 'id',
     textField: 'frontendName',
     selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
+      unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
     allowSearchFilter: true
   };
 
   dropdownList = [];
-  selectedItems = [];
+ 
 
   onItemSelect(data: any,jars:any) {
-    debugger
+   debugger
     if(jars=='dataset'){
       this.dropdowndata.push(data.id);
       // this.dropdowndata=data;
@@ -134,8 +132,25 @@ export class PortalComponent implements OnInit {
     }
 
   }
-  onSelectAll(items: any) {
-    console.log(items);
+  onSelectAll(data: any,jars:any) {
+    debugger
+    if(jars=='dataset'){
+      this.dropdowndata.push(data.id);
+      // this.dropdowndata=data;
+     
+    }else if(jars=='model'){
+      this.dropdownmodel.push(data.id);
+      // this.dropdownmodel=data;
+     
+    }else if(jars=='pipeline'){
+      this.dropdownpipeline.push(data.id);
+      // this.dropdownpipeline=data;
+      
+    }else if(jars=='frontend'){
+      this.dropdownfrontend.push(data.id);
+      // this.dropdownfrontend=data;
+     
+    }
   }
  
  
@@ -176,7 +191,18 @@ export class PortalComponent implements OnInit {
     desc: [],
     id: [],
     url:[],
-    main_id:[]
+    main_id:[],
+    // linkdata: new FormArray(
+    //   [
+    //     new FormGroup({
+    //       frontendId: new FormControl<number[]>([0]),
+    //       pipelineId: new FormControl<number[]>([0]),
+    //       modelId: new FormControl<number[]>([0]),
+    //       datasetId: new FormControl<number[]>([0]),
+    //     }),
+    //   ],
+    //   [Validators.maxLength(5)]
+    // ),
   })
   // formdata5 = this.formBuilder.group({
   //   id: []
@@ -196,7 +222,11 @@ export class PortalComponent implements OnInit {
     solution_id:[],
     solution_version:[],
     run_url:[],
-    view_url:[]
+    view_url:[],
+    linkedarray:[],
+    linkeddata:[],
+    linkedpipeline:[],
+    linkedfrontend:[]
   })
   formdata8 = this.formBuilder.group({
     pipeline_name:[],
@@ -299,6 +329,7 @@ export class PortalComponent implements OnInit {
     let datasetUrl = this.formdata4.controls['url'].value;
     let datasetId =this.formdata4.controls['main_id'].value.toString();
     let id = this.formdata4.controls['id'].value.toString();
+    
    
 
     console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
@@ -399,7 +430,7 @@ export class PortalComponent implements OnInit {
   }
 // ------------------------------Frontend Jar-------------------------------
   addFrontend(){
-   
+   debugger
     let frontendName=this.formdata9.controls['frontend_name'].value;
     let frontendStylesUrl=this.formdata9.controls['frontendStyle_url'].value;
     let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
@@ -413,7 +444,7 @@ export class PortalComponent implements OnInit {
         console.log(response)
         this.storeResponse = response;
         alert(this.storeResponse.message);
-        this.Frontend();
+        this.getFrontend();
       }
       );
   }
@@ -481,16 +512,73 @@ deleteFrontend(){
     this.formdata6.controls['view_url'].setValue(data.modelViewUrl);
     this.formdata6.controls['modelTags'].setValue(data.modelTags);
   }
+  
+  selectedValues:any;
+  selectedValues1:any;
+  selectedValues2:any;
+  selectedValues3:any;
+  // selectedIds:any;
+   dropdownSettingsmodel:any
+   dropdownSettingsdata:any
+   dropdownSettingspipeline:any
+   dropdownSettingsfrontend:any
+
   getDataSolution(data:any){
   
     console.log("clickedsolution", data)
     this.formdata7.controls['solution_name'].setValue(data.solutionName)
     // this.formdata7.controls['solution_version'].setValue(data.solutionVersion)
-    this.formdata7.controls['solution_id'].setValue(data.solutionId)
+    this.formdata7.controls['solution_id'].setValue(data.id)
     this.formdata7.controls['solution_tags'].setValue(data.solutionTags)
     this.formdata7.controls['solution_description'].setValue(data.solutionDescription)
     this.formdata7.controls['view_url'].setValue(data.solutionViewUrl)
     this.formdata7.controls['run_url'].setValue(data.solutionRunUrl)
+    this.formdata7.controls['linkedarray'].setValue(data.models)
+    this.formdata7.controls['linkeddata'].setValue(data.datasets)
+    this.formdata7.controls['linkedpipeline'].setValue(data.pipelines)
+    this.formdata7.controls['linkedfrontend'].setValue(data.frontends)
+   debugger
+    this.selectedValues=data.models;
+    this.selectedValues1=data.datasets;
+    this.selectedValues2=data.pipelines;
+    this.selectedValues3=data.frontends;
+    
+    this.dropdownSettingsmodel = {
+      singleSelection: false,
+      selectedValues:this.selectedValues,
+      idField: 'id',
+      textField: 'modelName',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
+    this.dropdownSettingsdata = {
+      singleSelection: false,
+      selectedValues:this.selectedValues1,
+      idField: 'id',
+      textField: 'datasetName',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
+    this.dropdownSettingspipeline = {
+      singleSelection: false,
+      selectedValues:this.selectedValues2,
+      idField: 'id',
+      textField: 'pipelineName',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
+    this.dropdownSettingsfrontend = {
+      singleSelection: false,
+      selectedValues:this.selectedValues3,
+      idField: 'id',
+      textField: 'frontendName',
+      itemsShowLimit: 4,
+      allowSearchFilter: true
+    };
+
   }
   getDataPipeline(data:any){
     this.formdata8.controls['pipeline_name'].setValue(data.pipelineName)
@@ -526,16 +614,20 @@ deleteFrontend(){
         this.getSolution();
       });
   }
+ 
   editSolution() {
+    debugger
     let solutionName = this.formdata7.controls['solution_name'].value;
     let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let solutionRunUrl=this.formdata7.controls['run_url'].value;
     let solutionViewUrl=this.formdata7.controls['view_url'].value;
     let solutionTags = this.formdata7.controls['solution_tags'].value;
     let solutionDescription = this.formdata7.controls['solution_description'].value;
-    let solutionVersion = this.formdata7.controls['solution_version'].value
+    let solutionVersion = this.formdata7.controls['solution_version'].value;
 
-    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionTags, solutionDescription, solutionRunUrl, solutionVersion, solutionViewUrl })
+    
+    // solutionTags,
+    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -546,7 +638,7 @@ deleteFrontend(){
 
   solutionId:any;
   deleteSolution(){
-
+debugger
     // console.log("solutionData", data)
     // this.formdata7.controls['solution_id'].setValue(data.solutionId);
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
@@ -571,7 +663,7 @@ deleteFrontend(){
         this.dumbb1 = response;
         
         this.Solution = this.dumbb1.solutionData;
-      //  console.log("New Solution",this.Solution);
+       console.log("Solution",this.Solution);
       //  console.log("abhi pati",Object.values(this.Solution[0])[7]);
       //  console.log("abhi pati",this.Solution[0].datasets.length);
 
@@ -622,17 +714,17 @@ deleteFrontend(){
         
         
 
-        this.link(this.Solution);
+        // this.link(this.Solution);
 
       }
       )
   }
-  linkeddata:any;
-  link(data:any){
-    for(let i=0;i<=data.length;i++){
+  // linkeddata:any;
+  // link(data:any){
+  //   for(let i=0;i<=data.length;i++){
       
-    }
-  }
+  //   }
+  // }
   editData(data: any, jar: any) {
     this.SelectJar(jar);
     this.getDataPipeline(data)  
@@ -729,7 +821,7 @@ deleteFrontend(){
       this.modelId=data.modelId;
 
     } else if(jar == 'Solution'){
-      this.solutionId=data.solutionId;
+      this.solutionId=data.id;
 
     } else if(jar == 'Pipeline'){
       this.pipelineId=data.pipelineId;
@@ -867,6 +959,10 @@ dropdownfrontend:any=[];
   linkagedata:any=[];
   dummy6:any=[];
   dummy5:any;
+  link:boolean=false;
+  linkCheck(){
+    this.link= !this.link;
+  }
 
   linkage(data:any){
   
@@ -878,13 +974,16 @@ dropdownfrontend:any=[];
       debugger
       this.linkagedata=response;
       this.empty();
-      console.log(this.linkagedata);
       
+      console.log(this.linkagedata);
+      this.linkCheck();
         
+     
       // this.dummy5=this.linkagedata.data[0].solution;
 
       // for(let i=0;i<=3;i++){
       //   if(this.linkagedata.solutions){
+
           this.Solution=this.linkagedata.solutions;
         // }else if(this.linkagedata.models){
           this.Modules=this.linkagedata.models;
@@ -894,8 +993,9 @@ dropdownfrontend:any=[];
           this.Dataset=this.linkagedata.datasets;
 
           this.Frontend=this.linkagedata.frontends;
-        }
+          
         
+      }
       // }
 
     // }

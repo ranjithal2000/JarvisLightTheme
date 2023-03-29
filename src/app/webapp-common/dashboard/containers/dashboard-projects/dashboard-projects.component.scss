@@ -21,4 +21,5 @@
 }
 .recent-title {
   @include recent-title();
+  color:#525C8B !important;
 }

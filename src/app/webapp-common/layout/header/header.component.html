@@ -1,6 +1,6 @@
 <div class="header-container" [class.login]="isLogin">
   <sm-breadcrumbs
-    class="spacer"
+    class="spacer" id="sp"
     [class.flex-grow-1]="!(userFocus || (showUserFocus$ | async))"
     [class.user-focus]="userFocus || (showUserFocus$ | async)"
     [class.share-view]="isShareMode"

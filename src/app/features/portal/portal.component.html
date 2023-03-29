@@ -20,16 +20,16 @@
       </table>
 
       <div class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" placeholder="search" id="example-search-input"> 
+        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue4" type="search" placeholder="search" id="example-search-input"> 
         <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div></span>
       </div>
 
-      <div *ngFor="let data of Solution"  class="mt-2 "> 
+      <div *ngFor="let data of Solution|filter:Searchvalue4:Searchdata4 ;let i=index"  class="mt-2 "> 
         <mat-accordion class="mb-2 py-0"> 
           <mat-expansion-panel
-            style="background-color: #525C8B;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            style="background-color: #F6EEFF" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
             class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.solutionName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:#020B39">{{data.solutionName}}</p>
               </mat-panel-title> </mat-expansion-panel-header>
 
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
@@ -38,34 +38,34 @@
             <!-- <button (click)="leader(start,end)">click</button> -->
             <!-- <div class="d-flex flex-row pt-2 px-1"> <label><b>Linked : Frontend, Model, Pipeline & Data jar</b></label>
             </div> -->
-            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label style="color: white;">Description:
+            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label style="color: #020B39;">Description:
                   {{data.solutionDescription}}</label></div>
-            <label  type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
-            <br>
+            <label class="mb-2"  type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
+            
             <div >
-              <label style="color: white;" ><b>Linked:</b></label>
-              <label style="color: white;">{{data.linkedassets}}</label>
+              <label style="color: #47A0FC;" ><b>Linked:</b></label>
+              <label style="color: #47A0FC;">{{data.linkedassets}}</label>
             </div>
             <br>
 
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1"> <a aria-placeholder="view_url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
+              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="view_url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:#020B39"
                     aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
 
-              <div class="btn-grp px-2"> <a aria-placeholder="run_url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
+              <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="run_url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
-                    style="transform: scale(2);color:white"></mat-icon></a> </div>
+                    style="transform: scale(2);color:#020B39"></mat-icon></a> </div>
               <div class="btn-grp px-3">
 
-                <a aria-placeholder="Linkage" (click)="linkage(data)" style="cursor: pointer;color: white;"><i class="fa fa-link fa-lg"></i> </a>
+                <a aria-placeholder="Linkage" (click)="linkage(data)" style="cursor: pointer;color: #020B39;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
               </div>
 
-              <div class="btn-grp px-2"> <a aria-placeholder="delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+              <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:#020B39;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
                     (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
 
-              <div class="btn-grp pl-2 pr-4" #start> <a aria-placeholder="edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
+              <div class="btn-grp pl-2 pr-4 icon-glow" #start> <a aria-placeholder="edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:#020B39;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
                     (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
@@ -98,39 +98,40 @@
         </tr>
       </table>
       <div class="input-group pb-3 pt-3"> <input class="form-control py-2 border-right-0 border"
-          style="width:130px; height:50px;background-color: transparent;" type="search" placeholder="search"
+          style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue3" placeholder="search"
           id="example-search-input"> <span class="input-group-append">
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
         </span> </div>
 
-      <div *ngFor="let data of Frontend" class="mt-2 "> 
+      <div *ngFor="let data of Frontend|filter:Searchvalue3:Searchdata3 ;let i=index" class="mt-2 "> 
         <mat-accordion class="mb-2 py-0"> 
           <mat-expansion-panel
-            style="background-color: #525C8B;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            style="background-color: #F6EEFF;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
             class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.frontendName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:#020B39">{{data.frontendName}}</p>
               </mat-panel-title> </mat-expansion-panel-header> 
 
-            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label style="color: white;">Description:
+            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}"><label style="color: #020B39;">Description:
                   {{data.frontendDescription}}</label></div> <label  type="button" *ngIf="data.frontendDescription.length>20"
               (click)="showText()"> {{ isReadMore ? 'Read More': 'Read Less' }}
             </label>
             <br>
             <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1"> <a aria-placeholder="style_url" target="_blank" href={{data.frontendStylesUrl}}> <mat-icon
-                    style="color:white" aria-hidden="false" aria-label="Example home icon"
+              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="style_url" target="_blank" href={{data.frontendStylesUrl}}> <mat-icon
+                    style="color:#020B39" aria-hidden="false" aria-label="Example home icon"
                     fontIcon="visibility"></mat-icon></a> </div>
-              <div class="btn-grp px-3"> <a aria-placeholder="run_url" target="_blank" href={{data.frontendRunUrl}}> <mat-icon aria-hidden="false"
-                    aria-label="Example home icon" fontIcon="arrow_right_circle"
-                    style="transform: scale(2);color:white"></mat-icon></a> </div>
 
-              <div class="btn-grp px-3"> <a aria-placeholder="delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="run_url" target="_blank" href={{data.frontendRunUrl}}> <mat-icon aria-hidden="false"
+                    aria-label="Example home icon" fontIcon="arrow_right_circle"
+                    style="transform: scale(2);color:#020B39"></mat-icon></a> </div>
+
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:#020B39;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
                     (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
 
-              <div class="btn-grp pl-3 pr-4" #start> <a aria-placeholder="edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
+              <div class="btn-grp pl-3 pr-4 icon-glow" #start> <a aria-placeholder="edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    style="color:#020B39;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
                     (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
@@ -159,16 +160,16 @@
         </tr>
       </table>
       <div class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:140px; height:50px;background-color: transparent;" type="search" placeholder="search" id="example-search-input"> 
+        <input class="form-control py-2 border-right-0 border" style="width:140px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue2" placeholder="search" id="example-search-input"> 
           <span class="input-group-append"><div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
       </div>
       
-      <div *ngFor="let data of pipeline" class="mt-2 ">
+      <div *ngFor="let data of pipeline|filter:Searchvalue2:Searchdata2 ;let i=index" class="mt-2 ">
         <mat-accordion class="mb-2 py-0"> 
-        <mat-expansion-panel style="background-color: #525C8B" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
+        <mat-expansion-panel style="background-color: #F6EEFF" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
             <mat-expansion-panel-header>
                <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.pipelineName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:#020B39">{{data.pipelineName}}</p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
           
@@ -178,23 +179,23 @@
 
             <div class="mt-3">
                 <div [ngClass]="{'limitTextHeight': isReadMore1}">
-                  <label style="color: white;">Description:{{data.pipelineDescription}}</label>
+                  <label style="color: #020B39;">Description:{{data.pipelineDescription}}</label>
                 </div>
                 <label type="button" (click)="showText1()" *ngIf="data.pipelineDescription.length>20"><b> {{ isReadMore1 ? 'Read More': 'ReadLess'}}</b></label>
             </div>
     <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1"> <a aria-placeholder="view_url" target="_blank" href={{data.pipelineViewUrl}}> 
-                <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
+              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="view_url" target="_blank" href={{data.pipelineViewUrl}}> 
+                <mat-icon style="color:#020B39" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-3 pr-2"> <a aria-placeholder="edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit"
+              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="edit">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="edit"
                  data-toggle="modal" data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
               </div>
 
-              <div class="btn-grp px-3"> <a aria-placeholder="delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete"
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="delete">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="delete"
                  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
               </div>
             </div>
@@ -218,16 +219,16 @@
         </tr>
       </table>
 
-      <div class="input-group pb-3 pt-3" #end> <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" placeholder="search" id="example-search-input"> 
+      <div class="input-group pb-3 pt-3" #end> <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue1" placeholder="search" id="example-search-input"> 
           <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
       </div>
 
-      <div *ngFor="let data of Modules" class="mt-2 "> 
+      <div *ngFor="let data of Modules|filter:Searchvalue1:Searchdata1 ;let i=index" class="mt-2 "> 
         <mat-accordion class="mb-2 py-0"> 
-          <mat-expansion-panel style="background-color: #525C8B;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
+          <mat-expansion-panel style="background-color: #F6EEFF;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
             <mat-expansion-panel-header> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.modelName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:#020B39">{{data.modelName}}</p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
 
@@ -237,25 +238,25 @@
 
             <div class="mt-3">
                 <div [ngClass]="{'limitTextHeight': isReadMore2}">
-                  <label style="color: white;">Description:{{data.modelDescription}}</label>
+                  <label style="color: #020B39;">Description:{{data.modelDescription}}</label>
                 </div>
                 <label  type="button" (click)="showText2()" *ngIf="data.modelDescription.length>20"><b>{{ isReadMore2 ? 'Read More': 'Read Less' }}</b></label>
             </div>
 <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1"> <a aria-placeholder="view_url" target="_blank" href={{data.modelViewUrl}}> 
-                <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
+              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="view_url" target="_blank" href={{data.modelViewUrl}}> 
+                <mat-icon style="color:#020B39" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
-              <div class="btn-grp px-3"> <a aria-placeholder="run_url" target="_blank" href={{data.modelRunUrl}}> 
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle" style="transform: scale(2);color:white"></mat-icon></a> 
-              </div>
-
-              <div class="btn-grp px-3"> <a aria-placeholder="delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')"></mat-icon></a> 
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="run_url" target="_blank" href={{data.modelRunUrl}}> 
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle" style="transform: scale(2);color:#020B39"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-3 pr-4"> <a aria-placeholder="edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="delete">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')"></mat-icon></a> 
+              </div>
+
+              <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="edit">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
               </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
@@ -287,31 +288,31 @@
       </div>
       <div *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="mt-2">
         <mat-accordion class="mb-2 py-0"> 
-          <mat-expansion-panel style="background-color: #525C8B;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
+          <mat-expansion-panel style="background-color: #F6EEFF;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
             <mat-expansion-panel-header> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white;">{{data.datasetName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:#020B39;">{{data.datasetName}}</p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
             <div class="d-flex flex-row pt-2 px-1">
               <div>
-                <p style="color:white"><b>Version: {{data.datasetVersion}}</b></p>
+                <p style="color:#020B39"><b>Version: {{data.datasetVersion}}</b></p>
                 <div [ngClass]="{'limitTextHeight': isReadMore3}">
-                  <label style="color: white;">Description:{{data.datasetDescription}}</label>
+                  <label style="color: #020B39;">Description:{{data.datasetDescription}}</label>
                 </div>
                 <label  type="button" (click)="showText3()" *ngIf="data.datasetDescription.length>20"><b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
               </div> 
             </div>
   <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1"> <a title="url" target="_blank" href={{data.datasetUrl}}> 
-                <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
+              <div class="btn-grp px-1 icon-glow"> <a title="url" target="_blank" href={{data.datasetUrl}}> 
+                <mat-icon style="color:#020B39" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
-              <div class="btn-grp px-3"> <a aria-placeholder="delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> 
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="delete">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> 
               </div>
-              <div class="btn-grp pl-3 pr-4"> <a aria-placeholder="edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
+              <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="edit">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:#020B39;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
               </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
@@ -408,15 +409,6 @@
           <h6 class="ml-4">Use dropdowns for Linkage</h6>
 
           <div class="d-flex flex-row m-3">
-            <!-- <div>
-              <mat-form-field appearance="fill" class="matdropdown">
-                <mat-label style="color: white;">Dataset</mat-label>
-                <mat-select multiple>
-                  <mat-option *ngFor="let x of Dataset" class="not-empty-select"
-                    (click)="onSelectdataset(x.datasetId,'dataset')">{{x.datasetName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div> -->
            <div class="ml-3" style="min-width:40vw">
             <ng-multiselect-dropdown
             class="customClass"
@@ -425,7 +417,7 @@
             [data]="Modules"
             [(ngModel)]="selectedItems"
             (onSelect)="onItemSelect($event,'model')"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelectAll)="onSelectAll($event,'model')"
             style="height: 40px;background-color: white !important;"
           >
           </ng-multiselect-dropdown>
@@ -437,51 +429,13 @@
           [data]="Dataset"
           [(ngModel)]="selectedItems"
           (onSelect)="onItemSelect($event,'dataset')"
-          (onSelectAll)="onSelectAll($event)"
+          (onSelectAll)="onSelectAll($event,'dataset')"
         >
         </ng-multiselect-dropdown>
       </div>
-            
-            
-            <!-- <div class="pl-4">
-              <mat-form-field appearance="fill" class="matdropdown">
-                <mat-label style="color: white;">Frontend</mat-label>
-                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
-                  <mat-option *ngFor="let x of Frontend" class="not-empty-select" (click)="onSelectdataset(x.id,'frontend')">{{x.frontendName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="px-4">
-              <mat-form-field appearance="fill" class="matdropdown">
-                <mat-label style="color: white;">Pipeline</mat-label>
-                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
-                  <mat-option *ngFor="let x of pipeline" class="not-empty-select"
-                    (click)="onSelectdataset(x.pipelineId,'pipeline')">{{x.pipelineName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div> -->
-            <!-- <div>
-              <mat-form-field appearance="fill" class="matdropdown">
-                <mat-label style="color: white;">Module</mat-label>
-                <mat-select multiple disableOptionCentering panelClass="myPanelClass">
-                  <mat-option *ngFor="let x of Modules" class="not-empty-select"
-                    (click)="onSelectdataset(x.modelId,'model')">{{x.modelName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div> -->
-
-           
+       
           </div>
           <div class="d-flex flex-row m-3">
-            <!-- <div>
-              <mat-form-field appearance="fill" class="matdropdown">
-                <mat-label style="color: white;">Dataset</mat-label>
-                <mat-select multiple>
-                  <mat-option *ngFor="let x of Dataset" class="not-empty-select"
-                    (click)="onSelectdataset(x.datasetId,'dataset')">{{x.datasetName}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div> -->
            <div class="ml-3" style="min-width:40vw">
             <ng-multiselect-dropdown
             [placeholder]="'Pipeline'"
@@ -489,7 +443,7 @@
             [data]="pipeline"
             [(ngModel)]="selectedItems"
             (onSelect)="onItemSelect($event,'pipeline')"
-            (onSelectAll)="onSelectAll($event)"
+            (onSelectAll)="onSelectAll($event,'pipeline')"
           >
           </ng-multiselect-dropdown>
         </div>
@@ -500,7 +454,7 @@
           [data]="Frontend"
           [(ngModel)]="selectedItems"
           (onSelect)="onItemSelect($event,'frontend')"
-          (onSelectAll)="onSelectAll($event)"
+          (onSelectAll)="onSelectAll($event,'frontend')"
         >
         </ng-multiselect-dropdown>
       </div>
@@ -662,7 +616,7 @@
 <!---------------------------------------- edit Section ---------------------------------------------------->
 
 <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-  data-backdrop="false">
+  >
   <div class="modal-dialog" style="min-width: 60%;">
     <div class="modal-content" style=" margin-top: 10vw;">
 
@@ -769,6 +723,70 @@
         <div class="d-flex flex-row m-3"> <mat-form-field style="min-width:40vw" class="example-full-width"
             appearance="outline"> <mat-label id="subTitle"><b>Solution Description</b></mat-label> <input
               id="inputStyle" matInput placeholder="" formControlName="solution_description"> </mat-form-field> </div>
+
+              <div class="d-flex flex-row m-3">
+                <div class="ml-3" style="min-width:40vw">
+
+                 <ng-multiselect-dropdown
+                 formControlName="linkedarray"
+                 class="customClass"
+                 [placeholder]="'Model'"
+                 [settings]="dropdownSettingsmodel"
+                 [data]="Modules"
+                 [selected-item]="selectedItems"
+                 [(ngModel)]="selectedValues"
+                 [enableCheckAll]="false"
+                 
+                 (onSelect)="onItemSelect($event,'model')"
+                 (onSelectAll)="onSelectAll($event,'model')"
+                 style="height: 40px;background-color: white !important;"
+               >
+               </ng-multiselect-dropdown>
+             </div>
+             <div class="px-3" style="min-width:40vw; background-color: #fff;">
+               <ng-multiselect-dropdown
+               formControlName="linkeddata"
+               class="customClass"
+               [placeholder]="'Dataset'"
+               [settings]="dropdownSettingsdata"
+               [data]="Dataset"
+               [enableCheckAll]="false"
+               [(ngModel)]="selectedValues1"
+               (onSelect)="onItemSelect($event,'dataset')"
+               (onSelectAll)="onSelectAll($event,'dataset')"
+             >
+             </ng-multiselect-dropdown>
+            
+           </div>
+        </div>
+        <div class="d-flex flex-row m-3">
+          <div class="ml-3" style="min-width:40vw">
+           <ng-multiselect-dropdown
+           formControlName="linkedpipeline"
+           [placeholder]="'Pipeline'"
+           [settings]="dropdownSettingspipeline"
+           [data]="pipeline"
+           [enableCheckAll]="false"
+           [(ngModel)]="selectedValues2"
+           (onSelect)="onItemSelect($event,'pipeline')"
+           (onSelectAll)="onSelectAll($event,'pipeline')"
+         >
+         </ng-multiselect-dropdown>
+       </div>
+       <div class="px-3" style="min-width:40vw">
+         <ng-multiselect-dropdown
+         formControlName="linkedfrontend"
+         [placeholder]="'Frontend'"
+         [settings]="dropdownSettingsfrontend"
+         [data]="Frontend"
+         [enableCheckAll]="false"
+         [(ngModel)]="selectedValues3"
+         (onSelect)="onItemSelect($event,'frontend')"
+         (onSelectAll)="onSelectAll($event,'frontend')"
+       >
+       </ng-multiselect-dropdown>
+     </div>
+     </div>
 
         <div class="modal-footer ml-4" style="width: 80vw"> <button type="button" class="btn btn-success"
             (click)="editSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
