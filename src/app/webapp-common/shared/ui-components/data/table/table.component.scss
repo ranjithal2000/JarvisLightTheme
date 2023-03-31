@@ -47,6 +47,7 @@
     text-transform: uppercase;
     padding-left: 16px;
     margin-right: auto;
+    color:white;
   }
 
   .table-actions {
@@ -101,11 +102,11 @@
       border-bottom: 1px solid $blue-600;
     }
     &:hover:not(.header):not(.selected):not(.no-data-row):not(.simple):not(.load-more-wrapper) {
-      background-color: $blue-650;
+      background-color: #bccdf5;
       border-bottom: 1px solid $blue-600;
 
       .p-frozen-column {
-        background-color: $blue-650 !important;
+        background-color: #bccdf5 !important;
         z-index: 1;
       }
     }
@@ -140,7 +141,7 @@
     &.header {
       height: 48px;
       // background-color: $blue-700;
-      background-color: #F6EEFF;
+      background-color: #7672ED;
     }
 
     th {
@@ -159,11 +160,12 @@
         text-align: left;
         font-size: 12px !important;
         font-weight: 500;
+        color:white;
       }
 
-      &:hover {
-        background-color: $blue-600;
-      }
+      // &:hover {
+      //   background-color: $blue-600;
+      // }
     }
 
     td {
@@ -234,19 +236,19 @@
       }
 
       &:hover:not(.selected):not(.simple) td {
-        background-color: $blue-650;
+        background-color: #bccdf5;
       }
       &.selected {
         td {
-          background-color: $blue-400;
+          background-color: #bccdf5;
         }
         &:hover td{
-          background-color: $blue-480;
+          background-color: #bccdf5;
         }
       }
       &.checked:not(.selected):not(.simple) {
         td {
-          background-color: $blue-500;
+          background-color:white;
         }
 
         &:hover, &.contexted {

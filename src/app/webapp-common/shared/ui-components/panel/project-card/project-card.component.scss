@@ -19,7 +19,9 @@ hr {
   @include counter-label();
   text-align: center;
   font-size: 10px;
-  padding: 12px
+  padding: 12px;
+  background-color: #7672ED;
+  color:white
 }
 
 .sub-projects-list {
@@ -66,6 +68,7 @@ hr {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    color:#5172b7;
   }
 
   :host {

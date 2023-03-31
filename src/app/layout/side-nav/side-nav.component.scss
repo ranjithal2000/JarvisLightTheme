@@ -10,12 +10,12 @@ $icon-size: 24px;
   width: $side-bar-close-width;
   // background-color: $blue-600;
 // background-color: #131D4B;
-background-color: #FFFFFF;
+background-color: #7672ED;
   .logo-a{
     margin-top: 15% !important;
   }
   .logo {
-    width: 60px;
+    width: 63px;
     height: 64px;
     // background: #131D4B;
     background: #FFFFFF;
@@ -60,7 +60,7 @@ background-color: #FFFFFF;
     justify-content: center;
     width: $link-item-size;
     height: $link-item-size;
-    color: $blue-300;
+    color: white;
     margin: 0 auto;
     // ICON SIZE
     &:before {
@@ -69,12 +69,12 @@ background-color: #FFFFFF;
 
     &:hover {
       color: $blue-200;
-      background-color: $blue-500;
+      background-color: white;
       text-decoration: none;
     }
 
     &.active:before {
-      color: $neon-yellow
+      color: #a0b8f0;
     }
   }
 .project-icon{

@@ -9,7 +9,7 @@
     left: 50%;
     bottom:120%; /* put it on the top */
     background-color: transparent;
-    color: black;
+    color: white;
     width: max-content;
     opacity: 0;
     // -webkit-transition: opacity 0.50s ease-in-out;
@@ -83,8 +83,8 @@ mat-expansion-panel{
     padding: 2em;
     margin: 10px;
     // border: solid 1px; 
-    height: 740px;
-    // background-color: #131D4B;
+    height: 780px;
+    // background-color: #bccdf5;
     background-color: #FFFFFF;
 }
 .head{    
@@ -242,7 +242,7 @@ label{
 
 
 .mat-chip{
-    background-color: #3f4563;
+    background-color: #F6EEFF;
 }
 .example-box.cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
@@ -330,7 +330,7 @@ label{
 #icon{
     font-size: 28px;
     // color: #37B3FB;
-     color:#525C8B
+     color:#7672ED;
 }
 .dropdown-toggl{
     margin: none !important;
@@ -343,7 +343,7 @@ mat-icon:hover{
 }
 #text{
     // color: #37B3FB;
-    color:#525C8B;
+    color:#7672ED;
 }
 
 

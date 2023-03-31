@@ -67,8 +67,15 @@ export class PortalComponent implements OnInit {
     this.getdataset();
     this.getPipeline();
     this.getFrontend();
-
     
+  }
+  refresh(){
+    this.getModel();
+    this.getSolution();
+    this.getdataset();
+    this.getPipeline();
+    this.getFrontend();
+    this.linkCheck();
   }
   
   dropdownSettings = {
@@ -1029,11 +1036,4 @@ leader(id, id2) {
   line.startSocketGravity = 0;
 
 }
-
-
- 
-
-
-
-
 }

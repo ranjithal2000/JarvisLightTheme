@@ -17,7 +17,7 @@ $dark-theme: (
   ),
   bootstrap: (
     // primary: $blue-600,
-    primary: #F6EEFF,
+    primary: #7672ED,
     primary-font-color: $blue-400
   ),
   primeng: (
@@ -134,9 +134,11 @@ $dark-theme: (
   ),
   button: (
     // default
-    color: #525C8B,
-    background-color: #F6EEFF,
-    border-color: $blue-600,
+    // color: #525C8B,
+    // background-color: #F6EEFF,
+    background-color: #7672ED,
+    color:white,
+    border-color: white,
 
     // hover
     color-hover: $blue-200,
