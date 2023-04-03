@@ -6,7 +6,8 @@ import { SMMaterialModule } from '../../webapp-common/shared/material/material.m
 import {ICONS} from '@common/constants';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { style } from '@angular/animations';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 export interface tags {
   name: string;
@@ -23,6 +24,7 @@ declare var LeaderLine: any;
 export class PortalComponent implements OnInit {  
  
   readonly ICONS = ICONS;
+  isPanelOpen = false;
   dataSetId: any;
   abc: any;
   name: any;
@@ -58,7 +60,15 @@ export class PortalComponent implements OnInit {
   drop(event: CdkDragDrop<tags[]>) {
     moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
   }
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+
+  innerHeight: any;
+    innerWidth: any;
+  constructor(private formBuilder: FormBuilder, private http: HttpClient,public snackBar: MatSnackBar,private toastr: ToastrService) { 
+    this.innerHeight = (window.screen.height) + "px";
+        this.innerWidth = (window.screen.width) + "px";
+        console.log(this.innerHeight);
+        console.log(this.innerWidth);
+  }
   
   ngOnInit(): void {
     // this.fetchData();
@@ -76,6 +86,7 @@ export class PortalComponent implements OnInit {
     this.getPipeline();
     this.getFrontend();
     this.linkCheck();
+    this.isPanelOpen=false;
   }
   
   dropdownSettings = {
@@ -135,41 +146,114 @@ export class PortalComponent implements OnInit {
     }else if(jars=='frontend'){
       this.dropdownfrontend.push(data.id);
       // this.dropdownfrontend=data;
-     
     }
 
   }
-  onSelectAll(data: any,jars:any) {
+  // onSelectAll(data: any,jars:any) {
+  //   debugger
+  //   if(jars=='dataset'){
+  //     this.dropdowndata.push(data.id);
+  //     // this.dropdowndata=data;
+     
+  //   }else if(jars=='model'){
+  //     this.dropdownmodel.push(data.id);
+  //     // this.dropdownmodel=data;
+     
+  //   }else if(jars=='pipeline'){
+  //     this.dropdownpipeline.push(data.id);
+  //     // this.dropdownpipeline=data;
+      
+  //   }else if(jars=='frontend'){
+  //     this.dropdownfrontend.push(data.id);
+  //     // this.dropdownfrontend=data;
+     
+  //   }
+  // }
+  unselect(data:any,jars:any){
     debugger
+
+    let solutionId = this.formdata7.controls['solution_id'].value.toString();
+    
+   
+
     if(jars=='dataset'){
-      this.dropdowndata.push(data.id);
-      // this.dropdowndata=data;
+      let dataId=data.id.toString();
+      // this.editdropdowndata.push((data.id).toString());
+      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, dataId})
+      .subscribe(response => {  
+        this.storeResponse=response;
+        alert(this.storeResponse.message);
+      }
+      )
      
     }else if(jars=='model'){
-      this.dropdownmodel.push(data.id);
-      // this.dropdownmodel=data;
+      let modelId=data.id.toString();
+      // this.editdropdownmodel.push((data.id).toString());
+      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, modelId})
+      .subscribe(response => { 
+        this.storeResponse=response;
+        alert(this.storeResponse.message);
+       
+      }
+      )
      
     }else if(jars=='pipeline'){
-      this.dropdownpipeline.push(data.id);
-      // this.dropdownpipeline=data;
+      let pipelineId=data.id.toString();
+      // this.editdropdownpipeline.push((data.id).toString());
+      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, pipelineId})
+      .subscribe(response => {
+        this.storeResponse=response;
+        alert(this.storeResponse.message);
+       
+      }
+      )
       
     }else if(jars=='frontend'){
-      this.dropdownfrontend.push(data.id);
-      // this.dropdownfrontend=data;
-     
+      let frontendId=data.id.toString();
+      // this.editdropdownfrontend.push((data.id).toString());
+      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, frontendId})
+      .subscribe(response => {
+        this.storeResponse=response;
+        alert(this.storeResponse.message);
+       
+      }
+      )
     }
+    
   }
+
+ 
+  onEditItemSelect(data: any,jars:any) {
+    debugger
+     if(jars=='dataset'){
+       this.editdropdowndata.push((data.id).toString());
+       // this.dropdowndata=data;
+      
+     }else if(jars=='model'){
+       this.editdropdownmodel.push((data.id).toString());
+       // this.dropdownmodel=data;
+      
+     }else if(jars=='pipeline'){
+       this.editdropdownpipeline.push((data.id).toString());
+       // this.dropdownpipeline=data;
+       
+     }else if(jars=='frontend'){
+       this.editdropdownfrontend.push((data.id).toString());
+       // this.dropdownfrontend=data;
+     }
+ 
+   }
  
  
 // -----------------------------------------------
 
   formdata = this.formBuilder.group({
     type: [],
-    name: [],
-    id: [],
-    version: [],
-    desc: [],
-    url: []
+    name: [,Validators.required],
+    id: [,Validators.required],
+    version: [,Validators.required],
+    desc: [,Validators.required],
+    url: [,Validators.required]
   })
   formdata1 = this.formBuilder.group({
     dataset_name: ['', Validators.required],
@@ -179,18 +263,18 @@ export class PortalComponent implements OnInit {
     description: []
   })
   formdata2 = this.formBuilder.group({
-    project_name: [],
-    view_url: [],
-    run_url: [],
-    model_tags:[],
-    desc:[],
+    project_name: ['', Validators.required],
+    view_url: ['', Validators.required],
+    run_url: ['', Validators.required],
+    model_tags:['', Validators.required],
+    desc:['', Validators.required],
   })
   formdata3 = this.formBuilder.group({
-    solution_name: [],
-    view_url: [],
-    solution_tags: [],
-    solution_description: [],
-    run_url:[]
+    solution_name: ['', Validators.required],
+    view_url: ['', Validators.required],
+    solution_tags: ['', Validators.required],
+    solution_description: ['', Validators.required],
+    run_url:['', Validators.required]
   })
   formdata4 = this.formBuilder.group({
     name: [],
@@ -199,21 +283,9 @@ export class PortalComponent implements OnInit {
     id: [],
     url:[],
     main_id:[],
-    // linkdata: new FormArray(
-    //   [
-    //     new FormGroup({
-    //       frontendId: new FormControl<number[]>([0]),
-    //       pipelineId: new FormControl<number[]>([0]),
-    //       modelId: new FormControl<number[]>([0]),
-    //       datasetId: new FormControl<number[]>([0]),
-    //     }),
-    //   ],
-    //   [Validators.maxLength(5)]
-    // ),
+   
   })
-  // formdata5 = this.formBuilder.group({
-  //   id: []
-  // })
+ 
   formdata6 = this.formBuilder.group({
     project_name: [],
     id: [],
@@ -236,17 +308,17 @@ export class PortalComponent implements OnInit {
     linkedfrontend:[]
   })
   formdata8 = this.formBuilder.group({
-    pipeline_name:[],
-    pipelineView_url:[],
-    pipeline_description:[],
-    pipeline_tags:[],
+    pipeline_name:['', Validators.required],
+    pipelineView_url:['', Validators.required],
+    pipeline_description:['', Validators.required],
+    pipeline_tags:['', Validators.required],
     id:[]
   })
   formdata9=this.formBuilder.group({
-    frontend_name:[''],
-    frontendStyle_url:[''],
-    frontendRun_url:[''],
-    frontend_description:[''],
+    frontend_name:['', Validators.required],
+    frontendStyle_url:['', Validators.required],
+    frontendRun_url:['', Validators.required],
+    frontend_description:['', Validators.required],
     id:[]
   })
   storeResponse: any;
@@ -263,7 +335,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.success(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getModel();
       }
       )
@@ -280,7 +353,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log("res", response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.warning(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getModel();
       }
       )
@@ -294,7 +368,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.error(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getModel();
       }
       )
@@ -314,7 +389,7 @@ export class PortalComponent implements OnInit {
   }
 // ------------------------------dataset section-------------------------------
   addDataset() {
-   
+   debugger
     let datasetName = this.formdata.controls['name'].value;
     let datasetId = this.formdata.controls['id'].value;
     let datasetVersion = this.formdata.controls['version'].value;
@@ -324,7 +399,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
-        alert(this.storeResponse.message);
+        this.toastr.success(this.storeResponse.message);
+        // alert(this.storeResponse.message);
         this.getdataset();
       }
       );
@@ -344,7 +420,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.warning(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getdataset();
       }
       );
@@ -356,9 +433,11 @@ export class PortalComponent implements OnInit {
 
     this.http.post('http://3.108.153.122:3000/data/deleteDataset', { datasetId })
       .subscribe(response => {
+        debugger
         console.log(response)
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.error(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getdataset();
       }
       );
@@ -384,7 +463,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
-        alert(this.storeResponse.message);
+        this.toastr.success(this.storeResponse.message);
+        // alert(this.storeResponse.message);
         this.getPipeline();
       }
       );
@@ -412,7 +492,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.warning(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getPipeline();
       });
   }
@@ -430,7 +511,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.error(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getPipeline();
       }
       )
@@ -450,7 +532,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
-        alert(this.storeResponse.message);
+        this.toastr.success(this.storeResponse.message);
+        // alert();
         this.getFrontend();
       }
       );
@@ -480,7 +563,8 @@ export class PortalComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.warning(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getFrontend();
       });
 
@@ -492,12 +576,13 @@ deleteFrontend(){
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        this.toastr.error(this.storeResponse.message);
+        // alert(this.storeResponse.message)
         this.getFrontend();
       }
       )
 }
-  // ------------------------------unknow-------------------------------
+  //------------------------------unknow-------------------------------
   getData(data: any) {
     console.log("clicked", data)
     this.abc = data
@@ -617,13 +702,14 @@ deleteFrontend(){
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        // alert(this.storeResponse.message)
+        this.toastr.success(this.storeResponse.message);
         this.getSolution();
       });
   }
  
   editSolution() {
-    debugger
+    
     let solutionName = this.formdata7.controls['solution_name'].value;
     let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let solutionRunUrl=this.formdata7.controls['run_url'].value;
@@ -631,16 +717,25 @@ deleteFrontend(){
     let solutionTags = this.formdata7.controls['solution_tags'].value;
     let solutionDescription = this.formdata7.controls['solution_description'].value;
     let solutionVersion = this.formdata7.controls['solution_version'].value;
-
+    let modelId=this.editdropdownmodel;
+    let dataId=this.editdropdowndata;
+    let pipelineId=this.editdropdownpipeline;
+    let frontendId=this.editdropdownfrontend;
     
     // solutionTags,
-    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl })
+    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,frontendId,pipelineId,modelId ,dataId})
       .subscribe(response => {
+        debugger
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        // alert(this.storeResponse.message)
+        this.toastr.warning(this.storeResponse.message);
         this.getSolution();
       });
+      
+        this.getSolution();
+    
+      
   }
 
   solutionId:any;
@@ -655,7 +750,8 @@ debugger
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        alert(this.storeResponse.message)
+        // alert(this.storeResponse.message)
+        this.toastr.error(this.storeResponse.message);
         this.getSolution();
       }
       )
@@ -934,6 +1030,10 @@ dropdowndata:any=[];
 dropdownmodel:any=[];
 dropdownpipeline:any=[];
 dropdownfrontend:any=[];
+editdropdowndata:any=[];
+editdropdownmodel:any=[];
+editdropdownpipeline:any=[];
+editdropdownfrontend:any=[];
 
 
   // onSelectdataset(data:any,jars:any){
@@ -992,6 +1092,7 @@ dropdownfrontend:any=[];
       //   if(this.linkagedata.solutions){
 
           this.Solution=this.linkagedata.solutions;
+          this.isPanelOpen=true;
         // }else if(this.linkagedata.models){
           this.Modules=this.linkagedata.models;
         // }else if(this.linkagedata.pipelines){
@@ -1036,4 +1137,11 @@ leader(id, id2) {
   line.startSocketGravity = 0;
 
 }
+
+
+ 
+
+
+
+
 }

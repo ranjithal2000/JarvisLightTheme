@@ -23,6 +23,7 @@ import {ProjectsSharedModule} from './features/projects/shared/projects-shared.m
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import {LoginService} from '~/shared/services/login.service';
 import { PortalComponent } from './features/portal/portal.component';
+import { ToastrModule } from 'ngx-toastr';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
@@ -38,6 +39,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BusinessLogicModule,
     SMSharedModule,
     AngularSplitModule,
+    ToastrModule.forRoot(),
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,

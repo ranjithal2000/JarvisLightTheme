@@ -73,8 +73,9 @@ background-color: #7672ED;
       text-decoration: none;
     }
 
+    
     &.active:before {
-      color: #a0b8f0;
+      color: $neon-yellow;
     }
   }
 .project-icon{
