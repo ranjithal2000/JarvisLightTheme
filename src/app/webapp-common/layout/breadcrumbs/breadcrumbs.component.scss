@@ -18,10 +18,10 @@ span {
   }
   .crumb{
     font-size: 15px;
-    color: $blue-100;
+    color: $blue-400;
 
     &:hover{
-      color: #fff;
+      color: $blue-500;
     }
   }
   .crumb.first {
@@ -35,11 +35,11 @@ span {
   }
 
   .sub-project{
-    color: $blue-100;
+    color: $blue-400;
     white-space: nowrap;
 
     &:hover{
-      color: #fff;
+      color: $blue-500;
     }
 
     &.last {
