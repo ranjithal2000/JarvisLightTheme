@@ -21,5 +21,6 @@
 }
 .recent-title {
   @include recent-title();
-  color:#525C8B !important;
+  font-weight: 600 !important;
+  color:#7672ED !important;
 }

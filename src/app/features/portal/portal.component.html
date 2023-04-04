@@ -8,7 +8,7 @@
           <td align="center" style="width: 22%;"> <mat-icon id="icon" class="mr-3">emoji_objects</mat-icon> </td>
           <td class="ml-4" style="width: 63%;">
             <h3 id="text">Solution Jar</h3>
-            <p id="text">vertical Engins</p>
+            <p id="text">Vertical Engins</p>
           </td>
           <td style="width: 15%;">
             <div id="div2">
@@ -29,7 +29,7 @@
           <mat-expansion-panel
             style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen"
             class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.solutionName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.solutionName}}</b></p>
               </mat-panel-title> </mat-expansion-panel-header>
 
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
@@ -114,7 +114,7 @@
           <mat-expansion-panel
             style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
             class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.frontendName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.frontendName}}</b></p>
               </mat-panel-title> </mat-expansion-panel-header> 
 
             <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"> <b>DESCRIPTION:</b>
@@ -175,7 +175,7 @@
         <mat-expansion-panel style="background-color: #7672ED" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
             <mat-expansion-panel-header>
                <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.pipelineName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.pipelineName}}</b></p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
           
@@ -234,7 +234,7 @@
           <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
             <mat-expansion-panel-header> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white">{{data.modelName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.modelName}}</b></p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
 
@@ -297,7 +297,7 @@
           <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
             <mat-expansion-panel-header> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white;">{{data.datasetName}}</p>
+                <p class="mt-3" style="font-size: 15px;color:white;"><b>{{data.datasetName}}</b></p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
             <div class="d-flex flex-row pt-2 px-1">
@@ -727,6 +727,7 @@
           <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Solution Run Url</b></mat-label>
               <input id="inputStyle" matInput placeholder="" formControlName="run_url"> </mat-form-field> </div>
+              
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Solution Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
                 formControlName="solution_tags">

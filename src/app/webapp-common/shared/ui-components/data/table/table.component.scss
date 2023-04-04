@@ -179,6 +179,10 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       padding: 0 8px;
+      background-color: #fff;
+      :hover{
+        background-color: #7480aa;
+      }
       &:not(.no-data):not(.load-more-wrapper){
         &.simple{
           border-bottom-color: $blue-100;
@@ -201,6 +205,7 @@
     &:hover {
       .context-button {
         opacity: 1;
+        
       }
     }
 
@@ -219,7 +224,7 @@
       border: solid 1px $blue-400;
       &:hover {
         color: $blue-300;
-        background-color:#E0CEF6;
+        background-color:#ced0f6;
       }
     }
 

@@ -10,14 +10,14 @@
     background-color: $blue-400;
 
     &:hover {
-      background-color: #F6F7FB;
+      background-color: #bccdf5;
       .line {
         border-top-color: $blue-550;
       }
     }
 
     &.first-tab-hovered {
-      background-color: #F6F7FB;
+      background-color: #bccdf5;
     }
   }
 
@@ -43,7 +43,7 @@
         color: #525C8B;
       }
 
-      background-color: #bccdf5;
+      background-color: #fff;
 
       &.tab-hovered:not(.show-second-tab) {
         background-color: $blue-400;
@@ -91,7 +91,8 @@
 
     .first-tab-container {
       padding-top: 10px;
-      background-color: #bccdf5;
+      // background-color: #bccdf5;
+      background-color: #fff;
       display: flex;
       flex-direction: column;
 

@@ -4,12 +4,12 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="20" viewBox="0 0 64 20"
          *ngIf="!showSecondTab ;else secondTabActive ">
       <path *ngIf="!oneTabMode && !secondTabIsHovered" d="M30.06,0H64V20H30.06C29.93,19.78,30.06,11.93,30.06,0Z"
-            fill="#bccdf5"/>
+            fill="#fff"/>
       <path *ngIf="!oneTabMode && secondTabIsHovered" d="M30.06,0H64V20H30.06C29.93,19.78,30.06,11.93,30.06,0Z"
-            fill="#bccdf5"/>
-      <path *ngIf="!highlightFirstTab" d="M35.61,0H6A6,6,0,0,0,0,6V20H60C44.82,12.36,49.37,0,35.61,0Z" fill="#bccdf5"
+            fill="#fff"/>
+      <path *ngIf="!highlightFirstTab" d="M35.61,0H6A6,6,0,0,0,0,6V20H60C44.82,12.36,49.37,0,35.61,0Z" fill="#fff"
             (mouseenter)="setHighlightFirstTab(true)" (mouseleave)="setHighlightFirstTab(false)"/>
-      <path *ngIf="highlightFirstTab" d="M35.61,0H6A6,6,0,0,0,0,6V20H60C44.82,12.36,49.37,0,35.61,0Z" fill="#bccdf5"
+      <path *ngIf="highlightFirstTab" d="M35.61,0H6A6,6,0,0,0,0,6V20H60C44.82,12.36,49.37,0,35.61,0Z" fill="#fff"
             (mouseenter)="setHighlightFirstTab(true)" (mouseleave)="setHighlightFirstTab(false)"/>
     </svg>
     <ng-template #secondTabActive>
@@ -31,8 +31,8 @@
   <div *ngIf="!oneTabMode" [class.tab-hovered]="secondTabIsHovered" [class.show-second-tab]="showSecondTab"
        class="second-tab" (click)="setShowSecondTab(true)">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20">
-      <path *ngIf="!secondTabIsHovered || showSecondTab" d="M3.61,0C17.37,0,12.82,12.36,28,20H0V0Z" fill="#bccdf5"/>
-      <path *ngIf="secondTabIsHovered && !showSecondTab" d="M3.61,0C17.37,0,12.82,12.36,28,20H0V0Z" fill="#bccdf5"/>
+      <path *ngIf="!secondTabIsHovered || showSecondTab" d="M3.61,0C17.37,0,12.82,12.36,28,20H0V0Z" fill="#fff"/>
+      <path *ngIf="secondTabIsHovered && !showSecondTab" d="M3.61,0C17.37,0,12.82,12.36,28,20H0V0Z" fill="#fff"/>
     </svg>
   </div>
 </div>

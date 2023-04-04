@@ -5,7 +5,8 @@
 
     .#{$theme}-theme {
       background: #eaebec;
-      color: map-get($map, color);
+      // color: map-get($map, color);
+      color:$blue-400;
 
       .al-header {
         color: map-get($map, al-header);

@@ -28,7 +28,7 @@
     color: $running-green-contrast;
     margin-right: 12px;
     &:hover {
-      background-color: lighten($running-green, 10);
+      background-color: lighten($jarvis-color, 10);
     }
 
     i {
