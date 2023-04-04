@@ -48,20 +48,20 @@ $font-size: 18px;
 
       .sub-label {
         font-size: 10px;
-        color: $blue-300;
+        color: #fff;
       }
     }
 
     &.completed {
-      background-color: $completed-blue;
+      background-color: #7672ED;
     }
 
     &.pending {
-      background-color: $pending-gray;
+      background-color: #7672ED;
     }
 
     &.empty {
-      background-color: $empty-grey;
+      background-color: #7672ED;
     }
 
     &.running {

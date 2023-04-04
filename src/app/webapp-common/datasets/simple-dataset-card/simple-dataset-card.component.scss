@@ -12,13 +12,14 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    color: $blue-200;
+    font-weight: 600;
+    color: #7672ED;
   }
 
   .last-run {
     margin-bottom: 6px;
     font-size: 12px;
-    color: $blue-300;
+    color:  #7672ED;
   }
   .title {
     font-weight: 500;
@@ -27,7 +28,7 @@
   .footer-tags {
     display: flex;
     min-height: 38px;
-    background-color: $blue-600;
+    background-color: #7672ED;
     padding: 0 16px;
     align-items: center;
     flex-wrap: wrap;
