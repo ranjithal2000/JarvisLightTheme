@@ -722,7 +722,7 @@ deleteFrontend(){
     let dataId=this.editdropdowndata;
     let pipelineId=this.editdropdownpipeline;
     let frontendId=this.editdropdownfrontend;
-    debugger
+    
     // solutionTags,
     this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,solutionTags,frontendId,pipelineId,modelId ,dataId})
       .subscribe(response => {
