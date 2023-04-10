@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       )
       .subscribe((params: Params) => {
         this.redirectUrl = params['redirect'] || '';
-        this.redirectUrl = this.redirectUrl.replace('/login', '/dashboard');
+        this.redirectUrl = this.redirectUrl.replace('/login', '/splashScreen');
       });
 
     this.sub.add(this.loginService.getLoginMode().pipe(
@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.cdr.detectChanges();
             });
           if (this.environment.autoLogin && this.redirectUrl &&
-            !['/dashboard'].includes(this.redirectUrl)) {
+            !['/splashScreen'].includes(this.redirectUrl)) {
             this.loginForm.controls['name'].setValue((new Date()).getTime().toString());
             this.simpleLogin();
           }
@@ -235,7 +235,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   getNavigateUrl(): string {
-    return this.redirectUrl ? this.redirectUrl : '/dashboard';
+    return this.redirectUrl ? this.redirectUrl : '/splashScreen';
   }
 
 

@@ -9,9 +9,9 @@
 <sm-server-notification-dialog-container></sm-server-notification-dialog-container>
 <sm-spinner></sm-spinner>
 <div class="root-container">
-  <sm-side-nav *ngIf="currentUser"></sm-side-nav>
+  <sm-side-nav *ngIf="showHead && currentUser"></sm-side-nav>
   <div class="app-container" [class.login-page]="!currentUser" [class.notifier-open]="update?.active">
-    <sm-header *ngIf="currentUser" [isLogin]="isLoginContext" [isShareMode]="isSharedAndNotOwner$ | async"></sm-header>
+    <sm-header *ngIf="showHead && currentUser" [isLogin]="isLoginContext" [isShareMode]="isSharedAndNotOwner$ | async"></sm-header>
     <router-outlet class="main-router"></router-outlet>
   </div>
 </div>

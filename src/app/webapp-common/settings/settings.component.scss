@@ -9,16 +9,16 @@
       width: 220px;
     }
     .mat-list-item {
-      color: $blue-200;
+      color: #131D4B;
       font-size: 14px;
       padding-left: 8px; // mat-list-item has padding 0 16px
       height: 40px;
       &.active {
-        background-color: $blue-500;
-        color: white;
+        background-color: white;
+        color: #131D4B;
       }
       &:hover {
-        background-color: $blue-650;
+        background-color: #fff;
       }
     }
 

@@ -9,7 +9,7 @@
     transition: color 0.5s ease-in-out, right 0.5s ease-in-out;
 
     &.highlight {
-      color: $neon-yellow;
+      color: #183ad4;
       right: -100px;
     }
   }

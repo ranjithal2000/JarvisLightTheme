@@ -26,9 +26,11 @@ import { PortalComponent } from './features/portal/portal.component';
 import { ToastrModule } from 'ngx-toastr';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SplashScreenComponent } from './features/splash-screen/splash-screen.component';
+import { NgParticlesModule } from "ng-particles";
 
 @NgModule({
-  declarations   : [AppComponent, PortalComponent],
+  declarations   : [AppComponent, PortalComponent, SplashScreenComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -39,6 +41,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BusinessLogicModule,
     SMSharedModule,
     AngularSplitModule,
+    NgParticlesModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {

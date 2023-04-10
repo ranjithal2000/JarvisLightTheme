@@ -1,7 +1,7 @@
 import {ApiUsersService} from './business-logic/api-services/users.service';
 import {selectCurrentUser} from '@common/core/reducers/users-reducer';
 import {Component, OnDestroy, OnInit, ViewEncapsulation, HostListener, Renderer2, Injector} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, Params, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, Params, RouterEvent, NavigationStart} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {selectLoggedOut} from '@common/core/reducers/view.reducer';
 import {Store} from '@ngrx/store';
@@ -69,6 +69,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private plotlyURL: string;
   private environment: Environment;
 
+  //jarvis splashscreen
+  showHead: boolean = false;
+  //end
+
   @HostListener('document:visibilitychange') onVisibilityChange() {
     this.store.dispatch(visibilityChanged({visible: !document.hidden}));
   }
@@ -93,7 +97,20 @@ export class AppComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private injector: Injector,
     private configService: ConfigurationService
+
   ) {
+ //jarvis splashscreen
+router.events.forEach((event) => {
+  if (event instanceof NavigationStart) {  
+   if (event['url'] == '/') { 
+      this.showHead = false;
+   } else { 
+      this.showHead = true;
+    }
+  }
+ });
+//end
+
     this.loggedOut$ = store.select(selectLoggedOut);
     this.isSharedAndNotOwner$ = this.store.select(selectIsSharedAndNotOwner);
     this.selectedProject$ = this.store.select(selectSelectedProject);
