@@ -14,6 +14,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 // -----new jarvis---
+import {MatBadgeModule} from '@angular/material/badge';
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -36,7 +37,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     // -----new jarvis---
     MatCardModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    MatBadgeModule
     // -----end new jarvis---
   ],
   exports: [

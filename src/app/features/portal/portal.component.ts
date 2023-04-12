@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
@@ -8,6 +8,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { style } from '@angular/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
+import {CartService} from '~/shared/services/cart.service'
 
 export interface tags {
   name: string;
@@ -53,6 +54,7 @@ export class PortalComponent implements OnInit {
   Searchdata3: string = 'frontendName';
   Searchvalue4: string = '';
   Searchdata4: string = 'solutionName';
+  Searchdata5:string='solutionTags';
   ishidden: boolean = false;
   selectedIndex: number = 0;
   filled: boolean = false;
@@ -63,7 +65,12 @@ export class PortalComponent implements OnInit {
 
   innerHeight: any;
     innerWidth: any;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient,public snackBar: MatSnackBar,private toastr: ToastrService) { 
+  constructor(
+    private formBuilder: FormBuilder, 
+    private http: HttpClient,
+    public snackBar: MatSnackBar,
+    private toastr: ToastrService,
+    private cartService:CartService) { 
     this.innerHeight = (window.screen.height) + "px";
         this.innerWidth = (window.screen.width) + "px";
         console.log(this.innerHeight);
@@ -1026,6 +1033,24 @@ for i,img in enumerate(sample):
   // dataset.upload()
   // # commit dataset changes
   // dataset.finalize()`;
+
+  @Output() CartEvent=new EventEmitter();
+  badgeCount:any;
+
+cart:any=[];
+  addtoCart(data:any){
+    debugger
+    this.cart.push(data);
+    this.badgeCount=this.cart.length;
+  //  this.CartEvent.emit(this.cart);
+  }
+
+
+
+
+
+
+
 
 dropdowndata:any=[];
 dropdownmodel:any=[];

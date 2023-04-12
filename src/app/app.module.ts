@@ -28,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SplashScreenComponent } from './features/splash-screen/splash-screen.component';
 import { NgParticlesModule } from "ng-particles";
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations   : [AppComponent, PortalComponent, SplashScreenComponent],
@@ -42,6 +43,7 @@ import { NgParticlesModule } from "ng-particles";
     SMSharedModule,
     AngularSplitModule,
     NgParticlesModule,
+    MatBadgeModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {

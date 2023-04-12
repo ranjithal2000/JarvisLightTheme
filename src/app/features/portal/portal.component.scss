@@ -57,6 +57,7 @@ hr{
 }
 
 .container-fluid{
+    overflow: auto;
     margin-top: 12px;
 }
 .icon-container {
@@ -86,6 +87,13 @@ mat-expansion-panel{
     height: 890px;
     // background-color: #bccdf5;
     background-color: #FFFFFF;
+}
+
+.cart_button{
+    position: fixed;
+    top: 20px;
+    right: 70px;
+    z-index: 1;
 }
 .head{    
     text-align: center;
@@ -239,11 +247,14 @@ label{
    border-radius: 1px solid white;
     color:black !important;
 }  
-
+.demo-section + .demo-section {
+    margin-top: 16px;
+  }
 
 .mat-chip{
     background-color: #F6EEFF;
 }
+
 .example-box.cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
@@ -347,6 +358,13 @@ mat-icon:hover{
     
 }
 
+.badge{
+    background-color: #7672ED;
+    color: white;
+    font-size: 12px !important;
+  }
+
+  
 
 // .red {
 //     background: red;

@@ -1,5 +1,14 @@
+
+
 <div class="container-fluid">
   <!-- <p class="alert alert-success" *ngIf="storeResponse!=null">{{storeResponse}}</p> -->
+
+  <div class="pr-3 cart_button" > <a aria-placeholder="Add Cart">
+    <mat-icon  aria-hidden="false" aria-label="Example home icon"
+    style="color:rgb(30, 30, 30);cursor: pointer;" fontIcon="shopping_cart" ></mat-icon></a>
+    <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
+  </div>
+
   <div class="row">
 
     <mat-card class="col-lg ex3">
@@ -24,7 +33,7 @@
         <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div></span>
       </div>
 
-      <div *ngFor="let data of Solution|filter:Searchvalue4:Searchdata4 ;let i=index"  class="mt-2 " > 
+      <div *ngFor="let data of Solution|filter:Searchvalue4:Searchdata4||Searchdata5 ;let i=index"  class="mt-2 " > 
         <mat-accordion class="mb-2 py-0"> 
           <mat-expansion-panel
             style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen"
@@ -49,36 +58,38 @@
             <br> -->
 
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
+              <div class="btn-grp pr-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
                     aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
 
               <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
                     style="transform: scale(2);color:white"></mat-icon></a> </div>
-              <div class="btn-grp px-3">
+              <div class="btn-grp pl-2 pr-2">
 
                 <a  aria-placeholder="Linkage" *ngIf="!link" (click)="linkage(data)" style="cursor: pointer;color: white;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
 
                 <a  aria-placeholder="Linkage" *ngIf="link" (click)="refresh()" style="cursor: pointer;color: #47A0FC;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
               </div>
 
-              <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
-                    (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
+              
 
-              <div *ngIf="!link"  class="btn-grp pl-2 pr-4 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+              <div *ngIf="!link"  class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
                     (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
-              <div *ngIf="link"  class="btn-grp pl-2 pr-4 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon [hidden]="true" aria-hidden="false" aria-label="Example home icon"
+              <div *ngIf="link"  class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon [hidden]="true" aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
                 (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
           </div>
+          <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+            style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
+         </div>
+         
+         <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
+          style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+          (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
 
 
-
-              <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
           </mat-expansion-panel> </mat-accordion>
       </div>
@@ -136,10 +147,14 @@
                     style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
                     (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
 
-              <div class="btn-grp pl-3 pr-4 icon-glow" #start> <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+              <div class="btn-grp pl-3 pr-4 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
                     (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
+
+              <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+             </div>
 
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
@@ -204,6 +219,10 @@
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete"
                  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
               </div>
+
+              <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+             </div>
             </div>
           </mat-expansion-panel> </mat-accordion> </div>
     </mat-card>
@@ -250,20 +269,24 @@
             </div>
 <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.modelViewUrl}}> 
+              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.modelViewUrl}}> 
                 <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
-              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.modelRunUrl}}> 
+              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.modelRunUrl}}> 
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle" style="transform: scale(2);color:white"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
+              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="Edit">
+              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Edit">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
               </div>
+
+              <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+             </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
@@ -320,6 +343,10 @@
               <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="Edit">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
               </div>
+
+              <div class="btn-grp pl-3 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+             </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
