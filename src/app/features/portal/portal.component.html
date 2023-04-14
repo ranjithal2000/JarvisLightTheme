@@ -81,9 +81,9 @@
                 style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
                 (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
           </div>
-          <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-            style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
-         </div>
+          <!-- <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+            style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+         </div> -->
          
          <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
           style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
@@ -152,9 +152,9 @@
                     (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
-              <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+              <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
-             </div>
+             </div> -->
 
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
@@ -220,9 +220,9 @@
                  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+              <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
-             </div>
+             </div> -->
             </div>
           </mat-expansion-panel> </mat-accordion> </div>
     </mat-card>
@@ -285,7 +285,7 @@
               </div>
 
               <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
              </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
@@ -345,7 +345,7 @@
               </div>
 
               <div class="btn-grp pl-3 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
              </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->

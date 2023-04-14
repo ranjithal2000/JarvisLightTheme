@@ -10,6 +10,7 @@ import {Observable, Subscription} from 'rxjs';
 import {ProjectsCreateRequest} from '~/business-logic/model/projects/projectsCreateRequest';
 import {selectRootProjects} from '@common/core/reducers/projects.reducer';
 import {getAllSystemProjects} from '@common/core/actions/projects.actions';
+import { log } from 'console';
 
 @Component({
   selector: 'sm-project-create-dialog',
@@ -69,6 +70,11 @@ export class ProjectDialogComponent implements OnInit, OnDestroy {
   }
 
   private convertFormToProject(projectForm: any): ProjectsCreateRequest {
+    // console.log("Inside create project")
+    // const ca: Array<string> = decodeURIComponent(document.cookie).split(';');
+    // console.log(ca)
+    // // console.log(document);
+    // console.log("Inside create project")
     return {
       name: `${projectForm.parent === 'Projects root' ? '' : projectForm.parent + '/'}${projectForm.name}`,
       description: projectForm.description,

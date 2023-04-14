@@ -19,6 +19,7 @@ import {fetchCurrentUser} from '@common/core/actions/users.actions';
 import {Store} from '@ngrx/store';
 import {ConfirmDialogConfig} from '@common/shared/ui-components/overlay/confirm-dialog/confirm-dialog.model';
 import {Router} from '@angular/router';
+import { log } from 'console';
 
 export type LoginMode = 'simple' | 'password' | 'ssoOnly';
 
@@ -98,6 +99,9 @@ export class BaseLoginService {
     const auth = window.btoa(this.userKey + ':' + this.userSecret);
     headers = headers.append('Authorization', 'Basic ' + auth);
     //    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    console.log("rangitha text")
+    console.log(headers)
+    console.log("ranjitha updated")
     return headers;
   }
 

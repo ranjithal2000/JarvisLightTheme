@@ -13,9 +13,12 @@ import {fetchCurrentUser} from '@common/core/actions/users.actions';
 export class UserEffects {
 
   constructor(private actions: Actions, private cookiesService: CookiesService,
-    private authService: ApiAuthService, private serverService: ApiServerService) { }
+    private authService: ApiAuthService, private serverService: ApiServerService) {
+      console.log(document.cookie)
+     }
 
-  setUser$ = createEffect(() => this.actions.pipe(
+  setUser$ = createEffect(() => 
+  this.actions.pipe(
     ofType(fetchCurrentUser),
     filter(user => !!user),
     take(1),
@@ -25,7 +28,9 @@ export class UserEffects {
           allowed: options.enabled,
           currVersion: options.current_version,
           allowedVersion: options.enabled_version
-        })])
+
+          
+        }) ] )
       )
     )
   ));

@@ -168,6 +168,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    debugger
     this.showSpinner = true;
     if (this.loginMode === loginModes.password) {
       const user = this.loginModel.name.trim();
@@ -197,6 +198,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   simpleLogin() {
+    debugger
     const user = this.options.find(x => x.name === this.loginModel.name);
 
     if (user) {

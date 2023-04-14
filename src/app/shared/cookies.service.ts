@@ -24,6 +24,7 @@ export class CookiesService {
     name = encodeURIComponent(name);
 
     const regExp: RegExp = this.getCookieRegExp(name);
+    console.log("first log",this.document.cookie);
     const exists: boolean = regExp.test(this.document.cookie);
 
     return exists;
@@ -34,6 +35,7 @@ export class CookiesService {
       name = encodeURIComponent(name);
 
       const regExp: RegExp = this.getCookieRegExp(name);
+      console.log("second log",this.document.cookie)
       const result: RegExpExecArray = regExp.exec(this.document.cookie);
 
       return decodeURIComponent(result[1]);
@@ -51,6 +53,7 @@ export class CookiesService {
     const document: any = this.document;
 
     if (document.cookie && document.cookie !== '') {
+      console.log("third log inside if",this.document.cookie)
       const split: Array<string> = document.cookie.split(';');
 
       for (let i = 0; i < split.length; i += 1) {
@@ -106,6 +109,7 @@ export class CookiesService {
     }
 
     this.document.cookie = cookieString;
+    console.log("fourth log",this.document.cookie)
   }
 
   delete(name: string, path?: string, domain?: string): void {

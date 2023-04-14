@@ -19,8 +19,9 @@
     <ng-container  *ngIf="!isJupyter; else jupyter" >
     <div class="instructions mt-2 mb-2">Copy the below info for input to 'clearml-init' configuration request, or modify your existing clearml.conf</div>
     <pre>
-    <div class="mt-2 w-100 code">
-      <div #content class="content"><span class="variable">api</span> {{ '{' }} <ng-content></ng-content> 
+    <div class=" w-100 code">
+      <div #content class="content">
+        <span class="variable">api</span> {{ '{' }} <ng-content></ng-content> 
         <span class="variable">web_server</span><span class="operation">:</span> <span class="string">{{WEB_SERVER_URL}}</span> 
         <span class="variable">api_server</span><span class="operation">:</span> <span class="string">{{displayedServerUrls?.apiServer || API_BASE_URL}}</span><ng-container *ngIf="displayedServerUrls?.filesServer || fileBaseUrl">
         <span class="variable">files_server</span><span class="operation">:</span> <span class="string">{{displayedServerUrls?.filesServer || fileBaseUrl}}</span></ng-container><ng-container *ngIf="newCredential?.label">
@@ -28,8 +29,9 @@
         <span class="variable">credentials</span> {{ '{' }}
           <span class="string">"access_key"</span> <span class="operation">=</span> <span class="string">"{{newCredential?.access_key}}"</span>
           <span class="string">"secret_key" </span> <span class="operation">=</span> <span class="string">"{{newCredential?.secret_key}}"</span>
-      }<br>
-  }</div>
+      }
+  }
+</div>
       <sm-copy-clipboard
         *ngIf="newCredential?.secret_key"
         [hideBackground]="true"

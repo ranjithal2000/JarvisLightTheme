@@ -14,6 +14,7 @@ import {isExample} from '@common/shared/utils/shared-utils';
 import { CARDS_IN_ROW } from '../../common-dashboard.const';
 import {trackById} from '@common/shared/utils/forms-track-by';
 import { logout } from '@common/core/actions/users.actions';
+import { log } from 'console';
 
 @Component({
   selector   : 'sm-dashboard-projects',
@@ -53,7 +54,13 @@ export class DashboardProjectsComponent implements OnInit, AfterViewInit, OnDest
 
   ngAfterViewInit() {
     window.setTimeout(() => this.width.emit(this.header.nativeElement.getBoundingClientRect().width));
+    console.log("Header Test");
+
+    // console.log(this.header)
+    console.log(document.cookie);
+    console.log("Header Test End");
     this.sub = fromEvent(window, 'resize')
+    
       .pipe(throttleTime(50))
       .subscribe(() => this.width.emit(this.header.nativeElement.getBoundingClientRect().width));
   }

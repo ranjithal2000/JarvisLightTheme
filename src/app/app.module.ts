@@ -30,6 +30,7 @@ import { SplashScreenComponent } from './features/splash-screen/splash-screen.co
 import { NgParticlesModule } from "ng-particles";
 import {MatBadgeModule} from '@angular/material/badge';
 
+
 @NgModule({
   declarations   : [AppComponent, PortalComponent, SplashScreenComponent],
   imports: [

@@ -186,7 +186,7 @@ export class PortalComponent implements OnInit {
     if(jars=='dataset'){
       let dataId=data.id.toString();
       // this.editdropdowndata.push((data.id).toString());
-      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, dataId})
+      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, dataId})
       .subscribe(response => {  
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -196,7 +196,7 @@ export class PortalComponent implements OnInit {
     }else if(jars=='model'){
       let modelId=data.id.toString();
       // this.editdropdownmodel.push((data.id).toString());
-      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, modelId})
+      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, modelId})
       .subscribe(response => { 
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -207,7 +207,7 @@ export class PortalComponent implements OnInit {
     }else if(jars=='pipeline'){
       let pipelineId=data.id.toString();
       // this.editdropdownpipeline.push((data.id).toString());
-      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, pipelineId})
+      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, pipelineId})
       .subscribe(response => {
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -218,7 +218,7 @@ export class PortalComponent implements OnInit {
     }else if(jars=='frontend'){
       let frontendId=data.id.toString();
       // this.editdropdownfrontend.push((data.id).toString());
-      this.http.post('http://3.108.153.122:3000/solution/deleteDynamic', { solutionId, frontendId})
+      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, frontendId})
       .subscribe(response => {
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -338,7 +338,7 @@ export class PortalComponent implements OnInit {
     let modelRunUrl = this.formdata2.controls['run_url'].value;
     let modelTags = this.formdata2.controls['model_tags'].value;
     let modelDescription = this.formdata2.controls['desc'].value;
-    this.http.post('http://3.108.153.122:3000/model/insertModel', { modelName, modelViewUrl, modelRunUrl, modelTags, modelDescription })
+    this.http.post('http://13.234.148.242:3000/model/insertModel', { modelName, modelViewUrl, modelRunUrl, modelTags, modelDescription })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -356,7 +356,7 @@ export class PortalComponent implements OnInit {
     let modelDescription = this.formdata6.controls['desc'].value;
     let modelRunUrl = this.formdata6.controls['run_url'].value;
     let modelViewUrl = this.formdata6.controls['view_url'].value;
-    this.http.post('http://3.108.153.122:3000/model/editModel', { modelName, modelTags, modelId, modelDescription, modelRunUrl, modelViewUrl })
+    this.http.post('http://13.234.148.242:3000/model/editModel', { modelName, modelTags, modelId, modelDescription, modelRunUrl, modelViewUrl })
       .subscribe(response => {
         console.log("res", response);
         this.storeResponse = response;
@@ -371,7 +371,7 @@ export class PortalComponent implements OnInit {
     
     let modelId=this.modelId;
 
-    this.http.post('http://3.108.153.122:3000/model/deleteModel', { modelId })
+    this.http.post('http://13.234.148.242:3000/model/deleteModel', { modelId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -386,7 +386,7 @@ export class PortalComponent implements OnInit {
   dumbb2: any;
 
   getModel() {
-    this.http.post('http://3.108.153.122:3000/model/retrieveModels', {})
+    this.http.post('http://13.234.148.242:3000/model/retrieveModels', {})
       .subscribe(response => {
         this.dumbb = response;
         this.Modules = this.dumbb.data;
@@ -402,7 +402,7 @@ export class PortalComponent implements OnInit {
     let datasetVersion = this.formdata.controls['version'].value;
     let datasetDescription = this.formdata.controls['desc'].value;
     let datasetUrl = this.formdata.controls['url'].value;
-    this.http.post('http://3.108.153.122:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion, datasetDescription })
+    this.http.post('http://13.234.148.242:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion, datasetDescription })
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
@@ -424,7 +424,7 @@ export class PortalComponent implements OnInit {
    
 
     console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
-    this.http.post('http://3.108.153.122:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription, datasetUrl })
+    this.http.post('http://13.234.148.242:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription, datasetUrl })
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
@@ -439,7 +439,7 @@ export class PortalComponent implements OnInit {
 
     let datasetId=this.datasetId;
 
-    this.http.post('http://3.108.153.122:3000/data/deleteDataset', { datasetId })
+    this.http.post('http://13.234.148.242:3000/data/deleteDataset', { datasetId })
       .subscribe(response => {
         debugger
         console.log(response)
@@ -451,7 +451,7 @@ export class PortalComponent implements OnInit {
       );
   }
   getdataset() {
-    this.http.post('http://3.108.153.122:3000/data/retrieveDatasets', {})
+    this.http.post('http://13.234.148.242:3000/data/retrieveDatasets', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.Dataset = this.dumbb1.data;
@@ -467,7 +467,7 @@ export class PortalComponent implements OnInit {
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
     
-    this.http.post('http://3.108.153.122:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
+    this.http.post('http://13.234.148.242:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
       .subscribe(response => {
         console.log(response)
         this.storeResponse = response;
@@ -478,7 +478,7 @@ export class PortalComponent implements OnInit {
       );
   }
   getPipeline(){
-    this.http.post('http://3.108.153.122:3000/pipeline/retrievePipelines', {})
+    this.http.post('http://13.234.148.242:3000/pipeline/retrievePipelines', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.pipeline = this.dumbb1.data;
@@ -496,7 +496,7 @@ export class PortalComponent implements OnInit {
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
     
-    this.http.post('http://3.108.153.122:3000/pipeline/editPipeline', { pipelineId,pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
+    this.http.post('http://13.234.148.242:3000/pipeline/editPipeline', { pipelineId,pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -515,7 +515,7 @@ export class PortalComponent implements OnInit {
     // this.formdata7.controls['solution_id'].setValue(data.solutionId);
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let pipelineId=this.pipelineId
-    this.http.post('http://3.108.153.122:3000/pipeline/deletePipeline', { pipelineId })
+    this.http.post('http://13.234.148.242:3000/pipeline/deletePipeline', { pipelineId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -533,7 +533,7 @@ export class PortalComponent implements OnInit {
     let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
     let frontendDescription=this.formdata9.controls['frontend_description'].value;
 
-    this.http.post('http://3.108.153.122:3000/frontend/insertFrontend', {frontendName,
+    this.http.post('http://13.234.148.242:3000/frontend/insertFrontend', {frontendName,
     frontendStylesUrl,
     frontendRunUrl,
     frontendDescription })
@@ -548,7 +548,7 @@ export class PortalComponent implements OnInit {
   }
 
   getFrontend(){
-    this.http.post('http://3.108.153.122:3000/frontend/retrieveFrontends', {})
+    this.http.post('http://13.234.148.242:3000/frontend/retrieveFrontends', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.Frontend = this.dumbb1.data;
@@ -564,7 +564,7 @@ export class PortalComponent implements OnInit {
     let frontendDescription=this.formdata9.controls['frontend_description'].value;
     let id=this.formdata9.controls['id'].value;
     
-    this.http.post('http://3.108.153.122:3000/frontend/editFrontend', {id,frontendName,
+    this.http.post('http://13.234.148.242:3000/frontend/editFrontend', {id,frontendName,
     frontendStylesUrl,
     frontendRunUrl,
     frontendDescription})
@@ -580,7 +580,7 @@ export class PortalComponent implements OnInit {
 deleteFrontend(){
   
   let id=this.frontendId;
-    this.http.post('http://3.108.153.122:3000/frontend/deleteFrontend', { id })
+    this.http.post('http://13.234.148.242:3000/frontend/deleteFrontend', { id })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -706,7 +706,7 @@ deleteFrontend(){
     let pipelineId=this.dropdownpipeline;
     let frontendId=this.dropdownfrontend;
     debugger
-    this.http.post('http://3.108.153.122:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
+    this.http.post('http://13.234.148.242:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -731,7 +731,7 @@ deleteFrontend(){
     let frontendId=this.editdropdownfrontend;
     
     // solutionTags,
-    this.http.post('http://3.108.153.122:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,solutionTags,frontendId,pipelineId,modelId ,dataId})
+    this.http.post('http://13.234.148.242:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,solutionTags,frontendId,pipelineId,modelId ,dataId})
       .subscribe(response => {
         debugger
         console.log(response);
@@ -754,7 +754,7 @@ debugger
     // let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let solutionId=this.solutionId;
 
-    this.http.post('http://3.108.153.122:3000/solution/deleteSolution', { solutionId })
+    this.http.post('http://13.234.148.242:3000/solution/deleteSolution', { solutionId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -769,7 +769,7 @@ debugger
   linkedassets1:any=[];
 
   getSolution() {
-    this.http.post('http://3.108.153.122:3000/solution/retrieveSolutions', {})
+    this.http.post('http://13.234.148.242:3000/solution/retrieveSolutions', {})
       .subscribe(response => {
         this.dumbb1 = response;
         debugger
@@ -1101,7 +1101,7 @@ editdropdownfrontend:any=[];
   
     let solutionId=data.id;
     
-    this.http.post('http://3.108.153.122:3000/solution/linked', {solutionId})
+    this.http.post('http://13.234.148.242:3000/solution/linked', {solutionId})
     .subscribe(response => {
      
       debugger
