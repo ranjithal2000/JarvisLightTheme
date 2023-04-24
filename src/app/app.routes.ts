@@ -6,6 +6,7 @@ import {ProjectRedirectGuardGuard} from '@common/shared/guards/project-redirect.
 import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
 import { PortalComponent } from './features/portal/portal.component';
 import { SplashScreenComponent } from './features/splash-screen/splash-screen.component';
+import { TestComponent } from './features/test/test.component';
 
 
 export const routes: Routes = [
@@ -14,6 +15,11 @@ export const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
     data: {search: true, userFocus: true},
+  },
+  {
+    path: 'test',component:TestComponent
+    // loadChildren: () => import('./features/portal/portal.component').then(),
+    // data: {search: true, userFocus: true},
   },
   {
     path: 'splashScreen',component:SplashScreenComponent

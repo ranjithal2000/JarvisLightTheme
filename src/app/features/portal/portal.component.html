@@ -1,5 +1,6 @@
 
 
+  
 <div class="container-fluid">
   <!-- <p class="alert alert-success" *ngIf="storeResponse!=null">{{storeResponse}}</p> -->
 
@@ -9,97 +10,110 @@
     <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
   </div>
 
+  <!-- <div class="controls"> -->
+    <!-- <input type="checkbox" id="element2"> Check
+    <mat-checkbox class="example-margin" id="element2">Checked</mat-checkbox> -->
+    <!-- <button (click)="updateArrows('clicked')">click</button> -->
+    <!-- <button (click)="updateArrows('clear')">cancel</button> -->
+  <!-- </div> -->
+<!--------------------------------------------------------------------------------------------------------------------------------->
   <div class="row">
+    <!-- <mat-card class="col-lg ex3"> -->
+      <div class="col-lg">
+        <table  class="ex3 py-0 my-0" id="table1">
+       
+          <table class="mt-3">
+            <tr>
+              <td align="center" style="width: 22%;"> <mat-icon style="margin-left:-10px;" id="icon" class="">emoji_objects</mat-icon> </td>
+              <td align="left" style="width: 66%;">
+                <h3 id="text">Solution Jar</h3>
+              <p id="text">Vertical Engins</p>
+              </td>
 
-    <mat-card class="col-lg ex3">
-      <table class="mt-3">
-        <tr>
-          <td align="center" style="width: 22%;"> <mat-icon id="icon" class="mr-3">emoji_objects</mat-icon> </td>
-          <td class="ml-4" style="width: 63%;">
-            <h3 id="text">Solution Jar</h3>
-            <p id="text">Vertical Engins</p>
-          </td>
-          <td style="width: 15%;">
-            <div id="div2">
-              <i id="text"  class="fa fa-plus addButton ml-4" (click)="SelectJar('Solution')" data-toggle="modal"
-                data-target="#myModal"></i>
-            </div>
-          </td>
-        </tr>
-      </table>
-
-      <div class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue4" type="search" placeholder="search" id="example-search-input"> 
-        <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div></span>
-      </div>
-
-      <div *ngFor="let data of Solution|filter:Searchvalue4:Searchdata4||Searchdata5 ;let i=index"  class="mt-2 " > 
+              <td style="width: 11%;">
+                <div id="div2">
+                  <!-- <mat-icon class="addButton mr-3" data-toggle="modal" data-target="#myModal" matTooltip="Add">add</mat-icon> -->
+                  <i id="text"  class="fa fa-plus addButton ml-4" (click)="SelectJar('Solution')" data-toggle="modal"
+                  data-target="#myModal"></i>
+                </div>
+              </td>
+            </tr>
+          </table>
+        <!-- </table> -->
+        <tr class="input-group pt-3 pb-3">
+        <!-- <div >  -->
+          <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue4" type="search" placeholder="search" id="example-search-input"> 
+          <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div></span>
+        <!-- </div> -->
+      </tr>
+    
+        <!-- <div   >  -->
         <mat-accordion class="mb-2 py-0"> 
-          <mat-expansion-panel
-            style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen"
-            class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.solutionName}}</b></p>
-              </mat-panel-title> </mat-expansion-panel-header>
-
-            <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
-                class="example-box" cdkDrag> {{data.solutionTags}}
-              </mat-chip> </mat-chip-list>
-            <!-- <button (click)="leader(start,end)">click</button> -->
-            <!-- <div class="d-flex flex-row pt-2 px-1"> <label><b>Linked : Frontend, Model, Pipeline & Data jar</b></label>
-            </div> -->
-            <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"><b>DESCRIPTION: </b>
-                  </label><br>{{data.solutionDescription}}</div>
-            <label class="mb-2"  type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20" style="color: #37B3FB"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
-            <br>
-            <!-- <div >
-              <label style="color: #fff;" ><b>Linked:</b></label>
-              <label style="color: white;">{{data.linkedassets}}</label>
-            </div>
-            <br> -->
-
-            <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp pr-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
-                    aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
-
-              <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
-                    aria-label="Example home icon" fontIcon="arrow_right_circle"
-                    style="transform: scale(2);color:white"></mat-icon></a> </div>
-              <div class="btn-grp pl-2 pr-2">
-
-                <a  aria-placeholder="Linkage" *ngIf="!link" (click)="linkage(data)" style="cursor: pointer;color: white;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
-
-                <a  aria-placeholder="Linkage" *ngIf="link" (click)="refresh()" style="cursor: pointer;color: #47A0FC;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
-              </div>
-
+        <table>
+          <tr *ngFor="let data of Solution|filter:Searchvalue4:Searchdata4||Searchdata5 ;let i=index">   
+            <td>
+            <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen"
+              class="py-0 my-0"> <mat-expansion-panel-header [collapsedHeight]="'10vh'"> <mat-panel-title>
+                  <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.solutionName}}</b></p>
+                </mat-panel-title> </mat-expansion-panel-header>
+    
+              <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> <mat-chip
+                  class="example-box" cdkDrag> {{data.solutionTags}}
+                </mat-chip> </mat-chip-list>
+             
+              <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"><b>DESCRIPTION: </b>
+                    </label><br>{{data.solutionDescription}}</div>
+              <label class="mb-2"  type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20" style="color: #37B3FB"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
+              <br>
               
-
-              <div *ngIf="!link"  class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
-                    (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+    
+              <div class="d-flex flex-row px-1 pt-1">
+                <div class="btn-grp pr-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white"
+                      aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
+    
+                <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
+                      aria-label="Example home icon" fontIcon="arrow_right_circle"
+                      style="transform: scale(2);color:white"></mat-icon></a> </div>
+                <div class="btn-grp pl-2 pr-2">
+    
+                  <a  aria-placeholder="Linkage" *ngIf="!link" (click)="linkage(data)" style="cursor: pointer;color: white;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
+    
+                  <a  aria-placeholder="Linkage" *ngIf="link" (click)="refresh()" style="cursor: pointer;color: #47A0FC;margin-top: 35px !important;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
+                </div>
+    
+                
+    
+                <div class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                      style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
+                      (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+                </div>
+                <!-- <div *ngIf="link"  class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon [hidden]="true" aria-hidden="false" aria-label="Example home icon"
+                  style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
+                  (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+            </div> -->
+           
+           <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
+            style="color:white;cursor: pointer;margin-left: 4vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+            (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
+    
+    
               </div>
-              <div *ngIf="link"  class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon [hidden]="true" aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Solution')"
-                (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
-          </div>
-          <!-- <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-            style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
-         </div> -->
-         
-         <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
-          style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
-          (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
-
-
-            </div>
-          </mat-expansion-panel> </mat-accordion>
-      </div>
-    </mat-card>
+            </mat-expansion-panel> 
+          </td>
+       </tr>
+    </table>
+    </mat-accordion>
+        <!-- </div> -->
+      </table>
+    </div>
+    <!-- </mat-card> -->
 
     <!-- --------------------------------------Fontend Jar------------------------------------------------------------>
 
-    <mat-card class="col-lg ex3">
-
-      <table class="mt-3">
+    <!-- <mat-card class=""> -->
+    <div class="col-lg">
+      <table id="table2" class="ex3 py-0 my-0" >
+        <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%; "> <i id="icon" class="fa-solid fa-code mr-3"></i> </td>
           <td align="left" style="width: 67%;">
@@ -114,22 +128,30 @@
           </td>
         </tr>
       </table>
-      <div class="input-group pb-3 pt-3"> <input class="form-control py-2 border-right-0 border"
-          style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue3" placeholder="search"
-          id="example-search-input"> <span class="input-group-append">
+      <!-- <div class="input-group pb-3 pt-3">  -->
+        <tr class="input-group pb-3 pt-3">
+          <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue3" placeholder="search" id="example-search-input">
+           <span class="input-group-append">
           <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
-        </span> </div>
+        </span>
+      </tr>
+     <!-- </div> -->
 
-      <div *ngFor="let data of Frontend|filter:Searchvalue3:Searchdata3 ;let i=index" class="mt-2 "> 
+      <!-- <div class="mt-2 ">  -->
         <mat-accordion class="mb-2 py-0"> 
-          <mat-expansion-panel
-            style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-            class="py-0 my-0"> <mat-expansion-panel-header> <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.frontendName}}</b></p>
-              </mat-panel-title> </mat-expansion-panel-header> 
+          <table >
+            <tr *ngFor="let data of Frontend|filter:Searchvalue3:Searchdata3 ;let i=index" >
+              <td>
+          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"class="py-0 my-0">
+             <mat-expansion-panel-header [collapsedHeight]="'10vh'"> 
+              <mat-panel-title>
+                <p class="mt-3" style="font-size:15px;color:white"><b>{{data.frontendName}}</b></p>
+              </mat-panel-title> 
+            </mat-expansion-panel-header> 
 
             <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"> <b>DESCRIPTION:</b>
-             </label> <br> {{data.frontendDescription}}</div> <label  type="button" *ngIf="data.frontendDescription.length>20"
+             </label> <br> {{data.frontendDescription}}</div> 
+             <label  type="button" *ngIf="data.frontendDescription.length>20"
               (click)="showText()" style="color: #37B3FB"><b> {{ isReadMore ? 'Read More': 'Read Less' }}</b>
             </label>
             <br>
@@ -143,15 +165,16 @@
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
                     style="transform: scale(2);color:white"></mat-icon></a> </div> -->
 
-              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
-                    (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
+              
 
               <div class="btn-grp pl-3 pr-4 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
                     (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
+              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;margin-left:6vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
               <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
              </div> -->
@@ -159,11 +182,19 @@
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
-          </mat-expansion-panel> </mat-accordion> </div>
-    </mat-card>
+          </mat-expansion-panel> 
+        </td>
+      </tr>
+    </table>
+  </mat-accordion> 
+<!-- </div> -->
+</table>
+</div>
+    <!-- </mat-card> -->
 
     <!-- --------------------------------------Pipeline Jar------------------------------------------------------------>
-    <mat-card class="col-lg ex3">
+    <div class="col-lg">
+      <table id="table3" class="ex3 py-0 my-0">
       <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%;"> <i id="icon" class="item al-ico-pipelines mr-3"></i> </td>
@@ -180,19 +211,22 @@
           </td>
         </tr>
       </table>
-      <div class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:140px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue2" placeholder="search" id="example-search-input"> 
+
+      <tr class="input-group pb-3 pt-3"> 
+        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue2" placeholder="search" id="example-search-input"> 
           <span class="input-group-append"><div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
-      </div>
+      </tr>
       
-      <div *ngFor="let data of pipeline|filter:Searchvalue2:Searchdata2 ;let i=index" class="mt-2 ">
-        <mat-accordion class="mb-2 py-0"> 
-        <mat-expansion-panel style="background-color: #7672ED" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
-            <mat-expansion-panel-header>
-               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.pipelineName}}</b></p>
-              </mat-panel-title> 
-            </mat-expansion-panel-header>
+      
+      <mat-accordion class="mb-2 py-0"> 
+          <table >
+          <tr *ngFor="let data of pipeline|filter:Searchvalue2:Searchdata2 ;let i=index" >
+            <td>
+              <mat-expansion-panel
+              style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+              class="py-0 my-0"> <mat-expansion-panel-header [collapsedHeight]="'10vh'"> <mat-panel-title>
+                  <p class="mt-3" style="font-size:15px;color:white"><b>{{data.pipelineName}}</b></p>
+                </mat-panel-title> </mat-expansion-panel-header> 
           
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> 
               <mat-chip class="example-box" cdkDrag> {{data.pipelineTags}}</mat-chip>
@@ -206,7 +240,7 @@
             </div>
     <br>
             <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.pipelineViewUrl}}> 
+              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.pipelineViewUrl}}> 
                 <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
 
@@ -215,8 +249,8 @@
                  data-toggle="modal" data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
               </div>
 
-              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete"
+              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="Delete">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:7vw" fontIcon="delete"
                  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
               </div>
 
@@ -224,10 +258,15 @@
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
              </div> -->
             </div>
-          </mat-expansion-panel> </mat-accordion> </div>
-    </mat-card>
+          </mat-expansion-panel>
+        </td></tr> 
+      </table>
+    </mat-accordion> 
+          </table>
+    </div>
     <!-- ---------------------------------------Model Jar------------------------------------------------------------>
-    <mat-card class="col-lg ex3">
+    <div class="col-lg">
+      <table id="table4" class="ex3 py-0 my-0">
       <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%;"> <i id="icon" class="fa fa-cube mr-3"></i> </td>
@@ -244,16 +283,19 @@
         </tr>
       </table>
 
-      <div class="input-group pb-3 pt-3" #end> <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue1" placeholder="search" id="example-search-input"> 
+      <tr class="input-group pb-3 pt-3" > 
+        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue1" placeholder="search" id="example-search-input"> 
           <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
-      </div>
+      </tr>
 
-      <div *ngFor="let data of Modules|filter:Searchvalue1:Searchdata1 ;let i=index" class="mt-2 "> 
-        <mat-accordion class="mb-2 py-0"> 
+      <mat-accordion class="mb-2 py-0"> 
+        <table >
+      <tr *ngFor="let data of Modules|filter:Searchvalue1:Searchdata1 ;let i=index" class="mt-2 "> 
+        <td>
           <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
-            <mat-expansion-panel-header> 
+            <mat-expansion-panel-header [collapsedHeight]="'10vh'"> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white"><b>{{data.modelName}}</b></p>
+                <p class="mt-3" style="font-size:15px;color:white"><b>{{data.modelName}}</b></p>
               </mat-panel-title> 
             </mat-expansion-panel-header>
 
@@ -276,9 +318,7 @@
                 <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle" style="transform: scale(2);color:white"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')"></mat-icon></a> 
-              </div>
+              
 
               <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Edit">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
@@ -287,14 +327,24 @@
               <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
              </div>
+
+             <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left: 2vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')">
+              </mat-icon></a> 
+            </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
-          </mat-expansion-panel> </mat-accordion> </div>
-    </mat-card>
+          </mat-expansion-panel>
+        </td></tr>
+      </table>
+       </mat-accordion> 
+        </table>
+      </div>
     <!-- ---------------------------------------Data Jar------------------------------------------------------------>
 
-    <mat-card class="col-lg ex3">
+    <div class="col-lg">
+      <table id="table5" class="ex3 py-0 my-0">
       <table class="mt-3">
         <tr>
           <td align="center" style="width: 22%;"> <i id="icon" class="item al-ico-datasets mr-3"></i> </td>
@@ -311,18 +361,21 @@
         </tr>
       </table>
 
-      <div class="input-group pb-3 pt-3"> 
+      <tr class="input-group pb-3 pt-3"> 
         <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue" type="search" placeholder="search" id="example-search-input"> 
           <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div></span>
-      </div>
-      <div *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="mt-2">
-        <mat-accordion class="mb-2 py-0"> 
+      </tr>
+
+      <mat-accordion class="mb-2 py-0"> 
+        <table>
+      <tr *ngFor="let data of Dataset|filter:Searchvalue:Searchdata ;let i=index" class="mt-2">
+        <td>
           <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
-            <mat-expansion-panel-header> 
+            <mat-expansion-panel-header [collapsedHeight]="'10vh'"> 
               <mat-panel-title>
-                <p class="mt-3" style="font-size: 15px;color:white;"><b>{{data.datasetName}}</b></p>
+                <p class="mt-3" style="font-size:15px;color:white;"><b>{{data.datasetName}}</b></p>
               </mat-panel-title> 
-            </mat-expansion-panel-header>
+            </mat-expansion-panel-header >
             <div class="d-flex flex-row pt-2 px-1">
               <div>
                 <p style="color:white"><b>VERSION: </b>{{data.datasetVersion}}</p>
@@ -337,22 +390,26 @@
               <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.datasetUrl}}> 
                 <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
               </div>
-              <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> 
-              </div>
+              
               <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="Edit">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
               </div>
 
-              <div class="btn-grp pl-3 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+              <div class="btn-grp pl-2 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
              </div>
+
+             <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:3vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> 
+            </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
             </div>
-          </mat-expansion-panel> </mat-accordion>
-      </div>
-    </mat-card>
+          </mat-expansion-panel></td></tr>
+        </table>
+         </mat-accordion>
+     
+    </table>
   </div>
 </div>
 
@@ -493,6 +550,15 @@
         >
         </ng-multiselect-dropdown>
       </div>
+      <!-- <div id="div2" class="leftspace">
+        <mat-form-field class="width">
+          <mat-label> Complexity </mat-label>
+          <mat-select  ngDefaultControl >
+            <mat-option *ngFor="let x of Frontend"   >{{ x.frontendName }}</mat-option> 
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
       </div>
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
               (click)="addSolution()" data-dismiss="modal" [disabled]="!formdata3.valid">Save</button> &nbsp;<button type="button"
@@ -947,3 +1013,6 @@
     </div>
   </div>
 </div>
+
+
+

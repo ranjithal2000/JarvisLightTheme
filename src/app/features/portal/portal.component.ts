@@ -84,16 +84,94 @@ export class PortalComponent implements OnInit {
     this.getdataset();
     this.getPipeline();
     this.getFrontend();
+
+
+    //--------------------------------------------------------------------------------------------------------------------------------
+
+    // window.onload = () => {
+    //   const table1 = document.getElementById("table1");
+    //   const table2 = document.getElementById("table2");
+    //   const table3 = document.getElementById("table3");
+    //   const table4 = document.getElementById("table4");
+    //   const table5 = document.getElementById("table5");
+    //   const element2 = document.getElementById("element2") as HTMLInputElement;
+      
+    //   function createArrow(from, to, yOffset) {
+    //     return new LeaderLine(
+    //       LeaderLine.pointAnchor(from, { x: '120%', y: `calc(50% + ${yOffset}px)` }),
+    //       LeaderLine.pointAnchor(to, { x: 0, y: `calc(50% + ${yOffset}px)` }),
+    //       {
+    //         color: 'black',
+    //         size: 2,
+    //         startSocket: 'right',
+    //         endSocket: 'left',
+    //         startPlug: 'behind',
+    //         endPlug: 'arrow2',
+    //         endPlugSize: 1.5,
+    //         path: 'fluid',
+    //         dash: { animation: true },
+    //       }
+    //     );
+    //   }
+
+    //   const rows1 = table1.querySelectorAll("tr");
+    //   const rows2 = table2.querySelectorAll("tr");
+    //   const rows3 = table3.querySelectorAll("tr");
+    //   const rows4 = table4.querySelectorAll("tr");
+    //   const rows5 = table5.querySelectorAll("div");
+
     
+    //   let arrowLink2;
+    //   let arrowLink3;
+    //   let arrowLink4;
+    //   let arrowLink5;
+    //   let arrowLink6;
+
+    //   const updateArrows = () => {
+    //     if (element2.checked && !arrowLink2) {
+    //       arrowLink2 = createArrow(rows1[2].querySelector("td"), rows2[2].querySelector("td"), 5);
+    //     } else if (!element2.checked && arrowLink2) {
+    //       arrowLink2.remove();
+    //       arrowLink2 = null;
+    //     }
+    //     if (element2.checked && !arrowLink4) {
+    //       arrowLink4 = createArrow(rows2[0].querySelector("td"), rows3[1].querySelector("td"), 5);
+    //     } else if (!element2.checked && arrowLink4) {
+    //       arrowLink4.remove();
+    //       arrowLink4 = null;
+    //     }
+    //     if (element2.checked && !arrowLink5) {
+    //       arrowLink5 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
+    //     } else if (!element2.checked && arrowLink6) {
+    //       arrowLink5.remove();
+    //       arrowLink5 = null;
+    //     }
+    //     if (element2.checked && !arrowLink6) {
+    //       arrowLink6 = createArrow(rows4[0].querySelector("td"), rows5[0].querySelector("mat-expansion-panel"), 5);
+    //       // arrowLink3 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
+    //     } else if (!element2.checked && arrowLink6 && arrowLink3) {
+    //       arrowLink6.remove();
+    //       arrowLink3.remove();
+    //       arrowLink6 = null;
+    //       // arrowLink3 = null;
+    //     }
+    //   }
+
+    //   element2.addEventListener("change", updateArrows);
+     
+    // };
+        //--------------------------------------------------------------------------------------------------------------------------------
   }
+
   refresh(){
-    this.getModel();
-    this.getSolution();
-    this.getdataset();
-    this.getPipeline();
-    this.getFrontend();
-    this.linkCheck();
-    this.isPanelOpen=false;
+    // this.getModel();
+    // this.getSolution();
+    // this.getdataset();
+    // this.getPipeline();
+    // this.getFrontend();
+    // this.linkCheck();
+    // this.isPanelOpen=false;
+    this.updateArrows('clicked');
   }
   
   dropdownSettings = {
@@ -511,9 +589,6 @@ export class PortalComponent implements OnInit {
 
   deletePipeline(){
    
-    // console.log("solutionData", data)
-    // this.formdata7.controls['solution_id'].setValue(data.solutionId);
-    // let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let pipelineId=this.pipelineId
     this.http.post('http://13.234.148.242:3000/pipeline/deletePipeline', { pipelineId })
       .subscribe(response => {
@@ -710,7 +785,6 @@ deleteFrontend(){
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
-        // alert(this.storeResponse.message)
         this.toastr.success(this.storeResponse.message);
         this.getSolution();
       });
@@ -749,9 +823,7 @@ deleteFrontend(){
   solutionId:any;
   deleteSolution(){
 debugger
-    // console.log("solutionData", data)
-    // this.formdata7.controls['solution_id'].setValue(data.solutionId);
-    // let solutionId = this.formdata7.controls['solution_id'].value.toString();
+   
     let solutionId=this.solutionId;
 
     this.http.post('http://13.234.148.242:3000/solution/deleteSolution', { solutionId })
@@ -775,10 +847,7 @@ debugger
         debugger
         this.Solution = this.dumbb1.solutionData;
        console.log("Solution",this.Solution);
-      //  console.log("abhi pati",Object.values(this.Solution[0])[7]);
-      //  console.log("abhi pati",this.Solution[0].datasets.length);
-
-
+     
        for(let i=0; i<this.Solution.length; i++)
        {
        if(this.Solution[i].datasets.length!=0){
@@ -799,43 +868,12 @@ debugger
       this.linkedassets = [];
       }
 
-      // console.log("linkedAssets",this.Solution);
-       
-        
-
-        //  for(let i=0;i<this.Solution.length;i++)
-        //  {
-        //   for (let j=0;j<Object.keys(this.Solution[i]).length;j++){
-
-        //   if(Object.keys(this.Solution[i])[j]==="pipelines" ||Object.keys(this.Solution[i])[j]==="models"||Object.keys(this.Solution[i])[j]==="datasets" || Object.keys(this.Solution[i])[j]==="frontends"){
-
-            
-        // //  console.log(Object.values(this.Solution[i])[j]);
-        
-        //   this.linkedassets.push(Object.keys(this.Solution[i])[j])
-         
-
-        //   }
-        //  }
-        //  this.linkedassets1.push(this.linkedassets);
-        //  this.linkedassets=[];
-        // }
         console.log(this.linkedassets1);
-        
-        
-        
-
-        // this.link(this.Solution);
-
+       
       }
       )
   }
-  // linkeddata:any;
-  // link(data:any){
-  //   for(let i=0;i<=data.length;i++){
-      
-  //   }
-  // }
+ 
   editData(data: any, jar: any) {
     this.SelectJar(jar);
     this.getDataPipeline(data)  
@@ -1017,23 +1055,7 @@ for i,img in enumerate(sample):
     pred = np.argmax(pred, axis=1)
     logger.report_image("image", str(pred), iteration=i, image=img)`
   }
-  // value1=`# create example dataset
-  // from clearml import StorageManager, Dataset
-  // # Download sample csv file
-  // csv_file = StorageManager.get_local_copy(
-  //     remote_url="https://vincentarelbundock.github.io/Rdatasets/csv/AER/Affairs.csv"
-  // )
-  // # Create a dataset with ClearML\`s Dataset class
-  // dataset = Dataset.create(
-  //     dataset_project="DatasetProject", dataset_name="HelloDataset"
-  // )
-  // # add the example csv
-  // dataset.add_files(path=csv_file)
-  // # Upload dataset to ClearML server (customizable)
-  // dataset.upload()
-  // # commit dataset changes
-  // dataset.finalize()`;
-
+  
   @Output() CartEvent=new EventEmitter();
   badgeCount:any;
 
@@ -1042,14 +1064,7 @@ cart:any=[];
     debugger
     this.cart.push(data);
     this.badgeCount=this.cart.length;
-  //  this.CartEvent.emit(this.cart);
   }
-
-
-
-
-
-
 
 
 dropdowndata:any=[];
@@ -1062,32 +1077,12 @@ editdropdownpipeline:any=[];
 editdropdownfrontend:any=[];
 
 
-  // onSelectdataset(data:any,jars:any){
-  //   if(jars=='dataset'){
-      
-  //     this.dropdowndata=data;
-  //     this.link.push(jars);
-  //   }else if(jars=='model'){
-      
-  //     this.dropdownmodel=data;
-  //     this.link.push(jars);
-  //   }else if(jars=='pipeline'){
-      
-  //     this.dropdownpipeline=data;
-  //     this.link.push(jars);
-  //   }else if(jars=='frontend'){
-  //     this.dropdownfrontend=data;
-  //     this.link.push(jars);
-  //   }
-    
-  // }
   empty(){
     this.pipeline=[];
     this.Dataset=[];
     this.Solution=[];
     this.Modules=[];
     this.Frontend=[];
-    
   }
   linkagedata:any=[];
   dummy6:any=[];
@@ -1097,72 +1092,292 @@ editdropdownfrontend:any=[];
     this.link= !this.link;
   }
 
-  linkage(data:any){
-  
+   linkage(data:any){
     let solutionId=data.id;
-    
     this.http.post('http://13.234.148.242:3000/solution/linked', {solutionId})
     .subscribe(response => {
-     
       debugger
       this.linkagedata=response;
-      this.empty();
-      
+      this.empty();  
       console.log(this.linkagedata);
       this.linkCheck();
-        
-     
-      // this.dummy5=this.linkagedata.data[0].solution;
-
-      // for(let i=0;i<=3;i++){
-      //   if(this.linkagedata.solutions){
-
           this.Solution=this.linkagedata.solutions;
           this.isPanelOpen=true;
-        // }else if(this.linkagedata.models){
           this.Modules=this.linkagedata.models;
-        // }else if(this.linkagedata.pipelines){
           this.pipeline=this.linkagedata.pipelines;
-        // }else if(this.linkagedata.datasets){
           this.Dataset=this.linkagedata.datasets;
-
           this.Frontend=this.linkagedata.frontends;
-          
-        
-      }
-      // }
 
-    // }
+
+  //   const table1 = document.getElementById("table1");
+  //   const table2 = document.getElementById("table2");
+  //   const table3 = document.getElementById("table3");
+  //   const table4 = document.getElementById("table4");
+  //   const table5 = document.getElementById("table5");
+  //   const element2 = document.getElementById("element2") as HTMLInputElement;
+
+  //     const rows1 = table1.querySelectorAll("tr");
+  //     const rows2 = table2.querySelectorAll("tr");
+  //     const rows3 = table3.querySelectorAll("tr");
+  //     const rows4 = table4.querySelectorAll("tr");
+  //     const rows5 = table5.querySelectorAll("tr");
+
+    
+  //     let arrowLink2;
+  //     let arrowLink3;
+  //     let arrowLink4;
+  //     let arrowLink5;
+  //     let arrowLink6;
+  // debugger
+  //   if (this.Solution!= null && !arrowLink2) {
+
+  //     for(let i=0;i<this.Frontend.length;i++){
+  //       arrowLink2 = this.createArrow(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
+  //     }
+      
+  //     // arrowLink3= this.createArrow(rows1[2].querySelector("td"), rows2[3].querySelector("td"), 250);
+      
+  //   } 
+  //   // else if (data=='clear' ) {
+  //   //   arrowLink2.remove();
+  //   //   arrowLink2 = null;
+  //   // }
+  //   // if (data=='clicked' && !arrowLink4) {
+  //   //   arrowLink4 = this.createArrow1(rows2[2].querySelector("td"), rows3[2].querySelector("td"), 250);
+  //   // } else if (!element2.checked && arrowLink4) {
+  //   //   arrowLink4.remove();
+  //   //   arrowLink4 = null;
+  //   // }
+  //   // if (data=='clicked' && !arrowLink5) {
+  //   //   arrowLink5 = this.createArrow2(rows3[2].querySelector("td"), rows4[2].querySelector("td"), 250);
+  //   // } else if (!element2.checked && arrowLink6) {
+  //   //   arrowLink5.remove();
+  //   //   arrowLink5 = null;
+  //   // }
+  //   // if (data=='clicked' && !arrowLink6) {
+  //   //   arrowLink6 = this.createArrow3(rows4[2].querySelector("td"), rows5[2].querySelector("td"), 250);
+  //   //   // arrowLink3 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
+  //   // } else if (!element2.checked && arrowLink6 && arrowLink3) {
+  //   //   arrowLink6.remove();
+  //   //   // arrowLink3.remove();
+  //   //   arrowLink6 = null;
+  //   //   // arrowLink3 = null;
+  //   // }
+   if(this.Solution.length==1){
+    this.updateArrows(data);
+  }
+
+      }
     )
 
   }
 
 
-
-  items: Array<any> = [
-    {title: "First item", content: "First item content", expanded: true },
-    {title: "Second item", children: [
-            {title: "Child item" }
-       ]
-   }
-];
-
-leader(id, id2) {
-
-  var line = new LeaderLine(
+  createArrow(from, to, yOffset) {
+    debugger
+    return new LeaderLine(
+      LeaderLine.pointAnchor(from, { x: '159%', y: '390%' }),
+      LeaderLine.pointAnchor(to, { x: '68%', y: '290%' }),
+      {
+        color: 'black',
+        size: 2,
+        startSocket: 'right',
+        endSocket: 'left',
+        startPlug: 'behind',
+        endPlug: 'arrow1',
+        endPlugSize: 1.5,
+        path: 'fluid',
+        dash: { animation: true },
+        // startSocketGravity:[0, 10, 15],
+        // endSocketGravity:[10, 0, 20],
+        // arc: 90, // the angle of the curve
+        // start: '50%', // the position of the start of the curve
+        // end: '50%', // the position of the end of the curve
+      }
+    );
+  }
+  createArrow1(from, to, yOffset) {
+    debugger
+   
+    return new LeaderLine(
+      LeaderLine.pointAnchor(from, { x: '335%', y: '275%' }),
+      LeaderLine.pointAnchor(to, { x: yOffset+'%', y: '275%' }),  
+      {
+        color: 'black',
+        size: 2,
+        startSocket: 'right',
+        endSocket: 'left',
+        startPlug: 'behind',
+        endPlug: 'arrow2',
+        endPlugSize: 1.5,
+        path: 'fluid',
+        dash: { animation: true },
+        // startSocketGravity:[0, 0, -5],
+        // endSocketGravity:[0, 0, -10],    
+      }
+    );
     
-    LeaderLine.pointAnchor(id, {x: 20, y: 28}),
-    id2, {
-      endPlugOutline: false,
-      animOptions: { duration: 3000, timing: 'linear' }
+  }
+  createArrow2(from, to, yOffset) {
+    debugger
+    return new LeaderLine(
+      LeaderLine.pointAnchor(from, { x: '515%', y: '275%' }),
+      LeaderLine.pointAnchor(to, { x: '427%', y: '275%' }),
+      {
+        color: 'black',
+        size: 2,
+        startSocket: 'right',
+        endSocket: 'left',
+        startPlug: 'behind',
+        endPlug: 'arrow3',
+        endPlugSize: 1.5,
+        path: 'fluid',
+        dash: { animation: true },
+        // startSocketGravity:[0, 0, -5],
+        // endSocketGravity:[0, 0, -10],    
+      }
+    );
+  }
+
+  createArrow3(from, to, yOffset) {
+    debugger
+    return new LeaderLine(
+      LeaderLine.pointAnchor(from, { x: '692%', y: '275%' }),
+      LeaderLine.pointAnchor(to, { x: '607%', y: '275%' }),
+      {
+        color: 'black',
+        size: 2,
+        startSocket: 'right',
+        endSocket: 'left',
+        startPlug: 'behind',
+        endPlug: 'arrow4',
+        endPlugSize: 1.5,
+        path: 'fluid',
+        dash: { animation: true },
+        // startSocketGravity:[0, 0, -5],
+        // endSocketGravity:[0, 0, -10],    
+      }
+    );
+  }
+  //  yOffset='45%';
+
+   updateArrows(data:any){
+   
+    const table1 = document.getElementById("table1");
+    const table2 = document.getElementById("table2");
+    const table3 = document.getElementById("table3");
+    const table4 = document.getElementById("table4");
+    const table5 = document.getElementById("table5");
+    const element2 = document.getElementById("element2") as HTMLInputElement;
+
+      const rows1 = table1.querySelectorAll("tr");
+      const rows2 = table2.querySelectorAll("tr");
+      const rows3 = table3.querySelectorAll("tr");
+      const rows4 = table4.querySelectorAll("tr");
+      const rows5 = table5.querySelectorAll("tr");
+
+    
+      let arrowLink2;
+      let arrowLink3;
+      let arrowLink4;
+      let arrowLink5;
+      let arrowLink6;
+
+    if (this.Solution && !arrowLink2) { 
+      for(let i=0;i<this.Frontend.length;i++){
+              arrowLink2 = this.createArrow(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
+      }
+    } 
+    // else if (data=='clear' ) {
+    //   arrowLink2.remove();
+    //   arrowLink2 = null;
+    // }
+    debugger
+    if (this.Frontend && this.pipeline.length!=0 && !arrowLink4) {
+      for(let i=0;i<this.pipeline.length;i++){
+        if(this.pipeline.length<=2){
+          arrowLink3 = this.createArrow1(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),248);
+        }else{
+          arrowLink3 = this.createArrow1(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),248);
+        }       
+      }   
+    } else if(this.Frontend && this.Modules.length!=0){
+
     }
-  );
+    else if(this.Frontend.length!=0 && this.Dataset.length!=0){
+      for(let i=0;i<this.Dataset.length;i++){
+        if(this.Dataset.length<=2){
+          arrowLink3 = this.createArrow1(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),606);
+        }else{
+          arrowLink3 = this.createArrow1(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),606);
+        }       
+      }   
 
-  line.path = 'grid';
-  line.setOptions({startSocket: 'bottom', endSocket: 'left'});
-  line.startSocketGravity = 0;
+    }
+    // else if (!element2.checked && arrowLink4) {
+    //   arrowLink4.remove();
+    //   arrowLink4 = null;
+    // }
+    if (this.pipeline.length!=0 && !arrowLink5) {
+      for(let i=0;i<this.Modules.length;i++){
+        if(this.Modules.length<=2){
+          arrowLink4 = this.createArrow2(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),200);
+        }else{
+          arrowLink4 = this.createArrow2(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),200);
+        }       
+      }  
+      // arrowLink5 = this.createArrow2(rows3[2].querySelector("td"), rows4[2].querySelector("td"), 250);
+    } 
+    // else if (!element2.checked && arrowLink6) {
+    //   arrowLink5.remove();
+    //   arrowLink5 = null;
+    // }
+    if (this.Modules.length!=0 && this.Dataset.length!=0 && !arrowLink6) {
+      for(let i=0;i<this.Dataset.length;i++){
+        if(this.Dataset.length<=2){
+          arrowLink4 = this.createArrow3(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
+        }else{
+          arrowLink4 = this.createArrow3(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),250);
+        }       
+      }  
+      // arrowLink6 = this.createArrow3(rows4[2].querySelector("td"), rows5[2].querySelector("td"), 250);
+      
+    } 
+    // else if (!element2.checked && arrowLink6 && arrowLink3) {
+    //   arrowLink6.remove();
+    //   // arrowLink3.remove();
+    //   arrowLink6 = null;
+    //   // arrowLink3 = null;
+    // }
+  }
 
-}
+
+
+
+//   items: Array<any> = [
+//     {title: "First item", content: "First item content", expanded: true },
+//     {title: "Second item", children: [
+//             {title: "Child item" }
+//        ]
+//    }
+// ];
+
+// leader(id, id2) {
+
+//   var line = new LeaderLine(
+    
+//     LeaderLine.pointAnchor(id, {x: 20, y: 28}),
+//     id2, {
+//       endPlugOutline: false,
+//       animOptions: { duration: 3000, timing: 'linear' }
+//     }
+//   );
+
+//   line.path = 'grid';
+//   line.setOptions({startSocket: 'bottom', endSocket: 'left'});
+//   line.startSocketGravity = 0;
+
+// }
 
 
  

@@ -126,7 +126,7 @@ export class SplashScreenComponent implements OnInit {
       this.windowWidth = "-" + window.innerWidth + "px";
 
       setTimeout(() => {
-        this.router.navigateByUrl("/portal")
+        this.router.navigateByUrl("/test")
         this.showSplash = !this.showSplash;
       }, 800);
     }, 2600);

@@ -29,10 +29,12 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SplashScreenComponent } from './features/splash-screen/splash-screen.component';
 import { NgParticlesModule } from "ng-particles";
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { TestComponent } from './features/test/test.component';
 
 
 @NgModule({
-  declarations   : [AppComponent, PortalComponent, SplashScreenComponent],
+  declarations   : [AppComponent, PortalComponent, SplashScreenComponent, TestComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -45,6 +47,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     AngularSplitModule,
     NgParticlesModule,
     MatBadgeModule,
+    MatCheckboxModule,
     ToastrModule.forRoot(),
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {

@@ -1,0 +1,38 @@
+// input[type=checkbox] {
+//   display:none !important;
+//   }
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  table {
+    border-collapse: collapse !important; 
+    margin: 0 50px !important;
+  }
+  
+  mat-expansion-panel {
+    margin: 20px;
+   
+    /* border: 1px solid black !important; */
+    padding: 10px  !important;
+    background-color: #c0b8b8;
+  }
+  
+  .controls {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #text{
+    
+    color:#7672ED;
+    
+  }
