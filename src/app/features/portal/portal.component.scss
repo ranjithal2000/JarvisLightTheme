@@ -1,24 +1,26 @@
 
-  
-//   table {
-    // border-collapse: collapse;
-    // margin: 0 50px;
-//   }
-  
-//   td {
-    // border: 1px solid black;
-    // padding: 10px 20px;
-//   }
-
-
-// .leader-line {
-//     position: absolute;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     top: 0;
-//     height: 100%;
-//     border-left: 2px dashed #333;
-//   }
+    
+   
+table td{
+    position: relative;
+}
+table td:before,
+table td:after {
+    content: "";
+    position: absolute;
+   height: 0;
+   width: 0;
+  }
+  table td:before{
+    top:50%;
+    left: 100%;
+    margin-left: 10px;
+  }
+  table td:after{
+    top: 50%;
+    right: 100%;
+    margin-right: 10px;
+  }
   
   .controls {
     position: absolute;
@@ -26,19 +28,6 @@
     left: 60%;
     transform: translateX(-50%);
   }
-
-//   .element-to-connect-from[data-end=".element-to-connect-to"]::before {
-//     content: "";
-//     position: absolute;
-//     z-index: -1;
-//     border: 1px solid black;
-//     border-radius: 5px;
-//     height: 30px;
-//     top: -35px; /* adjust the top position as needed */
-//     left: 50%;
-//     transform: translateX(-50%);
-//   }
-
 
 
 
@@ -79,13 +68,10 @@
   
   .col-lg{
     flex: 1;
-    // padding: 0.5vw;
     background-color: #FFFFFF;
-    margin: 1vw;
-    // border: solid 1px; 
+    margin:1vw;
     width: 20vw;
-    height: 890px;
-    // background-color: #bccdf5;
+    height: 150vh;
 }
 .ex3 {
     // background-color: lightblue;
@@ -138,6 +124,10 @@ hr{
 
 mat-expansion-panel{
     border: solid 1px;
+    width: 22vw;  
+}
+mat-expansion-panel-header{
+    height: 8vh !important;
 }
 
 

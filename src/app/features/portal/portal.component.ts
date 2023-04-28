@@ -10,6 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import {CartService} from '~/shared/services/cart.service'
 
+
 export interface tags {
   name: string;
 }
@@ -65,6 +66,8 @@ export class PortalComponent implements OnInit {
 
   innerHeight: any;
     innerWidth: any;
+
+
   constructor(
     private formBuilder: FormBuilder, 
     private http: HttpClient,
@@ -160,18 +163,47 @@ export class PortalComponent implements OnInit {
     //   element2.addEventListener("change", updateArrows);
      
     // };
+
+    
         //--------------------------------------------------------------------------------------------------------------------------------
   }
+  arrowLink2:any;
+  arrowLink3:any;
+  arrowLink4:any;
+  arrowLink5:any;
+  arrowLink6:any;
+  arrowLink7:any;
+  arrowLink8:any;
+  arrowLink9:any;
+  arrowLink10:any;
+  arrowLink11:any;
+  arrowLink12:any;
+  arrowLink13:any;
+
+  rows1:any;
+  rows2:any;
+  rows3:any;
+  rows4:any;
+  rows5:any;
+
 
   refresh(){
-    // this.getModel();
-    // this.getSolution();
-    // this.getdataset();
-    // this.getPipeline();
-    // this.getFrontend();
-    // this.linkCheck();
-    // this.isPanelOpen=false;
-    this.updateArrows('clicked');
+    debugger
+    this.updateArrows('remove')
+    // if(this.arrowLink2!=null){
+    //   this.arrowLink2.remove();
+    //   this.arrowLink2=null;
+    // }
+    
+    this.getModel();
+    this.getSolution();
+    this.getdataset();
+    this.getPipeline();
+    this.getFrontend();
+    this.linkCheck();
+    this.isPanelOpen=false;
+    
+    
   }
   
   dropdownSettings = {
@@ -234,26 +266,7 @@ export class PortalComponent implements OnInit {
     }
 
   }
-  // onSelectAll(data: any,jars:any) {
-  //   debugger
-  //   if(jars=='dataset'){
-  //     this.dropdowndata.push(data.id);
-  //     // this.dropdowndata=data;
-     
-  //   }else if(jars=='model'){
-  //     this.dropdownmodel.push(data.id);
-  //     // this.dropdownmodel=data;
-     
-  //   }else if(jars=='pipeline'){
-  //     this.dropdownpipeline.push(data.id);
-  //     // this.dropdownpipeline=data;
-      
-  //   }else if(jars=='frontend'){
-  //     this.dropdownfrontend.push(data.id);
-  //     // this.dropdownfrontend=data;
-     
-  //   }
-  // }
+  
   unselect(data:any,jars:any){
     debugger
 
@@ -1108,133 +1121,72 @@ editdropdownfrontend:any=[];
           this.Dataset=this.linkagedata.datasets;
           this.Frontend=this.linkagedata.frontends;
 
-
-  //   const table1 = document.getElementById("table1");
-  //   const table2 = document.getElementById("table2");
-  //   const table3 = document.getElementById("table3");
-  //   const table4 = document.getElementById("table4");
-  //   const table5 = document.getElementById("table5");
-  //   const element2 = document.getElementById("element2") as HTMLInputElement;
-
-  //     const rows1 = table1.querySelectorAll("tr");
-  //     const rows2 = table2.querySelectorAll("tr");
-  //     const rows3 = table3.querySelectorAll("tr");
-  //     const rows4 = table4.querySelectorAll("tr");
-  //     const rows5 = table5.querySelectorAll("tr");
-
-    
-  //     let arrowLink2;
-  //     let arrowLink3;
-  //     let arrowLink4;
-  //     let arrowLink5;
-  //     let arrowLink6;
-  // debugger
-  //   if (this.Solution!= null && !arrowLink2) {
-
-  //     for(let i=0;i<this.Frontend.length;i++){
-  //       arrowLink2 = this.createArrow(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
-  //     }
-      
-  //     // arrowLink3= this.createArrow(rows1[2].querySelector("td"), rows2[3].querySelector("td"), 250);
-      
-  //   } 
-  //   // else if (data=='clear' ) {
-  //   //   arrowLink2.remove();
-  //   //   arrowLink2 = null;
-  //   // }
-  //   // if (data=='clicked' && !arrowLink4) {
-  //   //   arrowLink4 = this.createArrow1(rows2[2].querySelector("td"), rows3[2].querySelector("td"), 250);
-  //   // } else if (!element2.checked && arrowLink4) {
-  //   //   arrowLink4.remove();
-  //   //   arrowLink4 = null;
-  //   // }
-  //   // if (data=='clicked' && !arrowLink5) {
-  //   //   arrowLink5 = this.createArrow2(rows3[2].querySelector("td"), rows4[2].querySelector("td"), 250);
-  //   // } else if (!element2.checked && arrowLink6) {
-  //   //   arrowLink5.remove();
-  //   //   arrowLink5 = null;
-  //   // }
-  //   // if (data=='clicked' && !arrowLink6) {
-  //   //   arrowLink6 = this.createArrow3(rows4[2].querySelector("td"), rows5[2].querySelector("td"), 250);
-  //   //   // arrowLink3 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
-  //   // } else if (!element2.checked && arrowLink6 && arrowLink3) {
-  //   //   arrowLink6.remove();
-  //   //   // arrowLink3.remove();
-  //   //   arrowLink6 = null;
-  //   //   // arrowLink3 = null;
-  //   // }
    if(this.Solution.length==1){
     this.updateArrows(data);
   }
-
       }
     )
-
   }
 
-
-  createArrow(from, to, yOffset) {
+  createArrow(from, to, yOffset,position) {
     debugger
     return new LeaderLine(
-      LeaderLine.pointAnchor(from, { x: '159%', y: '390%' }),
-      LeaderLine.pointAnchor(to, { x: '68%', y: '290%' }),
+      LeaderLine.pointAnchor(from, { x: '159%', y: '420%' }),
+      LeaderLine.pointAnchor(to, { x: '69%', y: position+'%' }),
       {
         color: 'black',
         size: 2,
         startSocket: 'right',
         endSocket: 'left',
-        startPlug: 'behind',
-        endPlug: 'arrow1',
+        startPlug: 'disc',     
+        endPlug: 'disc',
         endPlugSize: 1.5,
         path: 'fluid',
-        dash: { animation: true },
-        // startSocketGravity:[0, 10, 15],
-        // endSocketGravity:[10, 0, 20],
-        // arc: 90, // the angle of the curve
-        // start: '50%', // the position of the start of the curve
-        // end: '50%', // the position of the end of the curve
+        gradient: true,
+        lineOffset:100,
+        dash: { animation: true }, 
       }
     );
   }
-  createArrow1(from, to, yOffset) {
+ 
+  createArrow1(from, to, yOffset,position) {
     debugger
    
     return new LeaderLine(
-      LeaderLine.pointAnchor(from, { x: '335%', y: '275%' }),
-      LeaderLine.pointAnchor(to, { x: yOffset+'%', y: '275%' }),  
+      LeaderLine.pointAnchor(from, { x: '333%', y: position+'%' }),
+      LeaderLine.pointAnchor(to, { x: yOffset+'%', y: position+'%' }),  
       {
         color: 'black',
         size: 2,
         startSocket: 'right',
         endSocket: 'left',
-        startPlug: 'behind',
-        endPlug: 'arrow2',
+        startPlug: 'disc',
+        endPlug: 'disc',
         endPlugSize: 1.5,
-        path: 'fluid',
+        path: 'grid',
         dash: { animation: true },
-        // startSocketGravity:[0, 0, -5],
-        // endSocketGravity:[0, 0, -10],    
+        end:137
+        
       }
     );
     
   }
-  createArrow2(from, to, yOffset) {
+  createArrow2(from, to, yOffset,position) {
     debugger
     return new LeaderLine(
-      LeaderLine.pointAnchor(from, { x: '515%', y: '275%' }),
-      LeaderLine.pointAnchor(to, { x: '427%', y: '275%' }),
+      LeaderLine.pointAnchor(from, { x: '507%', y: '275%' }),
+      LeaderLine.pointAnchor(to, { x: position+'%', y: '275%' }),  //427 //606
       {
         color: 'black',
         size: 2,
-        startSocket: 'right',
+        startSocket: this.createArrow3,
         endSocket: 'left',
-        startPlug: 'behind',
-        endPlug: 'arrow3',
+        startPlug: 'disc',
+        endPlug: 'disc',
         endPlugSize: 1.5,
         path: 'fluid',
         dash: { animation: true },
-        // startSocketGravity:[0, 0, -5],
-        // endSocketGravity:[0, 0, -10],    
+       
       }
     );
   }
@@ -1242,25 +1194,22 @@ editdropdownfrontend:any=[];
   createArrow3(from, to, yOffset) {
     debugger
     return new LeaderLine(
-      LeaderLine.pointAnchor(from, { x: '692%', y: '275%' }),
-      LeaderLine.pointAnchor(to, { x: '607%', y: '275%' }),
+      LeaderLine.pointAnchor(from, { x: '680%', y: '275%' }),
+      LeaderLine.pointAnchor(to, { x: '590%', y: '275%' }),
       {
         color: 'black',
         size: 2,
         startSocket: 'right',
         endSocket: 'left',
-        startPlug: 'behind',
-        endPlug: 'arrow4',
+        startPlug: 'disc',
+        endPlug: 'disc',
         endPlugSize: 1.5,
-        path: 'fluid',
+        path: 'grid',
         dash: { animation: true },
-        // startSocketGravity:[0, 0, -5],
-        // endSocketGravity:[0, 0, -10],    
       }
     );
   }
-  //  yOffset='45%';
-
+  
    updateArrows(data:any){
    
     const table1 = document.getElementById("table1");
@@ -1270,119 +1219,227 @@ editdropdownfrontend:any=[];
     const table5 = document.getElementById("table5");
     const element2 = document.getElementById("element2") as HTMLInputElement;
 
-      const rows1 = table1.querySelectorAll("tr");
-      const rows2 = table2.querySelectorAll("tr");
-      const rows3 = table3.querySelectorAll("tr");
-      const rows4 = table4.querySelectorAll("tr");
-      const rows5 = table5.querySelectorAll("tr");
+      this.rows1 = table1.querySelectorAll("tr");
+      this.rows2 = table2.querySelectorAll("tr");
+      this.rows3 = table3.querySelectorAll("tr");
+      this.rows4 = table4.querySelectorAll("tr");
+      this.rows5 = table5.querySelectorAll("tr");
 
     
-      let arrowLink2;
-      let arrowLink3;
-      let arrowLink4;
-      let arrowLink5;
-      let arrowLink6;
-
-    if (this.Solution && !arrowLink2) { 
+      // this.arrowLink2;
+      // this.arrowLink3;
+      // this.arrowLink4;
+      // this.arrowLink5;
+      // this.arrowLink6;
+    
+    //---------------solution to frontend---------------  
+    if (this.Solution && this.arrowLink2 == undefined && data !='remove') { 
       for(let i=0;i<this.Frontend.length;i++){
-              arrowLink2 = this.createArrow(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
+        if(this.Frontend.length<=2){
+          if(i==0){
+            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,275); 
+          } else{
+            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,275); 
+          }
+              
+        }else{
+          if(i==0){
+            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+          } else if(i==1){
+            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+          }else{
+            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+          }
+           
+        }        
       }
     } 
-    // else if (data=='clear' ) {
-    //   arrowLink2.remove();
-    //   arrowLink2 = null;
-    // }
-    debugger
-    if (this.Frontend && this.pipeline.length!=0 && !arrowLink4) {
+    else if (this.arrowLink2 !=undefined && this.arrowLink3 && this.arrowLink4 && data=='remove') {
+      
+          this.arrowLink2.remove();
+           this.arrowLink2 = null;
+       
+          this.arrowLink3.remove();
+          this.arrowLink3 = null;
+        
+          this.arrowLink4.remove();
+          this.arrowLink4 = null;
+       
+    }else if(this.arrowLink2 !=undefined && this.arrowLink3  && data=='remove'){
+      this.arrowLink2.remove();
+           this.arrowLink2 = null;
+       
+          this.arrowLink3.remove();
+          this.arrowLink3 = null;
+    }else if(this.arrowLink2 !=undefined  && data=='remove'){
+      this.arrowLink2.remove();
+           this.arrowLink2 = null;
+   
+    }
+    
+    // ---------------frontend to next---------------
+    if (this.Frontend && this.pipeline.length!=0 && !this.arrowLink5) {
       for(let i=0;i<this.pipeline.length;i++){
         if(this.pipeline.length<=2){
-          arrowLink3 = this.createArrow1(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),248);
+          if(i==0){
+            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),242,275);
+          }else{
+            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),242,275);
+          } 
         }else{
-          arrowLink3 = this.createArrow1(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),248);
+          if(i==0){
+            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),249,320);
+          }else if(i==1){
+            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),249,320);
+          } else{
+            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),249,320);
+          } 
         }       
       }   
-    } else if(this.Frontend && this.Modules.length!=0){
+    } else if(this.Frontend && this.Modules.length!=0 && !this.arrowLink5){
 
     }
-    else if(this.Frontend.length!=0 && this.Dataset.length!=0){
+    else if(this.Frontend.length!=0 && this.Dataset.length!=0 && !this.arrowLink5){
       for(let i=0;i<this.Dataset.length;i++){
         if(this.Dataset.length<=2){
-          arrowLink3 = this.createArrow1(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),606);
+          if(i==0){
+            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),590,275);
+          }else{
+            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),590,275);
+          }  
         }else{
-          arrowLink3 = this.createArrow1(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),606);
+          if(i==0){
+            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320);
+          }else if(i==1){
+            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320);
+          } else{
+            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320);
+          }  
         }       
-      }   
-
+      }    
     }
-    // else if (!element2.checked && arrowLink4) {
-    //   arrowLink4.remove();
-    //   arrowLink4 = null;
-    // }
-    if (this.pipeline.length!=0 && !arrowLink5) {
+    else if (this.arrowLink5 && this.arrowLink6 && this.arrowLink7 && data== 'remove') {
+      this.arrowLink5.remove();
+          this.arrowLink5 = null;
+      this.arrowLink6.remove();
+          this.arrowLink6 = null;
+      this.arrowLink7.remove();
+          this.arrowLink7 = null;
+    }else if(this.arrowLink5 && this.arrowLink6 && data== 'remove'){
+      this.arrowLink5.remove();
+      this.arrowLink5 = null;
+      this.arrowLink6.remove();
+      this.arrowLink6 = null;
+    }else if(this.arrowLink5 && data== 'remove'){
+      this.arrowLink5.remove();
+      this.arrowLink5 = null;
+    }
+
+// ---------------pipeline to next---------------
+    if (this.pipeline.length!=0 && this.Modules!=0 && !this.arrowLink8) {
       for(let i=0;i<this.Modules.length;i++){
         if(this.Modules.length<=2){
-          arrowLink4 = this.createArrow2(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),200);
+          if(i==0){
+            this.arrowLink8 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,415);
+          }else{
+            this.arrowLink9 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,415);
+          }  
         }else{
-          arrowLink4 = this.createArrow2(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),200);
+          if(i==0){
+            this.arrowLink8 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,415);
+          }else if(i==1){
+            this.arrowLink9 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,411);
+          } else{
+            this.arrowLink10 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,411);
+          } 
+          
         }       
       }  
-      // arrowLink5 = this.createArrow2(rows3[2].querySelector("td"), rows4[2].querySelector("td"), 250);
-    } 
-    // else if (!element2.checked && arrowLink6) {
-    //   arrowLink5.remove();
-    //   arrowLink5 = null;
-    // }
-    if (this.Modules.length!=0 && this.Dataset.length!=0 && !arrowLink6) {
+    } else if(this.pipeline.length!=0 && this.Dataset!=0 && !this.arrowLink8){
       for(let i=0;i<this.Dataset.length;i++){
         if(this.Dataset.length<=2){
-          arrowLink4 = this.createArrow3(rows1[2].querySelector("td"), rows2[i+2].querySelector("td"),250);
+          if(i==0){
+            this.arrowLink8 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606);
+          }else{
+            this.arrowLink9 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606);
+          }    
         }else{
-          arrowLink4 = this.createArrow3(rows1[3].querySelector("td"), rows2[i+2].querySelector("td"),250);
+          if(i==0){
+            this.arrowLink8 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606);
+          }else if(i==1){
+            this.arrowLink9 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606);
+          } else{
+            this.arrowLink10 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606);
+          }   
         }       
       }  
-      // arrowLink6 = this.createArrow3(rows4[2].querySelector("td"), rows5[2].querySelector("td"), 250);
+    }
+    else if ( this.arrowLink8 && this.arrowLink9 && this.arrowLink10 && data== 'remove') {
       
+          this.arrowLink8.remove();
+      this.arrowLink8 = null;
+        
+          this.arrowLink9.remove();
+      this.arrowLink9 = null;
+        
+          this.arrowLink10.remove();
+      this.arrowLink10 = null;
+        
+     
+    }else if(this.arrowLink8 && this.arrowLink9 &&  data== 'remove'){
+      this.arrowLink8.remove();
+      this.arrowLink8 = null;
+        
+          this.arrowLink9.remove();
+      this.arrowLink9 = null;
+    }else if(this.arrowLink8 &&  data== 'remove'){
+      this.arrowLink8.remove();
+      this.arrowLink8 = null;
+    }
+
+    // ---------------Modules to Dataset---------------
+    debugger
+    if (this.Modules.length!=0 && this.Dataset.length!=0 && !this.arrowLink11) {
+      for(let i=0;i<this.Dataset.length;i++){
+        if(this.Dataset.length<=2){
+          if(i==0){
+            this.arrowLink11 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250);
+          }else{
+            this.arrowLink12 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250);
+          }  
+        }else{
+          if(i==0){
+            this.arrowLink11 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250);
+          }else if(i==1){
+            this.arrowLink12 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250);
+          }else{
+            this.arrowLink13 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250);
+          }
+          
+        }       
+      }  
     } 
-    // else if (!element2.checked && arrowLink6 && arrowLink3) {
-    //   arrowLink6.remove();
-    //   // arrowLink3.remove();
-    //   arrowLink6 = null;
-    //   // arrowLink3 = null;
-    // }
+    else if (this.arrowLink11 && this.arrowLink12 && this.arrowLink13 && data=='remove') {
+     
+          this.arrowLink11.remove();
+      this.arrowLink11 = null;
+       
+          this.arrowLink12.remove();
+          this.arrowLink12 = null;
+       
+          this.arrowLink13.remove();
+      this.arrowLink13 = null;
+       
+      
+    }else if(this.arrowLink11 && this.arrowLink12  && data=='remove'){
+      this.arrowLink11.remove();
+      this.arrowLink11 = null;
+       
+          this.arrowLink12.remove();
+          this.arrowLink12 = null;
+    }else if(this.arrowLink11  && data=='remove'){
+      this.arrowLink11.remove();
+      this.arrowLink11 = null;
+    }
   }
-
-
-
-
-//   items: Array<any> = [
-//     {title: "First item", content: "First item content", expanded: true },
-//     {title: "Second item", children: [
-//             {title: "Child item" }
-//        ]
-//    }
-// ];
-
-// leader(id, id2) {
-
-//   var line = new LeaderLine(
-    
-//     LeaderLine.pointAnchor(id, {x: 20, y: 28}),
-//     id2, {
-//       endPlugOutline: false,
-//       animOptions: { duration: 3000, timing: 'linear' }
-//     }
-//   );
-
-//   line.path = 'grid';
-//   line.setOptions({startSocket: 'bottom', endSocket: 'left'});
-//   line.startSocketGravity = 0;
-
-// }
-
-
- 
-
-
-
-
 }

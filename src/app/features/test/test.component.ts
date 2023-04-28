@@ -10,6 +10,11 @@ export class TestComponent implements OnInit {
 
   constructor() { }
 
+  abhi:any='Good';
+  DoWork(){
+    this.abhi='Excellent';
+  }
+
   ngOnInit(): void {
 
     window.onload = () => {
