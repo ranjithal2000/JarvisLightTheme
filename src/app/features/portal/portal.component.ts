@@ -189,7 +189,7 @@ export class PortalComponent implements OnInit {
 
   refresh(){
     debugger
-    this.updateArrows('remove')
+    // this.updateArrows('remove')
     // if(this.arrowLink2!=null){
     //   this.arrowLink2.remove();
     //   this.arrowLink2=null;
@@ -1121,9 +1121,9 @@ editdropdownfrontend:any=[];
           this.Dataset=this.linkagedata.datasets;
           this.Frontend=this.linkagedata.frontends;
 
-   if(this.Solution.length==1){
-    this.updateArrows(data);
-  }
+        // if(this.Solution.length==1){
+        //   this.updateArrows(data);
+        // }
       }
     )
   }
