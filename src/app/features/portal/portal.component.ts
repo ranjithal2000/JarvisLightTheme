@@ -165,8 +165,28 @@ export class PortalComponent implements OnInit {
     // };
 
     
-        //--------------------------------------------------------------------------------------------------------------------------------
+   this.callCarddata();
+   this.callCardpipeline();
+    //--------------------------------------------------------------------------------------------------------------------------------
   }
+
+  callCarddata(){
+    this.http.get("http://13.234.148.242:3000/clearml/dataset").subscribe(response => { 
+    
+    })
+  }
+  callCardpipeline(){
+    this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => { 
+    
+    })
+  }
+
+
+
+
+
+
+
   arrowLink2:any;
   arrowLink3:any;
   arrowLink4:any;
