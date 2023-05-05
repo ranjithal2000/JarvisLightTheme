@@ -494,14 +494,19 @@ export class ApiModelsService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-	return this.apiRequest.post<ModelsGetAllExResponse>(`${this.basePath}/models.get_all_ex`,
+        // debugger
+        // console.log("Console Model ex Internally...")
+        // console.log(request)
+	    return this.apiRequest.post<ModelsGetAllExResponse>(`${this.basePath}/models.get_all_ex`,
             request,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
                 reportProgress: reportProgress
+                
             }
+            
         );
     }
 

@@ -65,10 +65,11 @@
 //   table{
 //     width: 20vw !important;
 //   }
-//   mat-expansion-panel{
-//     border: solid 1px;
-//     width: 300px !important;  
-// }
+  mat-expansion-panel{
+    // border: solid 1px;
+    // width: 300px !important;  
+    position:static;
+}
 mat-expansion-panel-header{
     height: 52px !important;
 }
@@ -79,14 +80,14 @@ mat-expansion-panel-header{
     background-color: #FFFFFF;
     margin:8px;
     width: auto !important;
-    height: 850px;
+    height: 900px;
     position: relative;
+    overflow-y: auto;
 }
 .ex3 {
     // background-color: lightblue;
     position: relative;
-    // overflow-y: auto;
-    overflow-y: auto;
+    // overflow-y: auto;  
     height: 850px;  
   }
   .solution_run_btn{

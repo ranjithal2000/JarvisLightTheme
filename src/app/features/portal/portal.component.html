@@ -1,6 +1,10 @@
 
+<!-- <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head> -->
 
-  
+
 <div class="container-fluid">
   <!-- <p class="alert alert-success" *ngIf="storeResponse!=null">{{storeResponse}}</p> -->
 
@@ -20,7 +24,7 @@
   <div class="row">
     <!-- <mat-card class="col-lg ex3"> -->
       <div class="col-lg">
-        <table  class="ex3 py-0 my-0" id="table1">
+        <table  class="ex3 py-0 my-0" id="table1" style="width: 100%;">
        
           <table class="mt-4">
             <tr>
@@ -50,7 +54,7 @@
     
         <!-- <div   >  -->
         <mat-accordion class="mb-2 py-0"> 
-        <table>
+        <table style="width: 100%;">
           <tr *ngFor="let data of Solution" >   
             <td>
             <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen"
@@ -113,7 +117,7 @@
 
     <!-- <mat-card class=""> -->
     <div class="col-lg">
-      <table id="table2" class="ex3 py-0 my-0" >
+      <table id="table2" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
           <tr style="width:auto">
             <td align="center" style="width:auto" class="pl-2 pr-2"> <i id="icon" class="fa-solid fa-code mr-3"></i> </td>
@@ -141,10 +145,10 @@
 
       <!-- <div class="mt-2 ">  -->
         <mat-accordion class="mb-2 py-0"> 
-          <table >
+          <table style="width: 100%;">
             <tr *ngFor="let data of Frontend" >
               <td>
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"class="py-0 my-0">
+          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
              <mat-expansion-panel-header > 
               <mat-panel-title>
                 <p class="mt-3 pt-2" style="font-size: 15px;color:white;" ><b>{{data.frontendName}}</b></p>
@@ -170,20 +174,22 @@
 
               
 
-              <div class="btn-grp pl-3 pr-4 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
+              <div class="btn-grp pl-3 pr-3 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
                     (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
               </div>
 
+              <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div>
+
               <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;margin-left:6vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                style="color:white;cursor: pointer;margin-left:3vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
                 (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
               <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
              </div> -->
 
-              <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                    style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
+              
             </div>
           </mat-expansion-panel> 
         </td>
@@ -197,9 +203,9 @@
 
     <!-- --------------------------------------Pipeline Jar------------------------------------------------------------>
     <div class="col-lg">
-      <table id="table3" class="ex3 py-0 my-0">
+      <table id="table3" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
-          <tr style="width:auto">
+          <tr >
             <td align="center" class="pl-2 pr-2"> <i id="icon" class="item al-ico-pipelines mr-3"></i> </td>
             <td align="left" class="pl-2 pr-5">
               <h3 id="text">Pipeline Jar</h3>
@@ -216,19 +222,18 @@
         </table>
 
       <tr class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:auto; height:50px;background-color: transparent;"
+        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
          type="search" [(ngModel)]="Searchvalue2" placeholder="search" id="example-search-input" (keyup)="filterPipeline()"> 
           <span class="input-group-append"><div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
       </tr>
       
-      
       <mat-accordion class="mb-2 py-0"> 
-          <table >
-          <tr *ngFor="let data of pipeline" >
+          <table style="width: 100%;">
+          <tr *ngFor="let data of pipeline" class="mt-2">
             <td>
-              <mat-expansion-panel
-              style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-              class="py-0 my-0"> <mat-expansion-panel-header > <mat-panel-title>
+              <mat-expansion-panel style="background-color: #7672ED;min-width: 130px;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
+                <mat-expansion-panel-header > 
+                  <mat-panel-title>
                   <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.pipelineName}}</b></p>
                 </mat-panel-title> </mat-expansion-panel-header> 
           
@@ -249,18 +254,19 @@
               </div>
 
               <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="Edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit"
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-right:8px;" fontIcon="edit"
                  data-toggle="modal" data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
               </div>
 
-              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="Delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:7vw" fontIcon="delete"
+              <div class="btn-grp pl-2 pr-1 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
+             </div>
+
+              <div class="btn-grp pl-2 pr-2 icon-glow"> <a aria-placeholder="Delete">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:72px" fontIcon="delete"
                  data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
               </div>
 
-              <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
-             </div> -->
             </div>
           </mat-expansion-panel>
         </td></tr> 
@@ -330,11 +336,11 @@
               </div>
 
               <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
+                style="color:white;cursor: pointer;margin-right: 5px;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
              </div>
 
              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
-              <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left: 2vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')">
+              <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left: 3vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')">
               </mat-icon></a> 
             </div>
               <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
@@ -376,7 +382,8 @@
         <table>
       <tr *ngFor="let data of Dataset" class="mt-2">
         <td>
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
+          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+           class="py-0 my-0">
             <mat-expansion-panel-header > 
               <mat-panel-title>
                 <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.datasetName}}</b></p>
@@ -388,7 +395,8 @@
                 <div [ngClass]="{'limitTextHeight': isReadMore3}" style="color: white;">
                   <label style="color: white;"><b>DESCRIPTION:</b> </label><br>{{data.datasetDescription}}
                 </div>
-                <label  type="button" (click)="showText3()" *ngIf="data.datasetDescription.length>20" style="color: #37B3FB"><b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
+                <label  type="button" (click)="showText3()" *ngIf="data.datasetDescription.length>20" style="color: #37B3FB">
+                  <b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
               </div> 
             </div>
   <br>
@@ -416,8 +424,11 @@
          </mat-accordion>
      
     </table>
+    <br>
+    <br>
   </div>
 </div>
+
 
 
 
@@ -581,30 +592,30 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Enter name" formControlName="name"> </mat-form-field>
+                <input id="inputStyle" matInput placeholder="Dataset Name" formControlName="name"> </mat-form-field>
             </div>
 
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Enter Id" formControlName="id"> </mat-form-field>
+                  id="inputStyle" matInput placeholder="Dataset Id" formControlName="id"> </mat-form-field>
             </div>
           </div>
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Enter version" formControlName="version"> </mat-form-field>
+                <input id="inputStyle" matInput placeholder="Dataset version" formControlName="version"> </mat-form-field>
             </div>
 
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Enter URL" formControlName="url"> </mat-form-field>
+                  id="inputStyle" matInput placeholder="Dataset URL" formControlName="url"> </mat-form-field>
             </div>
           </div>
 
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Desc" formControlName="desc"> </mat-form-field> </div>
+                <input id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field> </div>
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw;"> 
@@ -612,6 +623,7 @@
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
         </form>
 
+         <!-------------------- Add Model---------------------------->
         <form [formGroup]="formdata2" class="example-form" *ngIf="mdl">
           <div class="m-3">
             <h3 id="title"><b>Add Model</b></h3> <button type="button" class="close" data-dismiss="modal"
@@ -620,17 +632,17 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Model Project Name</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Model Project Name" formControlName="project_name">
+                <input id="inputStyle" matInput placeholder="Model Name" formControlName="project_name">
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>View url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="View url" formControlName="view_url"> </mat-form-field> </div>
+                  id="inputStyle" matInput placeholder="Model View url" formControlName="view_url"> </mat-form-field> </div>
           </div>
 
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Run url" formControlName="run_url"> </mat-form-field> </div>
+                  id="inputStyle" matInput placeholder="Model Run url" formControlName="run_url"> </mat-form-field> </div>
 
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
@@ -641,7 +653,7 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Model Description" formControlName="desc"> </mat-form-field>
+                  id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field>
             </div>
           </div>
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -649,7 +661,7 @@
               data-dismiss="modal">Close</button> </div>
         </form>
 
- 
+            <!-------------------- Add Pipeline---------------------------->
 
         <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
           <div class="mt-4 p-3">
@@ -663,18 +675,21 @@
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="View URL" formControlName="pipelineView_url">
+                <input id="inputStyle" matInput placeholder="Pipeline View URL" formControlName="pipelineView_url">
               </mat-form-field> </div>
           </div>
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
-              </mat-form-field> </div>
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+            
+            <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
                   id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
               </mat-form-field> </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
+                id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
+            </mat-form-field> </div>
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -692,22 +707,25 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Pipeline Name" formControlName="frontend_name">
+                  id="inputStyle" matInput placeholder="Frondend Name" formControlName="frontend_name">
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="View URL" formControlName="frontendStyle_url">
+                <input id="inputStyle" matInput placeholder="Frondend View URL" formControlName="frontendStyle_url">
               </mat-form-field> </div>
           </div>
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Description" formControlName="frontendRun_url">
-              </mat-form-field> </div>
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+            
+              <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="frontend_description">
+                  id="inputStyle" matInput placeholder="Frondend Tags" formControlName="frontend_description">
               </mat-form-field> </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
+                id="inputStyle" matInput placeholder="Description" formControlName="frontendRun_url">
+            </mat-form-field> </div>
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -746,7 +764,7 @@
         </div>
         <div class="d-flex flex-row m-3">
           <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Version</b></mat-label>
+              <mat-label id="subTitle"><b>Dataset Version</b></mat-label>
               <input id="inputStyle" matInput placeholder="Enter Id" formControlName="version"> </mat-form-field> </div>
 
           <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
@@ -774,21 +792,21 @@
         </div>
         <div class="d-flex flex-row m-3">
           <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width"
-              appearance="outline"> <mat-label id="subTitle"><b>Name</b></mat-label> <input id="inputStyle" matInput
+              appearance="outline"> <mat-label id="subTitle"><b>Model Name</b></mat-label> <input id="inputStyle" matInput
                 placeholder="" formControlName="project_name"> </mat-form-field><br> </div>
 
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
+              <mat-label id="subTitle"><b>Model Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
                 formControlName="modelTags"> </mat-form-field> </div>
         </div>
         <div class="d-flex flex-row m-3">
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>View Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
+            <mat-label id="subTitle"><b>Model View Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
               formControlName="view_url"> </mat-form-field> </div>
 
           <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width"
               appearance="outline">
-              <mat-label id="subTitle"><b>Run Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
+              <mat-label id="subTitle"><b>Model Run Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
                 formControlName="run_url"> </mat-form-field> </div>
         </div>
         <div class="d-flex flex-row m-3">
@@ -833,7 +851,7 @@
             </mat-form-field> </div>
         </div>
         <div class="d-flex flex-row m-3"> <mat-form-field style="min-width:35vw" class="example-full-width"
-            appearance="outline"> <mat-label id="subTitle"><b>Solution Description</b></mat-label> <input
+            appearance="outline"> <mat-label id="subTitle"><b>Description</b></mat-label> <input
               id="inputStyle" matInput placeholder="" formControlName="solution_description"> </mat-form-field> </div>
 
               <div class="d-flex flex-row m-3">
@@ -932,7 +950,7 @@
               <input id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
             </mat-form-field> </div>
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Pipeline Name</b></mat-label>
+              <mat-label id="subTitle"><b>Pipeline Tags</b></mat-label>
               <input id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
             </mat-form-field> </div>
         </div>
