@@ -164,11 +164,22 @@ export class PortalComponent implements OnInit {
     //   element2.addEventListener("change", updateArrows);
      
     // };
-
-    
+   debugger
+   this.isPanelOpen;
    this.callCarddata();
    this.callCardpipeline();
-    //--------------------------------------------------------------------------------------------------------------------------------
+ //--------------------------------------------------------------------------------------------------------------------------------
+  }
+
+  onPanelOpened(data:any) {
+    debugger
+    this.panelOpenState = true;
+    if(this.link){
+      let idx=this.Frontend.indexOf(data);
+      this.arrowLink3.remove();
+      this.arrowLink3=null;
+      this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[idx+2].querySelector("td"),500,450);
+    }
   }
 
   callCarddata(){
@@ -219,9 +230,6 @@ export class PortalComponent implements OnInit {
         console.log("search Response",this.searchResponse.data)
       }
       )
-     
-    
-  
   }
 
   filterFrontend() {
@@ -235,9 +243,6 @@ export class PortalComponent implements OnInit {
         console.log("search Response",this.searchResponse.data)
       }
       )
-     
-    
-  
   }
 
   filterPipeline() {
@@ -287,10 +292,6 @@ export class PortalComponent implements OnInit {
   refresh(){
     debugger
     this.updateArrows('remove')
-    // if(this.arrowLink2!=null){
-    //   this.arrowLink2.remove();
-    //   this.arrowLink2=null;
-    // }
     
     this.getModel();
     this.getSolution();
@@ -1247,11 +1248,23 @@ editdropdownfrontend:any=[];
       
     } else if (navigator.platform.includes("Linux")) {
       // Running on Linux
+      debugger
       console.log("Linux")
-       this.fromCenterX = fromRect.width;
-      this.fromCenterY =  fromRect.height / 2;
-      this.toCenterX = toRect.width-toRect.width+1 ;
-      this.toCenterY = toRect.height / 2;
+      if(yOffset==500){
+        console.log("inside 500")
+        this.fromCenterX = 130;
+        this.fromCenterY =  26;
+        this.toCenterX = 130 ;
+        this.toCenterY = 80;
+console.log(this.toCenterY)
+      }
+       else{
+        console.log("inside 500+500")
+        this.fromCenterX = fromRect.width;
+        this.fromCenterY =  fromRect.height / 2;
+        this.toCenterX = toRect.width-toRect.width+1 ;
+        this.toCenterY = toRect.height / 2;
+       }
     }
 
     return new LeaderLine(

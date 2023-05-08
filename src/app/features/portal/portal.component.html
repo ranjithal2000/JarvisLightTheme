@@ -148,7 +148,7 @@
           <table style="width: 100%;">
             <tr *ngFor="let data of Frontend" >
               <td>
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0">
+          <mat-expansion-panel style="background-color: #7672ED;" #panel (opened)="onPanelOpened(data)" (closed)="panelOpenState = false" class="py-0 my-0">
              <mat-expansion-panel-header > 
               <mat-panel-title>
                 <p class="mt-3 pt-2" style="font-size: 15px;color:white;" ><b>{{data.frontendName}}</b></p>
