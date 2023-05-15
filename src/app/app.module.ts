@@ -31,6 +31,7 @@ import { NgParticlesModule } from "ng-particles";
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TestComponent } from './features/test/test.component';
+// import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { TestComponent } from './features/test/test.component';
     MatBadgeModule,
     MatCheckboxModule,
     ToastrModule.forRoot(),
+    // OAuthModule.forRoot(),
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
@@ -72,6 +74,7 @@ import { TestComponent } from './features/test/test.component';
     
   ],
   providers      : [
+    // OAuthService,
     UserPreferences,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'always'}},
     {

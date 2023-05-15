@@ -114,8 +114,6 @@
     <!-- </mat-card> -->
 
     <!-- --------------------------------------Fontend Jar------------------------------------------------------------>
-
-    <!-- <mat-card class=""> -->
     <div class="col-lg">
       <table id="table2" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
@@ -148,7 +146,7 @@
           <table style="width: 100%;">
             <tr *ngFor="let data of Frontend" >
               <td>
-          <mat-expansion-panel style="background-color: #7672ED;" #panel (opened)="onPanelOpened(data)" (closed)="panelOpenState = false" class="py-0 my-0">
+          <mat-expansion-panel style="background-color: #7672ED;" #panel (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
              <mat-expansion-panel-header > 
               <mat-panel-title>
                 <p class="mt-3 pt-2" style="font-size: 15px;color:white;" ><b>{{data.frontendName}}</b></p>
@@ -171,8 +169,6 @@
               <!-- <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="run_url" target="_blank" href={{data.frontendRunUrl}}> <mat-icon aria-hidden="false"
                     aria-label="Example home icon" fontIcon="arrow_right_circle"
                     style="transform: scale(2);color:white"></mat-icon></a> </div> -->
-
-              
 
               <div class="btn-grp pl-3 pr-3 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
@@ -231,7 +227,7 @@
           <table style="width: 100%;">
           <tr *ngFor="let data of pipeline" class="mt-2">
             <td>
-              <mat-expansion-panel style="background-color: #7672ED;min-width: 130px;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
+              <mat-expansion-panel style="background-color: #7672ED;min-width: 130px;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0"> 
                 <mat-expansion-panel-header > 
                   <mat-panel-title>
                   <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.pipelineName}}</b></p>
@@ -303,7 +299,7 @@
         <table >
       <tr *ngFor="let data of Modules" class="mt-2 "> 
         <td>
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="py-0 my-0"> 
+          <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0"> 
             <mat-expansion-panel-header > 
               <mat-panel-title>
                 <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.modelName}}</b></p>
@@ -382,7 +378,7 @@
         <table>
       <tr *ngFor="let data of Dataset" class="mt-2">
         <td>
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+          <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')"
            class="py-0 my-0">
             <mat-expansion-panel-header > 
               <mat-panel-title>
@@ -399,7 +395,7 @@
                   <b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
               </div> 
             </div>
-  <br>
+            <br>
             <div class="d-flex flex-row px-1 pt-1">
               <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.datasetUrl}}> 
                 <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
@@ -433,7 +429,7 @@
 
 
 <!---- The Modal ======== Create Dataset ---->
-<div class="modal" id="DownloadModal">
+<!-- <div class="modal" id="DownloadModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="popup container"> <mat-tab-group [selectedIndex]="selectedIndex"> <mat-tab label="API_Data">
@@ -448,12 +444,12 @@
                 [disabled]="!formdata1.valid">Next</button> <button type="button" class="btn btn-danger"
                 data-bs-dismiss="modal">Close</button> </div>
           </mat-tab> <mat-tab label="Script" [disabled]="!formdata1.valid"> <br><br>
-            <pre class="code_color">{{value1}}</pre> <button type="button" class="btn btn-success model"
-              (click)="copytext()">Copy</button>
+            <pre class="code_color">{{value1}}</pre> <button type="button" class="btn btn-success model" 
+               (click)="copytext()">Copy</button>
           </mat-tab> </mat-tab-group> </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
  <!----------------------------- adding jars --------------------------------------->
@@ -662,7 +658,6 @@
         </form>
 
             <!-------------------- Add Pipeline---------------------------->
-
         <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
           <div class="mt-4 p-3">
             <h3 id="title"><b>Add Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
@@ -698,7 +693,6 @@
         </form>
 
         <!-- add frontend -->
-
         <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
           <div class="mt-4 p-3">
             <h3 id="title"><b>Add Frondend</b></h3> <button type="button" class="close" data-dismiss="modal"
@@ -732,8 +726,6 @@
               (click)="addFrontend()" data-dismiss="modal" [disabled]="!formdata9.valid">Save</button> &nbsp;<button type="button"
               class="btn btn-danger" data-dismiss="modal">Close</button> </div>
         </form>
-
-       
       </div>
     </div>
   </div>
@@ -992,7 +984,7 @@
 </div>
 <!-----------------------------><!-- -----------Modal ======= Create Models------------- --><!----------------------------->
 
-<div class="modal" id="ModelModal">
+<!-- <div class="modal" id="ModelModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="popup container">
@@ -1005,7 +997,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!---------------------------- delete confirmation popup ------------------------------------->

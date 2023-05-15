@@ -1,7 +1,13 @@
 
-    
+// :host ::ng-deep * {
+//   all: unset !important;
+// }  
    
-// table td{
+
+
+
+
+// table td{              
 //     position: relative;
 // }
 // table td:before,

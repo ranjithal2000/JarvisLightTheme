@@ -18,14 +18,15 @@
                  pattern=".*\S.*"
                  maxlength="70"
                  required>
+                
         </div>
         <div class="username-input" *ngIf="loginMode === loginModeEnum.password">
-          <label for="password">Password</label>
+          <!-- <label for="password">Password</label>
           <input type="password"
                  id="password"
                  name="password"
                  [(ngModel)]="loginModel.password"
-                 required>
+                 required> -->
         </div>
         <div *ngIf="loginFailed" class="errors">
           Invalid User/Password combination
@@ -38,12 +39,15 @@
           </button>
         </ng-container>
 
-        <mat-autocomplete #auto="matAutocomplete">
+        <h3 style="text-align: center;">Or</h3>
+
+        <button class="google_btn" ><img src="assets\google1.png" class="logo1" alt="Google Logo" ></button>
+        <!-- <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
             {{option.name}}
           </mat-option>
-        </mat-autocomplete>
-        <ng-content></ng-content>
+        </mat-autocomplete> -->
+        <!-- <ng-content></ng-content> -->
         <!--     -->
       </form>
     </section>

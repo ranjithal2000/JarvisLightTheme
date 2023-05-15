@@ -22,7 +22,7 @@ declare var LeaderLine: any;
   selector: 'sm-portal',
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.scss'],
-  
+  // encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent implements OnInit {  
  
@@ -76,9 +76,9 @@ export class PortalComponent implements OnInit {
     private toastr: ToastrService,
     private cartService:CartService) { 
     this.innerHeight = (window.screen.height) + "px";
-        this.innerWidth = (window.screen.width) + "px";
-        console.log(this.innerHeight);
-        console.log(this.innerWidth);
+    this.innerWidth = (window.screen.width) + "px";
+    console.log(this.innerHeight);
+    console.log(this.innerWidth);
   }
   
   ngOnInit(): void {
@@ -88,97 +88,34 @@ export class PortalComponent implements OnInit {
     this.getdataset();
     this.getPipeline();
     this.getFrontend();
-
-
-    //--------------------------------------------------------------------------------------------------------------------------------
-
-    // window.onload = () => {
-    //   const table1 = document.getElementById("table1");
-    //   const table2 = document.getElementById("table2");
-    //   const table3 = document.getElementById("table3");
-    //   const table4 = document.getElementById("table4");
-    //   const table5 = document.getElementById("table5");
-    //   const element2 = document.getElementById("element2") as HTMLInputElement;
-      
-    //   function createArrow(from, to, yOffset) {
-    //     return new LeaderLine(
-    //       LeaderLine.pointAnchor(from, { x: '120%', y: `calc(50% + ${yOffset}px)` }),
-    //       LeaderLine.pointAnchor(to, { x: 0, y: `calc(50% + ${yOffset}px)` }),
-    //       {
-    //         color: 'black',
-    //         size: 2,
-    //         startSocket: 'right',
-    //         endSocket: 'left',
-    //         startPlug: 'behind',
-    //         endPlug: 'arrow2',
-    //         endPlugSize: 1.5,
-    //         path: 'fluid',
-    //         dash: { animation: true },
-    //       }
-    //     );
-    //   }
-
-    //   const rows1 = table1.querySelectorAll("tr");
-    //   const rows2 = table2.querySelectorAll("tr");
-    //   const rows3 = table3.querySelectorAll("tr");
-    //   const rows4 = table4.querySelectorAll("tr");
-    //   const rows5 = table5.querySelectorAll("div");
-
-    
-    //   let arrowLink2;
-    //   let arrowLink3;
-    //   let arrowLink4;
-    //   let arrowLink5;
-    //   let arrowLink6;
-
-    //   const updateArrows = () => {
-    //     if (element2.checked && !arrowLink2) {
-    //       arrowLink2 = createArrow(rows1[2].querySelector("td"), rows2[2].querySelector("td"), 5);
-    //     } else if (!element2.checked && arrowLink2) {
-    //       arrowLink2.remove();
-    //       arrowLink2 = null;
-    //     }
-    //     if (element2.checked && !arrowLink4) {
-    //       arrowLink4 = createArrow(rows2[0].querySelector("td"), rows3[1].querySelector("td"), 5);
-    //     } else if (!element2.checked && arrowLink4) {
-    //       arrowLink4.remove();
-    //       arrowLink4 = null;
-    //     }
-    //     if (element2.checked && !arrowLink5) {
-    //       arrowLink5 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
-    //     } else if (!element2.checked && arrowLink6) {
-    //       arrowLink5.remove();
-    //       arrowLink5 = null;
-    //     }
-    //     if (element2.checked && !arrowLink6) {
-    //       arrowLink6 = createArrow(rows4[0].querySelector("td"), rows5[0].querySelector("mat-expansion-panel"), 5);
-    //       // arrowLink3 = createArrow(rows3[0].querySelector("td"), rows4[1].querySelector("td"), 5);
-    //     } else if (!element2.checked && arrowLink6 && arrowLink3) {
-    //       arrowLink6.remove();
-    //       arrowLink3.remove();
-    //       arrowLink6 = null;
-    //       // arrowLink3 = null;
-    //     }
-    //   }
-
-    //   element2.addEventListener("change", updateArrows);
-     
-    // };
-   debugger
+  
    this.isPanelOpen;
    this.callCarddata();
    this.callCardpipeline();
  //--------------------------------------------------------------------------------------------------------------------------------
   }
 
-  onPanelOpened(data:any) {
+  idx:any;
+  onPanelOpened(data:any,state:any) {
     debugger
-    this.panelOpenState = true;
+    if(state=='opened'){
+      this.panelOpenState=true;
+    }else{
+      this.panelOpenState=false;
+    }
+   
     if(this.link){
-      let idx=this.Frontend.indexOf(data);
-      this.arrowLink3.remove();
-      this.arrowLink3=null;
-      this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[idx+2].querySelector("td"),500,450);
+      if(data.frontendName){
+        this.idx=this.Frontend.indexOf(data);
+      }else if(data.pipelineName){
+        this.idx=this.pipeline.indexOf(data);
+      }else if(data.modelName){
+        this.idx=this.Modules.indexOf(data);
+      }else if(data.datasetName){
+        this.idx=this.Dataset.indexOf(data);
+      }
+      
+      this.updateArrows(data);
     }
   }
 
@@ -773,8 +710,7 @@ deleteFrontend(){
         this.toastr.error(this.storeResponse.message);
         // alert(this.storeResponse.message)
         this.getFrontend();
-      }
-      )
+      })
 }
   //------------------------------unknow-------------------------------
   getData(data: any) {
@@ -1023,12 +959,12 @@ debugger
   
   
   
-  copytext() {
-    navigator.clipboard.writeText(this.value1);
-  }
-  copytext1() {
-    navigator.clipboard.writeText(this.value2);
-  }
+  // copytext() {
+  //   navigator.clipboard.writeText(this.value1);
+  // }
+  // copytext1() {
+  //   navigator.clipboard.writeText(this.value2);
+  // }
   ds: boolean = false;
   mdl: boolean = false;
   sln: boolean = false;
@@ -1091,81 +1027,81 @@ debugger
     }
   }
   
-  value1: any = 'Enter all API_Data to generate the Script';
-  new_dataset_name: any = '';
-  dataset_id: any = '';
-  new_dataset_project_name: any = '';
-  DownloadData() {
-    if (this.selectedIndex != 3) {
-      this.selectedIndex = this.selectedIndex + 1;
-    }
-    console.log(this.selectedIndex);
-    this.new_dataset_name = this.formdata1.controls['dataset_name'].value;
-    this.dataset_id = this.formdata1.controls['dataset_id'].value;
-    this.new_dataset_project_name = this.formdata1.controls['dataset_project'].value;
-    this.value1 = `
-from clearml import Dataset
-#Get the dataset using Dataset Id
-dataset = Dataset.get("${this.dataset_id}")
-#Get the physical location of the dataset
-url = dataset._task.artifacts['data'].url
-# Create a dataset with ClearML\`s Dataset class
-new_dataset = Dataset.create(dataset_name="${this.new_dataset_name}",
-                  dataset_project="${this.new_dataset_project_name}") 
-#Add the example url                 
-new_dataset.add_external_files(source_url=url)
-# Upload dataset to ClearML server (customizable)
-new_dataset.upload() 
-# commit dataset changes
-new_dataset.finalize()
-  `
-  }
-  setDataValues(data: any) {
-    this.formdata1.controls['dataset_name'].setValue(data.Name);
-    this.formdata1.controls['dataset_id'].setValue(data.Id);
-  }
-  value2: any;
-  Model_Proj: any;
-  model_Id: any;
-  modelcode(data: any) {
-    this.Model_Proj = data.Name;
-    this.model_Id = data.Id;
-    this.value2 =
-      `from clearml import Model, Task, Logger
-import tensorflow as tf
-from tempfile import gettempdir
-import os
-import numpy as np
-import warnings
-warnings.filterwarnings('ignore')
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-project_config = {
-    'PROJECT_NAME' : '${this.Model_Proj}'}
-task = Task.init(
-    project_name=project_config['PROJECT_NAME'],
-    task_name='Model Inference',
-    task_type='inference',
-    reuse_last_task_id=False
-)
-logger = task.get_logger()
-# print(f'Loading model: af7391e2c0784dbf9e83ba3969aee923')
-model = Model('${this.model_Id}')
-print(f'\nGetting a local copy of the model : {model.id}\n') 
-model_path  = model.get_local_copy()
-print(f'model_path= {model_path}')
-#Load the model into keras/tf
-model = tf.keras.models.load_model(model_path)
-print(model.summary())
-#Load data to run inference on mnnist test data
-(x_train,y_train),(x_test,y_test) = tf.keras.datasets.mnist.load_data()
-print(x_train.shape,y_train.shape,x_test.shape,y_test.shape)
-#run inference
-sample = x_test#[:5,:,:]
-for i,img in enumerate(sample):
-    pred = model.predict(np.expand_dims(img, axis=0))
-    pred = np.argmax(pred, axis=1)
-    logger.report_image("image", str(pred), iteration=i, image=img)`
-  }
+  // value1: any = 'Enter all API_Data to generate the Script';
+  // new_dataset_name: any = '';
+  // dataset_id: any = '';
+  // new_dataset_project_name: any = '';
+//   DownloadData() {
+//     if (this.selectedIndex != 3) {
+//       this.selectedIndex = this.selectedIndex + 1;
+//     }
+//     console.log(this.selectedIndex);
+//     this.new_dataset_name = this.formdata1.controls['dataset_name'].value;
+//     this.dataset_id = this.formdata1.controls['dataset_id'].value;
+//     this.new_dataset_project_name = this.formdata1.controls['dataset_project'].value;
+//     this.value1 = `
+// from clearml import Dataset
+// #Get the dataset using Dataset Id
+// dataset = Dataset.get("${this.dataset_id}")
+// #Get the physical location of the dataset
+// url = dataset._task.artifacts['data'].url
+// # Create a dataset with ClearML\`s Dataset class
+// new_dataset = Dataset.create(dataset_name="${this.new_dataset_name}",
+//                   dataset_project="${this.new_dataset_project_name}") 
+// #Add the example url                 
+// new_dataset.add_external_files(source_url=url)
+// # Upload dataset to ClearML server (customizable)
+// new_dataset.upload() 
+// # commit dataset changes
+// new_dataset.finalize()
+//   `
+//   }
+  // setDataValues(data: any) {
+  //   this.formdata1.controls['dataset_name'].setValue(data.Name);
+  //   this.formdata1.controls['dataset_id'].setValue(data.Id);
+  // }
+//   value2: any;
+//   Model_Proj: any;
+//   model_Id: any;
+//   modelcode(data: any) {
+//     this.Model_Proj = data.Name;
+//     this.model_Id = data.Id;
+//     this.value2 =
+//       `from clearml import Model, Task, Logger
+// import tensorflow as tf
+// from tempfile import gettempdir
+// import os
+// import numpy as np
+// import warnings
+// warnings.filterwarnings('ignore')
+// os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+// project_config = {
+//     'PROJECT_NAME' : '${this.Model_Proj}'}
+// task = Task.init(
+//     project_name=project_config['PROJECT_NAME'],
+//     task_name='Model Inference',
+//     task_type='inference',
+//     reuse_last_task_id=False
+// )
+// logger = task.get_logger()
+// # print(f'Loading model: af7391e2c0784dbf9e83ba3969aee923')
+// model = Model('${this.model_Id}')
+// print(f'\nGetting a local copy of the model : {model.id}\n') 
+// model_path  = model.get_local_copy()
+// print(f'model_path= {model_path}')
+// #Load the model into keras/tf
+// model = tf.keras.models.load_model(model_path)
+// print(model.summary())
+// #Load data to run inference on mnnist test data
+// (x_train,y_train),(x_test,y_test) = tf.keras.datasets.mnist.load_data()
+// print(x_train.shape,y_train.shape,x_test.shape,y_test.shape)
+// #run inference
+// sample = x_test#[:5,:,:]
+// for i,img in enumerate(sample):
+//     pred = model.predict(np.expand_dims(img, axis=0))
+//     pred = np.argmax(pred, axis=1)
+//     logger.report_image("image", str(pred), iteration=i, image=img)`
+//   }
   
   @Output() CartEvent=new EventEmitter();
   badgeCount:any;
@@ -1204,6 +1140,7 @@ editdropdownfrontend:any=[];
   }
 
    linkage(data:any){
+    debugger
     let solutionId=data.id;
     this.http.post('http://13.234.148.242:3000/solution/linked', {solutionId})
     .subscribe(response => {
@@ -1222,49 +1159,42 @@ editdropdownfrontend:any=[];
         if(this.Solution.length==1){
           this.updateArrows(data);
         }
-      }
-    )
+      })
   }
 
     fromCenterX:any;
     fromCenterY :any;
     toCenterX :any;
     toCenterY :any;
+    fromCenterX1:any;
+    fromCenterY1 :any;
+    toCenterX1 :any;
+    toCenterY1 :any;
+
   createArrow(from, to, yOffset,position) {
     debugger
     const fromRect = from.getBoundingClientRect();
     const toRect = to.getBoundingClientRect();
 
-    
-
     if (navigator.platform.includes("Win")) {
       // Running on Windows
-      console.log("window")
+      // console.log("window")
+      // this.fromCenterX = '157%';
+      // this.fromCenterY =  yOffset+'%';
+      // this.toCenterX = '66%' ;
+      // this.toCenterY = toRect.height+position+'%';
       this.fromCenterX = '157%';
-      this.fromCenterY =  yOffset+'%';
-      this.toCenterX = '66%' ;
-      this.toCenterY = fromRect.height+position+'%';
-
-      
+      this.fromCenterY =  fromRect.height*2+toRect.height-10;
+      this.toCenterX ='66%';
+      this.toCenterY = toRect.height*2+toRect.height-10;
     } else if (navigator.platform.includes("Linux")) {
       // Running on Linux
       debugger
-      console.log("Linux")
-      if(yOffset==500){
-        console.log("inside 500")
-        this.fromCenterX = 130;
-        this.fromCenterY =  26;
-        this.toCenterX = 130 ;
-        this.toCenterY = 80;
-console.log(this.toCenterY)
-      }
-       else{
-        console.log("inside 500+500")
-        this.fromCenterX = fromRect.width;
-        this.fromCenterY =  fromRect.height / 2;
-        this.toCenterX = toRect.width-toRect.width+1 ;
-        this.toCenterY = toRect.height / 2;
-       }
+        // console.log("Linux");
+        this.fromCenterX = fromRect.width; //136
+        this.fromCenterY =  104.75; //54/2=27
+        this.toCenterX = toRect.width-toRect.width+1 ; //136-136+1
+        this.toCenterY = toRect.height/2+position; //54/2=27
     }
 
     return new LeaderLine(
@@ -1291,19 +1221,33 @@ console.log(this.toCenterY)
  
   createArrow1(from, to, position,yOffset,position1) {
     debugger
+        const fromRect = from.getBoundingClientRect();
+        const toRect = to.getBoundingClientRect();
 
-    // const fromRect = from.getBoundingClientRect();
-    // const toRect = to.getBoundingClientRect();
+        if (navigator.platform.includes("Win")) {
+          // this.fromCenterX1 = position; //136
+          // this.fromCenterY1 = position1 ;//104.75; //54/2=27
+          // this.toCenterX1 = yOffset ; //136-136+1
+          // this.toCenterY1 = position1; //54/2=27
 
-    // const fromCenterX = fromRect.width;
-    // const fromCenterY =  fromRect.height / 2;
-    // const toCenterX = toRect.width-toRect.width+1 ;
-    // const toCenterY = toRect.height / 2;
+          this.fromCenterX1 = position; //136
+          this.fromCenterY1 = fromRect.height*2+toRect.height-10 ;//104.75; //54/2=27
+          this.toCenterX1 = yOffset ; //136-136+1
+          this.toCenterY1 = toRect.height*2+toRect.height-10; //54/2=27
+
+        }else if (navigator.platform.includes("Linux")) {
+          this.fromCenterX1 = fromRect.width; //136
+          this.fromCenterY1 =  fromRect.height/2;//104.75; //54/2=27
+          this.toCenterX1 = toRect.width-toRect.width+1 ; //136-136+1
+          // this.toCenterY1 = toRect.height/2; 
+          this.toCenterY1 = toRect.height/2+position1;//54/2=27
+        }
+
+       
+    
     return new LeaderLine(
-      LeaderLine.pointAnchor(from, { x: position+'%', y: position1+'%' }),
-      LeaderLine.pointAnchor(to, { x: yOffset+'%', y: position1+'%' }),  
-      // LeaderLine.pointAnchor(from, { x: fromCenterX , y: fromCenterY  }),
-      // LeaderLine.pointAnchor(to, { x: toCenterX , y: toCenterY  }),
+      LeaderLine.pointAnchor(from, { x: this.fromCenterX1 , y: this.fromCenterY1  }),
+      LeaderLine.pointAnchor(to, { x: this.toCenterX1 , y: this.toCenterY1  }),
       {
         color: 'black',
         size: 2,
@@ -1314,12 +1258,11 @@ console.log(this.toCenterY)
         endPlugSize: 1.5,
         path: 'fluid',
         dash: { animation: true },
-        end:137
-        
+        end:137 
       }
-    );
-    
+    ); 
   }
+
   createArrow2(from, to, yOffset,position,position1) {
     debugger
     return new LeaderLine(
@@ -1335,7 +1278,6 @@ console.log(this.toCenterY)
         endPlugSize: 1.5,
         path: 'fluid',
         dash: { animation: true },
-       
       }
     );
   }
@@ -1359,6 +1301,26 @@ console.log(this.toCenterY)
     );
   }
   
+  removearrow(){
+    if(this.Frontend.length==1){
+      this.arrowLink2.remove();
+      this.arrowLink2 = null;
+    }else if(this.Frontend.length==2){
+      this.arrowLink2.remove();
+      this.arrowLink2 = null;
+      this.arrowLink3.remove();
+      this.arrowLink3 = null;
+    }else if(this.Frontend.length==3){
+      this.arrowLink2.remove();
+      this.arrowLink2 = null;
+      this.arrowLink3.remove();
+      this.arrowLink3 = null;
+      this.arrowLink4.remove();
+      this.arrowLink4 = null;
+    }
+  }
+
+
    updateArrows(data:any){
    
     const table1 = document.getElementById("table1");
@@ -1380,6 +1342,104 @@ console.log(this.toCenterY)
       // this.arrowLink4;
       // this.arrowLink5;
       // this.arrowLink6;
+      if(navigator.platform.includes("Linux")){
+        debugger
+        if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==true){
+            if(this.idx==0){
+              this.removearrow();
+              this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
+              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145);
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,145); 
+            } else if(this.idx==1){
+              this.arrowLink3.remove();
+              this.arrowLink3 = null;
+              this.arrowLink4.remove();
+              this.arrowLink4 = null;
+              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145); 
+            }else if(this.idx==2){
+              this.arrowLink4.remove();
+              this.arrowLink4 = null;
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70); 
+            } 
+        }else if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==false){
+            if(this.idx==0){
+              this.removearrow();
+              this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
+              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145);
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,-145); 
+            } else if(this.idx==1){
+              this.arrowLink3.remove();
+              this.arrowLink3 = null;
+              this.arrowLink4.remove();
+              this.arrowLink4 = null;
+              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145); 
+            }else if(this.idx==2){
+              this.arrowLink4.remove();
+              this.arrowLink4 = null;
+              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70); 
+            } 
+        }
+        //frontend to pipeline
+        if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==true){
+          this.arrowLink5.remove();
+          this.arrowLink5 = null;
+          this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,70);
+        }
+        else if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==false){
+          this.arrowLink5.remove();
+          this.arrowLink5 = null;
+          this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,-77.5);
+        }
+
+        //pipeline to model
+        if(data && data.modelName && this.arrowLink8 && this.panelOpenState==true){
+          if(this.idx==0){
+            this.arrowLink8.remove();
+          this.arrowLink8 = null;
+          this.arrowLink9.remove();
+          this.arrowLink9 = null;
+          this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,80);
+          this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,155);
+          }else if(this.idx==1){
+            this.arrowLink9.remove();
+            this.arrowLink9 = null;
+            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,70);
+          }     
+        }
+        else if(data && data.modelName && this.arrowLink5 && this.panelOpenState==false){
+          if(this.idx==0){
+          this.arrowLink8.remove();
+          this.arrowLink8 = null;
+          this.arrowLink9.remove();
+          this.arrowLink9 = null;
+          this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-77.5);
+          this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,-155);
+          }else if(this.idx==1){
+            this.arrowLink9.remove();
+            this.arrowLink9 = null;
+            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-75.5);
+          }  
+        }
+
+        //model to dataset
+        if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==true){
+          this.arrowLink11.remove();
+          this.arrowLink11 = null;
+          this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,70);
+        }
+        else if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==false){
+          this.arrowLink11.remove();
+          this.arrowLink11 = null;
+          this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,-84.5);
+        }
+        if(data && data.datasetName && this.arrowLink5 && this.panelOpenState==true){
+
+        }
+    }
+
+
     
     //---------------solution to frontend---------------  
     if (this.Solution && this.arrowLink2 == undefined && data !='remove') { 
@@ -1387,23 +1447,26 @@ console.log(this.toCenterY)
         // ---check machine os--
         if(navigator.platform.includes("Linux")){
           //--- check number of cards---
-        if(this.Frontend.length<=2){
-          if(i==0){
-            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),50,50); 
-          } else{
-            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),50,50); 
-          }
-              
-        }else{
-          if(i==0){
-            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
-          } else if(i==1){
-            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
-          }else{
-            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
-          }
-           
-        }    
+          
+          // else{
+            if(this.Frontend.length<=2){
+              if(i==0){
+                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+              } else{
+                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+              }
+                  
+            }else{
+              if(i==0){
+                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+              } else if(i==1){
+                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+              }else{
+                this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+              }
+            }    
+          // }
+        
       }else{
         if(this.Frontend.length<=2){
           if(i==0){
@@ -1414,11 +1477,11 @@ console.log(this.toCenterY)
               
         }else{
           if(i==0){
-            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,245); 
           } else if(i==1){
-            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,275); 
           }else{
-            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320); 
+            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,315); 
           }
            
         }    
@@ -1450,38 +1513,39 @@ console.log(this.toCenterY)
     
     // ---------------frontend to next---------------
     if (this.Frontend && this.pipeline.length!=0 && !this.arrowLink5) {
+      debugger
       for(let i=0;i<this.pipeline.length;i++){
         if(navigator.platform.includes("Linux")){
         if(this.pipeline.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),212,116,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[i+2].querySelector("td"),212,116,0);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),212,116,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[i+2].querySelector("td"),212,116,0);
           } 
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,0);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,0);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,0);
           } 
         }  
       } else { 
-        //---------windows-----
+        //---------windows-----applied only for 2 lines
         if(this.pipeline.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),320,231,279);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[i+2].querySelector("td"),435,240,103);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),275,116,279);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[i+2].querySelector("td"),435,240,103);
           } 
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,50);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,50);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),250,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows3[i+2].querySelector("td"),250,320,50);
           } 
         }  
 
@@ -1492,33 +1556,33 @@ console.log(this.toCenterY)
         if(navigator.platform.includes("Linux")){
         if(this.Modules.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),213,231,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows4[i+2].querySelector("td"),213,231,0);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),232,275,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows4[i+2].querySelector("td"),232,275,0);
           }  
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,0);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,0);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,0);
           }  
         }  
       }else{
         if(this.Modules.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),232,275,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows4[i+2].querySelector("td"),429,346,103);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),232,275,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows4[i+2].querySelector("td"),429,346,103);
           }  
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,50);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,50);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),232,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows4[i+2].querySelector("td"),232,320,50);
           }  
         }  
       }     
@@ -1530,34 +1594,34 @@ console.log(this.toCenterY)
         if(navigator.platform.includes("Linux")){
         if(this.Dataset.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),213,345,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows5[i+2].querySelector("td"),213,345,0);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),213,345,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows5[i+2].querySelector("td"),213,345,0);
           }  
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,0);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,0);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,0);
           }  
         } 
       }else{
-        // ---------windows
+        // ---------windows------------------
         if(this.Dataset.length<=2){
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),320,559,279);
+            this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows5[i+2].querySelector("td"),431,450,103);
           }else{
-            this.arrowLink6 = this.createArrow1(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),346,275,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows5[i+2].querySelector("td"),431,450,103);
           }  
         }else{
           if(i==0){
-            this.arrowLink5 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink5 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,50);
           }else if(i==1){
-            this.arrowLink6 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink6 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,50);
           } else{
-            this.arrowLink7 = this.createArrow1(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),590,320,50);
+            this.arrowLink7 = this.createArrow1(this.rows2[3].querySelector("td"), this.rows5[i+2].querySelector("td"),590,320,50);
           }  
         } 
       }      
@@ -1586,19 +1650,19 @@ console.log(this.toCenterY)
         if(navigator.platform.includes("Linux")){
         if(this.Modules.length<=3){
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),328,230,50);
+            this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),328,230,0);
           }else if(i==1){
-            this.arrowLink9 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),328,230,50);
+            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),328,230,0);
           }else{
-            this.arrowLink10 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),328,230,50);
+            this.arrowLink10 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),328,230,0);
           }  
         }else{
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,330,50);
+            this.arrowLink8 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,330,0);
           }else if(i==1){
-            this.arrowLink9 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,330,50);
+            this.arrowLink9 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,330,0);
           } else{
-            this.arrowLink10 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,330,50);
+            this.arrowLink10 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,330,0);
           } 
           
         }  
@@ -1606,21 +1670,20 @@ console.log(this.toCenterY)
         // -----------windows----------
         if(this.Modules.length<=3){
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),485,395,280);
+            this.arrowLink8 = this.createArrow2(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),255,165,273);
           }else if(i==1){
-            this.arrowLink9 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),485,395,280);
+            this.arrowLink9 = this.createArrow2(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),255,165,273);
           }else{
-            this.arrowLink10 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),485,388,280);
+            this.arrowLink10 = this.createArrow2(this.rows3[2].querySelector("td"), this.rows4[i+2].querySelector("td"),485,388,103);
           }  
         }else{
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,415,100);
+            this.arrowLink8 = this.createArrow2(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,415,100);
           }else if(i==1){
-            this.arrowLink9 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,411,100);
+            this.arrowLink9 = this.createArrow2(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,411,100);
           } else{
-            this.arrowLink10 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,411,100);
-          } 
-          
+            this.arrowLink10 = this.createArrow2(this.rows3[3].querySelector("td"), this.rows4[i+2].querySelector("td"),200,411,100);
+          }   
         }  
       }     
       }  
@@ -1628,17 +1691,17 @@ console.log(this.toCenterY)
       for(let i=0;i<this.Dataset.length;i++){
         if(this.Dataset.length<=2){
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606,50);
+            this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows5[i+2].querySelector("td"),200,606,50);
           }else{
-            this.arrowLink9 = this.createArrow2(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606,50);
+            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows5[i+2].querySelector("td"),200,606,50);
           }    
         }else{
           if(i==0){
-            this.arrowLink8 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606,50);
+            this.arrowLink8 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows5[i+2].querySelector("td"),200,606,50);
           }else if(i==1){
-            this.arrowLink9 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606,50);
+            this.arrowLink9 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows5[i+2].querySelector("td"),200,606,50);
           } else{
-            this.arrowLink10 = this.createArrow2(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),200,606,50);
+            this.arrowLink10 = this.createArrow1(this.rows3[3].querySelector("td"), this.rows5[i+2].querySelector("td"),200,606,50);
           }   
         }       
       }  
@@ -1673,34 +1736,34 @@ console.log(this.toCenterY)
         if(navigator.platform.includes("Linux")){
         if(this.Dataset.length<=2){
           if(i==0){
-            this.arrowLink11 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),442,345,50);
+            this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[i+2].querySelector("td"),442,345,0);
           }else{
-            this.arrowLink12 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),442,345,50);
+            this.arrowLink12 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[i+2].querySelector("td"),442,345,0);
           }  
-        }else{
+        }else{  
           if(i==0){
-            this.arrowLink11 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),280,250,50);
+            this.arrowLink11 = this.createArrow1(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),280,250,0);
           }else if(i==1){
-            this.arrowLink12 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),280,250,50);
+            this.arrowLink12 = this.createArrow1(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),280,250,0);
           }else{
-            this.arrowLink13 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),280,250,50);
+            this.arrowLink13 = this.createArrow1(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),280,250,0);
           }
         } 
       }else{
           // ---------windows----------------
         if(this.Dataset.length<=2){
           if(i==0){
-            this.arrowLink11 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),650,560,280);
+            this.arrowLink11 = this.createArrow3(this.rows4[2].querySelector("td"), this.rows5[i+2].querySelector("td"),305,214,280);
           }else{
-            this.arrowLink12 = this.createArrow3(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),675,565,280);
+            this.arrowLink12 = this.createArrow3(this.rows4[2].querySelector("td"), this.rows5[i+2].querySelector("td"),305,214,280);
           }  
         }else{
           if(i==0){
-            this.arrowLink11 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),0,345,0);
+            this.arrowLink11 = this.createArrow3(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),0,345,0);
           }else if(i==1){
-            this.arrowLink12 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),0,345,0);
+            this.arrowLink12 = this.createArrow3(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),0,345,0);
           }else{
-            this.arrowLink13 = this.createArrow3(this.rows1[3].querySelector("td"), this.rows2[i+2].querySelector("td"),0,345,0);
+            this.arrowLink13 = this.createArrow3(this.rows4[3].querySelector("td"), this.rows5[i+2].querySelector("td"),0,345,0);
           }
         } 
       }      
@@ -1783,7 +1846,7 @@ console.log(this.toCenterY)
 //       {
 //         color: 'black',
 //         size: 2,
-//         startSocket: this.createArrow3,
+//         startSocket: this.createArrow1,
 //         endSocket: 'left',
 //         startPlug: 'disc',
 //         endPlug: 'disc',

@@ -14,7 +14,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {LoginService} from '~/shared/services/login.service';
 import {UserPreferences} from '../../user-preferences';
 import {Environment} from '../../../../environments/base';
-
+// import { GoogleApiService } from '../../../GoogleApiService';
+// import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'sm-login',
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private userPreferences: UserPreferences,
     private config: ConfigurationService,
+    // private readonly googleApi: GoogleApiService,
     private cdr: ChangeDetectorRef
   ) {
     this.environment = config.getStaticEnvironment();
@@ -212,6 +214,19 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginService.autoLogin(name, () => this.afterLogin());
     }
   }
+
+  // userInfo: any;
+  // Glogin(){
+  //   debugger
+  //   this.googleApi.googleLogin();
+  
+  //   this.googleApi.userProfileSubject.subscribe(info => {
+  
+  //   this.userInfo = info;
+  //   console.log(this.userInfo);
+  // })
+
+  // }
 
   private afterLogin() {
     this.userPreferences.loadPreferences()
