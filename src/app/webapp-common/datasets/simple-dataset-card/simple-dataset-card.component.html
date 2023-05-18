@@ -32,7 +32,8 @@
         (rename)="editName.inlineActivated()"
         (addTag)="addTag.emit($event)"
         (delete)="delete.emit()"
-      ></sm-pipeline-card-menu>
+      >
+    </sm-pipeline-card-menu>
     </div>
     <div *ngIf="project.last_update; else: noRun" class="last-run">Updated {{project.last_update | timeAgo}}</div>
     <ng-template #noRun>

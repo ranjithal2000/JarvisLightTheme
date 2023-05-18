@@ -2,6 +2,9 @@
      class="p-0 cell menu-button al-icon al-color blue-300 al-ico-bars-menu"
 ></div>
 <mat-menu #pipelinesMenu="matMenu">
+  <button mat-menu-item (click)="addtoPortal()">
+    <i class="al-icon sm-md" [class]="icons.TAG"></i>Add To Portal
+  </button>
   <button mat-menu-item (click)="rename.emit()">
     <i class="al-icon sm-md" [class]="icons.EDIT"></i>Rename
   </button>

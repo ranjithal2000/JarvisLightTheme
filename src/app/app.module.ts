@@ -35,7 +35,7 @@ import { TestComponent } from './features/test/test.component';
 
 
 @NgModule({
-  declarations   : [AppComponent, PortalComponent, SplashScreenComponent, TestComponent],
+  declarations   : [AppComponent,PortalComponent, SplashScreenComponent, TestComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

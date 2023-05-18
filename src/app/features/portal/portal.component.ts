@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
@@ -10,6 +10,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import {CartService} from '~/shared/services/cart.service'
 import { log } from 'console';
+import { MatAccordion } from '@angular/material/expansion';
+import { PortalModule } from './portal.module';
+
 
 
 export interface tags {
@@ -19,13 +22,15 @@ export interface tags {
 declare var LeaderLine: any;
 
 @Component({
+  // standalone:true,
   selector: 'sm-portal',
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.scss'],
   // encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent implements OnInit {  
- 
+  @ViewChild('panel1', { static: true }) panel1: ElementRef;
+
   readonly ICONS = ICONS;
   isPanelOpen = false;
   dataSetId: any;
@@ -125,9 +130,9 @@ export class PortalComponent implements OnInit {
     })
   }
   callCardpipeline(){
-    this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => { 
+    // this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => { 
     
-    })
+    // })
   }
 
 
@@ -228,7 +233,7 @@ export class PortalComponent implements OnInit {
 
   refresh(){
     debugger
-    this.updateArrows('remove')
+    // this.updateArrows('remove')
     
     this.getModel();
     this.getSolution();
@@ -1156,9 +1161,9 @@ editdropdownfrontend:any=[];
           this.Dataset=this.linkagedata.datasets;
           this.Frontend=this.linkagedata.frontends;
 
-        if(this.Solution.length==1){
-          this.updateArrows(data);
-        }
+        // if(this.Solution.length==1){
+        //   this.updateArrows(data);
+        // }
       })
   }
 
@@ -1172,21 +1177,32 @@ editdropdownfrontend:any=[];
     toCenterY1 :any;
 
   createArrow(from, to, yOffset,position) {
-    debugger
-    const fromRect = from.getBoundingClientRect();
-    const toRect = to.getBoundingClientRect();
+    // const element = this.panel1.nativeElement;
 
+    // const height = element.offsetHeight;
+    // const width = element.offsetWidth;
+    // console.log('Height:', height);
+    // console.log('Width:', width);
+    debugger
+    
+    const fromRect = from.getBoundingClientRect();
+    console.log(fromRect);
+    const toRect = to.getBoundingClientRect();
+    console.log(toRect);
     if (navigator.platform.includes("Win")) {
       // Running on Windows
       // console.log("window")
-      // this.fromCenterX = '157%';
-      // this.fromCenterY =  yOffset+'%';
-      // this.toCenterX = '66%' ;
-      // this.toCenterY = toRect.height+position+'%';
-      this.fromCenterX = '157%';
-      this.fromCenterY =  fromRect.height*2+toRect.height-10;
-      this.toCenterX ='66%';
-      this.toCenterY = toRect.height*2+toRect.height-10;
+      let x=119.5;
+      let x1=70.5
+      this.fromCenterX = fromRect.width+x;
+      this.fromCenterY =  (fromRect.height+position)/2//yOffset;//288
+      this.toCenterX = toRect.width-x1;
+      this.toCenterY = (toRect.height+position)/2;//249
+
+      // this.fromCenterX = fromRect.width;
+      // this.fromCenterY =  fromRect.height*2+toRect.height-10;
+      // this.toCenterX = toRect.width-toRect.width ;
+      // this.toCenterY = toRect.height*2+toRect.height-10;
     } else if (navigator.platform.includes("Linux")) {
       // Running on Linux
       debugger
@@ -1225,15 +1241,15 @@ editdropdownfrontend:any=[];
         const toRect = to.getBoundingClientRect();
 
         if (navigator.platform.includes("Win")) {
-          // this.fromCenterX1 = position; //136
-          // this.fromCenterY1 = position1 ;//104.75; //54/2=27
-          // this.toCenterX1 = yOffset ; //136-136+1
-          // this.toCenterY1 = position1; //54/2=27
-
           this.fromCenterX1 = position; //136
-          this.fromCenterY1 = fromRect.height*2+toRect.height-10 ;//104.75; //54/2=27
+          this.fromCenterY1 = position1 ;//104.75; //54/2=27
           this.toCenterX1 = yOffset ; //136-136+1
-          this.toCenterY1 = toRect.height*2+toRect.height-10; //54/2=27
+          this.toCenterY1 = position1; //54/2=27
+
+          // this.fromCenterX1 = position; //136
+          // this.fromCenterY1 = fromRect.height*2+toRect.height-10 ;//104.75; //54/2=27
+          // this.toCenterX1 = yOffset ; //136-136+1
+          // this.toCenterY1 = toRect.height*2+toRect.height-10; //54/2=27
 
         }else if (navigator.platform.includes("Linux")) {
           this.fromCenterX1 = fromRect.width; //136
@@ -1342,102 +1358,103 @@ editdropdownfrontend:any=[];
       // this.arrowLink4;
       // this.arrowLink5;
       // this.arrowLink6;
-      if(navigator.platform.includes("Linux")){
-        debugger
-        if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==true){
-            if(this.idx==0){
-              this.removearrow();
-              this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
-              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145);
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,145); 
-            } else if(this.idx==1){
-              this.arrowLink3.remove();
-              this.arrowLink3 = null;
-              this.arrowLink4.remove();
-              this.arrowLink4 = null;
-              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145); 
-            }else if(this.idx==2){
-              this.arrowLink4.remove();
-              this.arrowLink4 = null;
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70); 
-            } 
-        }else if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==false){
-            if(this.idx==0){
-              this.removearrow();
-              this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
-              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145);
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,-145); 
-            } else if(this.idx==1){
-              this.arrowLink3.remove();
-              this.arrowLink3 = null;
-              this.arrowLink4.remove();
-              this.arrowLink4 = null;
-              this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145); 
-            }else if(this.idx==2){
-              this.arrowLink4.remove();
-              this.arrowLink4 = null;
-              this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70); 
-            } 
-        }
-        //frontend to pipeline
-        if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==true){
-          this.arrowLink5.remove();
-          this.arrowLink5 = null;
-          this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,70);
-        }
-        else if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==false){
-          this.arrowLink5.remove();
-          this.arrowLink5 = null;
-          this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,-77.5);
-        }
 
-        //pipeline to model
-        if(data && data.modelName && this.arrowLink8 && this.panelOpenState==true){
-          if(this.idx==0){
-            this.arrowLink8.remove();
-          this.arrowLink8 = null;
-          this.arrowLink9.remove();
-          this.arrowLink9 = null;
-          this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,80);
-          this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,155);
-          }else if(this.idx==1){
-            this.arrowLink9.remove();
-            this.arrowLink9 = null;
-            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,70);
-          }     
-        }
-        else if(data && data.modelName && this.arrowLink5 && this.panelOpenState==false){
-          if(this.idx==0){
-          this.arrowLink8.remove();
-          this.arrowLink8 = null;
-          this.arrowLink9.remove();
-          this.arrowLink9 = null;
-          this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-77.5);
-          this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,-155);
-          }else if(this.idx==1){
-            this.arrowLink9.remove();
-            this.arrowLink9 = null;
-            this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-75.5);
-          }  
-        }
+    //   if(navigator.platform.includes("Linux")){
+    //     debugger
+    //     if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==true){
+    //         if(this.idx==0){
+    //           this.removearrow();
+    //           this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
+    //           this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145);
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,145); 
+    //         } else if(this.idx==1){
+    //           this.arrowLink3.remove();
+    //           this.arrowLink3 = null;
+    //           this.arrowLink4.remove();
+    //           this.arrowLink4 = null;
+    //           this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70);
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,145); 
+    //         }else if(this.idx==2){
+    //           this.arrowLink4.remove();
+    //           this.arrowLink4 = null;
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,70); 
+    //         } 
+    //     }else if(data && data.frontendName && this.arrowLink2 && this.panelOpenState==false){
+    //         if(this.idx==0){
+    //           this.removearrow();
+    //           this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
+    //           this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145);
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+4].querySelector("td"),0,-145); 
+    //         } else if(this.idx==1){
+    //           this.arrowLink3.remove();
+    //           this.arrowLink3 = null;
+    //           this.arrowLink4.remove();
+    //           this.arrowLink4 = null;
+    //           this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70);
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+3].querySelector("td"),0,-145); 
+    //         }else if(this.idx==2){
+    //           this.arrowLink4.remove();
+    //           this.arrowLink4 = null;
+    //           this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[this.idx+2].querySelector("td"),0,-70); 
+    //         } 
+    //     }
+    //     //frontend to pipeline
+    //     if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==true){
+    //       this.arrowLink5.remove();
+    //       this.arrowLink5 = null;
+    //       this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,70);
+    //     }
+    //     else if(data && data.pipelineName && this.arrowLink5 && this.panelOpenState==false){
+    //       this.arrowLink5.remove();
+    //       this.arrowLink5 = null;
+    //       this.arrowLink5 = this.createArrow1(this.rows2[2].querySelector("td"), this.rows3[this.idx+2].querySelector("td"),0,0,-77.5);
+    //     }
 
-        //model to dataset
-        if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==true){
-          this.arrowLink11.remove();
-          this.arrowLink11 = null;
-          this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,70);
-        }
-        else if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==false){
-          this.arrowLink11.remove();
-          this.arrowLink11 = null;
-          this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,-84.5);
-        }
-        if(data && data.datasetName && this.arrowLink5 && this.panelOpenState==true){
+    //     //pipeline to model
+    //     if(data && data.modelName && this.arrowLink8 && this.panelOpenState==true){
+    //       if(this.idx==0){
+    //         this.arrowLink8.remove();
+    //       this.arrowLink8 = null;
+    //       this.arrowLink9.remove();
+    //       this.arrowLink9 = null;
+    //       this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,80);
+    //       this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,155);
+    //       }else if(this.idx==1){
+    //         this.arrowLink9.remove();
+    //         this.arrowLink9 = null;
+    //         this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,70);
+    //       }     
+    //     }
+    //     else if(data && data.modelName && this.arrowLink5 && this.panelOpenState==false){
+    //       if(this.idx==0){
+    //       this.arrowLink8.remove();
+    //       this.arrowLink8 = null;
+    //       this.arrowLink9.remove();
+    //       this.arrowLink9 = null;
+    //       this.arrowLink8 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-77.5);
+    //       this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+3].querySelector("td"),0,0,-155);
+    //       }else if(this.idx==1){
+    //         this.arrowLink9.remove();
+    //         this.arrowLink9 = null;
+    //         this.arrowLink9 = this.createArrow1(this.rows3[2].querySelector("td"), this.rows4[this.idx+2].querySelector("td"),0,0,-75.5);
+    //       }  
+    //     }
 
-        }
-    }
+    //     //model to dataset
+    //     if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==true){
+    //       this.arrowLink11.remove();
+    //       this.arrowLink11 = null;
+    //       this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,70);
+    //     }
+    //     else if(data && data.datasetName && this.arrowLink11 && this.panelOpenState==false){
+    //       this.arrowLink11.remove();
+    //       this.arrowLink11 = null;
+    //       this.arrowLink11 = this.createArrow1(this.rows4[2].querySelector("td"), this.rows5[this.idx+2].querySelector("td"),0,0,-84.5);
+    //     }
+    //     if(data && data.datasetName && this.arrowLink5 && this.panelOpenState==true){
+
+    //     }
+    // }
 
 
     
@@ -1451,18 +1468,18 @@ editdropdownfrontend:any=[];
           // else{
             if(this.Frontend.length<=2){
               if(i==0){
-                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i].querySelector("td"),0,0); 
               } else{
-                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i].querySelector("td"),0,0); 
               }
                   
             }else{
               if(i==0){
-                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+                this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i].querySelector("td"),0,0); 
               } else if(i==1){
-                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+                this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i].querySelector("td"),0,0); 
               }else{
-                this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),0,0); 
+                this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i].querySelector("td"),0,0); 
               }
             }    
           // }
@@ -1470,18 +1487,18 @@ editdropdownfrontend:any=[];
       }else{
         if(this.Frontend.length<=2){
           if(i==0){
-            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),288,249); 
+            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),78,178); 
           } else{
-            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),288,249); 
+            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),288,178); 
           }
               
         }else{
           if(i==0){
-            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,245); 
+            this.arrowLink2 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,178); 
           } else if(i==1){
-            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,275); 
+            this.arrowLink3 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,178); 
           }else{
-            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,315); 
+            this.arrowLink4 = this.createArrow(this.rows1[2].querySelector("td"), this.rows2[i+2].querySelector("td"),450,178); 
           }
            
         }    

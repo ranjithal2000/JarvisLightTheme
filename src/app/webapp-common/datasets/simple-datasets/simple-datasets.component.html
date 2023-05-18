@@ -10,7 +10,7 @@
     <button
       class="btn btn-cml-primary d-flex align-items-center"
       (click)="createDataset()">
-      <i class="al-icon al-ico-add sm mr-2"></i>NEW DATASET
+      <i class="al-icon al-ico-add sm mr-2"></i>NEW DATASE
     </button>
   </sm-projects-header>
   <ng-container
@@ -20,6 +20,7 @@
                             [project]="project"
                             [allTags]="projectsTags$ | async"
                             (projectCardClicked)="projectCardClicked($event)"
+                            (addtoPortal)="addCard()"
                             (projectNameChanged)="projectNameChanged({id: project.id, name: $event})"
                             (addTag)="addTag(project, $event)"
                             (removeTag)="removeTag(project, $event)"
