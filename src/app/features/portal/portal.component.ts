@@ -65,10 +65,10 @@ export class PortalComponent implements OnInit {
   ishidden: boolean = false;
   selectedIndex: number = 0;
   filled: boolean = false;
-  tags:tags[]=[{name:'tag1'},{name:'tag2'}];
-  drop(event: CdkDragDrop<tags[]>) {
-    moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
-  }
+  // tags:tags[]=[{name:'tag1'},{name:'tag2'}];
+  // drop(event: CdkDragDrop<tags[]>) {
+  //   moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
+  // }
 
   innerHeight: any;
     innerWidth: any;
@@ -79,6 +79,7 @@ export class PortalComponent implements OnInit {
     private http: HttpClient,
     public snackBar: MatSnackBar,
     private toastr: ToastrService,
+
     private cartService:CartService) { 
     this.innerHeight = (window.screen.height) + "px";
     this.innerWidth = (window.screen.width) + "px";
@@ -89,14 +90,16 @@ export class PortalComponent implements OnInit {
   ngOnInit(): void {
     // this.fetchData();
     this.getModel();
-    this.getSolution();
+   
     this.getdataset();
     this.getPipeline();
     this.getFrontend();
-  
+    this.getSolution();
+    
+
    this.isPanelOpen;
-   this.callCarddata();
-   this.callCardpipeline();
+  //  this.callCarddata();
+  //  this.callCardpipeline();
  //--------------------------------------------------------------------------------------------------------------------------------
   }
 
@@ -124,11 +127,11 @@ export class PortalComponent implements OnInit {
     }
   }
 
-  callCarddata(){
-    this.http.get("http://13.234.148.242:3000/clearml/dataset").subscribe(response => { 
+  // callCarddata(){
+  //   this.http.get("http://13.234.148.242:3000/clearml/dataset").subscribe(response => { 
     
-    })
-  }
+  //   })
+  // }
   callCardpipeline(){
     // this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => { 
     
@@ -161,12 +164,14 @@ export class PortalComponent implements OnInit {
   rows5:any;
   searchResponse:any;
   filterSolution() {
+    
     let search = this.Searchvalue4;
     let table =  "Solutions"; 
     let col1=  "solutionName";
     let col2 = "solutionTags";
-    this.http.post('http://3.111.229.37:3000/search', { search, table, col1, col2})
-      .subscribe(response => {  
+    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
+      .subscribe(response => { 
+        debugger 
         this.searchResponse=response;
         this.Solution = this.searchResponse.data;
         console.log("search Response",this.searchResponse.data)
@@ -178,7 +183,7 @@ export class PortalComponent implements OnInit {
     let search = this.Searchvalue3;
     let table =  "Frontends"; 
     let col1=  "frontendName";
-    this.http.post('http://3.111.229.37:3000/search', { search, table, col1})
+    this.http.post('http://13.234.148.242:3000/search', { search, table, col1})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Frontend = this.searchResponse.data;
@@ -192,7 +197,7 @@ export class PortalComponent implements OnInit {
     let table =  "Pipelines"; 
     let col1=  "pipelineName";
     let col2 = "pipelineTags";
-    this.http.post('http://3.111.229.37:3000/search', { search, table, col1, col2})
+    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
       .subscribe(response => {  
         this.searchResponse=response;
         this.pipeline = this.searchResponse.data;
@@ -206,7 +211,7 @@ export class PortalComponent implements OnInit {
     let table =  "Models"; 
     let col1=  "modelName";
     let col2 = "modelTags";
-    this.http.post('http://3.111.229.37:3000/search', { search, table, col1, col2})
+    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Modules = this.searchResponse.data;
@@ -221,7 +226,7 @@ export class PortalComponent implements OnInit {
     let table =  "Data"; 
     let col1=  "datasetName";
    
-    this.http.post('http://3.111.229.37:3000/search', { search, table, col1})
+    this.http.post('http://13.234.148.242:3000/search', { search, table, col1})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Dataset = this.searchResponse.data;
@@ -892,12 +897,15 @@ debugger
   linkedassets:any=[];
   linkedassets1:any=[];
 
+  valuesArray: any[] = [];
+  TagsArray: any[] = [];
   getSolution() {
     this.http.post('http://13.234.148.242:3000/solution/retrieveSolutions', {})
       .subscribe(response => {
         this.dumbb1 = response;
         debugger
         this.Solution = this.dumbb1.solutionData;
+      
        console.log("Solution",this.Solution);
      
        for(let i=0; i<this.Solution.length; i++)
