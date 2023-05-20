@@ -365,7 +365,7 @@
     <!-- ---------------------------------------Data Jar------------------------------------------------------------>
 
     <div class="col-lg">
-      <table id="table5" class="ex3 py-0 my-0 ">
+      <table id="table5" class="ex3 py-0 my-0">
         <table class="mt-4">
           <tr>
             <td align="center" class="pl-2 pr-3"> <i id="icon" class="item al-ico-datasets mr-3"></i> </td>
@@ -530,6 +530,31 @@
 
           <div class="d-flex flex-row m-3">
            <div class="ml-3" style="min-width:35vw">
+            <label>Frontend</label>
+            <ng-multiselect-dropdown
+              [placeholder]="'Frontend'"
+              [settings]="dropdownSettings3"
+              [data]="Frontend"
+              [(ngModel)]="selectedItems"
+              (onSelect)="onItemSelect($event,'frontend')"
+              (onSelectAll)="onSelectAll($event,'frontend')">
+            </ng-multiselect-dropdown>  
+        </div>
+        <div class="px-3" style="min-width:35vw; background-color: #fff;">
+          <label>Pipeline</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Pipeline'"
+            [settings]="dropdownSettings2"
+            [data]="pipeline"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event,'pipeline')"
+            (onSelectAll)="onSelectAll($event,'pipeline')">
+          </ng-multiselect-dropdown>
+      </div>
+  </div>
+        <div class="d-flex flex-row m-3">
+           <div class="ml-3" style="min-width:35vw">
+            <label>Model</label>
             <ng-multiselect-dropdown
             class="customClass"
             [placeholder]="'Model'"
@@ -538,11 +563,11 @@
             [(ngModel)]="selectedItems"
             (onSelect)="onItemSelect($event,'model')"
             (onSelectAll)="onSelectAll($event,'model')"
-            style="height: 40px;background-color: white !important;"
-          >
+            style="height: 40px;background-color: white !important;">
           </ng-multiselect-dropdown>
         </div>
-        <div class="px-3" style="min-width:35vw; background-color: #fff;">
+        <div class="px-3" style="min-width:35vw">
+          <label>Dataset</label>
           <ng-multiselect-dropdown
           [placeholder]="'Dataset'"
           [settings]="dropdownSettings1"
@@ -550,31 +575,6 @@
           [(ngModel)]="selectedItems"
           (onSelect)="onItemSelect($event,'dataset')"
           (onSelectAll)="onSelectAll($event,'dataset')"
-        >
-        </ng-multiselect-dropdown>
-      </div>
-       
-          </div>
-          <div class="d-flex flex-row m-3">
-           <div class="ml-3" style="min-width:35vw">
-            <ng-multiselect-dropdown
-            [placeholder]="'Pipeline'"
-            [settings]="dropdownSettings2"
-            [data]="pipeline"
-            [(ngModel)]="selectedItems"
-            (onSelect)="onItemSelect($event,'pipeline')"
-            (onSelectAll)="onSelectAll($event,'pipeline')"
-          >
-          </ng-multiselect-dropdown>
-        </div>
-        <div class="px-3" style="min-width:35vw">
-          <ng-multiselect-dropdown
-          [placeholder]="'Frontend'"
-          [settings]="dropdownSettings3"
-          [data]="Frontend"
-          [(ngModel)]="selectedItems"
-          (onSelect)="onItemSelect($event,'frontend')"
-          (onSelectAll)="onSelectAll($event,'frontend')"
         >
         </ng-multiselect-dropdown>
       </div>
@@ -863,8 +863,40 @@
 
               <div class="d-flex flex-row m-3">
                 <div class="ml-3" style="min-width:35vw">
+              <label>Frontend</label>
+              <ng-multiselect-dropdown
+               formControlName="linkedfrontend"
+               [placeholder]="'Frontend'"
+               [settings]="dropdownSettingsfrontend"
+               [data]="Frontend"
+               [enableCheckAll]="false"
+               [(ngModel)]="selectedValues3"
+               (onDeSelect)="unselect($event,'frontend')"
+               (onSelect)="onEditItemSelect($event,'frontend')"
+               (onSelectAll)="onSelectAll($event,'frontend')">
+             </ng-multiselect-dropdown>
+                 
+             </div>
+             <div class="px-3" style="min-width:35vw">
+              <label>Pipeline</label>
+              <ng-multiselect-dropdown
+              formControlName="linkedpipeline"
+              [placeholder]="'Pipeline'"
+              [settings]="dropdownSettingspipeline"
+              [data]="pipeline"
+              [enableCheckAll]="false"
+              [(ngModel)]="selectedValues2"
+              (onDeSelect)="unselect($event,'pipeline')"
+              (onSelect)="onEditItemSelect($event,'pipeline')"
+              (onSelectAll)="onSelectAll($event,'pipeline')">
+            </ng-multiselect-dropdown>
+           </div>
+           </div>
 
-                 <ng-multiselect-dropdown
+              <div class="d-flex flex-row m-3">
+                <div class="ml-3" style="min-width:35vw">
+                  <label>Model</label>
+                <ng-multiselect-dropdown
                  formControlName="linkedarray"
                  class="customClass"
                  [placeholder]="'Model'"
@@ -876,12 +908,11 @@
                  (onDeSelect)="unselect($event,'model')"
                  (onSelect)="onEditItemSelect($event,'model')"
                  (onSelectAll)="onSelectAll($event,'model')"
-                 
-                 style="height: 40px;background-color: white !important;"
-               >
+                 style="height: 40px;background-color: white !important;">
                </ng-multiselect-dropdown>
              </div>
              <div class="px-3" style="min-width:35vw; background-color: #fff;">
+              <label>Dataset</label>
                <ng-multiselect-dropdown
                formControlName="linkeddata"
                class="customClass"
@@ -898,36 +929,7 @@
             
            </div>
         </div>
-        <div class="d-flex flex-row m-3">
-          <div class="ml-3" style="min-width:35vw">
-           <ng-multiselect-dropdown
-           formControlName="linkedpipeline"
-           [placeholder]="'Pipeline'"
-           [settings]="dropdownSettingspipeline"
-           [data]="pipeline"
-           [enableCheckAll]="false"
-           [(ngModel)]="selectedValues2"
-           (onDeSelect)="unselect($event,'pipeline')"
-           (onSelect)="onEditItemSelect($event,'pipeline')"
-           (onSelectAll)="onSelectAll($event,'pipeline')"
-         >
-         </ng-multiselect-dropdown>
-       </div>
-       <div class="px-3" style="min-width:35vw">
-         <ng-multiselect-dropdown
-         formControlName="linkedfrontend"
-         [placeholder]="'Frontend'"
-         [settings]="dropdownSettingsfrontend"
-         [data]="Frontend"
-         [enableCheckAll]="false"
-         [(ngModel)]="selectedValues3"
-         (onDeSelect)="unselect($event,'frontend')"
-         (onSelect)="onEditItemSelect($event,'frontend')"
-         (onSelectAll)="onSelectAll($event,'frontend')"
-       >
-       </ng-multiselect-dropdown>
-     </div>
-     </div>
+        
 
         <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
             (click)="editSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"

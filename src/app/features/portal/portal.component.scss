@@ -86,15 +86,18 @@ mat-expansion-panel-header{
     background-color: #FFFFFF;
     margin:8px;
     width: auto !important;
-    height: 900px;
+    height: 850px;
     position: relative;
     overflow-y: auto;
 }
 .ex3 {
     // background-color: lightblue;
     position: relative;
-    // overflow-y: auto;  
-    height: 850px;  
+    margin-bottom: 120px;
+    width:auto;
+    // height: 850px;  
+    height: auto;
+    
   }
   .solution_run_btn{
     background-color: #2f334a !important;
