@@ -20,6 +20,7 @@ export class PipelineCardMenuComponent {
   @Output() addTag = new EventEmitter<string>();
   @Output() rename = new EventEmitter();
   @Output() delete = new EventEmitter();
+  @Output() portal=new EventEmitter();
 
   addtoPortal(){
     this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => {   

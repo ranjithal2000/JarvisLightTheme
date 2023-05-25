@@ -9,7 +9,7 @@ import { style } from '@angular/animations';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import {CartService} from '~/shared/services/cart.service'
-import { log } from 'console';
+import { error, log } from 'console';
 import { MatAccordion } from '@angular/material/expansion';
 import { PortalModule } from './portal.module';
 
@@ -65,6 +65,7 @@ export class PortalComponent implements OnInit {
   ishidden: boolean = false;
   selectedIndex: number = 0;
   filled: boolean = false;
+  selected:boolean=false;
   // tags:tags[]=[{name:'tag1'},{name:'tag2'}];
   // drop(event: CdkDragDrop<tags[]>) {
   //   moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
@@ -247,8 +248,7 @@ export class PortalComponent implements OnInit {
     this.getFrontend();
     this.linkCheck();
     this.isPanelOpen=false;
-    
-    
+    this.selected=false;
   }
   
   dropdownSettings = {
@@ -476,11 +476,15 @@ export class PortalComponent implements OnInit {
     let modelDescription = this.formdata2.controls['desc'].value;
     this.http.post('http://13.234.148.242:3000/model/insertModel', { modelName, modelViewUrl, modelRunUrl, modelTags, modelDescription })
       .subscribe(response => {
+        this.formdata2.reset();
         console.log(response);
         this.storeResponse = response;
         this.toastr.success(this.storeResponse.message);
         // alert(this.storeResponse.message)
         this.getModel();
+      },err => {
+        console.log(err);
+        this.toastr.error(err.error.message);
       }
       )
   }
@@ -540,11 +544,16 @@ export class PortalComponent implements OnInit {
     let datasetUrl = this.formdata.controls['url'].value;
     this.http.post('http://13.234.148.242:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion, datasetDescription })
       .subscribe(response => {
+        debugger
+        this.formdata.reset();
         console.log(response)
         this.storeResponse = response;
         this.toastr.success(this.storeResponse.message);
         // alert(this.storeResponse.message);
         this.getdataset();
+      },err => {
+        console.log(err);
+        this.toastr.error(err.error.message);
       }
       );
   }
@@ -605,11 +614,15 @@ export class PortalComponent implements OnInit {
     
     this.http.post('http://13.234.148.242:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
       .subscribe(response => {
+        this.formdata8.reset();
         console.log(response)
         this.storeResponse = response;
         this.toastr.success(this.storeResponse.message);
         // alert(this.storeResponse.message);
         this.getPipeline();
+      },err => {
+        console.log(err);
+        this.toastr.error(err.error.message);
       }
       );
   }
@@ -666,16 +679,21 @@ export class PortalComponent implements OnInit {
     let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
     let frontendDescription=this.formdata9.controls['frontend_description'].value;
 
-    this.http.post('http://13.234.148.242:3000/frontend/insertFrontend', {frontendName,
+    this.http.post('http://13.234.148.242:3000/frontend/insertFrontend', {
+      frontendName,
     frontendStylesUrl,
     frontendRunUrl,
     frontendDescription })
       .subscribe(response => {
+        this.formdata9.reset();
         console.log(response)
         this.storeResponse = response;
         this.toastr.success(this.storeResponse.message);
         // alert();
         this.getFrontend();
+      },err => {
+        console.log(err);
+        this.toastr.error(err.error.message);
       }
       );
   }
@@ -831,20 +849,28 @@ deleteFrontend(){
     let solutionName = this.formdata3.controls['solution_name'].value;
     let solutionViewUrl = this.formdata3.controls['view_url'].value;
     let solutionRunUrl= this.formdata3.controls['run_url'].value;
-    let solutionTags = this.formdata3.controls['solution_tags'].value;
+    let soltag=this.formdata3.controls['solution_tags'].value;
+    let solutionTags = soltag.toUpperCase();
     let solutionDescription = this.formdata3.controls['solution_description'].value;
     let modelId=this.dropdownmodel;
     let datasetId=this.dropdowndata;
     let pipelineId=this.dropdownpipeline;
     let frontendId=this.dropdownfrontend;
-    debugger
+      debugger
     this.http.post('http://13.234.148.242:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
       .subscribe(response => {
+        debugger
         console.log(response);
+        
         this.storeResponse = response;
+        // console.log(this.storeResponse.error.message);
         this.toastr.success(this.storeResponse.message);
         this.getSolution();
-      });
+      },err => {
+        console.log(err);
+        this.toastr.error(err.error.message);
+      }
+      );
   }
  
   editSolution() {
@@ -853,7 +879,8 @@ deleteFrontend(){
     let solutionId = this.formdata7.controls['solution_id'].value.toString();
     let solutionRunUrl=this.formdata7.controls['run_url'].value;
     let solutionViewUrl=this.formdata7.controls['view_url'].value;
-    let solutionTags = this.formdata7.controls['solution_tags'].value;
+    let soltag=this.formdata7.controls['solution_tags'].value;
+    let solutionTags = soltag.toUpperCase();
     let solutionDescription = this.formdata7.controls['solution_description'].value;
     let solutionVersion = this.formdata7.controls['solution_version'].value;
     let modelId=this.editdropdownmodel;
@@ -1162,6 +1189,7 @@ editdropdownfrontend:any=[];
       this.empty();  
       console.log(this.linkagedata);
       this.linkCheck();
+      this.selected=true;
           this.Solution=this.linkagedata.solutions;
           this.isPanelOpen=true;
           this.Modules=this.linkagedata.models;

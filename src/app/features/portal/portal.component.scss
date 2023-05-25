@@ -1,4 +1,20 @@
+// ::-webkit-scrollbar{
+//   width: 1px;
+//   background: transparent;  
+// }
 
+*::-webkit-scrollbar {
+  width: 6px !important;
+}
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(77, 77, 171, 0.77) !important;
+  border-radius: 20px !important;
+  // border: 3px solid rgb(216, 221, 222) !important;
+  border: 1px solid #8683df !important;
+}
 // :host ::ng-deep * {
 //   all: unset !important;
 // }  
@@ -71,33 +87,66 @@
 //   table{
 //     width: 20vw !important;
 //   }
-  mat-expansion-panel{
-    // border: solid 1px;
-    // width: 300px !important;  
-    position:static;
+.cart_button{
+  position: fixed;
+  top: 22px;
+  right: 100px;
+  z-index: 1;
 }
+.tick-mark{
+  position: absolute;
+  // z-index: 1;
+  left: -14px !important;
+  
+}
+.tick-mark span{
+  font-size: 20px;
+  font-weight: bolder;
+  color: green;
+}
+ mat-expansion-panel{
+    // border: solid 1px;
+    // width: 310px !important;  
+    position:static;
+    // width: 16.5vw !important;
+}
+// mat-expansion-panel:mat-expanded{
+//   width: 310px !important;
+// }
 mat-expansion-panel-header{
     height: 52px !important;
+    // width: 330px !important;
 }
 
-  
-  .col-lg{
-    flex: 1;
+.container-fluid{
+  overflow: auto;
+  // height: 90vh !important;
+  margin-top: 12px;
+} 
+.row{
+  // display: flex;
+  margin-top: 2%;  
+}
+.col-lg{ 
     background-color: #FFFFFF;
     margin:8px;
-    width: auto !important;
-    height: 850px;
     position: relative;
+    flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height: 820px;
+    overflow: hidden;
+}
+.col-lg:hover{
+  overflow-y: auto;
 }
 .ex3 {
-    // background-color: lightblue;
     position: relative;
-    margin-bottom: 120px;
-    width:auto;
-    // height: 850px;  
-    height: auto;
-    
+    margin-bottom: 200px;
+    // margin-right: 6vw !important;
+    // width:90%;
+    height: auto;   
   }
   .solution_run_btn{
     background-color: #2f334a !important;
@@ -109,23 +158,21 @@ hr{
     background-color:black;
 }
 
-.l1{
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  padding: none;
-  margin: none; 
-}
+// .l1{
+//   position: sticky;
+//   top: 0;
+//   left: 0;
+//   z-index: 1;
+//   padding: none;
+//   margin: none; 
+// }
 
 // #div1,#div2{
 //     display: inline;
 // }
 
-.container-fluid{
-    overflow: auto;
-    margin-top: 12px;
-}
+
+
 .icon-container {
     margin-top: 4px;
     display: flex;
@@ -144,12 +191,7 @@ hr{
 
 
 
-.cart_button{
-    position: fixed;
-    top: 22px;
-    right: 100px;
-    z-index: 1;
-}
+
 // .head{    
 //     text-align: center;
 //     // background-color: #ffffffc5 ;
@@ -194,9 +236,7 @@ mat-tab{
     float: right;
     margin-bottom: 5px;
 }
-.row{
-    margin-top: 2%;
-}
+
 
 // .filter{
 //     width: 85%;
@@ -330,30 +370,30 @@ label{
 }
 
 
-#frontendJar{
-    width: 20% !important;
-    background-color: #131D4B;
-    height: 800px !important;
-    margin: 1em !important;
-}
-#pipelineJar{
-    width: 20% !important;
-    background-color: #131D4B;
-    height: 800px !important;
-    margin: 1em !important;
-}
-#modalJar{
-    width: 20% !important;
-    background-color: #131D4B;
-    height: 800px !important;
-    margin: 1em !important;
-}
-#dataJar{
-    width: 20% !important;
-    background-color: #131D4B;
-    min-height: 800px !important;
-    margin: 1em !important;
-}
+// #frontendJar{
+//     width: 20% !important;
+//     background-color: #131D4B;
+//     height: 800px !important;
+//     margin: 1em !important;
+// }
+// #pipelineJar{
+//     width: 20% !important;
+//     background-color: #131D4B;
+//     height: 800px !important;
+//     margin: 1em !important;
+// }
+// #modalJar{
+//     width: 20% !important;
+//     background-color: #131D4B;
+//     height: 800px !important;
+//     margin: 1em !important;
+// }
+// #dataJar{
+//     width: 20% !important;
+//     background-color: #131D4B;
+//     min-height: 800px !important;
+//     margin: 1em !important;
+// }
 #img{
      padding: 1em;
 }
@@ -364,12 +404,12 @@ label{
 #margin {
     margin-left: 25px !important;
 }
-#solutionJar{
-    width: 20% !important;
-    background-color: #131D4B;
-    height: 800px !important;
-    margin: 1em !important;
-}
+// #solutionJar{
+//     width: 20% !important;
+//     background-color: #131D4B;
+//     height: 800px !important;
+//     margin: 1em !important;
+// }
 #title{
     font-size: 29px;
     color:black;

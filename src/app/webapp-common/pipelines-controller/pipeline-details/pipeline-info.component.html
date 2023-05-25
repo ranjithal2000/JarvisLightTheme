@@ -14,6 +14,7 @@
         <sm-id-badge class="ml-1" [id]="step.data.job_id" (copied)="copyToClipboard()"></sm-id-badge>
       </div>
     </header>
+    
     <ng-template #controllerHeader>
       <div *ngIf="entity?.id" class="d-flex justify-content-end my-2">
         <sm-id-badge [id]="entity.id" (copied)="copyToClipboard()"></sm-id-badge>
