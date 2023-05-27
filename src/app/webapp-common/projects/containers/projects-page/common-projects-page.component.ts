@@ -51,6 +51,8 @@ import {isExample} from '@common/shared/utils/shared-utils';
 import {selectSelectedProject} from '@common/core/reducers/projects.reducer';
 import {selectActiveWorkspaceReady} from '~/core/reducers/view.reducer';
 import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
+import { HttpClient } from '@angular/common/http';
+import { PipelinesPageComponent } from '@common/pipelines/pipelines-page/pipelines-page.component';
 
 @Component({
   selector: 'sm-common-projects-page',
@@ -99,7 +101,8 @@ export class CommonProjectsPageComponent implements OnInit, OnDestroy {
     protected store: Store<any>,
     protected router: Router,
     protected route: ActivatedRoute,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+   
   ) {
     this.searchQuery$ = this.store.select(selectSearchQuery);
     this.projectsOrderBy$ = this.store.select(selectProjectsOrderBy);
@@ -275,6 +278,8 @@ export class CommonProjectsPageComponent implements OnInit, OnDestroy {
   projectNameChanged(updatedProject: { id: string; name: string }) {
     this.store.dispatch(updateProject({id: updatedProject.id, changes: {name: updatedProject.name}}));
   }
+
+  
 
   deleteProject(project: Project) {
     this.store.dispatch(checkProjectForDeletion({project}));

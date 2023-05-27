@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import { pageSize } from '@common/projects/common-projects.consts';
 import {CommonProjectsPageComponent} from '@common/projects/containers/projects-page/common-projects-page.component';
 import {isExample} from '@common/shared/utils/shared-utils';
@@ -27,6 +27,11 @@ import {ConfirmDialogComponent} from '@common/shared/ui-components/overlay/confi
 import {selectShowPipelineExamples} from '@common/projects/common-projects.reducer';
 import {combineLatest} from 'rxjs';
 import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
+import { OutMode } from 'tsparticles-engine';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sm-pipelines-page',
@@ -85,6 +90,18 @@ if __name__ == '__main__':
     this.headerUserFocusSub?.unsubscribe();
     this.mainPageFilterSub.unsubscribe();
     this.store.dispatch(setTags({tags: []}));
+  }
+  constructor(store: Store<any>, router: Router, route: ActivatedRoute, dialog: MatDialog,
+    protected http:HttpClient){
+    super(store, router, route, dialog);
+
+  }
+  //------------------------------------------
+  @Output() addtoPortalData=new EventEmitter<any>();
+
+  addtoPortal(project:Project){
+    
+    // this.addtoPortalData.emit(project);
   }
 
   addTag(project: Project, newTag: string) {

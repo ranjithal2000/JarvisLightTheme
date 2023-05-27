@@ -6,6 +6,12 @@ import {ConfirmDialogComponent} from '../../shared/ui-components/overlay/confirm
 import {showExampleDatasets} from '../../projects/common-projects.actions';
 import {selectShowDatasetExamples} from '../../projects/common-projects.reducer';
 import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
+import { HttpClient } from '@angular/common/http';
+import { CommonService } from '@common/common.service';
+import { Store } from '@ngrx/store';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Project } from '~/business-logic/model/projects/project';
 // import { FormArray,FormBuilder,FormControl,FormGroup,Validators,} from '@angular/forms';
 
 @Component({
@@ -16,6 +22,51 @@ import {EntityTypeEnum} from '~/shared/constants/non-common-consts';
 export class SimpleDatasetsComponent extends PipelinesPageComponent implements OnInit {
   @ViewChild('datasetEmptyStateContent') datasetEmptyStateRef: TemplateRef<any>;
 
+  constructor(store: Store<any>, router: Router, route: ActivatedRoute, dialog: MatDialog,
+    protected http:HttpClient){
+      
+    super(store, router, route, dialog,http);
+  }
+
+  addtoPortal(project:Project){
+    this.http.post("http://13.234.148.242:3000/clearml/dataset",{project}).subscribe(response => {   
+  })
+  }
+
+  public projectCardClicked(project: ProjectsGetAllResponseSingle) {
+    this.router.navigate(['simple', project.id, 'experiments'], {relativeTo: this.route});
+    this.store.dispatch(setSelectedProjectId({projectId: project.id, example: this.isExample(project)}));
+  }
+
+  protected getName() {
+    return EntityTypeEnum.simpleDataset;
+  }
+
+  protected getDeletePopupEntitiesList() {
+    return 'version';
+  }
+
+  createDataset() {
+    this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'CREATE NEW DATASET',
+        template: this.datasetEmptyStateRef,
+        iconClass: 'al-icon al-ico-datasets al-color blue-300',
+        width: 1200
+      },
+      maxWidth: '95vw'
+    });
+  }
+  
+  // addtoPortal(){
+    
+  //   this.http.post("local:3000/clearml/pipeline",{}).subscribe(response => {   
+  // })
+  // }
+
+
+
+//---------------------------Old Jarvis--------------------------------------------------------------------------
  
 project:any='default_project_name';
 dataset:any='defaul_dataset_name';
@@ -99,30 +150,7 @@ dataset.finalize()`;
   public emptyStateTab: string = '';
 
 
-  public projectCardClicked(project: ProjectsGetAllResponseSingle) {
-    this.router.navigate(['simple', project.id, 'experiments'], {relativeTo: this.route});
-    this.store.dispatch(setSelectedProjectId({projectId: project.id, example: this.isExample(project)}));
-  }
-
-  protected getName() {
-    return EntityTypeEnum.simpleDataset;
-  }
-
-  protected getDeletePopupEntitiesList() {
-    return 'version';
-  }
-
-  createDataset() {
-    this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'CREATE NEW DATASET',
-        template: this.datasetEmptyStateRef,
-        iconClass: 'al-icon al-ico-datasets al-color blue-300',
-        width: 1200
-      },
-      maxWidth: '95vw'
-    });
-  }
+  
 
 clitab:boolean=false;
 sdktab:boolean=false;

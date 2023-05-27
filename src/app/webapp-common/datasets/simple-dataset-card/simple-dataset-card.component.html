@@ -29,6 +29,7 @@
         [project]="project"
         [allTags]="allTags"
         (run)="run.emit()"
+        (addtoPortal)="addtoPortal.emit()"
         (rename)="editName.inlineActivated()"
         (addTag)="addTag.emit($event)"
         (delete)="delete.emit()"

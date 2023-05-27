@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { ICONS } from '@common/constants';
 import {Project} from '~/business-logic/model/projects/project';
 import { HttpClient } from '@angular/common/http';
+import { log } from 'console';
 
 @Component({
   selector: 'sm-pipeline-card-menu',
@@ -13,6 +14,9 @@ export class PipelineCardMenuComponent {
   constructor(private http: HttpClient){
 
   }
+  ngOnInit(){
+    console.log("inside on init")
+  }
 
   @Input() project: Project;
   @Input() allTags: string[];
@@ -20,10 +24,10 @@ export class PipelineCardMenuComponent {
   @Output() addTag = new EventEmitter<string>();
   @Output() rename = new EventEmitter();
   @Output() delete = new EventEmitter();
-  @Output() portal=new EventEmitter();
+  @Output() addtoPortal = new EventEmitter();
 
-  addtoPortal(){
-    this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => {   
-  })
-  }
+  // addtoPortal1(){
+  //   this.http.post("local:3000/clearml/pipeline",{}).subscribe(response => {   
+  // })
+  // }
 }

@@ -8,10 +8,11 @@
   <div secondTab class="h-100">
     <div class="card-sp-list" smClickStopPropagation>
       <ul>
-        <li *ngFor="let subProject of project?.sub_projects; trackBy: trackById"><a class="d-flex align-items-center"
-                                                                (click)="subProjectClicked(subProject.id)"
-                                                                [smTooltip]="subProject?.name"
-                                                                [innerHTML]="subProject?.name | breadcrumbsEllipsis"></a>
+        <li *ngFor="let subProject of project?.sub_projects; trackBy: trackById">
+      <a class="d-flex align-items-center"
+        (click)="subProjectClicked(subProject.id)"
+         [smTooltip]="subProject?.name"
+        [innerHTML]="subProject?.name | breadcrumbsEllipsis"></a>
         </li>
       </ul>
     </div>
@@ -40,6 +41,7 @@
         [project]="project"
         [allTags]="allTags"
         (run)="run.emit()"
+        (addtoPortal)="addtoPortal.emit()"
         (rename)="editName.inlineActivated()"
         (addTag)="addTag.emit($event)"
         (delete)="delete.emit()"

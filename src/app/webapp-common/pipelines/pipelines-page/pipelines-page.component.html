@@ -20,6 +20,7 @@
         [allTags]="projectsTags$ | async"
         (projectCardClicked)="projectCardClicked($event)"
         (projectNameChanged)="projectNameChanged({id: project.id, name: $event})"
+        (addtoPortal)="addtoPortal(project)"
         (addTag)="addTag(project, $event)"
         (removeTag)="removeTag(project, $event)"
         (delete)="deleteProject(project)"

@@ -13,5 +13,6 @@ export class PipelineCardComponent extends ProjectCardComponent {
   @Output() addTag = new EventEmitter<string>();
   @Output() removeTag = new EventEmitter<string>();
   @Output() delete = new EventEmitter();
+  @Output() addtoPortal=new EventEmitter();
   trackById = trackById;
 }
