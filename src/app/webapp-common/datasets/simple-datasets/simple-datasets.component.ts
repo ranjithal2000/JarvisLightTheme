@@ -31,7 +31,6 @@ export class SimpleDatasetsComponent extends PipelinesPageComponent implements O
   addtoPortal(project1:Project){
     let project=project1.id;
     console.log("project",project1);
-    console.log("project-id",project);
     this.http.post("http://13.234.148.242:3000/clearml/dataset",{project}).subscribe(response => {   
   })
   }

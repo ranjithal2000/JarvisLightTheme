@@ -3,15 +3,17 @@
 
 
 <div class="container-fluid">
-  <!-- <p class="alert alert-success" *ngIf="storeResponse!=null">{{storeResponse}}</p> -->
-
-  <div class="pr-3 cart_button" > <a aria-placeholder="Add Cart">
-    <mat-icon  aria-hidden="false" aria-label="Example home icon"
-    style="color:rgb(30, 30, 30);cursor: pointer;" fontIcon="shopping_cart" ></mat-icon></a>
+  <div class="pr-3 cart_button" > 
+    <a aria-placeholder="Add Cart">
+    <mat-icon  aria-hidden="false" aria-label="Example home icon" style="color:rgb(30, 30, 30);cursor: pointer;" 
+         fontIcon="shopping_cart" data-toggle="modal" data-target="#cart"></mat-icon>
+    </a>
     <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
   </div>
 
- <!--------------------------------------------------------------------------------------------------------------------------------->
+  
+
+ <!-------------------------------Solution Jar-------------------------------------------------------------------------------------------------->
   <div class="row">
     <!-- <mat-card class="col-lg ex3"> -->
       <div class="col-lg">
@@ -86,10 +88,11 @@
                   </div>
       
                   <div class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                        style="color:white;cursor: pointer;;margin-right: 10px;" fontIcon="edit" (click)="editData(data,'Solution')"
+                        style="color:white;cursor: pointer;margin-right: 10px;" fontIcon="edit" (click)="editData(data,'Solution')"
                         (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
                   </div>
-               
+                 
+            
             <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
               style="color:white;cursor: pointer;margin-left: 10px;;  " fontIcon="delete" data-toggle="modal" data-target="#confModal"
               (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
@@ -171,8 +174,8 @@
                           (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
                     </div>
 
-                    <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-                      style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div>
+                    <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                      style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
 
                     <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
                       style="color:white;cursor: pointer;margin-left:45px;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
@@ -259,9 +262,9 @@
                  data-toggle="modal" data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
               </div>
 
-              <div class="btn-grp pl-2 pr-1 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+              <!-- <div class="btn-grp pl-2 pr-1 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
-             </div>
+             </div> -->
 
               <div class="btn-grp pl-2 pr-2 icon-glow"> <a aria-placeholder="Delete">
                 <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:72px" fontIcon="delete"
@@ -373,7 +376,7 @@
       <table id="table4" class="ex3 py-0 my-0">
         <table class="mt-4">
           <tr style="width:auto">
-            <td align="center" class="pl-2 pr-2"> <i id="icon" class="fa fa-cube mr-3"></i> </td>
+            <td align="center" class="pl-2 pr-2"> <i id="icon" class="item al-ico-datasets mr-3"></i> </td>
             <td align="left" class="pl-2 pr-5">
               <h3 id="text">Data Jar</h3>
               <p id="text">Unified Data Store</p>
@@ -693,7 +696,7 @@
               data-dismiss="modal">Close</button> </div>
         </form>
 
-            <!-------------------- Add Pipeline---------------------------->
+      <!-------------------- Add Pipeline---------------------------->
         <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
           <div class="mt-4 p-3">
             <h3 id="title"><b>Add Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
@@ -952,7 +955,8 @@
         </div>
         
 
-        <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+        <div class="modal-footer ml-4" style="width: 70vw"> 
+          <button type="button" class="btn btn-success"
             (click)="editSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
             class="btn btn-danger" data-dismiss="modal">Close</button> </div>
       </form>
@@ -1068,5 +1072,122 @@
   </div>
 </div>
 
+
+<!-- Add to cart Sidebar -->
+<div class="modal" id="cart" tabindex="-1" data-backdrop="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="min-height: 90vh;">
+      <!-- <div class="modal-header">    
+      </div> -->
+      <div class="modal-body ">
+        <div class="text-right">
+          <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
+        </div>
+        <h3 class="ml-2" id="text"><i class="fa fa-cube mr-2"></i>   Models</h3>
+        <ul>
+          <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}<span class="material-icons selected-delete" (click)="deleteSelected('model')" style="cursor: pointer;">delete</span></li>
+          <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
+         
+        </ul>
+        <br>
+        <h3 class="ml-2" id="text"><i class="item al-ico-datasets mr-2"></i>   Datasets</h3>
+        <ul>
+          <li *ngFor="let data of dcart">{{ data.datasetName }}<span class="material-icons selected-delete" (click)="deleteSelected('dataset')" style="cursor: pointer;">delete</span></li>
+          <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
+        </ul>
+        <br>
+        <h3 class="ml-2" id="text"><i class="al-ico-pipelines mr-2"></i>   Pipeline</h3>
+        <ul>
+          <li *ngFor="let data of pcart">{{ data.datasetName }}</li>
+          <span class="ml-2" *ngIf="pcart.length==0">No pipeline added</span>
+        </ul>
+        <br>
+        <h3 class="ml-2" id="text"><i class="fa-solid fa-code mr-2"></i>   Frontend</h3>
+        <ul>
+          <li *ngFor="let data of fcart">{{ data.datasetName }}</li>
+          <span class="ml-2" *ngIf="fcart.length==0">No frontend added</span>
+        </ul>
+
+        <div class="text-bottom modal-footer ml-1">
+          <button type="button" class="btn btn-primary" style="background-color: #7672ED;color: white;" aria-label="Close" data-dismiss="modal" data-toggle="modal" data-target="#cart-popup">Create Project</button>
+          &nbsp;<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Add to cart Popup -->
+<div class="modal" id="cart-popup" tabindex="-1" data-backdrop="true">
+  <div class="modal-dialog" style="min-width: 55vw;min-height: 70vh !important;">
+    <div class="modal-content" style="margin-top: 3vw;">
+      <!-- <div class="modal-header">    
+      </div> -->
+      <div class="modal-body ">
+        
+          <div>
+            <h2 id="text" class="mt-3">Create New Project</h2>
+          </div>
+      <div class="d-flex flex-row"> 
+      <div>
+      <div class="mt-4">
+        <!-- <label>Project Name</label> -->
+        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
+        <input id="inputStyle" matInput placeholder="Project Name" >
+        </mat-form-field> 
+      </div>
+      <div class="mt-4">
+        <!-- <label>Project Name</label> -->
+        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
+        <input id="inputStyle" matInput placeholder="Project Tags" >
+        </mat-form-field> 
+      </div>
+      <div class="mt-4">
+        <!-- <label>Project Name</label> -->
+        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
+        <input id="inputStyle" matInput placeholder="Description" >
+        </mat-form-field> 
+      </div>
+      <div class="modal-footer ml-1 text-right" style="width: 30vw"> 
+        <button type="button" class="btn btn-success"  data-dismiss="modal">Save</button> &nbsp;
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> 
+      </div>
+
+    </div>
+    <div class="ml-4 mt-4">
+      <h3  id="text"><i class="fa fa-cube mr-2"></i>   Models</h3>
+        <ul>
+          <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}</li>
+          <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
+         
+        </ul>
+        <br>
+        <h3  id="text"><i class="item al-ico-datasets mr-2"></i>   Datasets</h3>
+        <ul>
+          <li *ngFor="let data of dcart">{{ data.datasetName }}</li>
+          <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
+        </ul>
+        <br>
+    </div>
+      
+
+      
+
+      <!-- <div class="text-right">
+        <button class="btn-close" style="font-size:15px;float:right !important;" data-dismiss="modal" aria-label="Close">Close</button>
+      </div> -->
+
+       
+      </div>
+    </div>
+      
+    </div>
+  </div>
+</div>
+
+	
 
 

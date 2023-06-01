@@ -10,9 +10,5 @@ export class CommonService {
 
   }
 
-  addtoPortal(){
-    
-    //   this.http.post("local:3000/clearml/pipeline",{}).subscribe(response => {   
-    // })
-    }
+ 
 }

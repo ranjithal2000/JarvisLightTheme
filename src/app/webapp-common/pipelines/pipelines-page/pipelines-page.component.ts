@@ -99,8 +99,11 @@ if __name__ == '__main__':
   //------------------------------------------
   @Output() addtoPortalData=new EventEmitter<any>();
 
-  addtoPortal(project:Project){
-    
+  addtoPortal(project1:Project){
+    let project=project1.id;
+    console.log("project",project1);
+    this.http.post("http://13.234.148.242:3000/clearml/pipeline",{project}).subscribe(response => {   
+  })
     // this.addtoPortalData.emit(project);
   }
 
