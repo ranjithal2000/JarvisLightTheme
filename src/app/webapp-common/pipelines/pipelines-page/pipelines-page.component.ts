@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
   }
   //------------------------------------------
-  @Output() addtoPortalData=new EventEmitter<any>();
+  // @Output() addtoPortalData=new EventEmitter<any>();
 
   addtoPortal(project1:Project){
     let project=project1.id;
