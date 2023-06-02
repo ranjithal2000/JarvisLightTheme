@@ -15,10 +15,8 @@
 
  <!-------------------------------Solution Jar-------------------------------------------------------------------------------------------------->
   <div class="row">
-    <!-- <mat-card class="col-lg ex3"> -->
       <div class="col-lg">
-        <table  class="ex3 py-0 my-0" id="table1" style="width: 100%;">
-       
+        <table id="table1" class="ex3 py-0 my-0"  style="width: 100%;"> 
           <table class="mt-4">
             <tr>
               <td align="center" class="pl-2 pr-3" > <mat-icon  id="icon" class="">emoji_objects</mat-icon> </td>
@@ -112,7 +110,7 @@
 
     <!-- --------------------------------------Fontend Jar------------------------------------------------------------>
     <div class="col-lg">
-      <table  class="ex3 py-0 my-0" style="width: 100%;">
+      <table id="table2" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
           <tr style="width:auto">
             <td align="center" style="width:auto" class="pl-2 pr-2"> <i id="icon" class="fa-solid fa-code mr-3"></i> </td>
@@ -139,7 +137,7 @@
 
       <!-- <div class="mt-2 ">  -->
         <mat-accordion class="mb-2 py-0"> 
-          <table style="width: 100%;" id="table2">
+          <table style="width: 100%;" >
             <tr *ngFor="let data of Frontend" >
               <div class="tick-mark" *ngIf="selected">
                 <span>&#10003;</span>
@@ -373,7 +371,7 @@
     <!-- ---------------------------------------Data Jar------------------------------------------------------------>
 
     <div class="col-lg">
-      <table id="table4" class="ex3 py-0 my-0">
+      <table id="table5" class="ex3 py-0 my-0">
         <table class="mt-4">
           <tr style="width:auto">
             <td align="center" class="pl-2 pr-2"> <i id="icon" class="item al-ico-datasets mr-3"></i> </td>
@@ -495,7 +493,7 @@
 <div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
   <div class="modal-dialog" style="min-width: 75vw;" >
    
-    <div class="modal-content" style="margin-top: 10vw;" >
+    <div class="modal-content" style="margin-top: 3vw;" >
       <div class="popup container">
 
 
@@ -512,7 +510,7 @@
             <div class="d-flex flex-row m-3">
             <div>
                <mat-form-field style="min-width:35vw;" class="example-full-width" appearance="outline"> 
-                <input id="inputStyle" matInput placeholder="Solution Name" formControlName="solution_name">
+                <input id="inputStyle" matInput placeholder="Solution Name" formControlName="solution_name" (input)="onInputChange('solution','solution_name')">
               </mat-form-field> 
             </div> 
 
@@ -533,22 +531,19 @@
             <div class="px-3"> 
               <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 
-                <input id="inputStyle" matInput placeholder="Solution Tags" formControlName="solution_tags">
+                <input id="inputStyle" matInput placeholder="Solution Tags" formControlName="solution_tags" (input)="onInputChange('solution','solution_tags')">
               </mat-form-field> </div>
           </div>
 
           <div class="d-flex flex-row m-3">
             <div>
-              <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-
-                
-                <input id="inputStyle" matInput placeholder="Solution Description"
-                  formControlName="solution_description">
+              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Solution Description" formControlName="solution_description"></textarea>
               </mat-form-field>
             </div>
 
           </div>
-          <hr class="ml-3" style="width: 207%;">
+          <hr class="ml-3" style="width: 71vw">
 
           <h6 class="ml-4">Use dropdowns for Linkage</h6>
 
@@ -627,7 +622,7 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Dataset Name" formControlName="name"> </mat-form-field>
+                <input id="inputStyle" matInput placeholder="Dataset Name" formControlName="name" (input)="onInputChange('dataset','name')"> </mat-form-field>
             </div>
 
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
@@ -648,9 +643,9 @@
           </div>
 
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field> </div>
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
+            </mat-form-field>
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw;"> 
@@ -667,7 +662,7 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Model Project Name</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Model Name" formControlName="project_name">
+                <input id="inputStyle" matInput placeholder="Model Name" formControlName="project_name" (input)="onInputChange('model','project_name')">
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>View url</b></mat-label> --> <input
@@ -679,17 +674,21 @@
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
                   id="inputStyle" matInput placeholder="Model Run url" formControlName="run_url"> </mat-form-field> </div>
 
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
+            <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                 <input
                   id="inputStyle" matInput placeholder="Model Tags" formControlName="model_tags"> </mat-form-field>
-            </div>
+            </div> -->
           </div>
 
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
+            </mat-form-field>
+
+            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+                 <input
                   id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field>
-            </div>
+            </div> -->
           </div>
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
               (click)="addModel()" data-dismiss="modal" [disabled]="!formdata2.valid">Save</button> &nbsp;<button type="button" class="btn btn-danger"
@@ -705,7 +704,7 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name">
+                  id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name" (input)="onInputChange('pipeline','pipeline_name')">
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
@@ -714,16 +713,19 @@
           </div>
           <div class="d-flex flex-row m-3">
             
-            <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
+            <!-- <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                 <input
                   id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
-              </mat-form-field> </div>
+              </mat-form-field> </div> -->
           </div>
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-              <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="pipeline_description"></textarea>
+            </mat-form-field>
+            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <input
                 id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
-            </mat-form-field> </div>
+            </mat-form-field> </div> -->
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -740,25 +742,28 @@
           <div class="d-flex flex-row m-3">
             <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Frondend Name" formControlName="frontend_name">
+                  id="inputStyle" matInput placeholder="Frondend Name" formControlName="frontend_name" (input)="onInputChange('frontend','frontend_name')">
               </mat-form-field> </div>
             <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                 <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
                 <input id="inputStyle" matInput placeholder="Frondend View URL" formControlName="frontendStyle_url">
               </mat-form-field> </div>
           </div>
-          <div class="d-flex flex-row m-3">
+          <!-- <div class="d-flex flex-row m-3">
             
               <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Frondend Tags" formControlName="frontend_description">
+                 <input
+                  id="inputStyle" matInput placeholder="Frondend Tags" formControlName="frontendRun_url">
               </mat-form-field> </div>
-          </div>
+          </div> -->
           <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-              <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Description</b></mat-label> --> <input
-                id="inputStyle" matInput placeholder="Description" formControlName="frontendRun_url">
-            </mat-form-field> </div>
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="frontend_description"></textarea>
+            </mat-form-field>
+            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <input
+                id="inputStyle" matInput placeholder="Description" formControlName="frontend_description">
+            </mat-form-field> </div> -->
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -786,7 +791,7 @@
         <div class="d-flex flex-row m-3">
           <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Dataset Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Enter name" formControlName="name"> </mat-form-field> </div>
+              <input id="inputStyle" matInput placeholder="Enter name" formControlName="name" (input)="onInputChange('edit-dataset','name')"> </mat-form-field> </div>
 
           <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Dataset Id</b></mat-label> <input id="inputStyle" matInput
@@ -805,9 +810,14 @@
         </div>
 
         <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label>
+            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
+          </mat-form-field>
+
+          <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Description</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Desc" formControlName="desc"> </mat-form-field> </div>
+              <input id="inputStyle" matInput placeholder="Desc" formControlName="desc"> </mat-form-field> </div> -->
         </div>
 
         <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -822,30 +832,34 @@
             aria-label="Close" style="width:10px;height:10px"></button>
         </div>
         <div class="d-flex flex-row m-3">
-          <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width"
-              appearance="outline"> <mat-label id="subTitle"><b>Model Name</b></mat-label> <input id="inputStyle" matInput
-                placeholder="" formControlName="project_name"> </mat-form-field><br> </div>
+          <div > <mat-form-field style="width:35vw;" class="example-full-width"
+              appearance="outline"> <mat-label id="subTitle"><b>Model Name</b></mat-label> 
+              <input id="inputStyle" matInput placeholder="" formControlName="project_name" (input)="onInputChange('edit-model','project_name')"> 
+             </mat-form-field><br> </div>
 
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+          <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Model Run Url</b></mat-label> 
+              <input id="inputStyle" matInput placeholder="url" formControlName="run_url"> </mat-form-field> </div>
+          <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Model Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
-                formControlName="modelTags"> </mat-form-field> </div>
+                formControlName="modelTags"> </mat-form-field> </div> -->
         </div>
         <div class="d-flex flex-row m-3">
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+          <div > <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
             <mat-label id="subTitle"><b>Model View Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
               formControlName="view_url"> </mat-form-field> </div>
 
-          <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width"
-              appearance="outline">
-              <mat-label id="subTitle"><b>Model Run Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
-                formControlName="run_url"> </mat-form-field> </div>
         </div>
         <div class="d-flex flex-row m-3">
-          <div class="px-3"> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput placeholder=""
-              formControlName="desc"> </mat-form-field> </div>
+          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label>
+            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
+          </mat-form-field>
 
-          
+          <!-- <div class="px-3"> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput placeholder=""
+              formControlName="desc"> </mat-form-field> </div> -->
+
         </div>
         <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
             (click)="editModel()" data-dismiss="modal">Save</button> &nbsp;<button type="button" class="btn btn-danger"
@@ -863,7 +877,7 @@
         <div class="d-flex flex-row m-3">
           <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Solution Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="" formControlName="solution_name">
+              <input id="inputStyle" matInput placeholder="" formControlName="solution_name" (input)="onInputChange('edit-solution','solution_name')">
             </mat-form-field>
           </div>
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
@@ -877,13 +891,21 @@
               <input id="inputStyle" matInput placeholder="" formControlName="run_url"> </mat-form-field> </div>
               
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Solution Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
-                formControlName="solution_tags">
+              <mat-label id="subTitle"><b>Solution Tags</b></mat-label> 
+              <input id="inputStyle" matInput placeholder="" formControlName="solution_tags" (input)="onInputChange('edit-solution','solution_tags')">
             </mat-form-field> </div>
         </div>
-        <div class="d-flex flex-row m-3"> <mat-form-field style="min-width:35vw" class="example-full-width"
+        <div class="d-flex flex-row m-3"> 
+          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label>
+            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="solution_description"></textarea>
+          </mat-form-field>
+
+          <!-- <mat-form-field style="min-width:35vw" class="example-full-width"
             appearance="outline"> <mat-label id="subTitle"><b>Description</b></mat-label> <input
-              id="inputStyle" matInput placeholder="" formControlName="solution_description"> </mat-form-field> </div>
+              id="inputStyle" matInput placeholder="" formControlName="solution_description"> 
+            </mat-form-field>  -->
+        </div>
 
               <div class="d-flex flex-row m-3">
                 <div class="ml-3" style="min-width:35vw">
@@ -970,7 +992,7 @@
         <div class="d-flex flex-row m-3">
           <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Pipeline Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name">
+              <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name" (input)="onInputChange('pipeline','pipeline_name')">
             </mat-form-field> </div>
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Pipeline View URL</b></mat-label>
@@ -979,14 +1001,19 @@
         </div>
 
         <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label>
+            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="pipeline_description"></textarea>
+          </mat-form-field>
+
+          <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Description</b></mat-label>
               <input id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
-            </mat-form-field> </div>
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+            </mat-form-field> </div> -->
+          <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Pipeline Tags</b></mat-label>
               <input id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
-            </mat-form-field> </div>
+            </mat-form-field> </div> -->
         </div>
 
         <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
@@ -1001,20 +1028,24 @@
             aria-label="Close" style="width:10px;height:10px"></button>
         </div>
         <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> <mat-label
-                id="subTitle"><b>Frontend Name</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Pipeline Name" formControlName="frontend_name"> </mat-form-field> </div>
+          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> 
+            <mat-label id="subTitle"><b>Frontend Name</b></mat-label> 
+            <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="frontend_name" (input)="onInputChange('frontend','frontend_name')"> 
+          </mat-form-field> </div>
+
           <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
               <mat-label id="subTitle"><b>Frontend Style URL</b></mat-label> <input id="inputStyle" matInput
                 placeholder="View URL" formControlName="frontendStyle_url"> </mat-form-field> </div>
         </div>
         <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> <mat-label
+          <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> <mat-label
                 id="subTitle"><b>Frontend Run URL</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Pipeline Tags" formControlName="frontendRun_url"> </mat-form-field> </div>
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Description" formControlName="frontend_description"> </mat-form-field> </div>
+                placeholder="Pipeline Tags" formControlName="frontendRun_url"> </mat-form-field> </div> -->
+
+          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="frontend_description"></textarea>
+            </mat-form-field>
         </div>
         <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
             (click)="editFrontend()" data-dismiss="modal">Save</button> &nbsp;<button type="button"

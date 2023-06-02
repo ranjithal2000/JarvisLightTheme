@@ -425,6 +425,10 @@ label{
     margin-top: 4px;
     border-radius: 1px;
 }
+#textarea{
+  min-width: 65vw;
+  min-height: 6vh;
+}
 // .mat-expansion-indicator::after {
 //     height: 50px !important; 
 //     width: 50px !important; 
@@ -487,3 +491,5 @@ mat-icon:hover{
   float: right !important;
 }
 
+// .startElement, .endElement { 
+//   position: absolute; top: 100px; left: 100px; width: 100px; height: 50px; background-color: #ccc; text-align: center; line-height: 50px; } #lineContainer { position: relative; width: 400px; height: 300px; }
