@@ -1,206 +1,214 @@
-
-
-
-
 <div class="container-fluid">
-  <div class="pr-3 cart_button" > 
-    <a aria-placeholder="Add Cart">
-    <mat-icon  aria-hidden="false" aria-label="Example home icon" style="color:rgb(30, 30, 30);cursor: pointer;" 
-         fontIcon="shopping_cart" data-toggle="modal" data-target="#cart"></mat-icon>
-    </a>
-    <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
-  </div>
 
-  
-
- <!-------------------------------Solution Jar-------------------------------------------------------------------------------------------------->
+  <!-------------------------------Solution Jar-------------------------------------------------------------------------------------------------->
   <div class="row">
-      <div class="col-lg">
-        <table id="table1" class="ex3 py-0 my-0"  style="width: 100%;"> 
-          <table class="mt-4">
-            <tr>
-              <td align="center" class="pl-2 pr-3" > <mat-icon  id="icon" class="">emoji_objects</mat-icon> </td>
-              <td align="left" class="pl-3 pr-4">
-                <h3 id="text">Solution Jar</h3>
+    <div class="col-lg">
+      <table id="table1" class="ex3 py-0 my-0" style="width: 100%;">
+        <table class="mt-4">
+          <tr>
+            <td align="center" class="pl-2 pr-3"> <mat-icon id="icon" class="">emoji_objects</mat-icon> </td>
+            <td align="left" class="pl-3 pr-4">
+              <h3 id="text">Solution Jar</h3>
               <p id="text">Vertical Engins</p>
-              </td>
+            </td>
 
-              <td align="right" class="pl-5">
-                <div id="div2">
-                  
-                  <i id="text"  class="fa fa-plus addButton ml-4" (click)="SelectJar('Solution')" data-toggle="modal"
+            <td align="right" class="pl-5">
+              <div id="div2">
+
+                <i id="text" class="fa fa-plus addButton ml-4" (click)="SelectJar('Solution')" data-toggle="modal"
                   data-target="#myModal"></i>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <tr class="input-group pt-3 pb-3">
+          <input class="form-control py-2 border-right-0 border"
+            style="width:130px; height:50px;background-color: transparent;" [(ngModel)]="Searchvalue4" type="search"
+            placeholder="search" id="example-search-input1" (keyup)="filterSolution()">
+          <span class="input-group-append">
+            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i>
+            </div>
+          </span>
+        </tr>
+
+        <mat-accordion class="mb-2 py-0">
+          <table style="width: 100%;">
+            <tr *ngFor="let data of Solution">
+              <td>
+                <div class="tick-mark" *ngIf="selected">
+                  <span>&#10003;</span>
                 </div>
+                <mat-expansion-panel style="background-color: #7672ED;" (opened)="panelOpenState = true"
+                  (closed)="panelOpenState = false" [expanded]="isPanelOpen" class="py-0 my-0 ">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.solutionName}}</b></p>
+                    </mat-panel-title>
+                    <!-- </div> -->
+                  </mat-expansion-panel-header>
+
+                  <div class="chip-container">
+                    <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal">
+                      <mat-chip *ngFor="let tag of data.solutionTags.split(',')" class="example-box" cdkDrag>
+                        {{tag.trim()}}
+                      </mat-chip> </mat-chip-list>
+                  </div>
+
+
+                  <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label
+                      style="color: white;"><b>DESCRIPTION: </b>
+                    </label><br>{{data.solutionDescription}}</div>
+                  <label class="mb-2" type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20"
+                    style="color: #37B3FB"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
+                  <br>
+
+
+                  <div class="d-flex flex-row px-1 pt-1">
+                    <div class="btn-grp pr-1 icon-glow"> <a aria-placeholder="View Url" target="_blank"
+                        href={{data.solutionViewUrl}}> <mat-icon style="color:white ;margin-right: 20px;"
+                          aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a>
+                    </div>
+
+                    <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Run Url" target="_blank"
+                        href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          fontIcon="arrow_right_circle"
+                          style="transform: scale(2);color:white;margin-right: 20px;"></mat-icon></a> </div>
+                    <div class="btn-grp pl-2 pr-2">
+
+                      <a aria-placeholder="Linkage" *ngIf="!link" (click)="linkage(data)"
+                        style="cursor: pointer;color: white;margin-top: 35px !important;;margin-right: 20px;"><i
+                          class="fa fa-link fa-lg icon-glow"></i> </a>
+
+                      <a aria-placeholder="Linkage" *ngIf="link" (click)="refresh()"
+                        style="cursor: pointer;color: #47A0FC;margin-top: 35px !important;;margin-right: 20px;"><i
+                          class="fa fa-link fa-lg icon-glow"></i> </a>
+                    </div>
+
+                    <div class="btn-grp pl-1 pr-3 icon-glow" #start> <a aria-placeholder="Edit"><mat-icon
+                          aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-right: 10px;" fontIcon="edit"
+                          (click)="editData(data,'Solution')" (click)="getDataSolution(data)" data-toggle="modal"
+                          data-target="#exampleModal"></mat-icon></a>
+                    </div>
+
+
+                    <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon
+                          matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-left: 10px;;  " fontIcon="delete"
+                          data-toggle="modal" data-target="#confModal"
+                          (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
+
+
+                  </div>
+                </mat-expansion-panel>
+
               </td>
             </tr>
           </table>
-       
-        <tr class="input-group pt-3 pb-3">
-          <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
-           [(ngModel)]="Searchvalue4" type="search" placeholder="search" id="example-search-input1" (keyup)="filterSolution()"> 
-          <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i>
-          </div></span>
-      </tr>
-       
-        <mat-accordion class="mb-2 py-0"> 
-        <table style="width: 100%;" >
-          <tr *ngFor="let data of Solution" >   
-            <td>
-                <div class="tick-mark"  *ngIf="selected">
-                  <span>&#10003;</span>
-                </div>     
-              <mat-expansion-panel  style="background-color: #7672ED;" (opened)="panelOpenState = true" (closed)="panelOpenState = false" [expanded]="isPanelOpen" class="py-0 my-0 "> 
-                <mat-expansion-panel-header > 
-                  <mat-panel-title>
-                    <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.solutionName}}</b></p>
-                  </mat-panel-title>
-                <!-- </div> -->
-                 </mat-expansion-panel-header>
-      
-                  <div class="chip-container" >
-                      <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> 
-                        <mat-chip *ngFor="let tag of data.solutionTags.split(',')" class="example-box" cdkDrag>
-                           {{tag.trim()}}
-                      </mat-chip> </mat-chip-list>
-                  </div>
-                
-              
-                <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"><b>DESCRIPTION: </b>
-                      </label><br>{{data.solutionDescription}}</div>
-                <label class="mb-2"  type="button" (click)="showText()" *ngIf="data.solutionDescription.length>20" style="color: #37B3FB"><b>{{ isReadMore ? 'Read More': 'Read Less' }}</b></label>
-                <br>
-                
-      
-                <div class="d-flex flex-row px-1 pt-1">
-                  <div class="btn-grp pr-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.solutionViewUrl}}> <mat-icon style="color:white ;margin-right: 20px;"
-                        aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
-      
-                  <div class="btn-grp px-2 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.solutionRunUrl}}> <mat-icon aria-hidden="false"
-                        aria-label="Example home icon" fontIcon="arrow_right_circle"
-                        style="transform: scale(2);color:white;margin-right: 20px;"></mat-icon></a> </div>
-                  <div class="btn-grp pl-2 pr-2">
-      
-                    <a  aria-placeholder="Linkage" *ngIf="!link" (click)="linkage(data)" style="cursor: pointer;color: white;margin-top: 35px !important;;margin-right: 20px;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
-      
-                    <a  aria-placeholder="Linkage" *ngIf="link" (click)="refresh()" style="cursor: pointer;color: #47A0FC;margin-top: 35px !important;;margin-right: 20px;"><i class="fa fa-link fa-lg icon-glow"></i> </a>
-                  </div>
-      
-                  <div class="btn-grp pl-1 pr-3 icon-glow" #start > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                        style="color:white;cursor: pointer;margin-right: 10px;" fontIcon="edit" (click)="editData(data,'Solution')"
-                        (click)="getDataSolution(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
-                  </div>
-                 
-            
-            <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon  matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
-              style="color:white;cursor: pointer;margin-left: 10px;;  " fontIcon="delete" data-toggle="modal" data-target="#confModal"
-              (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
-      
-      
-                </div>
-              </mat-expansion-panel> 
-             
-          </td>
-       </tr>
-    </table>
-    </mat-accordion>
-        
+        </mat-accordion>
+
       </table>
     </div>
-   
+
 
     <!-- --------------------------------------Fontend Jar------------------------------------------------------------>
     <div class="col-lg">
       <table id="table2" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
           <tr style="width:auto">
-            <td align="center" style="width:auto" class="pl-2 pr-2"> <i id="icon" class="fa-solid fa-code mr-3"></i> </td>
+            <td align="center" style="width:auto" class="pl-2 pr-2"> <i id="icon" class="fa-solid fa-code mr-3"></i>
+            </td>
             <td align="left" style="width:auto" class="pl-3 pr-4">
               <h3 id="text">Frontend Jar</h3>
               <p id="text">Ui/Ux Templates</p>
             </td>
             <td align="right" class="pl-4">
               <div id="div2">
-                <i id="text" class="fa fa-plus addButton ml-3" (click)="SelectJar('Frontend')" data-toggle="modal" data-target="#myModal"></i>
+                <i id="text" class="fa fa-plus addButton ml-3" (click)="SelectJar('Frontend')" data-toggle="modal"
+                  data-target="#myModal"></i>
               </div>
             </td>
           </tr>
         </table>
-      
-        <tr class="input-group pb-3 pt-3">
-          <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
-           type="search" [(ngModel)]="Searchvalue3" placeholder="search" id="example-search-input2" (keyup)="filterFrontend()">
-           <span class="input-group-append">
-          <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
-        </span>
-      </tr>
-      
 
-      <!-- <div class="mt-2 ">  -->
-        <mat-accordion class="mb-2 py-0"> 
-          <table style="width: 100%;" >
-            <tr *ngFor="let data of Frontend" >
+        <tr class="input-group pb-3 pt-3">
+          <input class="form-control py-2 border-right-0 border"
+            style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue3"
+            placeholder="search" id="example-search-input2" (keyup)="filterFrontend()">
+          <span class="input-group-append">
+            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+          </span>
+        </tr>
+
+
+        <!-- <div class="mt-2 ">  -->
+        <mat-accordion class="mb-2 py-0">
+          <table style="width: 100%;">
+            <tr *ngFor="let data of Frontend">
               <div class="tick-mark" *ngIf="selected">
                 <span>&#10003;</span>
               </div>
-              <td>     
-                <mat-expansion-panel style="background-color: #7672ED;" #panel (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
-                  <mat-expansion-panel-header > 
+              <td>
+                <mat-expansion-panel style="background-color: #7672ED;" #panel (opened)="onPanelOpened(data,'opened')"
+                  (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
+                  <mat-expansion-panel-header>
                     <mat-panel-title>
-                      <p class="mt-3 pt-2" style="font-size: 15px;color:white;" ><b>{{data.frontendName}}</b></p>
-                      
-                    </mat-panel-title> 
-                  </mat-expansion-panel-header> 
+                      <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.frontendName}}</b></p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
 
                   <div class="mt-3" [ngClass]="{'limitTextHeight': isReadMore}" style="color: white;"><label style="color: white;"> <b>DESCRIPTION:</b>
-                  </label> <br> {{data.frontendDescription}}</div> 
-                  <label  type="button" *ngIf="data.frontendDescription.length>20"
-                    (click)="showText()" style="color: #37B3FB"><b> {{ isReadMore ? 'Read More': 'Read Less' }}</b>
+                    </label> <br> {{data.frontendDescription}}</div>
+                  <label type="button" *ngIf="data.frontendDescription.length>20" (click)="showText()" style="color: #37B3FB"><b> {{ isReadMore ? 'Read More': 'Read Less' }}</b>
                   </label>
                   <br>
                   <br>
                   <div class="d-flex flex-row px-1 pt-1">
-                    <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="Style Url" target="_blank" href={{data.frontendStylesUrl}}> <mat-icon
-                          style="color:white" aria-hidden="false" aria-label="Example home icon"
-                          fontIcon="visibility"></mat-icon></a> </div>
+                    <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="Style Url" target="_blank"
+                        href={{data.frontendStylesUrl}}> <mat-icon style="color:white" aria-hidden="false"
+                          aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> </div>
 
                     <!-- <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="run_url" target="_blank" href={{data.frontendRunUrl}}> <mat-icon aria-hidden="false"
                           aria-label="Example home icon" fontIcon="arrow_right_circle"
                           style="transform: scale(2);color:white"></mat-icon></a> </div> -->
 
-                    <div class="btn-grp pl-3 pr-3 icon-glow" > <a aria-placeholder="Edit"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                          style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Frontend')"
-                          (click)="getDataFrontend(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+                    <div class="btn-grp pl-3 pr-3 icon-glow"> <a aria-placeholder="Edit"><mat-icon aria-hidden="false"
+                          aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit"
+                          (click)="editData(data,'Frontend')" (click)="getDataFrontend(data)" data-toggle="modal"
+                          data-target="#exampleModal"></mat-icon></a>
                     </div>
 
                     <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                       style="color:white" fontIcon="shopping_cart"></mat-icon></a> </div> -->
 
-                    <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false" aria-label="Example home icon"
-                      style="color:white;cursor: pointer;margin-left:45px;" fontIcon="delete" data-toggle="modal" data-target="#confModal"
-                      (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
+                    <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete"><mat-icon aria-hidden="false"
+                          aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:45px;"
+                          fontIcon="delete" data-toggle="modal" data-target="#confModal"
+                          (click)="deleteId(data,'Frontend')"></mat-icon></a> </div>
                     <!-- <div class="btn-grp pl-1 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                       style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
                   </div> -->
 
-                    
+
                   </div>
                 </mat-expansion-panel>
-              <!-- </div>
+                <!-- </div>
               </div>  -->
-        </td>
-      </tr>
-    </table>
-  </mat-accordion> 
-<!-- </div> -->
-</table>
-</div>
+              </td>
+            </tr>
+          </table>
+        </mat-accordion>
+        <!-- </div> -->
+      </table>
+    </div>
     <!-- </mat-card> -->
 
     <!-- --------------------------------------Pipeline Jar------------------------------------------------------------>
     <div class="col-lg">
       <table id="table3" class="ex3 py-0 my-0" style="width: 100%;">
         <table class="mt-4">
-          <tr >
+          <tr>
             <td align="center" class="pl-2 pr-2"> <i id="icon" class="item al-ico-pipelines mr-3"></i> </td>
             <td align="left" class="pl-2 pr-5">
               <h3 id="text">Pipeline Jar</h3>
@@ -208,7 +216,6 @@
             </td>
             <td align="right" class="pl-4">
               <div id="div2">
-                <!-- <mat-icon class="addButton mr-3" data-toggle="modal" data-target="#myModal" matTooltip="Add">add</mat-icon> -->
                 <i id="text" class="fa fa-plus addButton mr-3" (click)="SelectJar('Pipeline')" data-toggle="modal"
                   data-target="#myModal"></i>
               </div>
@@ -216,67 +223,77 @@
           </tr>
         </table>
 
-      <tr class="input-group pb-3 pt-3"> 
-        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
-         type="search" [(ngModel)]="Searchvalue2" placeholder="search" id="example-search-input3" (keyup)="filterPipeline()"> 
-          <span class="input-group-append"><div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
-      </tr>
-      
-      
-      <mat-accordion class="mb-2 py-0"> 
+        <tr class="input-group pb-3 pt-3">
+          <input class="form-control py-2 border-right-0 border"
+            style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue2"
+            placeholder="search" id="example-search-input3" (keyup)="filterPipeline()">
+          <span class="input-group-append">
+            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+          </span>
+        </tr>
+
+
+        <mat-accordion class="mb-2 py-0">
           <table style="width: 100%;">
-          <tr *ngFor="let data of pipeline" class="mt-2">
-            <td>
-                <div class="tick-mark"  *ngIf="selected">
+            <tr *ngFor="let data of pipeline" class="mt-2">
+              <td>
+                <div class="tick-mark" *ngIf="selected">
                   <span>&#10003;</span>
                 </div>
-              <mat-expansion-panel style="background-color: #7672ED;min-width: 130px;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0"> 
-                <mat-expansion-panel-header > 
-                  <mat-panel-title>
-                  <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.pipelineName}}</b></p>
-                </mat-panel-title> </mat-expansion-panel-header> 
-          
-          <div class="chip-container" >
+                <mat-expansion-panel style="background-color: #7672ED;min-width: 130px;"
+                  (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <p class="mt-3 pt-2" style="font-size: 15px;color:white;"><b>{{data.pipelineName}}</b></p>
+                    </mat-panel-title> </mat-expansion-panel-header>
+
+                  <!-- <div class="chip-container" >
             <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> 
               <mat-chip *ngFor="let tag of data.pipelineTags.split(',')" class="example-box" cdkDrag>
                  {{tag.trim()}}</mat-chip>
              </mat-chip-list>
-          </div>
+          </div> -->
 
-            <div class="mt-3">
-                <div [ngClass]="{'limitTextHeight': isReadMore1}" style="color: white;">
-                  <label style="color: white;"><b>DESCRIPTION:</b></label> <br>{{data.pipelineDescription}}
-                </div>
-                <label type="button" (click)="showText1()" *ngIf="data.pipelineDescription.length>20" style="color: #37B3FB"><b> {{ isReadMore1 ? 'Read More': 'ReadLess'}}</b></label>
-            </div>
-    <br>
-            <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.pipelineViewUrl}}> 
-                <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
-              </div>
+                  <div class="mt-3">
+                    <div [ngClass]="{'limitTextHeight': isReadMore1}" style="color: white;">
+                      <label style="color: white;"><b>DESCRIPTION:</b></label> <br>{{data.pipelineDescription}}
+                    </div>
+                    <label type="button" (click)="showText1()" *ngIf="data.pipelineDescription.length>20"
+                      style="color: #37B3FB"><b> {{ isReadMore1 ? 'Read More': 'ReadLess'}}</b></label>
+                  </div>
+                  <br>
+                  <div class="d-flex flex-row px-1 pt-1">
+                    <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="View Url" target="_blank"
+                        href={{data.pipelineViewUrl}}>
+                        <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon"
+                          fontIcon="visibility"></mat-icon></a>
+                    </div>
 
-              <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="Edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-right:8px;" fontIcon="edit"
-                 data-toggle="modal" data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
-              </div>
+                    <div class="btn-grp pl-3 pr-2 icon-glow"> <a aria-placeholder="Edit">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-right:8px;" fontIcon="edit" data-toggle="modal"
+                          data-target="#exampleModal" (click)="editData(data,'Pipeline')"></mat-icon></a>
+                    </div>
 
-              <!-- <div class="btn-grp pl-2 pr-1 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
+                    <!-- <div class="btn-grp pl-2 pr-1 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
                 style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" ></mat-icon></a>
              </div> -->
 
-              <div class="btn-grp pl-2 pr-2 icon-glow"> <a aria-placeholder="Delete">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:72px" fontIcon="delete"
-                 data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a> 
-              </div>
+                    <div class="btn-grp pl-2 pr-2 icon-glow"> <a aria-placeholder="Delete">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-left:72px" fontIcon="delete" data-toggle="modal"
+                          data-target="#confModal" (click)="deleteId(data,'Pipeline')"></mat-icon></a>
+                    </div>
 
-            </div>
-          </mat-expansion-panel>
-          <!-- </div>
+                  </div>
+                </mat-expansion-panel>
+                <!-- </div>
           </div> -->
-        </td></tr> 
-      </table>
-    </mat-accordion> 
+              </td>
+            </tr>
           </table>
+        </mat-accordion>
+      </table>
     </div>
     <!-- ---------------------------------------Model Jar------------------------------------------------------------>
     <div class="col-lg">
@@ -297,77 +314,104 @@
           </tr>
         </table>
 
-      <tr class="input-group pb-3 pt-3" > 
-        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
-         type="search" [(ngModel)]="Searchvalue1" placeholder="search" id="example-search-input4" (keyup)="filterModel()"> 
-          <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
-      </tr>
-      
+        <tr class="input-group pb-3 pt-3">
+          <input class="form-control py-2 border-right-0 border"
+            style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue1"
+            placeholder="search" id="example-search-input4" (keyup)="filterModel()">
+          <span class="input-group-append">
+            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+          </span>
+        </tr>
 
-      <mat-accordion class="mb-2 py-0"> 
-        <table >
-      <tr *ngFor="let data of Modules" class="mt-2 "> 
-        <td>
-         
-            <div class="tick-mark" *ngIf="selected">
-              <span>&#10003;</span>
-            </div>
-            
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0"> 
-            <mat-expansion-panel-header > 
-              <mat-panel-title>
-                <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.modelName}}</b></p>
-              </mat-panel-title> 
-            </mat-expansion-panel-header>
 
-            
+        <mat-accordion class="mb-2 py-0">
+          <table>
+            <ng-container *ngFor="let section of sections">
+              <ng-container *ngIf="groupedData[section] && groupedData[section].length > 0">
+                <tr>
+                  <td colspan="2">
+                    <div class="separator">
+                      <hr> <!-- Horizontal line -->
+                      <span>{{ section }}</span> <!-- Section name on top of the line -->
+                    </div>
+                  </td>
+                </tr>
+            <tr *ngFor="let data of groupedData[section]" class="mt-2 ">
+              <td>
+
+                <div class="tick-mark" *ngIf="selected">
+                  <span>&#10003;</span>
+                </div>
+
+                <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')"
+                  (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.modelName}}</b></p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+
 
             <div class="chip-container" >
               <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> 
-                <mat-chip *ngFor="let tag of data.modelTags.split(',')" class="example-box" cdkDrag> 
-                  {{tag.trim()}}</mat-chip> 
+                <mat-chip *ngFor="let tag of data.modelTags.split(',')" class="example-box" cdkDrag> {{tag.trim()}}</mat-chip> 
               </mat-chip-list>
             </div>
 
-            <div class="mt-3">
-                <div [ngClass]="{'limitTextHeight': isReadMore2}" style="color: white;">
-                  <label style="color: white;"><b>DESCRIPTION:</b></label><br>{{data.modelDescription}}
-                </div>
-                <label  type="button" (click)="showText2()" *ngIf="data.modelDescription.length>20" style="color: #37B3FB"><b>{{ isReadMore2 ? 'Read More': 'Read Less' }}</b></label>
-            </div>
-<br>
-            <div class="d-flex flex-row px-1 pt-1">
-              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.modelViewUrl}}> 
-                <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
-              </div>
-              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Run Url" target="_blank" href={{data.modelRunUrl}}> 
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle" style="transform: scale(2);color:white"></mat-icon></a> 
-              </div>
+                  <div class="mt-3">
+                    <div [ngClass]="{'limitTextHeight': isReadMore2}" style="color: white;">
+                      <label style="color: white;"><b>DESCRIPTION:</b></label><br>{{data.modelDescription}}
+                    </div>
+                    <label type="button" (click)="showText2()" *ngIf="data.modelDescription.length>20"
+                      style="color: #37B3FB"><b>{{ isReadMore2 ? 'Read More': 'Read Less' }}</b></label>
+                  </div>
+                  <br>
+                  <div class="d-flex flex-row px-1 pt-1">
+                    <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="View Url" target="_blank"
+                        href={{data.modelViewUrl}}>
+                        <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon"
+                          fontIcon="visibility"></mat-icon></a>
+                    </div>
+                    <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Run Url" target="_blank"
+                        href={{data.modelRunUrl}}>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_right_circle"
+                          style="transform: scale(2);color:white"></mat-icon></a>
+                    </div>
 
-              
 
-              <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Edit">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')" (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
-              </div>
 
-              <div class="btn-grp pl-1 pr-2 icon-glow" #start > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-                style="color:white;cursor: pointer;margin-right: 5px;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
-             </div>
+                    <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Edit">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Model')"
+                          (click)="getDataModel(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+                    </div>
 
-             <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
-              <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left: 3vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Model')">
-              </mat-icon></a> 
-            </div>
-              <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                    <div class="btn-grp pl-1 pr-2 icon-glow" #start> <a aria-placeholder="Add Cart"><mat-icon
+                          aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-right: 5px;" fontIcon="add_shopping_cart"
+                          (click)="addtoCart(data)"></mat-icon></a>
+                    </div>
+
+                    <div class="btn-grp pl-1 pr-3 icon-glow"> <a aria-placeholder="Delete">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-left: 3vw;" fontIcon="delete" data-toggle="modal"
+                          data-target="#confModal" (click)="deleteId(data,'Model')">
+                        </mat-icon></a>
+                    </div>
+                    <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
                     style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
-            </div>
-          </mat-expansion-panel>
-          
-        </td></tr>
+                  </div>
+                </mat-expansion-panel>
+
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+          </table>
+        </mat-accordion>
       </table>
-       </mat-accordion> 
-        </table>
-      </div>
+    </div>
     <!-- ---------------------------------------Data Jar------------------------------------------------------------>
 
     <div class="col-lg">
@@ -388,676 +432,660 @@
           </tr>
         </table>
 
-      <tr class="input-group pb-3 pt-3" > 
-        <input class="form-control py-2 border-right-0 border" style="width:130px; height:50px;background-color: transparent;"
-         type="search" [(ngModel)]="Searchvalue" placeholder="search" id="example-search-input5" (keyup)="filterData()"> 
-          <span class="input-group-append"> <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div> </span> 
-      </tr>
-      
+        <tr class="input-group pb-3 pt-3">
+          <input class="form-control py-2 border-right-0 border"
+            style="width:130px; height:50px;background-color: transparent;" type="search" [(ngModel)]="Searchvalue"
+            placeholder="search" id="example-search-input5" (keyup)="filterData()">
+          <span class="input-group-append">
+            <div class="input-group-text bg-transparent"><i class="fa fa-search"></i></div>
+          </span>
+        </tr>
 
-      <mat-accordion class="mb-2 py-0"> 
-        <table >
-      <tr *ngFor="let data of Dataset" class="mt-2 "> 
-        <td>
-          
-            <div class="tick-mark mr-1" *ngIf="selected">
-              <span>&#10003;</span>
-            </div>
-            
-          <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')" (closed)="onPanelOpened(data,'closed')" class="py-0 my-0"> 
-            <mat-expansion-panel-header > 
-              <mat-panel-title>
-                <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.datasetName}}</b></p>
-              </mat-panel-title> 
-            </mat-expansion-panel-header>
 
-            
+        <mat-accordion class="mb-2 py-0">
+          <table>
+            <tr *ngFor="let data of Dataset" class="mt-2 ">
+              <td>
 
-            <!-- <div class="chip-container" >
+                <div class="tick-mark mr-1" *ngIf="selected">
+                  <span>&#10003;</span>
+                </div>
+
+                <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')"
+                  (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.datasetName}}</b></p>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <!-- <div class="chip-container" >
               <mat-chip-list class="example-chip" cdkDropList cdkDropListOrientation="horizontal"> 
                 <mat-chip *ngFor="let tag of data.modelTags.split(',')" class="example-box" cdkDrag> 
                   {{tag.trim()}}</mat-chip> 
               </mat-chip-list>
             </div> -->
-            <div class="d-flex flex-row pt-2 px-1">
-              <div>
-                <p style="color:white"><b>VERSION: </b>{{data.datasetVersion}}</p>
-                <div [ngClass]="{'limitTextHeight': isReadMore3}" style="color: white;">
-                  <label style="color: white;"><b>DESCRIPTION:</b> </label><br>{{data.datasetDescription}}
-                </div>
-                <label  type="button" (click)="showText3()" *ngIf="data.datasetDescription.length>20" style="color: #37B3FB">
-                  <b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
-              </div> 
-            </div>
+                  <div class="d-flex flex-row pt-2 px-1">
+                    <div>
+                      <p style="color:white"><b>VERSION: </b>{{data.datasetVersion}}</p>
+                      <div [ngClass]="{'limitTextHeight': isReadMore3}" style="color: white;">
+                        <label style="color: white;"><b>DESCRIPTION:</b> </label><br>{{data.datasetDescription}}
+                      </div>
+                      <label type="button" (click)="showText3()" *ngIf="data.datasetDescription.length>20"
+                        style="color: #37B3FB">
+                        <b> {{ isReadMore3 ? 'Read More': 'ReadLess' }}</b></label>
+                    </div>
+                  </div>
 
-            
-<br>
-<div class="d-flex flex-row px-1 pt-1">
-  <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank" href={{data.datasetUrl}}> 
-    <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon></a> 
-  </div>
-  
-  <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="Edit">
-    <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')" (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a> 
-  </div>
 
-  <div class="btn-grp pl-2 pr-2 icon-glow"  > <a aria-placeholder="Add Cart"><mat-icon  aria-hidden="false" aria-label="Example home icon"
-    style="color:white;cursor: pointer;" fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
- </div>
+                  <br>
+                  <div class="d-flex flex-row px-1 pt-1">
+                    <div class="btn-grp px-1 icon-glow"> <a aria-placeholder="View Url" target="_blank"
+                        href={{data.datasetUrl}}>
+                        <mat-icon style="color:white" aria-hidden="false" aria-label="Example home icon"
+                          fontIcon="visibility"></mat-icon></a>
+                    </div>
 
- <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
-  <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;margin-left:4vw;" fontIcon="delete" data-toggle="modal" data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a> 
-</div>
-  <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
-        style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
-</div>
+                    <div class="btn-grp pl-3 pr-4 icon-glow"> <a aria-placeholder="Edit">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;" fontIcon="edit" (click)="editData(data,'Dataset')"
+                          (click)="getData(data)" data-toggle="modal" data-target="#exampleModal"></mat-icon></a>
+                    </div>
 
-          </mat-expansion-panel>
-          
-        </td></tr>
+                    <div class="btn-grp pl-2 pr-2 icon-glow"> <a aria-placeholder="Add Cart"><mat-icon
+                          aria-hidden="false" aria-label="Example home icon" style="color:white;cursor: pointer;"
+                          fontIcon="add_shopping_cart" (click)="addtoCart(data)"></mat-icon></a>
+                    </div>
+
+                    <div class="btn-grp px-3 icon-glow"> <a aria-placeholder="Delete">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                          style="color:white;cursor: pointer;margin-left:4vw;" fontIcon="delete" data-toggle="modal"
+                          data-target="#confModal" (click)="deleteId(data,'Dataset')"></mat-icon></a>
+                    </div>
+                    <!-- <div class="btn-grp pl-5"> <a><mat-icon aria-hidden="false" aria-label="Example home icon"
+                        style="color:white;cursor: pointer;" fontIcon="shopping_cart"></mat-icon></a> </div> -->
+                  </div>
+
+                </mat-expansion-panel>
+
+              </td>
+            </tr>
+          </table>
+        </mat-accordion>
       </table>
-       </mat-accordion> 
-        </table>
-      </div>
-  
-</div>
-
-
-
-
-<!---- The Modal ======== Create Dataset ---->
-<!-- <div class="modal" id="DownloadModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="popup container"> <mat-tab-group [selectedIndex]="selectedIndex"> <mat-tab label="API_Data">
-            <form [formGroup]="formdata1" class="example-form">
-              <h4 style="margin-left: 15px;margin-top: 7px;margin-bottom: 15px;">Enter Details</h4> <mat-form-field
-                class="example-full-width" appearance="outline"> <mat-label>Dataset Project Name</mat-label> <input
-                  matInput placeholder="Enter name" formControlName="dataset_project"> </mat-form-field> <mat-form-field
-                class="example-full-width" appearance="outline"> <mat-label>Name Of Dataset</mat-label> <input matInput
-                  placeholder="Enter name" formControlName="dataset_name"> </mat-form-field>
-            </form>
-            <div class="modal-footer"> <button type="button" class="btn btn-success" (click)="DownloadData()"
-                [disabled]="!formdata1.valid">Next</button> <button type="button" class="btn btn-danger"
-                data-bs-dismiss="modal">Close</button> </div>
-          </mat-tab> <mat-tab label="Script" [disabled]="!formdata1.valid"> <br><br>
-            <pre class="code_color">{{value1}}</pre> <button type="button" class="btn btn-success model" 
-               (click)="copytext()">Copy</button>
-          </mat-tab> </mat-tab-group> </div>
     </div>
+
   </div>
-</div> -->
+
+<!-------------------- Cart Icon and count at the Header --------------------------------->
+  <div class="pr-3 cart_button">
+    <a aria-placeholder="Add Cart">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" style="color:rgb(30, 30, 30);cursor: pointer;"
+        fontIcon="shopping_cart" data-toggle="modal" data-target="#cart"></mat-icon>
+    </a>
+    <span class="badge" *ngIf="badgeCount > 0">{{badgeCount}}</span>
+  </div>
+
+<!----------------------------- Adding Jars Section--------------------------------------->
+  <div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog" style="min-width: 75vw;">
+
+      <div class="modal-content" style="margin-top: 3vw;">
+        <div class="popup container">
 
 
- <!----------------------------- adding jars --------------------------------------->
-<div class="modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true">
-  <div class="modal-dialog" style="min-width: 75vw;" >
-   
-    <div class="modal-content" style="margin-top: 3vw;" >
-      <div class="popup container">
+          <!-------------------- Add Solution   ---------------------------->
+          <form [formGroup]="formdata3" class="example-form" *ngIf="sln">
+
+            <div class="m-3">
+              <h3 id="title"><b>Add Solution</b></h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                style="width:10px;height:10px"></button>
+            </div>
 
 
-        <!-------------------- Add Solution   ---------------------------->
-        <form [formGroup]="formdata3" class="example-form" *ngIf="sln">
-          
-          <div class="m-3">
-            <h3 id="title"><b>Add Solution</b></h3>
-             <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close" style="width:10px;height:10px"></button>
-          </div>
-
-         
             <div class="d-flex flex-row m-3">
-            <div>
-               <mat-form-field style="min-width:35vw;" class="example-full-width" appearance="outline"> 
-                <input id="inputStyle" matInput placeholder="Solution Name" formControlName="solution_name" (input)="onInputChange('solution','solution_name')">
-              </mat-form-field> 
-            </div> 
+              <div>
+                <mat-form-field style="min-width:35vw;" class="example-full-width" appearance="outline">
+                  <input id="inputStyle" matInput placeholder="Solution Name" formControlName="solution_name"
+                    (input)="onInputChange('solution','solution_name')">
+                </mat-form-field>
+              </div>
 
-             <div class="px-3"> 
-              <mat-form-field style="min-width:35vw" class="example-full-width " appearance="outline">
-               
-                <input id="inputStyle" matInput placeholder="Solution view url" formControlName="view_url">
-              </mat-form-field> 
-            </div>
-          </div>
+              <div class="px-3">
+                <mat-form-field style="min-width:35vw" class="example-full-width " appearance="outline">
 
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label id="subTitle"><b>Solution Run Url</b></mat-label>  -->
-                <input id="inputStyle" matInput placeholder="Solution Run Url" formControlName="run_url">
-              </mat-form-field>
-            </div>
-            <div class="px-3"> 
-              <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                
-                <input id="inputStyle" matInput placeholder="Solution Tags" formControlName="solution_tags" (input)="onInputChange('solution','solution_tags')">
-              </mat-form-field> </div>
-          </div>
-
-          <div class="d-flex flex-row m-3">
-            <div>
-              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Solution Description" formControlName="solution_description"></textarea>
-              </mat-form-field>
+                  <input id="inputStyle" matInput placeholder="Solution view url" formControlName="view_url">
+                </mat-form-field>
+              </div>
             </div>
 
-          </div>
-          <hr class="ml-3" style="width: 71vw">
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label id="subTitle"><b>Solution Run Url</b></mat-label>  -->
+                  <input id="inputStyle" matInput placeholder="Solution Run Url" formControlName="run_url">
+                </mat-form-field>
+              </div>
+              <div class="px-3">
+                <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
 
-          <h6 class="ml-4">Use dropdowns for Linkage</h6>
-
-          <div class="d-flex flex-row m-3">
-           <div class="ml-3" style="min-width:35vw">
-            <label>Frontend</label>
-            <ng-multiselect-dropdown
-              [placeholder]="'Frontend'"
-              [settings]="dropdownSettings3"
-              [data]="Frontend"
-              [(ngModel)]="selectedItems"
-              (onSelect)="onItemSelect($event,'frontend')"
-              (onSelectAll)="onSelectAll($event,'frontend')">
-            </ng-multiselect-dropdown>  
-        </div>
-        <div class="px-3" style="min-width:35vw; background-color: #fff;">
-          <label>Pipeline</label>
-          <ng-multiselect-dropdown
-            [placeholder]="'Pipeline'"
-            [settings]="dropdownSettings2"
-            [data]="pipeline"
-            [(ngModel)]="selectedItems"
-            (onSelect)="onItemSelect($event,'pipeline')"
-            (onSelectAll)="onSelectAll($event,'pipeline')">
-          </ng-multiselect-dropdown>
-      </div>
-  </div>
-        <div class="d-flex flex-row m-3">
-           <div class="ml-3" style="min-width:35vw">
-            <label>Model</label>
-            <ng-multiselect-dropdown
-            class="customClass"
-            [placeholder]="'Model'"
-            [settings]="dropdownSettings"
-            [data]="Modules"
-            [(ngModel)]="selectedItems"
-            (onSelect)="onItemSelect($event,'model')"
-            (onSelectAll)="onSelectAll($event,'model')"
-            style="height: 40px;background-color: white !important;">
-          </ng-multiselect-dropdown>
-        </div>
-        <div class="px-3" style="min-width:35vw">
-          <label>Dataset</label>
-          <ng-multiselect-dropdown
-          [placeholder]="'Dataset'"
-          [settings]="dropdownSettings1"
-          [data]="Dataset"
-          [(ngModel)]="selectedItems"
-          (onSelect)="onItemSelect($event,'dataset')"
-          (onSelectAll)="onSelectAll($event,'dataset')"
-        >
-        </ng-multiselect-dropdown>
-      </div>
-      <!-- <div id="div2" class="leftspace">
-        <mat-form-field class="width">
-          <mat-label> Complexity </mat-label>
-          <mat-select  ngDefaultControl >
-            <mat-option *ngFor="let x of Frontend"   >{{ x.frontendName }}</mat-option> 
-          </mat-select>
-        </mat-form-field>
-      </div> -->
-
-      </div>
-          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-              (click)="addSolution()" data-dismiss="modal" [disabled]="!formdata3.valid">Save</button> &nbsp;<button type="button"
-              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-        </form>
-
-         <!-------------------- Add Dataset---------------------------->
-        <form [formGroup]="formdata" class="example-form" *ngIf="ds">
-
-          <div class="m-3">
-            <h3 id="title"><b>Add Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close" style="width:10px;height:10px"></button>
-          </div>
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Dataset Name" formControlName="name" (input)="onInputChange('dataset','name')"> </mat-form-field>
+                  <input id="inputStyle" matInput placeholder="Solution Tags" formControlName="solution_tags"
+                    (input)="onInputChange('solution','solution_tags')">
+                </mat-form-field>
+              </div>
             </div>
 
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Dataset Id" formControlName="id"> </mat-form-field>
+            <div class="d-flex flex-row m-3">
+              <div>
+                <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                  <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Solution Description"
+                    formControlName="solution_description"></textarea>
+                </mat-form-field>
+              </div>
+
             </div>
-          </div>
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Dataset version" formControlName="version"> </mat-form-field>
+            <hr class="ml-3" style="width: 71vw">
+
+            <h6 class="ml-4">Use dropdowns for Linkage</h6>
+
+            <div class="d-flex flex-row m-3">
+              <div class="ml-3" style="min-width:35vw">
+                <label>Frontend</label>
+                <ng-multiselect-dropdown [placeholder]="'Frontend'" [settings]="dropdownSettings3" [data]="Frontend"
+                  [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event,'frontend')"
+                  (onSelectAll)="onSelectAll($event,'frontend')">
+                </ng-multiselect-dropdown>
+              </div>
+              <div class="px-3" style="min-width:35vw; background-color: #fff;">
+                <label>Pipeline</label>
+                <ng-multiselect-dropdown [placeholder]="'Pipeline'" [settings]="dropdownSettings2" [data]="pipeline"
+                  [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event,'pipeline')"
+                  (onSelectAll)="onSelectAll($event,'pipeline')">
+                </ng-multiselect-dropdown>
+              </div>
             </div>
+            <div class="d-flex flex-row m-3">
+              <div class="ml-3" style="min-width:35vw">
+                <label>Model</label>
+                <ng-multiselect-dropdown class="customClass" [placeholder]="'Model'" [settings]="dropdownSettings"
+                  [data]="Modules" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event,'model')"
+                  (onSelectAll)="onSelectAll($event,'model')" style="height: 40px;background-color: white !important;">
+                </ng-multiselect-dropdown>
+              </div>
+              <div class="px-3" style="min-width:35vw">
+                <label>Dataset</label>
+                <ng-multiselect-dropdown [placeholder]="'Dataset'" [settings]="dropdownSettings1" [data]="Dataset"
+                  [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event,'dataset')"
+                  (onSelectAll)="onSelectAll($event,'dataset')">
+                </ng-multiselect-dropdown>
+              </div>
 
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Dataset URL" formControlName="url"> </mat-form-field>
             </div>
-          </div>
+            <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+                (click)="addSolution()" data-dismiss="modal" [disabled]="!formdata3.valid">Save</button> &nbsp;<button
+                type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+          </form>
 
-          <div class="d-flex flex-row m-3">
-            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
-            </mat-form-field>
-          </div>
+          <!---------------------- add frontend ----------------------->
 
-          <div class="modal-footer ml-4" style="width: 70vw;"> 
-            <button type="button" class="btn btn-success" (click)="addDataset()" data-dismiss="modal" [disabled]="!formdata.valid">Save</button> &nbsp;
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-        </form>
-
-         <!-------------------- Add Model---------------------------->
-        <form [formGroup]="formdata2" class="example-form" *ngIf="mdl">
-          <div class="m-3">
-            <h3 id="title"><b>Add Model</b></h3> <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close" style="width:10px;height:10px"></button>
-          </div>
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Model Project Name</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Model Name" formControlName="project_name" (input)="onInputChange('model','project_name')">
-              </mat-form-field> </div>
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>View url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Model View url" formControlName="view_url"> </mat-form-field> </div>
-          </div>
-
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Model Run url" formControlName="run_url"> </mat-form-field> </div>
-
-            <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                 <input
-                  id="inputStyle" matInput placeholder="Model Tags" formControlName="model_tags"> </mat-form-field>
-            </div> -->
-          </div>
-
-          <div class="d-flex flex-row m-3">
-            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
-            </mat-form-field>
-
-            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-                 <input
-                  id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field>
-            </div> -->
-          </div>
-          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-              (click)="addModel()" data-dismiss="modal" [disabled]="!formdata2.valid">Save</button> &nbsp;<button type="button" class="btn btn-danger"
-              data-dismiss="modal">Close</button> </div>
-        </form>
-
-      <!-------------------- Add Pipeline---------------------------->
-        <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
-          <div class="mt-4 p-3">
-            <h3 id="title"><b>Add Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close" style="width:10px;height:10px"></button>
-          </div>
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name" (input)="onInputChange('pipeline','pipeline_name')">
-              </mat-form-field> </div>
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Pipeline View URL" formControlName="pipelineView_url">
-              </mat-form-field> </div>
-          </div>
-          <div class="d-flex flex-row m-3">
-            
-            <!-- <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                 <input
-                  id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
-              </mat-form-field> </div> -->
-          </div>
-          <div class="d-flex flex-row m-3">
-            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="pipeline_description"></textarea>
-            </mat-form-field>
-            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-              <input
-                id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
-            </mat-form-field> </div> -->
-          </div>
-
-          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-              (click)="addPipeline()" data-dismiss="modal" [disabled]="!formdata8.valid">Save</button> &nbsp;<button type="button"
-              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-        </form>
-
-        <!-- add frontend -->
-        <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
-          <div class="mt-4 p-3">
-            <h3 id="title"><b>Add Frondend</b></h3> <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close" style="width:10px;height:10px"></button>
-          </div>
-          <div class="d-flex flex-row m-3">
-            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
-                  id="inputStyle" matInput placeholder="Frondend Name" formControlName="frontend_name" (input)="onInputChange('frontend','frontend_name')">
-              </mat-form-field> </div>
-            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-                <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
-                <input id="inputStyle" matInput placeholder="Frondend View URL" formControlName="frontendStyle_url">
-              </mat-form-field> </div>
-          </div>
-          <!-- <div class="d-flex flex-row m-3">
+          <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
+            <div class="mt-4 p-3">
+              <h3 id="title"><b>Add Frondend</b></h3> <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close" style="width:10px;height:10px"></button>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Frondend Name" formControlName="frontend_name"
+                    (input)="onInputChange('frontend','frontend_name')">
+                </mat-form-field> </div>
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
+                  <input id="inputStyle" matInput placeholder="Frondend View URL" formControlName="frontendStyle_url">
+                </mat-form-field> </div>
+            </div>
+            <!-- <div class="d-flex flex-row m-3">
             
               <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                  <input
                   id="inputStyle" matInput placeholder="Frondend Tags" formControlName="frontendRun_url">
               </mat-form-field> </div>
           </div> -->
-          <div class="d-flex flex-row m-3">
-            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="frontend_description"></textarea>
-            </mat-form-field>
-            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+            <div class="d-flex flex-row m-3">
+              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                  formControlName="frontend_description"></textarea>
+              </mat-form-field>
+              <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
               <input
                 id="inputStyle" matInput placeholder="Description" formControlName="frontend_description">
+            </mat-form-field> </div> -->
+            </div>
+
+            <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+                (click)="addFrontend()" data-dismiss="modal" [disabled]="!formdata9.valid">Save</button> &nbsp;<button
+                type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+          </form>
+
+          <!---------------------- Add Pipeline---------------------------->
+
+          <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
+            <div class="mt-4 p-3">
+              <h3 id="title"><b>Add Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close" style="width:10px;height:10px"></button>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline Name</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name"
+                    (input)="onInputChange('pipeline','pipeline_name')">
+                </mat-form-field> </div>
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Pipeline View URL</b></mat-label> -->
+                  <input id="inputStyle" matInput placeholder="Pipeline View URL" formControlName="pipelineView_url">
+                </mat-form-field> </div>
+            </div>
+            <div class="d-flex flex-row m-3">
+
+              <div class="px-0"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                 <input
+                  id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
+              </mat-form-field> </div>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                  formControlName="pipeline_description"></textarea>
+              </mat-form-field>
+              <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <input
+                id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
+            </mat-form-field> </div> -->
+            </div>
+
+            <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+                (click)="addPipeline()" data-dismiss="modal" [disabled]="!formdata8.valid">Save</button> &nbsp;<button
+                type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+          </form>
+
+          <!-------------------------- Add Model---------------------------->
+
+          <form [formGroup]="formdata2" class="example-form" *ngIf="mdl">
+            <div class="m-3">
+              <h3 id="title"><b>Add Model</b></h3> <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close" style="width:10px;height:10px"></button>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Model Project Name</b></mat-label> -->
+                  <input id="inputStyle" matInput placeholder="Model Name" formControlName="project_name"
+                    (input)="onInputChange('model','project_name')">
+                </mat-form-field> </div>
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>View url</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Model View url" formControlName="view_url"> </mat-form-field>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Model Run url" formControlName="run_url"> </mat-form-field>
+              </div>
+
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                 <input id="inputStyle" matInput placeholder="Model Tags" formControlName="model_tags" (input)="onInputChange('model','model_tags')"> 
+                </mat-form-field>
+            </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                  formControlName="desc"></textarea>
+              </mat-form-field>
+
+              <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+                 <input
+                  id="inputStyle" matInput placeholder="Description" formControlName="desc"> </mat-form-field>
+            </div> -->
+            </div>
+            <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+                (click)="addModel()" data-dismiss="modal" [disabled]="!formdata2.valid">Save</button> &nbsp;<button
+                type="button" class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+          </form>
+
+          <!------------------------- Add Dataset---------------------------->
+
+          <form [formGroup]="formdata" class="example-form" *ngIf="ds">
+
+            <div class="m-3">
+              <h3 id="title"><b>Add Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close" style="width:10px;height:10px"></button>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
+                  <input id="inputStyle" matInput placeholder="Dataset Name" formControlName="name"
+                    (input)="onInputChange('dataset','name')"> </mat-form-field>
+              </div>
+
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Dataset Id" formControlName="id"> </mat-form-field>
+              </div>
+            </div>
+            <div class="d-flex flex-row m-3">
+              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
+                  <input id="inputStyle" matInput placeholder="Dataset version" formControlName="version">
+                </mat-form-field>
+              </div>
+
+              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                  <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
+                    id="inputStyle" matInput placeholder="Dataset URL" formControlName="url"> </mat-form-field>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row m-3">
+              <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+                <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                  cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                  formControlName="desc"></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="modal-footer ml-4" style="width: 70vw;">
+              <button type="button" class="btn btn-success" (click)="addDataset()" data-dismiss="modal"
+                [disabled]="!formdata.valid">Save</button> &nbsp;
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!---------------------------------------- edit Jars Section ---------------------------------------------------->
+
+  <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-backdrop="true">
+    <div class="modal-dialog" style="min-width:75vw;">
+      <div class="modal-content" style=" margin-top: 10vw;">
+
+        <!-------------- edit solution modal -------------------->
+
+        <form [formGroup]="formdata7" class="example-form" *ngIf="sln">
+          <div class="m-3">
+            <h4 id="title"><b>Edit Solution</b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+              style="width:10px;height:10px"></button>
+          </div>
+
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Solution Name</b></mat-label>
+                <input id="inputStyle" matInput placeholder="" formControlName="solution_name"
+                  (input)="onInputChange('edit-solution','solution_name')">
+              </mat-form-field>
+            </div>
+            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Solution View Url</b></mat-label>
+                <input id="inputStyle" matInput placeholder="" formControlName="view_url"> </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Solution Run Url</b></mat-label>
+                <input id="inputStyle" matInput placeholder="" formControlName="run_url"> </mat-form-field> </div>
+
+            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Solution Tags</b></mat-label>
+                <input id="inputStyle" matInput placeholder="" formControlName="solution_tags"
+                  (input)="onInputChange('edit-solution','solution_tags')">
+              </mat-form-field> </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                formControlName="solution_description"></textarea>
+            </mat-form-field>
+
+            <!-- <mat-form-field style="min-width:35vw" class="example-full-width"
+            appearance="outline"> <mat-label id="subTitle"><b>Description</b></mat-label> <input
+              id="inputStyle" matInput placeholder="" formControlName="solution_description"> 
+            </mat-form-field>  -->
+          </div>
+
+          <div class="d-flex flex-row m-3">
+            <div class="ml-3" style="min-width:35vw">
+              <label>Frontend</label>
+              <ng-multiselect-dropdown formControlName="linkedfrontend" [placeholder]="'Frontend'"
+                [settings]="dropdownSettingsfrontend" [data]="Frontend" [enableCheckAll]="false"
+                [(ngModel)]="selectedValues3" (onDeSelect)="unselect($event,'frontend')"
+                (onSelect)="onEditItemSelect($event,'frontend')" (onSelectAll)="onSelectAll($event,'frontend')">
+              </ng-multiselect-dropdown>
+
+            </div>
+            <div class="px-3" style="min-width:35vw">
+              <label>Pipeline</label>
+              <ng-multiselect-dropdown formControlName="linkedpipeline" [placeholder]="'Pipeline'"
+                [settings]="dropdownSettingspipeline" [data]="pipeline" [enableCheckAll]="false"
+                [(ngModel)]="selectedValues2" (onDeSelect)="unselect($event,'pipeline')"
+                (onSelect)="onEditItemSelect($event,'pipeline')" (onSelectAll)="onSelectAll($event,'pipeline')">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row m-3">
+            <div class="ml-3" style="min-width:35vw">
+              <label>Model</label>
+              <ng-multiselect-dropdown formControlName="linkedarray" class="customClass" [placeholder]="'Model'"
+                [settings]="dropdownSettingsmodel" [data]="Modules" [selected-item]="selectedItems"
+                [(ngModel)]="selectedValues" [enableCheckAll]="false" (onDeSelect)="unselect($event,'model')"
+                (onSelect)="onEditItemSelect($event,'model')" (onSelectAll)="onSelectAll($event,'model')"
+                style="height: 40px;background-color: white !important;">
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="px-3" style="min-width:35vw; background-color: #fff;">
+              <label>Dataset</label>
+              <ng-multiselect-dropdown formControlName="linkeddata" class="customClass" [placeholder]="'Dataset'"
+                [settings]="dropdownSettingsdata" [data]="Dataset" [enableCheckAll]="false"
+                [(ngModel)]="selectedValues1" (onDeSelect)="unselect($event,'dataset')"
+                (onSelect)="onEditItemSelect($event,'dataset')" (onSelectAll)="onSelectAll($event,'dataset')">
+              </ng-multiselect-dropdown>
+
+            </div>
+          </div>
+
+
+          <div class="modal-footer ml-4" style="width: 70vw">
+            <button type="button" class="btn btn-success" (click)="editSolution()" data-dismiss="modal">Save</button>
+            &nbsp;<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+
+        <!-------------- edit frontend --------------->
+        <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
+          <div class="mt-4 p-3">
+            <h3 id="title"><b>Edit Frontend</b></h3> <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close" style="width:10px;height:10px"></button>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Frontend Name</b></mat-label>
+                <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="frontend_name"
+                  (input)="onInputChange('frontend','frontend_name')">
+              </mat-form-field> </div>
+
+            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Frontend Style URL</b></mat-label> <input id="inputStyle" matInput
+                  placeholder="View URL" formControlName="frontendStyle_url"> </mat-form-field> </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> <mat-label
+                id="subTitle"><b>Frontend Run URL</b></mat-label> <input id="inputStyle" matInput
+                placeholder="Pipeline Tags" formControlName="frontendRun_url"> </mat-form-field> </div> -->
+
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                formControlName="frontend_description"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+              (click)="editFrontend()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+        </form>
+
+        <!------------------ edit Pipeline modal ---------------->
+
+        <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
+          <div class="mt-4 p-3">
+            <h3 id="title"><b>Edit Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close" style="width:10px;height:10px"></button>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Pipeline Name</b></mat-label>
+                <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name"
+                  (input)="onInputChange('pipeline','pipeline_name')">
+              </mat-form-field> </div>
+            <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Pipeline View URL</b></mat-label>
+                <input id="inputStyle" matInput placeholder="View URL" formControlName="pipelineView_url">
+              </mat-form-field> </div>
+          </div>
+
+          <div class="d-flex flex-row m-3">
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                formControlName="pipeline_description"></textarea>
+            </mat-form-field>
+
+            <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <input id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
+            </mat-form-field> </div> -->
+            <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Pipeline Tags</b></mat-label>
+              <input id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
             </mat-form-field> </div> -->
           </div>
 
           <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-              (click)="addFrontend()" data-dismiss="modal" [disabled]="!formdata9.valid">Save</button> &nbsp;<button type="button"
+              (click)="editPipeline()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+        </form>
+
+        <!--------------- edit Model modal --------------->
+
+        <form [formGroup]="formdata6" class="example-form" *ngIf="mdl">
+          <div class="m-3">
+            <h3 id="title"><b>Edit Model</b></h3> <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close" style="width:10px;height:10px"></button>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="width:35vw;" class="example-full-width" appearance="outline"> <mat-label
+                  id="subTitle"><b>Model Name</b></mat-label>
+                <input id="inputStyle" matInput placeholder="" formControlName="project_name"
+                  (input)="onInputChange('edit-model','project_name')">
+              </mat-form-field><br> </div>
+
+            <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Model Run Url</b></mat-label>
+                <input id="inputStyle" matInput placeholder="url" formControlName="run_url"> </mat-form-field> </div>
+            <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Model Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
+                formControlName="modelTags"> </mat-form-field> </div> -->
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Model View Url</b></mat-label> <input id="inputStyle" matInput
+                  placeholder="" formControlName="view_url"> </mat-form-field> </div>
+
+          </div>
+          <div class="d-flex flex-row m-3">
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                formControlName="desc"></textarea>
+            </mat-form-field>
+
+            <!-- <div class="px-3"> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+            <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput placeholder=""
+              formControlName="desc"> </mat-form-field> </div> -->
+
+          </div>
+          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+              (click)="editModel()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
+              class="btn btn-danger" data-dismiss="modal">Close</button> </div>
+        </form>
+
+        <!--------------- edit Dataset modal ------------->
+
+        <form [formGroup]="formdata4" class="example-form" *ngIf="ds">
+          <div class="m-3">
+            <h3 id="title"><b>Edit Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close" style="width:10px;height:10px"></button>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Dataset Name</b></mat-label>
+                <input id="inputStyle" matInput placeholder="Enter name" formControlName="name"
+                  (input)="onInputChange('edit-dataset','name')"> </mat-form-field> </div>
+
+            <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Dataset Id</b></mat-label> <input id="inputStyle" matInput
+                  placeholder="Enter Id" formControlName="id"> </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex flex-row m-3">
+            <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Dataset Version</b></mat-label>
+                <input id="inputStyle" matInput placeholder="Enter Id" formControlName="version"> </mat-form-field>
+            </div>
+
+            <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
+                <mat-label id="subTitle"><b>Dataset Url</b></mat-label> <input id="inputStyle" matInput
+                  placeholder="Enter URL" formControlName="url"> </mat-form-field>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row m-3">
+            <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description"
+                formControlName="desc"></textarea>
+            </mat-form-field>
+
+            <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
+              <mat-label id="subTitle"><b>Description</b></mat-label>
+              <input id="inputStyle" matInput placeholder="Desc" formControlName="desc"> </mat-form-field> </div> -->
+          </div>
+
+          <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
+              (click)="editDataset()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
               class="btn btn-danger" data-dismiss="modal">Close</button> </div>
         </form>
       </div>
     </div>
   </div>
-</div>
+  <!-----------------------------><!-- -----------Modal ======= Create Models------------- --><!----------------------------->
 
-<!---------------------------------------- edit Section ---------------------------------------------------->
-
-<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-  data-backdrop="true">
-  <div class="modal-dialog" style="min-width:75vw;">
-    <div class="modal-content" style=" margin-top: 10vw;">
-
-      <!-- edit Dataset modal -->
-      <form [formGroup]="formdata4" class="example-form" *ngIf="ds">
-        <div class="m-3">
-          <h3 id="title"><b>Edit Dataset</b></h3> <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close" style="width:10px;height:10px"></button>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Dataset Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Enter name" formControlName="name" (input)="onInputChange('edit-dataset','name')"> </mat-form-field> </div>
-
-          <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Dataset Id</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Enter Id" formControlName="id"> </mat-form-field>
-          </div>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Dataset Version</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Enter Id" formControlName="version"> </mat-form-field> </div>
-
-          <div class="px-3"> <mat-form-field style="width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Dataset Url</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Enter URL" formControlName="url"> </mat-form-field>
-          </div>
-        </div>
-
-        <div class="d-flex flex-row m-3">
-          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label>
-            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
-          </mat-form-field>
-
-          <!-- <div> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Description</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Desc" formControlName="desc"> </mat-form-field> </div> -->
-        </div>
-
-        <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-            (click)="editDataset()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
-            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-      </form>
-
-      <!-- edit Model modal -->
-      <form [formGroup]="formdata6" class="example-form" *ngIf="mdl">
-        <div class="m-3">
-          <h3 id="title"><b>Edit Model</b></h3> <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close" style="width:10px;height:10px"></button>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div > <mat-form-field style="width:35vw;" class="example-full-width"
-              appearance="outline"> <mat-label id="subTitle"><b>Model Name</b></mat-label> 
-              <input id="inputStyle" matInput placeholder="" formControlName="project_name" (input)="onInputChange('edit-model','project_name')"> 
-             </mat-form-field><br> </div>
-
-          <div class="px-3"> <mat-form-field style="width:35vw;" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Model Run Url</b></mat-label> 
-              <input id="inputStyle" matInput placeholder="url" formControlName="run_url"> </mat-form-field> </div>
-          <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Model Tags</b></mat-label> <input id="inputStyle" matInput placeholder=""
-                formControlName="modelTags"> </mat-form-field> </div> -->
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div > <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Model View Url</b></mat-label> <input id="inputStyle" matInput placeholder=""
-              formControlName="view_url"> </mat-form-field> </div>
-
-        </div>
-        <div class="d-flex flex-row m-3">
-          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label>
-            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="desc"></textarea>
-          </mat-form-field>
-
-          <!-- <div class="px-3"> <mat-form-field style="min-width:71vw" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label> <input id="inputStyle" matInput placeholder=""
-              formControlName="desc"> </mat-form-field> </div> -->
-
-        </div>
-        <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-            (click)="editModel()" data-dismiss="modal">Save</button> &nbsp;<button type="button" class="btn btn-danger"
-            data-dismiss="modal">Close</button> </div>
-      </form>
-
-      <!-- edit solution modal -->
-      <form [formGroup]="formdata7" class="example-form" *ngIf="sln">
-        <div class="m-3">
-          <h4 id="title"><b>Edit Solution</b></h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-            style="width:10px;height:10px"></button>
-        </div>
-
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Solution Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="" formControlName="solution_name" (input)="onInputChange('edit-solution','solution_name')">
-            </mat-form-field>
-          </div>
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Solution View Url</b></mat-label>
-              <input id="inputStyle" matInput placeholder="" formControlName="view_url"> </mat-form-field>
-          </div>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Solution Run Url</b></mat-label>
-              <input id="inputStyle" matInput placeholder="" formControlName="run_url"> </mat-form-field> </div>
-              
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Solution Tags</b></mat-label> 
-              <input id="inputStyle" matInput placeholder="" formControlName="solution_tags" (input)="onInputChange('edit-solution','solution_tags')">
-            </mat-form-field> </div>
-        </div>
-        <div class="d-flex flex-row m-3"> 
-          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label>
-            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="solution_description"></textarea>
-          </mat-form-field>
-
-          <!-- <mat-form-field style="min-width:35vw" class="example-full-width"
-            appearance="outline"> <mat-label id="subTitle"><b>Description</b></mat-label> <input
-              id="inputStyle" matInput placeholder="" formControlName="solution_description"> 
-            </mat-form-field>  -->
-        </div>
-
-              <div class="d-flex flex-row m-3">
-                <div class="ml-3" style="min-width:35vw">
-              <label>Frontend</label>
-              <ng-multiselect-dropdown
-               formControlName="linkedfrontend"
-               [placeholder]="'Frontend'"
-               [settings]="dropdownSettingsfrontend"
-               [data]="Frontend"
-               [enableCheckAll]="false"
-               [(ngModel)]="selectedValues3"
-               (onDeSelect)="unselect($event,'frontend')"
-               (onSelect)="onEditItemSelect($event,'frontend')"
-               (onSelectAll)="onSelectAll($event,'frontend')">
-             </ng-multiselect-dropdown>
-                 
-             </div>
-             <div class="px-3" style="min-width:35vw">
-              <label>Pipeline</label>
-              <ng-multiselect-dropdown
-              formControlName="linkedpipeline"
-              [placeholder]="'Pipeline'"
-              [settings]="dropdownSettingspipeline"
-              [data]="pipeline"
-              [enableCheckAll]="false"
-              [(ngModel)]="selectedValues2"
-              (onDeSelect)="unselect($event,'pipeline')"
-              (onSelect)="onEditItemSelect($event,'pipeline')"
-              (onSelectAll)="onSelectAll($event,'pipeline')">
-            </ng-multiselect-dropdown>
-           </div>
-           </div>
-
-              <div class="d-flex flex-row m-3">
-                <div class="ml-3" style="min-width:35vw">
-                  <label>Model</label>
-                <ng-multiselect-dropdown
-                 formControlName="linkedarray"
-                 class="customClass"
-                 [placeholder]="'Model'"
-                 [settings]="dropdownSettingsmodel"
-                 [data]="Modules"
-                 [selected-item]="selectedItems"
-                 [(ngModel)]="selectedValues"
-                 [enableCheckAll]="false"
-                 (onDeSelect)="unselect($event,'model')"
-                 (onSelect)="onEditItemSelect($event,'model')"
-                 (onSelectAll)="onSelectAll($event,'model')"
-                 style="height: 40px;background-color: white !important;">
-               </ng-multiselect-dropdown>
-             </div>
-             <div class="px-3" style="min-width:35vw; background-color: #fff;">
-              <label>Dataset</label>
-               <ng-multiselect-dropdown
-               formControlName="linkeddata"
-               class="customClass"
-               [placeholder]="'Dataset'"
-               [settings]="dropdownSettingsdata"
-               [data]="Dataset"
-               [enableCheckAll]="false" 
-               [(ngModel)]="selectedValues1"
-               (onDeSelect)="unselect($event,'dataset')"
-               (onSelect)="onEditItemSelect($event,'dataset')"
-               (onSelectAll)="onSelectAll($event,'dataset')"
-             >
-             </ng-multiselect-dropdown>
-            
-           </div>
-        </div>
-        
-
-        <div class="modal-footer ml-4" style="width: 70vw"> 
-          <button type="button" class="btn btn-success"
-            (click)="editSolution()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
-            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-      </form>
-
-      <!-- edit Pipeline modal -->
-      <form [formGroup]="formdata8" class="example-form" *ngIf="ppln">
-        <div class="mt-4 p-3">
-          <h3 id="title"><b>Edit Pipeline</b></h3> <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close" style="width:10px;height:10px"></button>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Pipeline Name</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="pipeline_name" (input)="onInputChange('pipeline','pipeline_name')">
-            </mat-form-field> </div>
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Pipeline View URL</b></mat-label>
-              <input id="inputStyle" matInput placeholder="View URL" formControlName="pipelineView_url">
-            </mat-form-field> </div>
-        </div>
-
-        <div class="d-flex flex-row m-3">
-          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label>
-            <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="pipeline_description"></textarea>
-          </mat-form-field>
-
-          <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Description</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Description" formControlName="pipeline_description">
-            </mat-form-field> </div> -->
-          <!-- <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Pipeline Tags</b></mat-label>
-              <input id="inputStyle" matInput placeholder="Pipeline Tags" formControlName="pipeline_tags">
-            </mat-form-field> </div> -->
-        </div>
-
-        <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-            (click)="editPipeline()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
-            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-      </form>
-
-      <!-- edit frontend -->
-      <form [formGroup]="formdata9" class="example-form" *ngIf="fend">
-        <div class="mt-4 p-3">
-          <h3 id="title"><b>Edit Frontend</b></h3> <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close" style="width:10px;height:10px"></button>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> 
-            <mat-label id="subTitle"><b>Frontend Name</b></mat-label> 
-            <input id="inputStyle" matInput placeholder="Pipeline Name" formControlName="frontend_name" (input)="onInputChange('frontend','frontend_name')"> 
-          </mat-form-field> </div>
-
-          <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
-              <mat-label id="subTitle"><b>Frontend Style URL</b></mat-label> <input id="inputStyle" matInput
-                placeholder="View URL" formControlName="frontendStyle_url"> </mat-form-field> </div>
-        </div>
-        <div class="d-flex flex-row m-3">
-          <!-- <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline"> <mat-label
-                id="subTitle"><b>Frontend Run URL</b></mat-label> <input id="inputStyle" matInput
-                placeholder="Pipeline Tags" formControlName="frontendRun_url"> </mat-form-field> </div> -->
-
-          <mat-form-field style="min-width:71vw;min-height: 8vh;" class="example-full-width" appearance="outline">
-            <mat-label id="subTitle"><b>Description</b></mat-label>
-              <textarea id="textarea" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" placeholder="Description" formControlName="frontend_description"></textarea>
-            </mat-form-field>
-        </div>
-        <div class="modal-footer ml-4" style="width: 70vw"> <button type="button" class="btn btn-success"
-            (click)="editFrontend()" data-dismiss="modal">Save</button> &nbsp;<button type="button"
-            class="btn btn-danger" data-dismiss="modal">Close</button> </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-<!-----------------------------><!-- -----------Modal ======= Create Models------------- --><!----------------------------->
-
-<!-- <div class="modal" id="ModelModal">
+  <!-- <div class="modal" id="ModelModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="popup container">
@@ -1073,152 +1101,153 @@
 </div> -->
 
 
-<!---------------------------- delete confirmation popup ------------------------------------->
+  <!---------------------------- delete confirmation popup ------------------------------------->
 
-<div class="modal" id="confModal" tabindex="-1" data-backdrop="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <!-- <div class="modal-header">    
+  <div class="modal" id="confModal" tabindex="-1" data-backdrop="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- <div class="modal-header">    
       </div> -->
-      <div class="modal-body ">
-        <div class="text-right">
-          <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
+        <div class="modal-body ">
+          <div class="text-right">
+            <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
+          </div>
+          <h3 class="m-4" style="text-align: center;color: black;">Are You Sure You Want to Delete!!?</h3>
         </div>
-        <h3 class="m-4" style="text-align: center;color: black;">Are You Sure You Want to Delete!!?</h3>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
-          *ngIf="ds" (click)="deleteDataset()">Delete</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
-          *ngIf="sln" (click)="deleteSolution()">Delete</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
-          *ngIf="mdl" (click)="deleteModel()">Delete</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
-          *ngIf="ppln" (click)="deletePipeline()">Delete</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
-          *ngIf="fend" (click)="deleteFrontend()">Delete</button>
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+            *ngIf="ds" (click)="deleteDataset()">Delete</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+            *ngIf="sln" (click)="deleteSolution()">Delete</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+            *ngIf="mdl" (click)="deleteModel()">Delete</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+            *ngIf="ppln" (click)="deletePipeline()">Delete</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin-right: 42% !important;"
+            *ngIf="fend" (click)="deleteFrontend()">Delete</button>
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- Add to cart Sidebar -->
-<div class="modal" id="cart" tabindex="-1" data-backdrop="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content" style="min-height: 90vh;">
-      <!-- <div class="modal-header">    
+  <!-- Add to cart Sidebar -->
+  <div class="modal" id="cart" tabindex="-1" data-backdrop="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="min-height: 90vh;">
+        <!-- <div class="modal-header">    
       </div> -->
-      <div class="modal-body ">
-        <div class="text-right">
-          <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
-        </div>
-        <h3 class="ml-2" id="text"><i class="fa fa-cube mr-2"></i>   Models</h3>
-        <ul>
-          <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}<span class="material-icons selected-delete" (click)="deleteSelected('model')" style="cursor: pointer;">delete</span></li>
-          <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
-         
-        </ul>
-        <br>
-        <h3 class="ml-2" id="text"><i class="item al-ico-datasets mr-2"></i>   Datasets</h3>
-        <ul>
-          <li *ngFor="let data of dcart">{{ data.datasetName }}<span class="material-icons selected-delete" (click)="deleteSelected('dataset')" style="cursor: pointer;">delete</span></li>
-          <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
-        </ul>
-        <br>
-        <h3 class="ml-2" id="text"><i class="al-ico-pipelines mr-2"></i>   Pipeline</h3>
-        <ul>
-          <li *ngFor="let data of pcart">{{ data.datasetName }}</li>
-          <span class="ml-2" *ngIf="pcart.length==0">No pipeline added</span>
-        </ul>
-        <br>
-        <h3 class="ml-2" id="text"><i class="fa-solid fa-code mr-2"></i>   Frontend</h3>
-        <ul>
-          <li *ngFor="let data of fcart">{{ data.datasetName }}</li>
-          <span class="ml-2" *ngIf="fcart.length==0">No frontend added</span>
-        </ul>
+        <div class="modal-body ">
+          <div class="text-right">
+            <button class="btn-close" style="font-size:15px" data-dismiss="modal" aria-label="Close">X</button>
+          </div>
+          <h3 class="ml-2" id="text"><i class="fa fa-cube mr-2"></i> Models</h3>
+          <ul>
+            <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}<span
+                class="material-icons selected-delete" (click)="deleteSelected('model')"
+                style="cursor: pointer;">delete</span></li>
+            <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
 
-        <div class="text-bottom modal-footer ml-1">
-          <button type="button" class="btn btn-primary" style="background-color: #7672ED;color: white;" aria-label="Close" data-dismiss="modal" data-toggle="modal" data-target="#cart-popup">Create Project</button>
-          &nbsp;<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </ul>
+          <br>
+          <h3 class="ml-2" id="text"><i class="item al-ico-datasets mr-2"></i> Datasets</h3>
+          <ul>
+            <li *ngFor="let data of dcart">{{ data.datasetName }}<span class="material-icons selected-delete"
+                (click)="deleteSelected('dataset')" style="cursor: pointer;">delete</span></li>
+            <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
+          </ul>
+          <br>
+          <h3 class="ml-2" id="text"><i class="al-ico-pipelines mr-2"></i> Pipeline</h3>
+          <ul>
+            <li *ngFor="let data of pcart">{{ data.datasetName }}</li>
+            <span class="ml-2" *ngIf="pcart.length==0">No pipeline added</span>
+          </ul>
+          <br>
+          <h3 class="ml-2" id="text"><i class="fa-solid fa-code mr-2"></i> Frontend</h3>
+          <ul>
+            <li *ngFor="let data of fcart">{{ data.datasetName }}</li>
+            <span class="ml-2" *ngIf="fcart.length==0">No frontend added</span>
+          </ul>
+
+          <div class="text-bottom modal-footer ml-1">
+            <button type="button" class="btn btn-primary" style="background-color: #7672ED;color: white;"
+              aria-label="Close" data-dismiss="modal" data-toggle="modal" data-target="#cart-popup">Create
+              Project</button>
+            &nbsp;<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
         </div>
+
       </div>
-      
     </div>
   </div>
-</div>
 
 
 
-<!-- Add to cart Popup -->
-<div class="modal" id="cart-popup" tabindex="-1" data-backdrop="true">
-  <div class="modal-dialog" style="min-width: 55vw;min-height: 70vh !important;">
-    <div class="modal-content" style="margin-top: 3vw;">
-      <!-- <div class="modal-header">    
+  <!-- Add to cart Popup -->
+  <div class="modal" id="cart-popup" tabindex="-1" data-backdrop="true">
+    <div class="modal-dialog" style="min-width: 55vw;min-height: 70vh !important;">
+      <div class="modal-content" style="margin-top: 3vw;">
+        <!-- <div class="modal-header">    
       </div> -->
-      <div class="modal-body ">
-        
+        <div class="modal-body ">
+
           <div>
             <h2 id="text" class="mt-3">Create New Project</h2>
           </div>
-      <div class="d-flex flex-row"> 
-      <div>
-      <div class="mt-4">
-        <!-- <label>Project Name</label> -->
-        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
-        <input id="inputStyle" matInput placeholder="Project Name" >
-        </mat-form-field> 
-      </div>
-      <div class="mt-4">
-        <!-- <label>Project Name</label> -->
-        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
-        <input id="inputStyle" matInput placeholder="Project Tags" >
-        </mat-form-field> 
-      </div>
-      <div class="mt-4">
-        <!-- <label>Project Name</label> -->
-        <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline"> 
-        <input id="inputStyle" matInput placeholder="Description" >
-        </mat-form-field> 
-      </div>
-      <div class="modal-footer ml-1 text-right" style="width: 30vw"> 
-        <button type="button" class="btn btn-success"  data-dismiss="modal">Save</button> &nbsp;
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> 
-      </div>
+          <div class="d-flex flex-row">
+            <div>
+              <div class="mt-4">
+                <!-- <label>Project Name</label> -->
+                <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline">
+                  <input id="inputStyle" matInput placeholder="Project Name">
+                </mat-form-field>
+              </div>
+              <div class="mt-4">
+                <!-- <label>Project Name</label> -->
+                <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline">
+                  <input id="inputStyle" matInput placeholder="Project Tags">
+                </mat-form-field>
+              </div>
+              <div class="mt-4">
+                <!-- <label>Project Name</label> -->
+                <mat-form-field style="min-width:30vw" class="example-full-width" appearance="outline">
+                  <input id="inputStyle" matInput placeholder="Description">
+                </mat-form-field>
+              </div>
+              <div class="modal-footer ml-1 text-right" style="width: 30vw">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button> &nbsp;
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
 
-    </div>
-    <div class="ml-4 mt-4">
-      <h3  id="text"><i class="fa fa-cube mr-2"></i>   Models</h3>
-        <ul>
-          <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}</li>
-          <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
-         
-        </ul>
-        <br>
-        <h3  id="text"><i class="item al-ico-datasets mr-2"></i>   Datasets</h3>
-        <ul>
-          <li *ngFor="let data of dcart">{{ data.datasetName }}</li>
-          <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
-        </ul>
-        <br>
-    </div>
-      
+            </div>
+            <div class="ml-4 mt-4">
+              <h3 id="text"><i class="fa fa-cube mr-2"></i> Models</h3>
+              <ul>
+                <li *ngFor="let data of mcart" style="font-size: 15px;">{{ data.modelName }}</li>
+                <span class="ml-2" *ngIf="mcart.length==0">No Models added</span>
 
-      
+              </ul>
+              <br>
+              <h3 id="text"><i class="item al-ico-datasets mr-2"></i> Datasets</h3>
+              <ul>
+                <li *ngFor="let data of dcart">{{ data.datasetName }}</li>
+                <span class="ml-2" *ngIf="dcart.length==0">No Dataset added</span>
+              </ul>
+              <br>
+            </div>
 
-      <!-- <div class="text-right">
+
+
+
+            <!-- <div class="text-right">
         <button class="btn-close" style="font-size:15px;float:right !important;" data-dismiss="modal" aria-label="Close">Close</button>
       </div> -->
 
-       
+
+          </div>
+        </div>
+
       </div>
     </div>
-      
-    </div>
   </div>
-</div>
-
-	
-
-

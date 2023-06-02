@@ -493,3 +493,25 @@ mat-icon:hover{
 
 // .startElement, .endElement { 
 //   position: absolute; top: 100px; left: 100px; width: 100px; height: 50px; background-color: #ccc; text-align: center; line-height: 50px; } #lineContainer { position: relative; width: 400px; height: 300px; }
+
+
+.separator {
+  position: relative;
+  text-align: center;
+}
+
+.separator hr {
+  border: none;
+  height: 1px;
+  background-color: #000; /* Set the desired color for the line */
+}
+
+.separator span {
+  position: absolute;
+  top: -10px; /* Adjust the positioning of the section name */
+  left: 50%;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+  background-color: #fff; /* Set the desired background color for the section name */
+  padding: 0 10px;
+}

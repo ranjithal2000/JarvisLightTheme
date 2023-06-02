@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import {CartService} from '~/shared/services/cart.service'
 import { error, log } from 'console';
 import { MatAccordion } from '@angular/material/expansion';
-import { PortalModule } from './portal.module';
+
 
 
 
@@ -31,7 +31,7 @@ declare var LeaderLine: any;
 export class PortalComponent implements OnInit {  
   @ViewChild('panel1', { static: true }) panel1: ElementRef;
 
-  readonly ICONS = ICONS;
+  // readonly ICONS = ICONS;
   isPanelOpen = false;
   dataSetId: any;
   abc: any;
@@ -102,7 +102,32 @@ export class PortalComponent implements OnInit {
   //  this.callCarddata();
   //  this.callCardpipeline();
  //--------------------------------------------------------------------------------------------------------------------------------
+debugger
+ 
   }
+
+sectionData(){
+    this.groupedData = {};
+    this.Modules.forEach((item) => {
+    const section = item.modelTags.toUpperCase();
+      if (!this.groupedData[section]) {
+      this.groupedData[section] = [];
+    }
+    this.groupedData[section].push(item);
+  });
+    this.sections = Object.keys(this.groupedData);
+}
+
+  groupedData:any;
+  sections:any=[];
+  Test_model:any=[
+    {id:1,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
+    {id:2,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
+    {id:3,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
+    {id:4,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
+    {id:5,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"} ,
+    {id:6,modelDescription:"Model test desc",modelName:"Model Test Finance",domain:"Finance"}  
+  ]
 
   idx:any;
   onPanelOpened(data:any,state:any) {
@@ -128,6 +153,7 @@ export class PortalComponent implements OnInit {
     }
   }
 
+ // 3.111.229.37
   // callCarddata(){
   //   this.http.get("http://13.234.148.242:3000/clearml/dataset").subscribe(response => { 
     
@@ -535,6 +561,7 @@ export class PortalComponent implements OnInit {
         this.dumbb = response;
         this.Modules = this.dumbb.data;
         console.log(this.Modules);
+        this.sectionData();
       }
       )
   }
@@ -1041,12 +1068,14 @@ debugger
       this.sln = false;
       this.ppln= true;
       this.fend=false;
+      this.formdata8.reset();
     }else if(jar == 'Frontend'){
       this.ds = false;
       this.mdl = false;
       this.sln = false;
       this.ppln= false;
       this.fend= true;
+      this.formdata9.reset();
     }
   }
 
