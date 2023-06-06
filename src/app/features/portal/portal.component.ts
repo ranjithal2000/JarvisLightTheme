@@ -109,7 +109,7 @@ debugger
 sectionData(){
     this.groupedData = {};
     this.Modules.forEach((item) => {
-    const section = item.modelTags.toUpperCase();
+    const section = item.modelSeperator.toUpperCase();
       if (!this.groupedData[section]) {
       this.groupedData[section] = [];
     }
@@ -120,14 +120,14 @@ sectionData(){
 
   groupedData:any;
   sections:any=[];
-  Test_model:any=[
-    {id:1,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
-    {id:2,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
-    {id:3,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
-    {id:4,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
-    {id:5,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"} ,
-    {id:6,modelDescription:"Model test desc",modelName:"Model Test Finance",domain:"Finance"}  
-  ]
+  // Test_model:any=[
+  //   {id:1,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
+  //   {id:2,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
+  //   {id:3,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"},
+  //   {id:4,modelDescription:"Model test desc",modelName:"Model Test Retail",domain:"Retail"},
+  //   {id:5,modelDescription:"Model test desc",modelName:"Model Test Healthcare",domain:"Healthcare"} ,
+  //   {id:6,modelDescription:"Model test desc",modelName:"Model Test Finance",domain:"Finance"}  
+  // ]
 
   idx:any;
   onPanelOpened(data:any,state:any) {
@@ -155,21 +155,15 @@ sectionData(){
 
  // 3.111.229.37
   // callCarddata(){
-  //   this.http.get("http://13.234.148.242:3000/clearml/dataset").subscribe(response => { 
+  //   this.http.get("http://localhost:3000/clearml/dataset").subscribe(response => { 
     
   //   })
   // }
   callCardpipeline(){
-    // this.http.get("http://13.234.148.242:3000/clearml/pipeline").subscribe(response => { 
+    // this.http.get("http://localhost:3000/clearml/pipeline").subscribe(response => { 
     
     // })
   }
-
-
-
-
-
-
 
   arrowLink2:any;
   arrowLink3:any;
@@ -190,13 +184,13 @@ sectionData(){
   rows4:any;
   rows5:any;
   searchResponse:any;
-  filterSolution() {
-    
+
+  filterSolution() { 
     let search = this.Searchvalue4;
     let table =  "Solutions"; 
     let col1=  "solutionName";
     let col2 = "solutionTags";
-    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
+    this.http.post('http://localhost:3000/search', { search, table, col1, col2})
       .subscribe(response => { 
         debugger 
         this.searchResponse=response;
@@ -210,7 +204,7 @@ sectionData(){
     let search = this.Searchvalue3;
     let table =  "Frontends"; 
     let col1=  "frontendName";
-    this.http.post('http://13.234.148.242:3000/search', { search, table, col1})
+    this.http.post('http://localhost:3000/search', { search, table, col1})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Frontend = this.searchResponse.data;
@@ -224,7 +218,7 @@ sectionData(){
     let table =  "Pipelines"; 
     let col1=  "pipelineName";
     let col2 = "pipelineTags";
-    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
+    this.http.post('http://localhost:3000/search', { search, table, col1, col2})
       .subscribe(response => {  
         this.searchResponse=response;
         this.pipeline = this.searchResponse.data;
@@ -238,7 +232,7 @@ sectionData(){
     let table =  "Models"; 
     let col1=  "modelName";
     let col2 = "modelTags";
-    this.http.post('http://13.234.148.242:3000/search', { search, table, col1, col2})
+    this.http.post('http://localhost:3000/search', { search, table, col1, col2})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Modules = this.searchResponse.data;
@@ -253,7 +247,7 @@ sectionData(){
     let table =  "Data"; 
     let col1=  "datasetName";
    
-    this.http.post('http://13.234.148.242:3000/search', { search, table, col1})
+    this.http.post('http://localhost:3000/search', { search, table, col1})
       .subscribe(response => {  
         this.searchResponse=response;
         this.Dataset = this.searchResponse.data;
@@ -264,9 +258,7 @@ sectionData(){
 
 
   refresh(){
-    debugger
     // this.updateArrows('remove')
-    
     this.getModel();
     this.getSolution();
     this.getdataset();
@@ -348,7 +340,7 @@ sectionData(){
     if(jars=='dataset'){
       let dataId=data.id.toString();
       // this.editdropdowndata.push((data.id).toString());
-      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, dataId})
+      this.http.post('http://localhost:3000/solution/deleteDynamic', { solutionId, dataId})
       .subscribe(response => {  
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -358,7 +350,7 @@ sectionData(){
     }else if(jars=='model'){
       let modelId=data.id.toString();
       // this.editdropdownmodel.push((data.id).toString());
-      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, modelId})
+      this.http.post('http://localhost:3000/solution/deleteDynamic', { solutionId, modelId})
       .subscribe(response => { 
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -369,7 +361,7 @@ sectionData(){
     }else if(jars=='pipeline'){
       let pipelineId=data.id.toString();
       // this.editdropdownpipeline.push((data.id).toString());
-      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, pipelineId})
+      this.http.post('http://localhost:3000/solution/deleteDynamic', { solutionId, pipelineId})
       .subscribe(response => {
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -380,7 +372,7 @@ sectionData(){
     }else if(jars=='frontend'){
       let frontendId=data.id.toString();
       // this.editdropdownfrontend.push((data.id).toString());
-      this.http.post('http://13.234.148.242:3000/solution/deleteDynamic', { solutionId, frontendId})
+      this.http.post('http://localhost:3000/solution/deleteDynamic', { solutionId, frontendId})
       .subscribe(response => {
         this.storeResponse=response;
         alert(this.storeResponse.message);
@@ -422,7 +414,8 @@ sectionData(){
     id: [,Validators.required],
     version: [,Validators.required],
     desc: [,Validators.required],
-    url: [,Validators.required]
+    url: [,Validators.required],
+    dataset_tag:[,Validators.required]
   })
   formdata4 = this.formBuilder.group({
     name: [],
@@ -431,6 +424,7 @@ sectionData(){
     id: [],
     url:[],
     main_id:[],
+    dataset_tag:[]
    
   })
   formdata1 = this.formBuilder.group({
@@ -444,7 +438,8 @@ sectionData(){
     project_name: ['', Validators.required],
     view_url: ['', Validators.required],
     run_url: ['', Validators.required],
-    model_tags:['', Validators.required],
+    model_tags:[''],
+    separator:['', Validators.required],
     desc:['', Validators.required],
   })
   formdata6 = this.formBuilder.group({
@@ -453,7 +448,8 @@ sectionData(){
     desc:[],
     view_url:[],
     run_url:[],
-    modelTags:[]
+    modelTags:[],
+    modelseparator:[]
   })
 
 
@@ -503,8 +499,9 @@ sectionData(){
     let modelViewUrl = this.formdata2.controls['view_url'].value;
     let modelRunUrl = this.formdata2.controls['run_url'].value;
     let modelTags = this.formdata2.controls['model_tags'].value;
+    let modelSeperator=this.formdata2.controls['separator'].value;
     let modelDescription = this.formdata2.controls['desc'].value;
-    this.http.post('http://13.234.148.242:3000/model/insertModel', { modelName, modelViewUrl, modelRunUrl, modelTags, modelDescription })
+    this.http.post('http://localhost:3000/model/insertModel', { modelName, modelViewUrl, modelRunUrl, modelTags,modelSeperator, modelDescription })
       .subscribe(response => {
         this.formdata2.reset();
         console.log(response);
@@ -526,7 +523,8 @@ sectionData(){
     let modelDescription = this.formdata6.controls['desc'].value;
     let modelRunUrl = this.formdata6.controls['run_url'].value;
     let modelViewUrl = this.formdata6.controls['view_url'].value;
-    this.http.post('http://13.234.148.242:3000/model/editModel', { modelName, modelTags, modelId, modelDescription, modelRunUrl, modelViewUrl })
+    let modelSeperator=this.formdata6.controls['modelseparator'].value;
+    this.http.post('http://localhost:3000/model/editModel', { modelName, modelTags, modelId, modelDescription, modelRunUrl, modelViewUrl,modelSeperator })
       .subscribe(response => {
         console.log("res", response);
         this.storeResponse = response;
@@ -541,7 +539,7 @@ sectionData(){
     
     let modelId=this.modelId;
 
-    this.http.post('http://13.234.148.242:3000/model/deleteModel', { modelId })
+    this.http.post('http://localhost:3000/model/deleteModel', { modelId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -556,11 +554,13 @@ sectionData(){
   dumbb2: any;
 
   getModel() {
-    this.http.post('http://13.234.148.242:3000/model/retrieveModels', {})
+    this.http.post('http://localhost:3000/model/retrieveModels', {})
       .subscribe(response => {
         this.dumbb = response;
         this.Modules = this.dumbb.data;
         console.log(this.Modules);
+        this.groupedData=[];
+        this.sections=[];
         this.sectionData();
       }
       )
@@ -573,7 +573,9 @@ sectionData(){
     let datasetVersion = this.formdata.controls['version'].value;
     let datasetDescription = this.formdata.controls['desc'].value;
     let datasetUrl = this.formdata.controls['url'].value;
-    this.http.post('http://13.234.148.242:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion, datasetDescription })
+    let datasetTags=this.formdata.controls['dataset_tag'].value;
+    let datasetType='';
+    this.http.post('http://localhost:3000/data/insertData', {datasetUrl, datasetName, datasetId, datasetVersion,datasetTags,datasetType, datasetDescription })
       .subscribe(response => {
         debugger
         this.formdata.reset();
@@ -594,14 +596,17 @@ sectionData(){
     let datasetVersion = this.formdata4.controls['version'].value;
     let datasetDescription = this.formdata4.controls['desc'].value;
     let datasetUrl = this.formdata4.controls['url'].value;
+    let datasetTags=this.formdata4.controls['dataset_tag'].value;
+    let datasetType='';
     let datasetId =this.formdata4.controls['id'].value.toString(); //unique dataset Id 
     let id = this.formdata4.controls['main_id'].value.toString(); // unique primery key generated by DB
     
    
 
-    console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
-    this.http.post('http://13.234.148.242:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription, datasetUrl })
+    // console.log("datasetId", datasetName, datasetId, datasetVersion, datasetDescription)
+    this.http.post('http://localhost:3000/data/editDataset', { datasetName, datasetId, datasetVersion, datasetDescription,datasetTags,datasetType, datasetUrl })
       .subscribe(response => {
+        debugger
         console.log(response)
         this.storeResponse = response;
         this.toastr.warning(this.storeResponse.message);
@@ -615,7 +620,7 @@ sectionData(){
 
     let datasetId=this.datasetId;
 
-    this.http.post('http://13.234.148.242:3000/data/deleteDataset', { datasetId })
+    this.http.post('http://localhost:3000/data/deleteDataset', { datasetId })
       .subscribe(response => {
         debugger
         console.log(response)
@@ -627,7 +632,7 @@ sectionData(){
       );
   }
   getdataset() {
-    this.http.post('http://13.234.148.242:3000/data/retrieveDatasets', {})
+    this.http.post('http://localhost:3000/data/retrieveDatasets', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.Dataset = this.dumbb1.data;
@@ -643,7 +648,7 @@ sectionData(){
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
     
-    this.http.post('http://13.234.148.242:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
+    this.http.post('http://localhost:3000/pipeline/insertPipeline', {pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription })
       .subscribe(response => {
         this.formdata8.reset();
         console.log(response)
@@ -658,7 +663,7 @@ sectionData(){
       );
   }
   getPipeline(){
-    this.http.post('http://13.234.148.242:3000/pipeline/retrievePipelines', {})
+    this.http.post('http://localhost:3000/pipeline/retrievePipelines', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.pipeline = this.dumbb1.data;
@@ -676,7 +681,7 @@ sectionData(){
     let pipelineTags=this.formdata8.controls['pipeline_tags'].value;
     let pipelineDescription=this.formdata8.controls['pipeline_description'].value;
     
-    this.http.post('http://13.234.148.242:3000/pipeline/editPipeline', { pipelineId,pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
+    this.http.post('http://localhost:3000/pipeline/editPipeline', { pipelineId,pipelineName,pipelineViewUrl,pipelineTags,pipelineDescription})
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -692,7 +697,7 @@ sectionData(){
   deletePipeline(){
    
     let pipelineId=this.pipelineId
-    this.http.post('http://13.234.148.242:3000/pipeline/deletePipeline', { pipelineId })
+    this.http.post('http://localhost:3000/pipeline/deletePipeline', { pipelineId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -710,7 +715,7 @@ sectionData(){
     let frontendRunUrl=this.formdata9.controls['frontendRun_url'].value;
     let frontendDescription=this.formdata9.controls['frontend_description'].value;
 
-    this.http.post('http://13.234.148.242:3000/frontend/insertFrontend', {
+    this.http.post('http://localhost:3000/frontend/insertFrontend', {
       frontendName,
     frontendStylesUrl,
     frontendRunUrl,
@@ -730,7 +735,7 @@ sectionData(){
   }
 
   getFrontend(){
-    this.http.post('http://13.234.148.242:3000/frontend/retrieveFrontends', {})
+    this.http.post('http://localhost:3000/frontend/retrieveFrontends', {})
       .subscribe(response => {
         this.dumbb1 = response;
         this.Frontend = this.dumbb1.data;
@@ -746,7 +751,7 @@ sectionData(){
     let frontendDescription=this.formdata9.controls['frontend_description'].value;
     let id=this.formdata9.controls['id'].value;
     
-    this.http.post('http://13.234.148.242:3000/frontend/editFrontend', {id,frontendName,
+    this.http.post('http://localhost:3000/frontend/editFrontend', {id,frontendName,
     frontendStylesUrl,
     frontendRunUrl,
     frontendDescription})
@@ -762,7 +767,7 @@ sectionData(){
 deleteFrontend(){
   
   let id=this.frontendId;
-    this.http.post('http://13.234.148.242:3000/frontend/deleteFrontend', { id })
+    this.http.post('http://localhost:3000/frontend/deleteFrontend', { id })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -781,7 +786,8 @@ deleteFrontend(){
     this.formdata4.controls['version'].setValue(data.datasetVersion);
     this.formdata4.controls['desc'].setValue(data.datasetDescription);
     this.formdata4.controls['url'].setValue(data.datasetUrl);
-    this.formdata4.controls['id'].setValue(data.datasetId)
+    this.formdata4.controls['id'].setValue(data.datasetId);
+    this.formdata4.controls['dataset_tag'].setValue(data.datasetTags);
     this.formdata4.controls['id'].disable();
   }
   getDataModel(data: any) {
@@ -792,6 +798,7 @@ deleteFrontend(){
     this.formdata6.controls['run_url'].setValue(data.modelRunUrl);
     this.formdata6.controls['view_url'].setValue(data.modelViewUrl);
     this.formdata6.controls['modelTags'].setValue(data.modelTags);
+    this.formdata6.controls['modelseparator'].setValue(data.modelSeperator);
   }
   
   selectedValues:any;
@@ -888,7 +895,7 @@ deleteFrontend(){
     let pipelineId=this.dropdownpipeline;
     let frontendId=this.dropdownfrontend;
       debugger
-    this.http.post('http://13.234.148.242:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
+    this.http.post('http://localhost:3000/solution/insertSolution', { solutionName, solutionViewUrl, solutionTags, solutionDescription, solutionRunUrl,modelId,datasetId,pipelineId,frontendId })
       .subscribe(response => {
         debugger
         console.log(response);
@@ -920,7 +927,7 @@ deleteFrontend(){
     let frontendId=this.editdropdownfrontend;
     
     // solutionTags,
-    this.http.post('http://13.234.148.242:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,solutionTags,frontendId,pipelineId,modelId ,dataId})
+    this.http.post('http://localhost:3000/solution/editSolution', {solutionId, solutionName, solutionVersion, solutionDescription, solutionRunUrl,solutionViewUrl,solutionTags,frontendId,pipelineId,modelId ,dataId})
       .subscribe(response => {
         debugger
         console.log(response);
@@ -941,7 +948,7 @@ debugger
    
     let solutionId=this.solutionId;
 
-    this.http.post('http://13.234.148.242:3000/solution/deleteSolution', { solutionId })
+    this.http.post('http://localhost:3000/solution/deleteSolution', { solutionId })
       .subscribe(response => {
         console.log(response);
         this.storeResponse = response;
@@ -958,7 +965,7 @@ debugger
   valuesArray: any[] = [];
   TagsArray: any[] = [];
   getSolution() {
-    this.http.post('http://13.234.148.242:3000/solution/retrieveSolutions', {})
+    this.http.post('http://localhost:3000/solution/retrieveSolutions', {})
       .subscribe(response => {
         this.dumbb1 = response;
         debugger
@@ -1215,6 +1222,7 @@ editdropdownmodel:any=[];
 editdropdownpipeline:any=[];
 editdropdownfrontend:any=[];
 
+//On Type text change to Uppercase
 onInputChange(key:string,value:string){
   if(key=='solution'){
     const inputControl = this.formdata3.get(value);
@@ -1240,21 +1248,23 @@ onInputChange(key:string,value:string){
   }else if(key=='edit-solution'){
     const inputControl = this.formdata7.get(value);
     inputControl.setValue(inputControl.value.toUpperCase(), { emitEvent: false });
-  }
-  
+  } 
 }
-
-  empty(){
+ empty(){
     this.pipeline=[];
     this.Dataset=[];
     this.Solution=[];
     this.Modules=[];
     this.Frontend=[];
+    this.groupedData=[];
+    this.sections=[];
   }
+
   linkagedata:any=[];
   dummy6:any=[];
   dummy5:any;
   link:boolean=false;
+
   linkCheck(){
     this.link= !this.link;
   }
@@ -1262,7 +1272,7 @@ onInputChange(key:string,value:string){
    linkage(data:any){
   
     let solutionId=data.id;
-    this.http.post('http://13.234.148.242:3000/solution/linked', {solutionId})
+    this.http.post('http://localhost:3000/solution/linked', {solutionId})
     .subscribe(response => {
       debugger
       this.linkagedata=response;
@@ -1273,6 +1283,7 @@ onInputChange(key:string,value:string){
           this.Solution=this.linkagedata.solutions;
           this.isPanelOpen=true;
           this.Modules=this.linkagedata.models;
+          this.sectionData();
           this.pipeline=this.linkagedata.pipelines;
           this.Dataset=this.linkagedata.datasets;
           this.Frontend=this.linkagedata.frontends;
