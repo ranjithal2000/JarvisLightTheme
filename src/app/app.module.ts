@@ -26,6 +26,7 @@ import { PortalComponent } from './features/portal/portal.component';
 import { ToastrModule } from 'ngx-toastr';
 // import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { SplashScreenComponent } from './features/splash-screen/splash-screen.component';
 import { NgParticlesModule } from "ng-particles";
 import {MatBadgeModule} from '@angular/material/badge';
@@ -51,6 +52,7 @@ import { TestComponent } from './features/test/test.component';
     MatCheckboxModule,
     ToastrModule.forRoot(),
     // OAuthModule.forRoot(),
+    NgSelectModule,
     NgMultiSelectDropDownModule,
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,

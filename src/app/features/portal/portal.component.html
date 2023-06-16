@@ -85,16 +85,16 @@
                           class="fa fa-link fa-lg icon-glow"></i> </a>
                     </div>
 
-                    <div class="btn-grp pl-1 pr-3 icon-glow" #start> <a aria-placeholder="Edit"><mat-icon
-                          aria-hidden="false" aria-label="Example home icon"
+                    <div class="btn-grp pl-1 pr-3 icon-glow" #start> <a aria-placeholder="Edit">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon"
                           style="color:white;cursor: pointer;margin-right: 10px;" fontIcon="edit"
                           (click)="editData(data,'Solution')" (click)="getDataSolution(data)" data-toggle="modal"
                           data-target="#exampleModal"></mat-icon></a>
                     </div>
 
 
-                    <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section"><mat-icon
-                          matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
+                    <div class="btn-grp pl-1 icon-glow"> <a aria-placeholder="Delete" class="demo-section">
+                      <mat-icon matBadge="15" matBadgeColor="warn" aria-hidden="false" aria-label="Example home icon"
                           style="color:white;cursor: pointer;margin-left: 10px;;  " fontIcon="delete"
                           data-toggle="modal" data-target="#confModal"
                           (click)="deleteId(data,'Solution')"></mat-icon></a> </div>
@@ -441,22 +441,21 @@
           </span>
         </tr>
 
-
         <mat-accordion class="mb-2 py-0">
           <table>
             <tr *ngFor="let data of Dataset" class="mt-2 ">
               <td>
-
-                <div class="tick-mark mr-1" *ngIf="selected">
+                <!-- tick mark -->
+                <div class="tick-mark mr-1" *ngIf="selected">  
                   <span>&#10003;</span>
                 </div>
-
                 <mat-expansion-panel style="background-color: #7672ED;" (opened)="onPanelOpened(data,'opened')"
                   (closed)="onPanelOpened(data,'closed')" class="py-0 my-0">
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       <p class="mt-3 pt-2" style="font-size: 15px;color:white"><b>{{data.datasetName}}</b></p>
                     </mat-panel-title>
+                    <!-- <label class="dataType">{{data.datasetType}}</label> -->
                   </mat-expansion-panel-header>
 
                   <!-- <div class="chip-container" >
@@ -796,14 +795,15 @@
                 </mat-form-field>
               </div>
 
-              <div class="px-3"> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+              <div class="px-3"> 
+                <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
                   <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> --> <input
                     id="inputStyle" matInput placeholder="Dataset URL" formControlName="url"> </mat-form-field>
               </div>
             </div>
 
             <div class="d-flex flex-row m-3">
-              <div> <mat-form-field style="min-width:35vw" class="example-full-width" appearance="outline">
+              <div> <mat-form-field style="min-width:35vw;" class="example-full-width" appearance="outline">
                   <!-- <mat-label style="font-size:16px;margin-left: 10px;"><b>Run url</b></mat-label> -->
                   <input id="inputStyle" matInput placeholder="Dataset Tag" formControlName="dataset_tag">
                 </mat-form-field>
@@ -813,14 +813,15 @@
                    <input
                     id="inputStyle" matInput placeholder="Dataset URL" formControlName="url"> </mat-form-field>
               </div> -->
-              <!-- <div class="px-3">
-                <input [(ngModel)]="textInput" placeholder="Enter text">
-                  <select [(ngModel)]="selectedOption">
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                  </select>
-              </div> -->
+              
+                <!-- <mat-label>Enter or select text</mat-label> -->
+                <!-- <div class="px-3 mt-3">
+                    <ng-select [items]="sections" bindLabel="name" style="min-width:35vw;" placeholder="Type or select dataset type" 
+                      formControlName="data_type" [addTag]="true">
+                    </ng-select>    
+                </div> -->
+              
+
             </div>
 
             <div class="d-flex flex-row m-3">
@@ -1113,6 +1114,12 @@
                 <mat-label id="subTitle"><b>Dataset Url</b></mat-label> <input id="inputStyle" matInput
                   placeholder="Enter URL" formControlName="url"> </mat-form-field>
             </div> -->
+            <!-- <div class="px-3 mt-4">
+              <mat-label id="subTitle"><b>Type or select Dataset Type</b></mat-label>
+              <ng-select [items]="sections" bindLabel="name" style="min-width:35vw;" placeholder="Type or select dataset type" 
+                formControlName="data_type" [addTag]="true">
+              </ng-select>    
+          </div> -->
           </div>
 
           <div class="d-flex flex-row m-3">

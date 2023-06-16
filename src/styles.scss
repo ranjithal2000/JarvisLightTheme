@@ -1,5 +1,5 @@
 @import "app/webapp-common/common-styles";
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 sm-tasks-table .card, sm-models-view .card, sm-task-info .card, sm-models .card {
   border: none;
 }

@@ -37,6 +37,7 @@
     "@aws-sdk/s3-request-presigner": "^3.216.0",
     "@fortawesome/angular-fontawesome": "^0.11.1",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@ng-select/ng-select": "^11.0.0",
     "@ngneat/dag": "^2.0.0",
     "@ngrx/effects": "^14.3.2",
     "@ngrx/entity": "^14.3.2",

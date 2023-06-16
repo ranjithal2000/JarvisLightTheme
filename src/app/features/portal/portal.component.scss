@@ -1,3 +1,4 @@
+
 // ::-webkit-scrollbar{
 //   width: 1px;
 //   background: transparent;  
@@ -514,4 +515,12 @@ mat-icon:hover{
   text-transform: uppercase;
   background-color: #fff; /* Set the desired background color for the section name */
   padding: 0 10px;
+}
+
+.dataType{
+  color: white;
+  font-size: 12px;
+  text-align:start;
+  // margin-top: 2px;
+  // margin-left: 15px !important;
 }
