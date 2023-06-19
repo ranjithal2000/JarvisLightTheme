@@ -94,6 +94,13 @@
   right: 100px;
   z-index: 1;
 }
+.cart_button1{
+  position: fixed;
+  top: 22px;
+  right: 120px;
+  z-index: 1;
+}
+
 .tick-mark{
   position: absolute;
   // z-index: 1;
@@ -128,27 +135,57 @@ mat-expansion-panel-header{
   // display: flex;
   margin-top: 2%;  
 }
-.col-lg{ 
-    background-color: #FFFFFF;
-    margin:8px;
-    position: relative;
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-    height: 820px;
-    overflow: hidden;
+// .col-lg{ 
+//     background-color: #FFFFFF;
+//     margin:8px;
+//     position: relative;
+//     flex: 1;
+//     overflow-y: auto;
+//     overflow-x: hidden;
+//     position: relative;
+//     height: 820px;
+//     overflow: hidden;
+// }
+// .col-lg:hover{
+//   overflow-y: auto;
+// }
+// .ex3 {
+//     position: relative;
+//     margin-bottom: 200px;
+  
+//     height: auto;   
+//   }
+.col-lg {
+  background-color: #FFFFFF;
+  margin: 8px;
+  position: relative;
+  flex: 1;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  position: relative;
+  height: 820px;
+  overflow: hidden;
 }
-.col-lg:hover{
-  overflow-y: auto;
-}
+
 .ex3 {
-    position: relative;
-    margin-bottom: 200px;
-    // margin-right: 6vw !important;
-    // width:90%;
-    height: auto;   
-  }
+  position: relative;
+  margin-bottom: 200px;
+  height: auto;
+}
+
+.fixed-table {
+  position: sticky;
+  top: 0;
+  background-color: #FFFFFF;
+  z-index: 1;
+}
+
+.scrollable-accordion:hover {
+  height: calc(695px - 50px); /* Subtract the height of the fixed table */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
   .solution_run_btn{
     background-color: #2f334a !important;
     border: none !important;
