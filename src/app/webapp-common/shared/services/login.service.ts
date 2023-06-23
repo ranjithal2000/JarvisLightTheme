@@ -241,27 +241,27 @@ After the issue is resolved and Trains Server is up and running, reload this pag
 
   private openServerError() {
     // Mocking application header
-    // const imgElement = new Image();
-    // imgElement.setAttribute('src', this.environment.branding.logo);
-    // imgElement.setAttribute('style', 'width: 100%; height: 64px; background-color: #141822; padding: 15px;');
-    // document.body.appendChild(imgElement);
+    const imgElement = new Image();
+    imgElement.setAttribute('src', this.environment.branding.logo);
+    imgElement.setAttribute('style', 'width: 100%; height: 64px; background-color: #141822; padding: 15px;');
+    document.body.appendChild(imgElement);
 
-    // const body = this.environment.serverDownMessage;
+    const body = this.environment.serverDownMessage;
 
-    // const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
-    //   disableClose: true,
-    //   data: {
-    //     width: 440,
-    //     title: 'Server Unavailable',
-    //     body,
-    //     yes: 'Reload',
-    //     iconClass: 'i-alert',
-    //     centerText: true
-    //   } as ConfirmDialogConfig
-    // });
-    // confirmDialogRef.afterClosed().subscribe(() => {
-    //   window.location.reload();
-    // });
+    const confirmDialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: true,
+      data: {
+        width: 440,
+        title: 'Server Unavailable',
+        body,
+        yes: 'Reload',
+        iconClass: 'i-alert',
+        centerText: true
+      } as ConfirmDialogConfig
+    });
+    confirmDialogRef.afterClosed().subscribe(() => {
+      window.location.reload();
+    });
   }
 
   clearLoginCache() {
