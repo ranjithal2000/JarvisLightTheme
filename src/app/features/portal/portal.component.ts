@@ -143,16 +143,16 @@ sectionData(){
   //     
   //   }
   // }
-  //   if(this.link){
-  //     if(data.frontendName){
-  //       this.idx=this.Frontend.indexOf(data);
-  //     }else if(data.pipelineName){
-  //       this.idx=this.pipeline.indexOf(data);
-  //     }else if(data.modelName){
-  //       this.idx=this.Modules.indexOf(data);
-  //     }else if(data.datasetName){
-  //       this.idx=this.Dataset.indexOf(data);
-  //     }
+    // if(this.link){
+    //   if(data.frontendName){
+    //     this.idx=this.Frontend.indexOf(data);
+    //   }else if(data.pipelineName){
+    //     this.idx=this.pipeline.indexOf(data);
+    //   }else if(data.modelName){
+    //     this.idx=this.Modules.indexOf(data);
+    //   }else if(data.datasetName){
+    //     this.idx=this.Dataset.indexOf(data);
+    //   }
       
   //     this.updateArrows(data);
   //   }
@@ -267,7 +267,7 @@ sectionData(){
 
 
   refresh(){
-    this.updateArrows('remove')
+    // this.updateArrows('remove')
     this.getModel();
     this.getSolution();
     this.getdataset();
@@ -1298,6 +1298,7 @@ onInputChange(key:string,value:string){
       this.linkagedata=response;
       this.empty();  
       console.log(this.linkagedata);
+      debugger
       this.linkCheck();
       this.selected=true;
       
@@ -1310,9 +1311,9 @@ onInputChange(key:string,value:string){
 
           this.sectionData();
 
-        if(this.Solution.length==1){
-          this.updateArrows(data);
-        }
+        // if(this.Solution.length==1){
+        //   this.updateArrows(data);
+        // }
       })
   }
 
