@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 import {CartService} from '~/shared/services/cart.service'
 import { error, log } from 'console';
-import { MatAccordion } from '@angular/material/expansion';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader } from '@angular/material/expansion';
 
 
 
@@ -29,7 +29,8 @@ declare var LeaderLine: any;
   // encapsulation: ViewEncapsulation.None
 })
 export class PortalComponent implements OnInit {  
-  @ViewChild('panel1', { static: true }) panel1: ElementRef;
+  // @ViewChild('panel1', { static: true }) panel1: ElementRef;
+  
 
   // readonly ICONS = ICONS;
   isPanelOpen = false;
@@ -66,11 +67,6 @@ export class PortalComponent implements OnInit {
   selectedIndex: number = 0;
   filled: boolean = false;
   selected:boolean=false;
-  // tags:tags[]=[{name:'tag1'},{name:'tag2'}];
-  // drop(event: CdkDragDrop<tags[]>) {
-  //   moveItemInArray(this.tags, event.previousIndex, event.currentIndex);
-  // }
-
   innerHeight: any;
     innerWidth: any;
 
@@ -116,10 +112,14 @@ sectionData(){
   });
     this.sections = Object.keys(this.groupedData);
 }
+// ngAfterViewInit() {
+//   this.panel.openedChange.subscribe((opened: boolean) => {
+//     this.isExpanded = opened;
+//   });
+// }
 
-openHtmlFile() {
-  window.open('./static/index.html', '_blank');
-}
+
+
   groupedData:any;
   sections:any=[];
   // Test_model:any=[
@@ -133,15 +133,16 @@ openHtmlFile() {
 
   // ----------------For on open panel lines position handle---------------------
 
-  // idx:any;
   // onPanelOpened(data:any,state:any) {
     
   //   if(state=='opened'){
   //     this.panelOpenState=true;
+  //     
   //   }else{
   //     this.panelOpenState=false;
+  //     
   //   }
-   
+  // }
   //   if(this.link){
   //     if(data.frontendName){
   //       this.idx=this.Frontend.indexOf(data);

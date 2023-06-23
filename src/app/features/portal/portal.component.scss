@@ -1,9 +1,7 @@
 
-// ::-webkit-scrollbar{
-//   width: 1px;
-//   background: transparent;  
-// }
-
+body{
+  background: #fff;
+}
 *::-webkit-scrollbar {
   width: 6px !important;
 }
@@ -11,52 +9,18 @@
   background: transparent !important;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(77, 77, 171, 0.77) !important;
+  background-color: #47A0FC !important;
   border-radius: 20px !important;
   // border: 3px solid rgb(216, 221, 222) !important;
-  border: 1px solid #8683df !important;
+  border: 1px solid #47A0FC !important;
 }
-// :host ::ng-deep * {
-//   all: unset !important;
-// }  
-   
 
-
-
-
-// table td{              
-//     position: relative;
-// }
-// table td:before,
-// table td:after {
-//     content: "";
-//     position: absolute;
-//    height: 0;
-//    width: 0;
-//   }
-//   table td:before{
-//     top:50%;
-//     left: 100%;
-//     margin-left: 10px;
-//   }
-//   table td:after{
-//     top: 50%;
-//     right: 100%;
-//     margin-right: 10px;
-//   }
-  
   .controls {
     position: absolute;
     top: 10px;
     left: 60%;
     transform: translateX(-50%);
   }
-
-
-
-
-
-
 
 [aria-placeholder] {
     position: relative;
@@ -94,12 +58,7 @@
   right: 100px;
   z-index: 1;
 }
-.cart_button1{
-  position: fixed;
-  top: 22px;
-  right: 120px;
-  z-index: 1;
-}
+
 
 .tick-mark{
   position: absolute;
@@ -112,27 +71,41 @@
   font-weight: bolder;
   color: green;
 }
- mat-expansion-panel{
-    // border: solid 1px;
-    // width: 310px !important;  
+ mat-expansion-panel{  
     position:static;
-    // width: 16.5vw !important;
+    background-color: #47A0FC;
+    margin-bottom: 2px !important;
 }
-// mat-expansion-panel:mat-expanded{
-//   width: 310px !important;
-// }
+
 mat-expansion-panel-header{
     height: 52px !important;
-    // width: 330px !important;
+    background-color: #fff;
+    color: rgb(20, 20, 20) !important;
+    .mat-expansion-indicator{
+      color: #000 !important;
+    }
 }
+
+.mat-expansion-panel-header .mat-expansion-indicator::after {
+  color: black !important;
+}
+
+.mat-expansion-panel-header .mat-expansion-indicator.mat-expanded::after {
+  color: white !important;
+}
+
+.mat-expansion-panel.mat-expanded .mat-expansion-panel-header {
+  background-color: #47A0FC !important;
+  color: white !important;
+}
+
 
 .container-fluid{
   overflow: auto;
-  // height: 90vh !important;
   margin-top: 12px;
+  
 } 
 .row{
-  // display: flex;
   margin-top: 2%;  
 }
 // .col-lg{ 
@@ -156,7 +129,8 @@ mat-expansion-panel-header{
 //     height: auto;   
 //   }
 .col-lg {
-  background-color: #FFFFFF;
+  background-color: #EBEEFF;
+  border-bottom:#dadef2 ;
   margin: 8px;
   position: relative;
   flex: 1;
@@ -167,6 +141,7 @@ mat-expansion-panel-header{
   overflow: hidden;
 }
 
+
 .ex3 {
   position: relative;
   margin-bottom: 200px;
@@ -176,7 +151,6 @@ mat-expansion-panel-header{
 .fixed-table {
   position: sticky;
   top: 0;
-  background-color: #FFFFFF;
   z-index: 1;
 }
 
@@ -184,6 +158,11 @@ mat-expansion-panel-header{
   height: calc(695px - 50px); /* Subtract the height of the fixed table */
   overflow-y: auto;
   overflow-x: hidden;
+
+  mat-expansion-panel{
+    margin-right: 2px;
+  }
+  
 }
 
   .solution_run_btn{
@@ -195,20 +174,6 @@ hr{
     color: black;
     background-color:black;
 }
-
-// .l1{
-//   position: sticky;
-//   top: 0;
-//   left: 0;
-//   z-index: 1;
-//   padding: none;
-//   margin: none; 
-// }
-
-// #div1,#div2{
-//     display: inline;
-// }
-
 
 
 .icon-container {
@@ -222,11 +187,6 @@ hr{
     display: inline-block;
     margin-right: 2px; /* optional - to add space between icons */  
   }
-// .addButton{
-//     color: white;
-// }
-
-
 
 
 
@@ -488,7 +448,9 @@ label{
 #icon{  
     font-size: 28px;
     // color: #37B3FB;
-     color:#7672ED;
+     color:#47A0FC;
+    // color: #000;
+ 
 }
 .dropdown-toggl{
     margin: none !important;
@@ -501,8 +463,14 @@ mat-icon:hover{
 }
 #text{
     // color: #37B3FB;
-    color:#7672ED;
+    // color:#7672ED;
+    // color: #47A0FC;
+    color: #000;
     
+}
+hr {
+  border: none;
+  border-top: 1px dotted black;
 }
 
 .badge{
